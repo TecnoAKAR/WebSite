@@ -84,7 +84,7 @@
               <li class="scroll-to-section"><a href="#galeria">Galería</a></li>
               <li class="scroll-to-section"><a href="#blog">Foro</a></li>
               <li class="scroll-to-section"><a href="#contact">Contáctanos</a></li> 
-              <li class="scroll-to-section"><div class="border-first-button"><a href="#contact">Iniciar sesión</a></div></li> 
+              <li class="scroll-to-section"><div class="border-first-button"><a href="login.jsp">Iniciar sesión</a></div></li> 
             </ul>        
             <a class='menu-trigger'>
                 <span>Menu</span>
@@ -133,7 +133,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+          <div class="section-heading  wow fadeInDown" data-wow-duration="0.6s" data-wow-delay="0.4s">
             <h6>Nuestra empresa</h6>
             <h4>¿Quienes somos en <em>Tecnologías AKAR?</em></h4>
             <div class="line-dec"></div>
@@ -373,7 +373,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-4 offset-lg-4">
-          <div class="section-heading  wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
+          <div class="section-heading  wow fadeIn" data-wow-duration="0.5s" data-wow-delay="0.3s">
             <h6>Nuestro proyecto</h6>
             <h4>APPerger</h4>
             <div class="line-dec"></div>
