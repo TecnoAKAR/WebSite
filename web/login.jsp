@@ -1,36 +1,29 @@
 <%-- 
-    Document   : login
-    Created on : Sep 30, 2022, 10:04:39 AM
-    Author     : AKAR
+Document   : login
+Created on : 12/10/2022, 10:52:51 PM
+Author     : AKAR
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="icon" href="sources\assets\images\logoAKAR100.png">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
         <title>Login</title>
-
-        <!-- Bootstrap core CSS -->
-        <link href="sources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-
-        <!-- Additional CSS Files -->
-        <link rel="stylesheet" href="sources/assets/css/fontawesome.css">
+        <link rel="icon" href="sources\assets\images\logoAKAR100.png">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="sources/login/css/style.css"> 
+        
         <link rel="stylesheet" href="sources/assets/css/akar.css">
         <link rel="stylesheet" href="sources/assets/css/animated.css">
         <link rel="stylesheet" href="sources/assets/css/owl.css">
-        <link rel="stylesheet" href="sources/assets/css/login.css">
+        
     </head>
-    <body>
+    <body class="img js-fullheight" style="background-image: url(sources/assets/images/quote-bg-v2.jpg);">
+        
+        
         <div id="js-preloader" class="js-preloader">
             <div class="preloader-inner">
                 <span class="dot"></span>
@@ -42,24 +35,45 @@
             </div>
         </div>
         
-        </br>
-        </br>
-        </br>
-        
-        <div class="contenedor" align="center">
-            <div class="card" align="left">
-                <form>
-                    <div class="inputGroup">
-                        <input type="text" required="" autocomplete="off">
-                        <label for="name">Name</label>
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 text-center mb-5">
+                        <h2 class="heading-section">Inicie Sesión</h2>
                     </div>
-                </form>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="login-wrap p-0">
+                            <h3 class="mb-4 text-center">¿Tiene una cuenta?</h3>
+                            <form action="#" class="signin-form">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Usuario" required>
+                                </div>
+                                <div class="form-group">
+                                    <input id="password-field" type="password" class="form-control" placeholder="Contraseña" required>
+                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="form-control btn btn-primary submit px-3">Iniciar sesión</button>
+                                </div>
+                                <div class="form-group d-md-flex">
+                                    <div>
+                                        <a href="404.jsp" style="color: #fff">Forgot Password</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <script src="sources/login/js/jquery.min.js"></script>
+        <script src="sources/login/js/popper.js"></script>
+        <script src="sources/login/js/bootstrap.min.js"></script>
+        <script src="sources/login/js/main.js"></script>
         
-        </br>
-        </br>
-        </br>
         
         <script src="sources/vendor/jquery/jquery.min.js"></script>
         <script src="sources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -67,5 +81,8 @@
         <script src="sources/assets/js/animation.js"></script>
         <script src="sources/assets/js/imagesloaded.js"></script>
         <script src="sources/assets/js/custom.js"></script>
+
     </body>
 </html>
+
+
