@@ -5,7 +5,9 @@ Author     : AKAR
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!doctype html>
+
 <html lang="es">
     <head>
         <title>Login</title>
@@ -23,7 +25,6 @@ Author     : AKAR
     </head>
     <body class="img js-fullheight" style="background-image: url(sources/assets/images/quote-bg-v2.jpg);">
         
-        
         <div id="js-preloader" class="js-preloader">
             <div class="preloader-inner">
                 <span class="dot"></span>
@@ -35,7 +36,7 @@ Author     : AKAR
             </div>
         </div>
         
-        <section class="ftco-section">
+        <div class="contenedor">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-center mb-5">
@@ -45,10 +46,9 @@ Author     : AKAR
                 <div class="row justify-content-center">
                     <div class="col-md-6 col-lg-4">
                         <div class="login-wrap p-0">
-                            <h3 class="mb-4 text-center">¿Tiene una cuenta?</h3>
                             <form action="#" class="signin-form">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Usuario" required>
+                                    <input type="email" class="form-control" placeholder="Correo electrónico" required>
                                 </div>
                                 <div class="form-group">
                                     <input id="password-field" type="password" class="form-control" placeholder="Contraseña" required>
@@ -58,8 +58,8 @@ Author     : AKAR
                                     <button type="submit" class="form-control btn btn-primary submit px-3">Iniciar sesión</button>
                                 </div>
                                 <div class="form-group d-md-flex">
-                                    <div>
-                                        <a href="404.jsp" style="color: #fff">Forgot Password</a>
+                                    <div class="w-100 text-center">
+                                            ¿Todavía no tienes una cuenta? <a href="signup.jsp" style="color: #00e7ff"> Cree una. </a>
                                     </div>
                                 </div>
                             </form>
@@ -67,7 +67,7 @@ Author     : AKAR
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <script src="sources/login/js/jquery.min.js"></script>
         <script src="sources/login/js/popper.js"></script>
@@ -81,6 +81,15 @@ Author     : AKAR
         <script src="sources/assets/js/animation.js"></script>
         <script src="sources/assets/js/imagesloaded.js"></script>
         <script src="sources/assets/js/custom.js"></script>
+        
+        <style>
+            .contenedor {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                height: 100%;
+            }
+        </style>
 
     </body>
 </html>

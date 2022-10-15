@@ -10,7 +10,7 @@ Author     : AKAR
 
 <html lang="es">
     <head>
-        <title>Login</title>
+        <title>Sign Up</title>
         <link rel="icon" href="sources\assets\images\logoAKAR100.png">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,6 +24,7 @@ Author     : AKAR
         
     </head>
     <body class="img js-fullheight" style="background-image: url(sources/assets/images/quote-bg-v2.jpg);">
+        
         
         <div id="js-preloader" class="js-preloader">
             <div class="preloader-inner">
@@ -40,13 +41,25 @@ Author     : AKAR
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-center mb-5">
-                        <h2 class="heading-section">Inicie Sesión</h2>
+                        <h2 class="heading-section">Cree una cuenta</h2>
                     </div>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-6 col-lg-4">
                         <div class="login-wrap p-0">
                             <form action="#" class="signin-form">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Nombre(s)" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Apellidos" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Nombre de usuario" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="date" class="form-control" placeholder="Fecha de nacimiento" required>
+                                </div>
                                 <div class="form-group">
                                     <input type="email" class="form-control" placeholder="Correo electrónico" required>
                                 </div>
@@ -55,11 +68,11 @@ Author     : AKAR
                                     <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="form-control btn btn-primary submit px-3">Iniciar sesión</button>
+                                    <button type="submit" class="form-control btn btn-primary submit px-3">Crear cuenta</button>
                                 </div>
                                 <div class="form-group d-md-flex">
                                     <div class="w-100 text-center">
-                                            ¿Todavía no tienes una cuenta? <a href="signup.jsp" style="color: #00e7ff"> Cree una. </a>
+                                            ¿Ya tienes una cuenta? <a href="login.jsp" style="color: #00e7ff"> Inicia sesión. </a>
                                     </div>
                                 </div>
                             </form>
@@ -90,7 +103,7 @@ Author     : AKAR
                 height: 100%;
             }
         </style>
-
+        
     </body>
 </html>
 
