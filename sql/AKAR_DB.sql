@@ -45,8 +45,8 @@ idChat int, idMensaje int,
 foreign key(idChat) references Chat(idChat),
 foreign key(idMensaje) references Mensajes(idMensaje));
 
-create table RelTutorUS(
-idRelTutorUS int primary key auto_increment,
+create table RelTutorUCSA(
+idRelTutorUCSA int primary key auto_increment,
 idUsuario1 int, idUsuario2 int,
 foreign key (idUsuario1) references Usuario(idUsuario),
 foreign key (idUsuario2) references Usuario(idUsuario));
