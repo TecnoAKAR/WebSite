@@ -138,31 +138,9 @@
             <h4>¿Quienes somos en <em>Tecnologías AKAR?</em></h4>
             <div class="line-dec"></div>
             <br>
-            <p> Igual aquí hay que poner algo de que somos lo máximo, pero mientras, un poema... 
-              Me gustas cuando callas porque estás como ausente,
-              y me oyes desde lejos, y mi voz no te toca.
-              Parece que los ojos se te hubieran volado
-              y parece que un beso te cerrara la boca.
-              
-              Como todas las cosas están llenas de mi alma
-              emerges de las cosas, llena del alma mía.
-              Mariposa de sueño, te pareces a mi alma,
-              y te pareces a la palabra melancolía.
-              
-              Me gustas cuando callas y estás como distante.
-              Y estás como quejándote, mariposa en arrullo.
-              Y me oyes desde lejos, y mi voz no te alcanza:
-              déjame que me calle con el silencio tuyo.
-              
-              Déjame que te hable también con tu silencio
-              claro como una lámpara, simple como un anillo.
-              Eres como la noche, callada y constelada.
-              Tu silencio es de estrella, tan lejano y sencillo.
-              
-              Me gustas cuando callas porque estás como ausente.
-              Distante y dolorosa como si hubieras muerto.
-              Una palabra entonces, una sonrisa bastan.
-              Y estoy alegre, alegre de que no sea cierto.</p>
+            <p> Somos una empresa 100% mexicana desarrolladora de software que busca no solo innovar, sino también revolucionar el mundo
+            del software desarrollando productos de calidad que superen tanto los estándares del mercado
+            y las expectativas de nuestros clientes.</p>
           </div>
         </div>
         <div class="col-lg-12">
