@@ -12,3 +12,10 @@ AS
 INSERT INTO Usuario ([Nombre],[ApellidoP],[ApellidoM],[Correo],[Contraseña],[NomUsuario],[Fecha])
 VALUES (@nombre, @apellidoP, @correo, @apellidoM,@contraseña @nombreUs,@fecha) 
 GO
+
+CREATE PROCEDURE sp_select_usuario
+@id INT
+AS 
+SELECT * FROM Usuario WHERE id = @id
+GO
+
