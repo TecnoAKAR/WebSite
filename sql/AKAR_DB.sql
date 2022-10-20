@@ -53,4 +53,4 @@ foreign key (idUsuario2) references Usuario(idUsuario));
 
 show tables;
 
-insert into TipoUsuario (Tipo) values ('Psicólogo'), ('UCSA'),('Tutor');
+insert into TipoUsuario (Tipo) values ('Psicólogo'), ('UCSA'),('Tutor'),('Externo');
