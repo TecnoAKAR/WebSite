@@ -1,4 +1,4 @@
-use database AKAR;
+use AKAR;
 
 CREATE PROCEDURE sp_insert_usuario
 @nombre VARCHAR(50), 

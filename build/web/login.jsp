@@ -16,7 +16,7 @@ Author     : AKAR
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="sources/login/css/style.css"> 
+        <link rel="stylesheet" href="sources/login&signup/css/style.css"> 
         
         <link rel="stylesheet" href="sources/assets/css/akar.css">
         <link rel="stylesheet" href="sources/assets/css/animated.css">
@@ -69,10 +69,10 @@ Author     : AKAR
             </div>
         </div>
 
-        <script src="sources/login/js/jquery.min.js"></script>
-        <script src="sources/login/js/popper.js"></script>
-        <script src="sources/login/js/bootstrap.min.js"></script>
-        <script src="sources/login/js/main.js"></script>
+        <script src="sources/login&signup/js/jquery.min.js"></script>
+        <script src="sources/login&signup/js/popper.js"></script>
+        <script src="sources/login&signup/js/bootstrap.min.js"></script>
+        <script src="sources/login&signup/js/main.js"></script>
         
         
         <script src="sources/vendor/jquery/jquery.min.js"></script>

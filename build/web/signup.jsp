@@ -16,7 +16,7 @@ Author     : AKAR
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="sources/login/css/style.css"> 
+        <link rel="stylesheet" href="sources/login&signup/css/style.css"> 
         
         <link rel="stylesheet" href="sources/assets/css/akar.css">
         <link rel="stylesheet" href="sources/assets/css/animated.css">
@@ -36,56 +36,67 @@ Author     : AKAR
                 </div>
             </div>
         </div>
-        
         <div class="contenedor">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-6 text-center mb-5">
-                        <h2 class="heading-section">Cree una cuenta</h2>
+            <div class="container p-5">
+            <br/>
+            <h2 class="heading-section">Cree una cuenta</h2>
+                <form class="row g-3">
+                    <div class="col-md-6">
+                        <label for="inputEmail4" class="form-label"></label>
+                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre(s)" required>
                     </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-6 col-lg-4">
-                        <div class="login-wrap p-0">
-                            <form action="#" class="signin-form">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Nombre(s)" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Apellidos" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Nombre de usuario" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="date" class="form-control" placeholder="Fecha de nacimiento" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Correo electrónico" required>
-                                </div>
-                                <div class="form-group">
-                                    <input id="password-field" type="password" class="form-control" placeholder="Contraseña" required>
-                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="form-control btn btn-primary submit px-3">Crear cuenta</button>
-                                </div>
-                                <div class="form-group d-md-flex">
-                                    <div class="w-100 text-center">
-                                            ¿Ya tienes una cuenta? <a href="login.jsp" style="color: #00e7ff"> Inicia sesión. </a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                    <div class="col-md-6">
+                      <label for="inputEmail4" class="form-label"></label>
+                      <input type="text" class="form-control" id="apellido_p" name="apellido_p" placeholder="Apellido paterno" required>
                     </div>
-                </div>
+                    <div class="col-md-6">
+                      <label for="inputEmail4" class="form-label"></label>
+                      <input type="text" class="form-control" id="apellido_m" name="apellido_m" placeholder="Apellido materno" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="inputEmail4" class="form-label"></label>
+                      <input type="Date" class="form-control" id="fecha_nac" name="fecha_nac" required>
+                    </div>
+                    <div class="col-12">
+                      <label for="inputEmail4" class="form-label"></label>
+                      <input type="email" class="form-control" id="correo_e" name="correo_e" placeholder="Correo electrónico" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="inputEmail4" class="form-label"></label>
+                      <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Nombre de usuario" required>
+                    </div>
+                    <div class="col-md-6    ">
+                        <label for="inputState" class="form-label"></label>
+                        <select id="inputState" class="form-control">
+                          <option selected>Tipo de usuario</option>
+                          <option>Usuario Con Síndrome de Asperger (UCSA)</option>
+                          <option>Tutor</option>
+                          <option>Psicólogo</option>
+                          <option>Usuario externo</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="inputPassword4" class="form-label"></label>
+                      <input id="password-field" type="password" class="form-control" placeholder="Contraseña" required> 
+                      </br>
+                      <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"> </span>
+                    </div>
+                    <div> 
+                        <input type="hidden" id="action" name="action" value="send" />
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary btn-lg">Registrarse </button>
+                        <button type="reset" class="btn btn-secondary btn-lg">Cancelar</button>
+                    </div>
+                </form>
             </div>
         </div>
+        
 
-        <script src="sources/login/js/jquery.min.js"></script>
-        <script src="sources/login/js/popper.js"></script>
-        <script src="sources/login/js/bootstrap.min.js"></script>
-        <script src="sources/login/js/main.js"></script>
+        <script src="sources/login&signup/js/jquery.min.js"></script>
+        <script src="sources/login&signup/js/popper.js"></script>
+        <script src="sources/login&signup/js/bootstrap.min.js"></script>
+        <script src="sources/login&signup/js/main.js"></script>
         
         
         <script src="sources/vendor/jquery/jquery.min.js"></script>
@@ -101,6 +112,11 @@ Author     : AKAR
                 display: flex;
                 justify-content: center;
                 height: 100%;
+            }
+            
+            select,
+            option{
+                color: black;
             }
         </style>
         

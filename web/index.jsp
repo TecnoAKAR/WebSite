@@ -1,4 +1,3 @@
-<%@page import="java.io.File"%>
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -82,8 +81,8 @@
               <li class="scroll-to-section"><a href="#sobrenosotros">Sobre nosotros</a></li>
               <li class="scroll-to-section"><a href="#proyecto">Proyecto</a></li>
               <li class="scroll-to-section"><a href="#galeria">Galería</a></li>
-              <li class="scroll-to-section"><a href="#blog">Foro</a></li>
               <li class="scroll-to-section"><a href="#contact">Contáctanos</a></li> 
+              <li class="scroll-to-section"><a href="signup.jsp">Registrarse</a></li>
               <li class="scroll-to-section"><div class="border-first-button"><a href="login.jsp">Iniciar sesión</a></div></li> 
             </ul>        
             <a class='menu-trigger'>
@@ -138,9 +137,10 @@
             <h4>¿Quienes somos en <em>Tecnologías AKAR?</em></h4>
             <div class="line-dec"></div>
             <br>
-            <p> Somos una empresa 100% mexicana desarrolladora de software que busca no solo innovar, sino también revolucionar el mundo
+            <p> Somos una empresa 100% mexicana desarrolladora de software que busca no solo innovar, sino 
+                también revolucionar el mundo
             del software desarrollando productos de calidad que superen tanto los estándares del mercado
-            y las expectativas de nuestros clientes.</p>
+            como las expectativas de nuestros clientes.</p>
           </div>
         </div>
         <div class="col-lg-12">
@@ -359,7 +359,7 @@
         </div>
         <h5>Se estima que aproximadamente el 1% de la población mexicana es afectada por el síndrome de asperger, </h5>
             <h6>
-                síndrome que como ya se ha mencionado es difícil de detectar 
+                síndrome que es difícil de detectar 
                 y afecta las relaciones sociales. Se ha detectado que los tratamientos que tiene el este síndrome 
                 se puede implementar con el uso de las TIC’s, además de que traería diversas ventajas, solo que 
                 existen dos inconvenientes principales; el primero es que el mercado de aplicaciones que ayudan 
@@ -369,7 +369,7 @@
                 suficientemente desarrollada sus habilidades con las TIC’s, “las niños con TEA son inexpertas 
                 en la utilización y uso de herramientas digitales e Internet encontrándose con problemas para 
                 entender y utilizar las convenciones en interfaces o aplicaciones de usuario como el 
-                desplazamiento, el doble click del ratón, etc. ”(Renilla Villalta et al., 2010.
+                desplazamiento, el doble click del ratón, etc. ”(Renilla Villalta et al., 2010).
                 </br>
                 La solución que hemos planteado en <i>Tecnologías AKAR</i> es crear una aplicación que cumpla con
                 las necesidades básicas que los niños con síndrome de Asperger 
