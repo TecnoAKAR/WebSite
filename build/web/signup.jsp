@@ -4,6 +4,7 @@ Created on : 12/10/2022, 10:52:51 PM
 Author     : AKAR
 --%>
 
+<%@page import="org.akar.helper.PSUsuarioHelper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!doctype html>
@@ -67,17 +68,17 @@ Author     : AKAR
                     </div>
                     <div class="col-md-6    ">
                         <label for="inputState" class="form-label"></label>
-                        <select id="inputState" class="form-control">
+                        <select id="tipoUsuario" name="tipoUsuario" class="form-control">
                           <option selected>Tipo de usuario</option>
-                          <option>Usuario Con Síndrome de Asperger (UCSA)</option>
-                          <option>Tutor</option>
-                          <option>Psicólogo</option>
-                          <option>Usuario externo</option>
+                          <option value="2">Usuario Con Síndrome de Asperger (UCSA)</option>
+                          <option value="3">Tutor</option>
+                          <option value="1">Psicólogo</option>
+                          <option value="4">Usuario externo</option>
                         </select>
                     </div>
                     <div class="col-md-6">
                       <label for="inputPassword4" class="form-label"></label>
-                      <input id="password-field" type="password" class="form-control" placeholder="Contraseña" required> 
+                      <input id="password-field" type="password" class="form-control" id="pass" name="pass" placeholder="Contraseña" required> 
                       </br>
                       <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"> </span>
                     </div>
@@ -85,7 +86,7 @@ Author     : AKAR
                         <input type="hidden" id="action" name="action" value="send" />
                     </div>
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-lg">Registrarse </button>
+                        <button type="submit" id="action" name="action" value="send" class="btn btn-primary btn-lg">Registrarse </button>
                         <button type="reset" class="btn btn-secondary btn-lg">Cancelar</button>
                     </div>
                 </form>
@@ -119,6 +120,26 @@ Author     : AKAR
                 color: black;
             }
         </style>
+        
+        
+        <%
+            if( request == null )
+            {
+                return;
+            }
+            String action = request.getParameter( "action" );
+            if( action == null )
+            {
+                action = "";
+            }
+            switch(action){
+                case "send":
+                    if( new PSUsuarioHelper().SignUp(request) == true){
+                        response.sendRedirect("Home.jsp");
+                    }
+                    break;
+            }
+        %>
         
     </body>
 </html>

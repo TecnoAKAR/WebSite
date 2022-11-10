@@ -4,6 +4,7 @@ Created on : 12/10/2022, 10:52:51 PM
 Author     : AKAR
 --%>
 
+<%@page import="org.akar.helper.PSUsuarioHelper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!doctype html>
@@ -55,7 +56,7 @@ Author     : AKAR
                                     <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="form-control btn btn-primary submit px-3">Iniciar sesión</button>
+                                    <button type="submit" id="action" name="action" value="send" class="form-control btn btn-primary submit px-3">Iniciar sesión</button>
                                 </div>
                                 <div class="form-group d-md-flex">
                                     <div class="w-100 text-center">
@@ -91,6 +92,24 @@ Author     : AKAR
             }
         </style>
 
+        <%
+            if( request == null )
+            {
+                return;
+            }
+            String action = request.getParameter( "action" );
+            if( action == null )
+            {
+                action = "";
+            }
+            switch(action){
+                case "send":
+                    if( new PSUsuarioHelper().SignUp(request) == true){
+                        response.sendRedirect("Home.jsp");
+                    }
+                    break;
+            }
+        %>
     </body>
 </html>
 
