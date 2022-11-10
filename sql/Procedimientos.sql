@@ -7,7 +7,7 @@ drop procedure if exists registromenordeedad;
 
 delimiter //
 
-create procedure registro( in nom nvarchar(50), pat nvarchar(50),
+create procedure sp_Registro( in nom nvarchar(50), pat nvarchar(50),
 mat nvarchar(50), fecha date, correo nvarchar(50),contrasena nvarchar (50), usuario nvarchar(50),tipo int)
 begin
 declare xIdPersona int;
@@ -21,7 +21,7 @@ declare xIdTipo int;
 
 end; //
 
-create procedure login(correo nvarchar(50),contrasena nvarchar(50))
+create procedure sp_Login(correo nvarchar(50),contrasena nvarchar(50))
 begin
 declare xidPersona int;
 declare existe int;
@@ -35,7 +35,7 @@ declare xMsj nvarchar(50);
 		end if;
 end; //
 
-create procedure registromenordeedad ( in nom nvarchar(50), pat nvarchar(50),
+create procedure sp_Registromenordeedad ( in nom nvarchar(50), pat nvarchar(50),
 mat nvarchar(50), fecha date, correo nvarchar(50),contrasena nvarchar (50), usuario nvarchar(50),nom2 nvarchar(50), pat2 nvarchar(50),
 mat2 nvarchar(50), fecha2 date, correo2 nvarchar(50),contrasena2 nvarchar (50), usuario2 nvarchar(50))
 begin
