@@ -1,7 +1,7 @@
 use AKAR;
-drop procedure if exists registro;
-drop procedure if exists login;
-drop procedure if exists registromenordeedad;
+drop procedure if exists sp_Registro;
+drop procedure if exists sp_Login;
+drop procedure if exists sp_Registromenordeedad;
 
 
 
@@ -21,17 +21,17 @@ declare xIdTipo int;
 
 end; //
 
-create procedure sp_Login(correo nvarchar(50),contrasena nvarchar(50))
+create procedure sp_Login(in correoP nvarchar(50),contrasenaP nvarchar(50))
 begin
 declare xidPersona int;
 declare existe int;
 declare xMsj nvarchar(50);
-		set existe=(select count(*) from Usuario where Correo=correo and Contrasena=contrasena);
+		set existe=(select count(*) from Usuario where Correo=correoP and Contrasena=contrasenaP);
         if(existe=0) then
 			set xMsj="No existe usuario";
         elseif(existe=1)then
-			set xidPersona=(select idUsuario from Usuario where Correo=correo and Contrasena=contrasena);
-			select * from Usuario where idusuario=xidPersona;
+			set xidPersona=(select idUsuario from Usuario where Correo = correoP and Contrasena = contrasenaP);
+			select RelTipoUsuario.idRelTipoUsuario, RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre, Usuario.ApellidoP, Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario  from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xidPersona;
 		end if;
 end; //
 

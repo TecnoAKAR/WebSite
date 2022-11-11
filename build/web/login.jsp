@@ -49,11 +49,11 @@ Author     : AKAR
                         <div class="login-wrap p-0">
                             <form action="#" class="signin-form">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Correo electrónico" required>
+                                    <input type="email" name="correo" id="correo" class="form-control" placeholder="Correo electrónico" required>
                                 </div>
                                 <div class="form-group">
-                                    <input id="password-field" type="password" class="form-control" placeholder="Contraseña" required>
-                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                    <input id="password-field" type="password" class="form-control" id="pass" name="pass" placeholder="Contraseña" required> 
+                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"> </span>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" id="action" name="action" value="send" class="form-control btn btn-primary submit px-3">Iniciar sesión</button>
@@ -104,7 +104,7 @@ Author     : AKAR
             }
             switch(action){
                 case "send":
-                    if( new PSUsuarioHelper().SignUp(request) == true){
+                    if( new PSUsuarioHelper().Login(request) != null){
                         response.sendRedirect("Home.jsp");
                     }
                     break;
