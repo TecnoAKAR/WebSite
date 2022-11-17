@@ -18,7 +18,7 @@ declare xIdTipo int;
     set xIdPersona=( select idUsuario from Usuario where Nombre= nom and ApellidoP= pat);
     set xIdTipo= tipo;
     insert into RelTipoUsuario( idUsuario, idTipo) values (xIdPersona,xIdTipo);
-
+	select RelTipoUsuario.idRelTipoUsuario, RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre, Usuario.ApellidoP, Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario  from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xidPersona;
 end; //
 
 create procedure sp_Login(in correoP nvarchar(50),contrasenaP nvarchar(50))
