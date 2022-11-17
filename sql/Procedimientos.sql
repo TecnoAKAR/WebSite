@@ -65,7 +65,3 @@ declare xIdPersona int;
 	set xIdPersona= idpersona;
 	update Usuario set Nombre=nom , ApellidoP = pat, ApellidoM = mat , Correo= correo ,Contrasena= contrasena,NomUsuario= usuario where idUsuario=xIdPersona;
 end;//
-
-
-
-end; //
