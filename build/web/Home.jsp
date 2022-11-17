@@ -1,6 +1,18 @@
+<%@page import="org.akar.dao.PSUsuario"%>
 <%@page import="java.io.File"%>
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+    PSUsuario sesion = (PSUsuario)session.getAttribute("usuario");
+            
+    if(sesion == null){
+%>
+        <script"> alert("Usted no ha iniciado sesión"); </script>>
+<%
+        response.sendRedirect("index.jsp");
+    }
+%>
 
 <html lang="es">
 
@@ -84,7 +96,19 @@
               <li class="scroll-to-section"><a href="#galeria">Galería</a></li>
               <li class="scroll-to-section"><a href="Foro.jsp">Foro</a></li>
               <li class="scroll-to-section"><a href="#contact">Contáctanos</a></li> 
-              <li class="scroll-to-section"><div class="border-first-button"><a href="#">Usuario usuario</a></div></li> 
+              <li class="scroll-to-section">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="true"> <%= sesion.getUsuario().getNomUser() %> </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="?action=close" id="action" name="action" value="close">Cerrar sesión</a></li>
+                </ul>
+              </li>
+              
+              
+              
             </ul>        
             <a class='menu-trigger'>
                 <span>Menu</span>
@@ -573,6 +597,25 @@
   <script src="sources/assets/js/animation.js"></script>
   <script src="sources/assets/js/imagesloaded.js"></script>
   <script src="sources/assets/js/custom.js"></script>
+  
+  <%
+        if( request == null )
+        {
+            return;
+        }
+        String action = request.getParameter( "action" );
+        if( action == null )
+        {
+            action = "";
+        }
 
+        switch(action){
+            case "close":
+                request.getSession().removeAttribute("usuario");
+                response.sendRedirect("index.jsp");
+                break;
+        }
+  %>
+  
 </body>
 </html>

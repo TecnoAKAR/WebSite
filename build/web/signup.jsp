@@ -4,6 +4,7 @@ Created on : 12/10/2022, 10:52:51 PM
 Author     : AKAR
 --%>
 
+<%@page import="org.akar.dao.PSUsuario"%>
 <%@page import="org.akar.helper.PSUsuarioHelper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -134,7 +135,11 @@ Author     : AKAR
             }
             switch(action){
                 case "send":
-                    if( new PSUsuarioHelper().SignUp(request) == true){
+                    
+                    PSUsuario usuario = new PSUsuarioHelper().SignUp(request);
+                    if( usuario!= null){
+                        HttpSession sesion = request.getSession();
+                        sesion.setAttribute("usuario", usuario);
                         response.sendRedirect("Home.jsp");
                     }
                     break;

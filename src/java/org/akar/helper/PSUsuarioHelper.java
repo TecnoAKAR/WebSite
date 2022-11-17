@@ -21,7 +21,7 @@ public class PSUsuarioHelper implements Serializable {
         
     }
     
-    public boolean SignUp(HttpServletRequest request){
+    public PSUsuario SignUp(HttpServletRequest request){
         
         usuario = new TblUsuario();
         tipo = new TblTipoUsuario();
@@ -37,28 +37,28 @@ public class PSUsuarioHelper implements Serializable {
         usuario.setPassword( request.getParameter("pass"));
         
         if(usuario.getNom().length() == 0 || usuario.getNom() == null){
-            return false;
+            return null;
         }
         if(usuario.getApellidoP().length() == 0 || usuario.getApellidoP() == null){
-            return false;
+            return null;
         }
         if(usuario.getApellidoM().length() == 0 || usuario.getApellidoM() == null){
-            return false;
+            return null;
         }
         if(usuario.getFechaNac() == null){
-            return false;
+            return null;
         }
         if(usuario.getCorreo().length() == 0 || usuario.getCorreo() == null){
-            return false;
+            return null;
         }
         if(usuario.getNomUser().length() == 0 || usuario.getNomUser() == null){
-            return false;
+            return null;
         }
         if( tipo.getIdTipo() == 0 ){
-            return false;
+            return null;
         }
         if(usuario.getPassword().length() == 0 || usuario.getPassword() == null){
-            return false;
+            return null;
         }
         
         return new PSUsuarioService().SignUp(usuario, tipo);
