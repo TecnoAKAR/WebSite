@@ -12,13 +12,24 @@ mat nvarchar(50), fecha date, correo nvarchar(50),contrasena nvarchar (50), usua
 begin
 declare xIdPersona int;
 declare xIdTipo int;
-	
-    insert into Usuario( Nombre, ApellidoP, ApellidoM, Correo, Contrasena, NomUsuario, Fecha)
-    values (nom, pat, mat, correo, contrasena, usuario, fecha);
-    set xIdPersona=( select idUsuario from Usuario where Nombre= nom and ApellidoP= pat);
-    set xIdTipo= tipo;
-    insert into RelTipoUsuario( idUsuario, idTipo) values (xIdPersona,xIdTipo);
-	select RelTipoUsuario.idRelTipoUsuario, RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre, Usuario.ApellidoP, Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario  from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xidPersona;
+declare existe int;
+declare xMsj nvarchar(50);
+	set existe=(select count(*) from usuario where Correo=correo and Nombre=nom);
+    if (existe=0) then
+		insert into Usuario( Nombre, ApellidoP, ApellidoM, Correo, Contrasena, NomUsuario, Fecha)
+		values (nom, pat, mat, correo, sha(contrasena), usuario, fecha);
+		set xIdPersona=( select idUsuario from Usuario where Nombre= nom and ApellidoP= pat);
+		set xIdTipo= tipo;
+		insert into RelTipoUsuario( idUsuario, idTipo) values (xIdPersona,xIdTipo);
+        select RelTipoUsuario.idRelTipoUsuario, 
+    RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre, Usuario.ApellidoP, 
+    Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario  from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xidPersona;
+	else
+		if(existe>0)then
+		set xMsj="Usuario Registrado";
+        select xMsj;
+end if;
+end if;
 end; //
 
 create procedure sp_Login(in correoP nvarchar(50),contrasenaP nvarchar(50))
@@ -29,10 +40,12 @@ declare xMsj nvarchar(50);
 		set existe=(select count(*) from Usuario where Correo=correoP and Contrasena=contrasenaP);
         if(existe=0) then
 			set xMsj="No existe usuario";
-        elseif(existe=1)then
-			set xidPersona=(select idUsuario from Usuario where Correo = correoP and Contrasena = contrasenaP);
-			select RelTipoUsuario.idRelTipoUsuario, RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre, Usuario.ApellidoP, Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario  from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xidPersona;
+        else
+			if(existe=1)then
+				set xidPersona=(select idUsuario from Usuario where Correo = correoP and Contrasena = sha(contrasenaP));
+				select RelTipoUsuario.idRelTipoUsuario, RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre,Usuario.ApellidoP, Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xidPersona;
 		end if;
+        end if;
 end; //
 
 create procedure sp_Registromenordeedad ( in nom nvarchar(50), pat nvarchar(50),
@@ -43,18 +56,24 @@ declare xIdPersona int;
 declare xIdPersona2 int;
 declare xIdTipo int;
 declare xIdTipo2 int;
-
-	
-    insert into Usuario( Nombre, ApellidoP, ApellidoM, Correo, Contrasena, NomUsuario, Fecha)
-    values (nom, pat, mat, correo, contrasena, usuario, fecha),(nom2, pat2, mat2, correo2, contrasena2, usuario2, fecha2);
-    set xIdPersona=( select idUsuario from Usuario where Nombre= nom and ApellidoP= pat);
-    set xIdPersona2=( select idUsuario from Usuario where Nombre= nom2 and ApellidoP= pat2);
-    set xIdTipo= 2;
-	set xIdTipo= 3;
-    insert into RelTipoUsuario( idUsuario, idTipo) values (xIdPersona,xIdTipo),(xIdPersona2,xIdTipo2);
-	insert into RelTutorUCSA ( idUsuario1, idUsuario2) values( xIdPersona,xIdPersona2);
-    
-    
+declare existe nvarchar(50);
+declare xMsj nvarchar(50);
+	set existe=(select count(*) from usuario where Correo=correo and Nombre=nom);
+    if(existe=0)then
+		insert into Usuario( Nombre, ApellidoP, ApellidoM, Correo, Contrasena, NomUsuario, Fecha)
+		values (nom, pat, mat, correo, contrasena, usuario, fecha),(nom2, pat2, mat2, correo2, contrasena2, usuario2, fecha2);
+		set xIdPersona=( select idUsuario from Usuario where Nombre= nom and ApellidoP= pat);
+		set xIdPersona2=( select idUsuario from Usuario where Nombre= nom2 and ApellidoP= pat2);
+		set xIdTipo= 2;
+		set xIdTipo= 3;
+		insert into RelTipoUsuario( idUsuario, idTipo) values (xIdPersona,xIdTipo),(xIdPersona2,xIdTipo2);
+		insert into RelTutorUCSA ( idUsuario1, idUsuario2) values( xIdPersona,xIdPersona2);
+    else
+		if(existe>0) then
+			set xMsj="Menor de edad registrado";
+			select xMsj;
+end if;
+end if;    
 end; //
 
 
