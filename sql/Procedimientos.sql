@@ -37,12 +37,14 @@ begin
 declare xidPersona int;
 declare existe int;
 declare xMsj nvarchar(50);
+declare xContraSha nvarchar(200);
 		set existe=(select count(*) from Usuario where Correo=correoP and Contrasena=contrasenaP);
         if(existe=0) then
 			set xMsj="No existe usuario";
         else
-			if(existe=1)then
-				set xidPersona=(select idUsuario from Usuario where Correo = correoP and Contrasena = sha(contrasenaP));
+			if(existe = 1)then
+                                set xContraSha =(select sha(contrasenaP));
+				set xidPersona=(select idUsuario from Usuario where Correo = correoP and Contrasena = xContraSha );
 				select RelTipoUsuario.idRelTipoUsuario, RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre,Usuario.ApellidoP, Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xidPersona;
 		end if;
         end if;
