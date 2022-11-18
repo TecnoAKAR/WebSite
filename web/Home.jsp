@@ -3,17 +3,6 @@
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%
-    PSUsuario sesion = (PSUsuario)session.getAttribute("usuario");
-            
-    if(sesion == null){
-%>
-        <script"> alert("Usted no ha iniciado sesión"); </script>>
-<%
-        response.sendRedirect("index.jsp");
-    }
-%>
-
 <html lang="es">
 
   <head>
@@ -41,7 +30,28 @@
   </head>
 
 <body>
+    <%
+        PSUsuario sesion = (PSUsuario)session.getAttribute("usuario");  
+        
+        if( request == null )
+        {
+            return;
+        }
+        String action = request.getParameter( "action" );
+        if( action == null )
+        {
+            action = "";
+        }
 
+        switch(action){
+            case "close":
+                request.getSession().removeAttribute("usuario");
+                response.sendRedirect("index.jsp");
+                break;
+        }
+
+
+    %>  
   <!-- ***** Preloader Start ***** -->
   <div id="js-preloader" class="js-preloader">
     <div class="preloader-inner">
@@ -99,7 +109,7 @@
               <li class="scroll-to-section">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="true"> <%= sesion.getUsuario().getNomUser() %> </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="profile.jsp">Perfil</a></li>
                   <li><a class="dropdown-item" href="#">Another action</a></li>
                   <li><a class="dropdown-item" href="#">Something else here</a></li>
                   <li><hr class="dropdown-divider"></li>
@@ -597,25 +607,6 @@
   <script src="sources/assets/js/animation.js"></script>
   <script src="sources/assets/js/imagesloaded.js"></script>
   <script src="sources/assets/js/custom.js"></script>
-  
-  <%
-        if( request == null )
-        {
-            return;
-        }
-        String action = request.getParameter( "action" );
-        if( action == null )
-        {
-            action = "";
-        }
-
-        switch(action){
-            case "close":
-                request.getSession().removeAttribute("usuario");
-                response.sendRedirect("index.jsp");
-                break;
-        }
-  %>
   
 </body>
 </html>

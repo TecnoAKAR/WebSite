@@ -2,7 +2,7 @@ use AKAR;
 drop procedure if exists sp_Registro;
 drop procedure if exists sp_Login;
 drop procedure if exists sp_Registromenordeedad;
-
+drop procedure if exists sp_ActualizarUsuario;
 
 
 delimiter //
@@ -56,3 +56,12 @@ declare xIdTipo2 int;
     
     
 end; //
+
+
+create procedure sp_ActualizarUsuario(in nom nvarchar(50), pat nvarchar(50),
+mat nvarchar(50), fecha date, correo nvarchar(50),contrasena nvarchar (50), usuario nvarchar(50),idpersona varchar(50))
+begin
+declare xIdPersona int;
+	set xIdPersona= idpersona;
+	update Usuario set Nombre=nom , ApellidoP = pat, ApellidoM = mat , Correo= correo ,Contrasena= contrasena,NomUsuario= usuario where idUsuario=xIdPersona;
+end;//
