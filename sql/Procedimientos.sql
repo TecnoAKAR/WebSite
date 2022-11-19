@@ -83,6 +83,8 @@ create procedure sp_ActualizarUsuario(in nom nvarchar(50), pat nvarchar(50),
 mat nvarchar(50), fecha date, correo nvarchar(50),contrasena nvarchar (50), usuario nvarchar(50),idpersona varchar(50))
 begin
 declare xIdPersona int;
+declare xContraSha nvarchar(200);
 	set xIdPersona= idpersona;
-	update Usuario set Nombre=nom , ApellidoP = pat, ApellidoM = mat , Correo= correo ,Contrasena= contrasena,NomUsuario= usuario where idUsuario=xIdPersona;
+	set xContraSha =(select sha(contrasena));
+	update Usuario set Nombre=nom , ApellidoP = pat, ApellidoM = mat , Correo= correo ,Contrasena= xContrasenaSha,NomUsuario= usuario where idUsuario=xIdPersona;
 end;//
