@@ -142,6 +142,13 @@ Author     : AKAR
                         sesion.setAttribute("usuario", usuario);
                         response.sendRedirect("Home.jsp");
                     }
+                    else{
+        %>
+                        <script>
+                            alert("El correo y usuario están en uso.");
+                        </script>
+        <%
+                    }
                     break;
             }
         %>

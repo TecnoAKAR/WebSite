@@ -111,6 +111,13 @@ Author     : AKAR
                         sesion.setAttribute("usuario", usuario);
                         response.sendRedirect("Home.jsp");
                     }
+                    else{
+        %>
+                        <script>
+                            alert("Los datos que usted ingresó son incorrectos.");
+                        </script>
+        <%
+                    }
                     break;
             }
         %>

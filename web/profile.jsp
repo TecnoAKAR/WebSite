@@ -80,12 +80,12 @@
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-              <li class="scroll-to-section"><a href="#top" class="active">Inicio</a></li>
-              <li class="scroll-to-section"><a href="#sobrenosotros">Sobre nosotros</a></li>
-              <li class="scroll-to-section"><a href="#proyecto">Proyecto</a></li>
-              <li class="scroll-to-section"><a href="#galeria">Galería</a></li>
+                <li class="scroll-to-section"><a href="Home.jsp" class="active">Inicio</a></li>
+              <li class="scroll-to-section"><a href="Home.jsp#sobrenosotros">Sobre nosotros</a></li>
+              <li class="scroll-to-section"><a href="Home.jsp#proyecto">Proyecto</a></li>
+              <li class="scroll-to-section"><a href="Home.jsp#galeria">Galería</a></li>
               <li class="scroll-to-section"><a href="Foro.jsp">Foro</a></li>
-              <li class="scroll-to-section"><a href="#contact">Contáctanos</a></li> 
+              <li class="scroll-to-section"><a href="Home.jsp#contact">Contáctanos</a></li> 
               <li class="scroll-to-section">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="true"> <%= sesion.getUsuario().getNomUser() %> </a>
                 <ul class="dropdown-menu">
@@ -110,6 +110,33 @@
     </div>
   </header>
   <!-- ***** Header Area End ***** -->
+  
+  <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-6 align-self-center">
+              <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h3>Nombre de usuario</h3>
+                    <%= sesion.getUsuario().getNomUser() %>
+                    <h3>Nombre</h3>
+                    <%= sesion.getUsuario().getNom() %>
+                    <h3>Apellido Paterno</h3>
+                    <%= sesion.getUsuario().getApellidoP() %>
+                    <h3>Apellido Materno</h3>
+                    <%= sesion.getUsuario().getApellidoM() %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <footer>
     <div class="container">
