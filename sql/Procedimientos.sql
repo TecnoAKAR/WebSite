@@ -3,6 +3,7 @@ drop procedure if exists sp_Registro;
 drop procedure if exists sp_Login;
 drop procedure if exists sp_Registromenordeedad;
 drop procedure if exists sp_ActualizarUsuario;
+drop procedure if exists sp_ActualizarContrasena;
 
 
 delimiter //
@@ -63,11 +64,11 @@ declare xMsj nvarchar(50);
 	set existe=(select count(*) from usuario where Correo=correo and Nombre=nom);
     if(existe=0)then
 		insert into Usuario( Nombre, ApellidoP, ApellidoM, Correo, Contrasena, NomUsuario, Fecha)
-		values (nom, pat, mat, correo, contrasena, usuario, fecha),(nom2, pat2, mat2, correo2, contrasena2, usuario2, fecha2);
+		values (nom, pat, mat, correo, sha(contrasena), usuario, fecha),(nom2, pat2, mat2, correo2, sha(contrasena2), usuario2, fecha2);
 		set xIdPersona=( select idUsuario from Usuario where Nombre= nom and ApellidoP= pat);
 		set xIdPersona2=( select idUsuario from Usuario where Nombre= nom2 and ApellidoP= pat2);
 		set xIdTipo= 2;
-		set xIdTipo= 3;
+		set xIdTipo2= 3;
 		insert into RelTipoUsuario( idUsuario, idTipo) values (xIdPersona,xIdTipo),(xIdPersona2,xIdTipo2);
 		insert into RelTutorUCSA ( idUsuario1, idUsuario2) values( xIdPersona,xIdPersona2);
     else
@@ -83,6 +84,17 @@ create procedure sp_ActualizarUsuario(in nom nvarchar(50), pat nvarchar(50),
 mat nvarchar(50), fecha date, correo nvarchar(50),contrasena nvarchar (50), usuario nvarchar(50),idpersona varchar(50))
 begin
 declare xIdPersona int;
+declare xContraSha nvarchar(200);
 	set xIdPersona= idpersona;
-	update Usuario set Nombre=nom , ApellidoP = pat, ApellidoM = mat , Correo= correo ,Contrasena= contrasena,NomUsuario= usuario where idUsuario=xIdPersona;
+	set xContraSha =(select sha(contrasena));
+	update Usuario set Nombre=nom , ApellidoP = pat, ApellidoM = mat , Correo= correo ,Contrasena= xContraSha,NomUsuario= usuario where idUsuario=xIdPersona;
+end;//
+
+create procedure sp_ActualizarContrasena(in contrasena nvarchar (50),idpersona varchar(50))
+begin
+declare xIdPersona int;
+declare xContraSha nvarchar(200);
+	set xIdPersona= idpersona;
+	set xContraSha =(select sha(contrasena));
+	update Usuario set Contrasena= xContraSha where idUsuario=xIdPersona;
 end;//
