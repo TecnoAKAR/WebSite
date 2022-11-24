@@ -23,45 +23,44 @@ public class PSUsuarioHelper implements Serializable {
     
     public PSUsuario SignUp(HttpServletRequest request){
         
-        usuario = new TblUsuario();
-        tipo = new TblTipoUsuario();
+        psUser=new PSUsuario(new TblUsuario(), new TblTipoUsuario());
         
         
-        usuario.setNom( request.getParameter("nombre"));
-        usuario.setApellidoP( request.getParameter("apellido_p"));
-        usuario.setApellidoM( request.getParameter("apellido_m"));
-        usuario.setFechaNac(getDate(request.getParameter("fecha_nac")));
-        usuario.setCorreo( request.getParameter("correo_e"));
-        usuario.setNomUser( request.getParameter("usuario"));
-        tipo.setIdTipo( Integer.parseInt( request.getParameter("tipoUsuario") ));
-        usuario.setPassword( request.getParameter("pass"));
+        psUser.getUsuario().setNom( request.getParameter("nombre"));
+        psUser.getUsuario().setApellidoP( request.getParameter("apellido_p"));
+        psUser.getUsuario().setApellidoM( request.getParameter("apellido_m"));
+        psUser.getUsuario().setFechaNac(getDate(request.getParameter("fecha_nac")));
+        psUser.getUsuario().setCorreo( request.getParameter("correo_e"));
+        psUser.getUsuario().setNomUser( request.getParameter("usuario"));
+        psUser.getTipo().setIdTipo( Integer.parseInt( request.getParameter("tipoUsuario") ));
+        psUser.getUsuario().setPassword( request.getParameter("pass"));
         
-        if(usuario.getNom().length() == 0 || usuario.getNom() == null){
+        if(psUser.getUsuario().getNom().length() == 0 || psUser.getUsuario().getNom() == null){
             return null;
         }
-        if(usuario.getApellidoP().length() == 0 || usuario.getApellidoP() == null){
+        if(psUser.getUsuario().getApellidoP().length() == 0 || psUser.getUsuario().getApellidoP() == null){
             return null;
         }
-        if(usuario.getApellidoM().length() == 0 || usuario.getApellidoM() == null){
+        if(psUser.getUsuario().getApellidoM().length() == 0 || psUser.getUsuario().getApellidoM() == null){
             return null;
         }
-        if(usuario.getFechaNac() == null){
+        if(psUser.getUsuario().getFechaNac() == null){
             return null;
         }
-        if(usuario.getCorreo().length() == 0 || usuario.getCorreo() == null){
+        if(psUser.getUsuario().getCorreo().length() == 0 || psUser.getUsuario().getCorreo() == null){
             return null;
         }
-        if(usuario.getNomUser().length() == 0 || usuario.getNomUser() == null){
+        if(psUser.getUsuario().getNomUser().length() == 0 || psUser.getUsuario().getNomUser() == null){
             return null;
         }
-        if( tipo.getIdTipo() == 0 ){
+        if( psUser.getTipo().getIdTipo() == 0 ){
             return null;
         }
-        if(usuario.getPassword().length() == 0 || usuario.getPassword() == null){
+        if(psUser.getUsuario().getPassword().length() == 0 || psUser.getUsuario().getPassword() == null){
             return null;
         }
         
-        return new PSUsuarioService().SignUp(usuario, tipo);
+        return new PSUsuarioService().SignUp(psUser.getUsuario(), psUser.getTipo());
     }
     public PSUsuario SignUp2(HttpServletRequest request){
         

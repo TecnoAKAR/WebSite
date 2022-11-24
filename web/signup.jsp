@@ -135,7 +135,6 @@ Author     : AKAR
             }
             switch(action){
                 case "send":
-                    
                     PSUsuario usuario = new PSUsuarioHelper().SignUp(request);
                     if( usuario!= null){
                         HttpSession sesion = request.getSession();
