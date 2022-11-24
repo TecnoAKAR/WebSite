@@ -87,7 +87,7 @@ Author     : AKAR
                         <input type="hidden" id="action" name="action" value="send" />
                     </div>
                     <div class="col-12">
-                        <button type="submit" id="action" name="action" value="send" class="btn btn-primary btn-lg">Registrarse </button>
+                        <button type="submit" id="action" name="action" value="send" class="btn btn-primary btn-lg">Registrarse</button>
                         <button type="reset" class="btn btn-secondary btn-lg">Cancelar</button>
                     </div>
                 </form>
