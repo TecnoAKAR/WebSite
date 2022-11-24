@@ -3,7 +3,7 @@ package org.akar.dao;
 import java.util.Date;
 
 public class TblUsuario {
-    
+
     int idUsuario;
     String nom;
     String apellidoP;
@@ -12,9 +12,9 @@ public class TblUsuario {
     String password;
     String nomUser;
     Date fechaNac;
-    
+
     public TblUsuario(){
-        
+
     }
 
     public int getIdUsuario() {
@@ -80,5 +80,5 @@ public class TblUsuario {
     public void setFechaNac(Date fechaNac) {
         this.fechaNac = fechaNac;
     }
-    
+
 }

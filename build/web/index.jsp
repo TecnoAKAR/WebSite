@@ -83,6 +83,7 @@
               <li class="scroll-to-section"><a href="#galeria">Galería</a></li>
               <li class="scroll-to-section"><a href="#contact">Contáctanos</a></li> 
               <li class="scroll-to-section"><a href="signup.jsp">Registrarse</a></li>
+              <li class="scroll-to-section"><a href="signup2.jsp">Registrar menor de edad</a></li>
               <li class="scroll-to-section"><div class="border-first-button"><a href="login.jsp">Iniciar sesión</a></div></li> 
             </ul>        
             <a class='menu-trigger'>
