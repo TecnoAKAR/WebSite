@@ -74,7 +74,7 @@ public class PSUsuarioService {
             Connection connection = null;
             PreparedStatement preparedStatement = null;
             ResultSet resultSet;
-            String sql = "call sp_Registromenordeedad(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "call sp_Registromenordeedad(?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             int row = 0;
             
             connection = DBConnection.getConnection( );
@@ -102,7 +102,7 @@ public class PSUsuarioService {
             preparedStatement.setString(13, psUser2.getUsuario().getPassword());
             preparedStatement.setString(14, psUser2.getUsuario().getNomUser());
             
-            resultSet = preparedStatement.executeQuery( );
+            resultSet = preparedStatement.executeQuery();
             if( resultSet == null )
             {
                 return null;
@@ -118,11 +118,13 @@ public class PSUsuarioService {
                 query.getUsuario().setApellidoM( resultSet.getString(6));
                 query.getUsuario().setCorreo( resultSet.getString(7));
                 query.getUsuario().setNomUser( resultSet.getString(8));
+
                 return query;
             }
             resultSet.close();
             DBConnection.closeConnection(connection);
-        }catch(Exception ex){
+        }
+        catch(Exception ex){
             ex.printStackTrace();
         }
         return null;

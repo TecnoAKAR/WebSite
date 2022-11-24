@@ -71,6 +71,7 @@ declare xMsj nvarchar(50);
 		set xIdTipo2= 3;
 		insert into RelTipoUsuario( idUsuario, idTipo) values (xIdPersona,xIdTipo),(xIdPersona2,xIdTipo2);
 		insert into RelTutorUCSA ( idUsuario1, idUsuario2) values( xIdPersona,xIdPersona2);
+        select RelTipoUsuario.idRelTipoUsuario, RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre,Usuario.ApellidoP, Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xidPersona;
     else
 		if(existe>0) then
 			set xMsj="Menor de edad registrado";
