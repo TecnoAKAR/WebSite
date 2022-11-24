@@ -67,9 +67,6 @@ public class PSUsuarioHelper implements Serializable {
         psUser=new PSUsuario(new TblUsuario(), new TblTipoUsuario());
         PSUsuario psUser2=new PSUsuario(new TblUsuario(), new TblTipoUsuario());
         
-
-        
-        
         psUser.getUsuario().setNom( request.getParameter("nombre"));
         psUser.getUsuario().setApellidoP( request.getParameter("apellido_p"));
         psUser.getUsuario().setApellidoM( request.getParameter("apellido_m"));
@@ -144,6 +141,35 @@ public class PSUsuarioHelper implements Serializable {
         }
         
         return new PSUsuarioService().Login(psUser);
+    }
+    
+    public PSUsuario update(HttpServletRequest request){
+        
+        psUser = new PSUsuario(new TblUsuario(), new TblTipoUsuario());
+        
+        psUser.getUsuario().setNomUser( request.getParameter( "nomU" ) );
+        psUser.getUsuario().setNom( request.getParameter( "nom" ) );
+        psUser.getUsuario().setApellidoP( request.getParameter( "aPat" ) );
+        psUser.getUsuario().setApellidoM( request.getParameter( "aMat" ) );
+        psUser.getTipo().setIdTipo( Integer.parseInt(request.getParameter( "id" )) );
+        
+        if(psUser.getUsuario().getNomUser().length() == 0 || psUser.getUsuario().getNomUser() == null){
+            return null;
+        }
+        if(psUser.getUsuario().getNom().length() == 0 || psUser.getUsuario().getNom() == null){
+            return null;
+        }
+        if(psUser.getUsuario().getApellidoP().length() == 0 || psUser.getUsuario().getApellidoP() == null){
+            return null;
+        }
+        if(psUser.getUsuario().getApellidoM().length() == 0 || psUser.getUsuario().getApellidoM() == null){
+            return null;
+        }
+        if( psUser.getTipo().getIdTipo() == 0 ){
+            return null;
+        }
+        
+        return new PSUsuarioService().Update(psUser);
     }
     
     public Date getDate( String campo )

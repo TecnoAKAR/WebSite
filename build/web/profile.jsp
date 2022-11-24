@@ -129,6 +129,9 @@
                     <h3>Apellido Materno</h3>
                     <%= sesion.getUsuario().getApellidoM() %>
                   </div>
+                  <div class="col-lg-12">
+                      <a href="editProf.jsp"> <button type="button" class="btn btn-outline-primary"> Editar información </button> </a>
+                  </div>
                 </div>
               </div>
             </div>

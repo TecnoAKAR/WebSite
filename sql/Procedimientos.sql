@@ -82,13 +82,13 @@ end; //
 
 
 create procedure sp_ActualizarUsuario(in nom nvarchar(50), pat nvarchar(50),
-mat nvarchar(50), fecha date, correo nvarchar(50),contrasena nvarchar (50), usuario nvarchar(50),idpersona varchar(50))
+mat nvarchar(50), usuario nvarchar(50), idpersona varchar(50))
 begin
 declare xIdPersona int;
 declare xContraSha nvarchar(200);
-	set xIdPersona= idpersona;
-	set xContraSha =(select sha(contrasena));
-	update Usuario set Nombre=nom , ApellidoP = pat, ApellidoM = mat , Correo= correo ,Contrasena= xContraSha,NomUsuario= usuario where idUsuario=xIdPersona;
+	set xIdPersona= idpersona;	
+	update Usuario set Nombre=nom , ApellidoP = pat, ApellidoM = mat , NomUsuario= usuario where idUsuario=xIdPersona;
+        select RelTipoUsuario.idRelTipoUsuario, RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre,Usuario.ApellidoP, Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xidPersona;
 end;//
 
 create procedure sp_ActualizarContrasena(in contrasena nvarchar (50),idpersona varchar(50))

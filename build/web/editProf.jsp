@@ -3,6 +3,7 @@
     Created on : Nov 17, 2022, 1:34:54 PM
     Author     : alumno
 --%>
+<%@page import="org.akar.helper.PSUsuarioHelper"%>
 <%@page import="org.akar.dao.PSUsuario"%>
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -51,6 +52,22 @@
             case "close":
                 request.getSession().removeAttribute("usuario");
                 response.sendRedirect("index.jsp");
+                break;
+            case "send":
+                PSUsuario usuario = new PSUsuarioHelper().update(request);
+                if( usuario != null){
+                    request.getSession().removeAttribute("usuario");
+                    HttpSession sesionU = request.getSession();
+                    sesionU.setAttribute("usuario", usuario);
+                    response.sendRedirect("profile.jsp");
+                }
+                else{
+    %>              
+                    <script>
+                        alert("Ha ocurrido un problema.");
+                    </script>
+    <%
+                }
                 break;
         }
 
@@ -120,17 +137,19 @@
               <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
                 <div class="row">
                   <div class="col-lg-12">
-                    <h3>Nombre de usuario</h3>
-                    <%= sesion.getUsuario().getNomUser() %>
-                    <h3>Nombre</h3>
-                    <%= sesion.getUsuario().getNom() %>
-                    <h3>Apellido Paterno</h3>
-                    <%= sesion.getUsuario().getApellidoP() %>
-                    <h3>Apellido Materno</h3>
-                    <%= sesion.getUsuario().getApellidoM() %>
-                  </div>
-                  <div class="col-lg-12">
-                      <a href="editProf.jsp"> <button type="button" class="btn btn-outline-primary"> Editar información </button> </a>
+                    <form>
+                        <label> Nombre de usuario </label>
+                        <input name="nomU" id="nomU" value="<%= sesion.getUsuario().getNomUser() %>"> </input>
+                        <label> Nombre(s) </label>
+                        <input name="nom" id="nom" value="<%= sesion.getUsuario().getNom() %>"> </input>
+                        <label> Apellido Paterno </label>
+                        <input name="aPat" id="aPat" value="<%= sesion.getUsuario().getApellidoP() %>"> </input>
+                        <label> Apellido Materno </label>
+                        <input name="aMat" id="aMat" value="<%= sesion.getUsuario().getApellidoM() %>"> </input>
+                        <input type="hidden" name="id" id="id" value="<%= sesion.getUsuario().getIdUsuario() %>"/>
+                        <button type="submit" id="action" name="action" value="send" class="form-control btn btn-primary submit px-3">Editar</button>
+                    </form>
+                    
                   </div>
                 </div>
               </div>
