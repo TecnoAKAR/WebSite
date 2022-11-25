@@ -25,7 +25,6 @@ public class PSUsuarioHelper implements Serializable {
         
         psUser=new PSUsuario(new TblUsuario(), new TblTipoUsuario());
         
-        
         psUser.getUsuario().setNom( request.getParameter("nombre"));
         psUser.getUsuario().setApellidoP( request.getParameter("apellido_p"));
         psUser.getUsuario().setApellidoM( request.getParameter("apellido_m"));
@@ -171,6 +170,7 @@ public class PSUsuarioHelper implements Serializable {
         
         return new PSUsuarioService().Update(psUser);
     }
+    
     
     public Date getDate( String campo )
     {

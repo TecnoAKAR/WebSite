@@ -92,7 +92,7 @@
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
             <a href="Home.jsp" class="logo">
-              <img src="sources/assets/images/logoAKAR80.png" alt="">
+              <img src="sources/assets/images/loguitoakar.png" alt="">
             </a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
@@ -107,8 +107,7 @@
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="true"> <%= sesion.getUsuario().getNomUser() %> </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="profile.jsp">Perfil</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li><a class="dropdown-item" href="editProf.jsp">Editar perfil</a></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="?action=close" id="action" name="action" value="close">Cerrar sesión</a></li>
                 </ul>
@@ -127,25 +126,18 @@
     </div>
   </header>
   <!-- ***** Header Area End ***** -->
-  
-  <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="row">
-            <div class="col-lg-6 align-self-center">
-              <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <form>
-                        <label> Nombre de usuario </label>
-                        <input name="nomU" id="nomU" value="<%= sesion.getUsuario().getNomUser() %>"> </input>
-                        <label> Nombre(s) </label>
-                        <input name="nom" id="nom" value="<%= sesion.getUsuario().getNom() %>"> </input>
-                        <label> Apellido Paterno </label>
-                        <input name="aPat" id="aPat" value="<%= sesion.getUsuario().getApellidoP() %>"> </input>
-                        <label> Apellido Materno </label>
-                        <input name="aMat" id="aMat" value="<%= sesion.getUsuario().getApellidoM() %>"> </input>
+                  
+<div class="col-lg-12"><br><br>
+                    <form id="contact">
+  <br><br>
+                        <br><label> Nombre de usuario </label>
+                        <input name="nomU" id="nomU" value="<%= sesion.getUsuario().getNomUser() %>"> </input><br>
+                        <br><label> Nombre(s) </label>
+                        <input name="nom" id="nom" value="<%= sesion.getUsuario().getNom() %>"> </input><br>
+                        <br><label> Apellido Paterno </label>
+                        <input name="aPat" id="aPat" value="<%= sesion.getUsuario().getApellidoP() %>"> </input><br>
+                        <br><label> Apellido Materno </label>
+                        <input name="aMat" id="aMat" value="<%= sesion.getUsuario().getApellidoM() %>"> </input><br>
                         <input type="hidden" name="id" id="id" value="<%= sesion.getUsuario().getIdUsuario() %>"/>
                         <button type="submit" id="action" name="action" value="send" class="form-control btn btn-primary submit px-3">Editar</button>
                     </form>

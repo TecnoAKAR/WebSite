@@ -3,15 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Alumno/Documents/WebSite/web/index.jsp</file>
-            <file>file:/C:/Users/Alumno/Documents/WebSite/web/signup2.jsp</file>
-            <file>file:/C:/Users/Alumno/Documents/WebSite/src/java/org/akar/dao/TblTutorUsuario.java</file>
-            <file>file:/C:/Users/Alumno/Documents/WebSite/src/java/org/akar/service/PSUsuarioService.java</file>
-            <file>file:/C:/Users/Alumno/Documents/WebSite/src/java/org/akar/helper/PSUsuarioHelper.java</file>
-            <file>file:/C:/Users/Alumno/Documents/WebSite/src/java/org/akar/dao/PSUsuario.java</file>
-            <file>file:/C:/Users/Alumno/Documents/WebSite/src/java/org/akar/dao/TblTipoUsuario.java</file>
-            <file>file:/C:/Users/Alumno/Documents/WebSite/web/signup.jsp</file>
-            <file>file:/C:/Users/Alumno/Documents/WebSite/src/java/org/akar/dao/TblUsuario.java</file>
+            <file>file:/E:/WebSite/web/WEB-INF/web.xml</file>
+            <file>file:/E:/WebSite/web/index.jsp</file>
+            <file>file:/E:/WebSite/sql/AKAR_DB.sql</file>
+            <file>file:/E:/WebSite/web/META-INF/context.xml</file>
+            <file>file:/E:/WebSite/sql/Procedimientos.sql</file>
         </group>
     </open-files>
 </project-private>

@@ -75,7 +75,7 @@
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
             <a href="Home.jsp" class="logo">
-              <img src="sources/assets/images/logoAKAR80.png" alt="">
+              <img src="sources/assets/images/loguitoakar.png" alt="">
             </a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
@@ -90,15 +90,11 @@
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="true"> <%= sesion.getUsuario().getNomUser() %> </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="profile.jsp">Perfil</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li><a class="dropdown-item" href="editProf.jsp">Editar perfil</a></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="?action=close" id="action" name="action" value="close">Cerrar sesión</a></li>
                 </ul>
               </li>
-              
-              
-              
             </ul>        
             <a class='menu-trigger'>
                 <span>Menu</span>
@@ -110,29 +106,35 @@
     </div>
   </header>
   <!-- ***** Header Area End ***** -->
-  
   <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div class="row">
             <div class="col-lg-6 align-self-center">
-              <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+              <div class="left-content show-up " data-wow-duration="1s" data-wow-delay="1s">
                 <div class="row">
                   <div class="col-lg-12">
-                    <h3>Nombre de usuario</h3>
-                    <%= sesion.getUsuario().getNomUser() %>
-                    <h3>Nombre</h3>
-                    <%= sesion.getUsuario().getNom() %>
-                    <h3>Apellido Paterno</h3>
-                    <%= sesion.getUsuario().getApellidoP() %>
-                    <h3>Apellido Materno</h3>
-                    <%= sesion.getUsuario().getApellidoM() %>
-                  </div>
+                    <h6>Nombre de usuario</h6>
+                    <h2><%= sesion.getUsuario().getNomUser() %></h2>
+                    <h6>Nombre(s)</h6>
+                    <h2><%= sesion.getUsuario().getNom() %></h2>
+                    <h6>Apellido Paterno</h6>
+                    <h2><%= sesion.getUsuario().getApellidoP() %></h2>
+                    <h6>Apellido Materno</h6>
+                    <h2><%= sesion.getUsuario().getApellidoM() %></h2>
+                    </div>
                   <div class="col-lg-12">
-                      <a href="editProf.jsp"> <button type="button" class="btn btn-outline-primary"> Editar información </button> </a>
+                    <div class="border-first-button scroll-to-section">
+                      <a href="editProf.jsp">Editar perfil</a>
+                    </div>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+                <img src="sources/assets/images/perfil.png" alt="">
               </div>
             </div>
           </div>
@@ -140,7 +142,7 @@
       </div>
     </div>
   </div>
-
+  
   <footer>
     <div class="container">
       <div class="row">

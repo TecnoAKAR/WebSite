@@ -1,3 +1,4 @@
+drop database if exists AKAR;
 create database AKAR;
 use AKAR;
 create table Usuario(
