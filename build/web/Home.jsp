@@ -95,7 +95,7 @@
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
             <a href="Home.jsp" class="logo">
-              <img src="sources/assets/images/logoAKAR80.png" alt="">
+              <img src="sources/assets/images/loguitoakar.png" alt="">
             </a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
@@ -110,8 +110,7 @@
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="true"> <%= sesion.getUsuario().getNomUser() %> </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="profile.jsp">Perfil</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li><a class="dropdown-item" href="editProf.jsp">Editar perfil</a></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="?action=close" id="action" name="action" value="close">Cerrar sesión</a></li>
                 </ul>
@@ -392,10 +391,8 @@
             <div class="line-dec"></div>
           </div>
         </div>
-        <h5>Se estima que aproximadamente el 1% de la población mexicana es afectada por el síndrome de asperger, </h5>
-            <h6>
-                síndrome que es difícil de detectar 
-                y afecta las relaciones sociales. Se ha detectado que los tratamientos que tiene el este síndrome 
+        <h7>Se estima que aproximadamente el 1% de la población mexicana es afectada por el síndrome de asperger, 
+                síndrome que es difícil de detectar y afecta las relaciones sociales. Se ha detectado que los tratamientos que tiene el este síndrome 
                 se puede implementar con el uso de las TIC’s, además de que traería diversas ventajas, solo que 
                 existen dos inconvenientes principales; el primero es que el mercado de aplicaciones que ayudan 
                 a niños con alguna TEA no es muy amplio, pues comparado con otros, existen muy pocas aplicaciones 
@@ -413,7 +410,7 @@
                 Además, la aplicación tendrá opciones para que los padres puedan acompañar a sus hijos durante el 
                 tratamiento, implementando foros para que puedan comunicarse con otros padres que pasen por la misma 
                 situación y chats directos con el psicólogo a cargo del tratamiento.
-            </h6>
+            </h7>
         <div class="col-lg-8 offset-lg-2  wow fadeIn" data-wow-duration="1s" data-wow-delay="0.4s">
         </div>
       </div>

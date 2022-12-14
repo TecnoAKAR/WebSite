@@ -4,6 +4,7 @@ Created on : 12/10/2022, 10:52:51 PM
 Author     : AKAR
 --%>
 
+<%@page import="java.util.Date"%>
 <%@page import="org.akar.dao.PSUsuario"%>
 <%@page import="org.akar.helper.PSUsuarioHelper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -143,11 +144,7 @@ Author     : AKAR
         </style>
         
         
-        <%
-            if( request == null )
-            {
-                return;
-            }
+        <% 
             String action = request.getParameter( "action" );
             if( action == null )
             {
@@ -155,7 +152,6 @@ Author     : AKAR
             }
             switch(action){
                 case "send":
-                    
                     PSUsuario usuario = new PSUsuarioHelper().SignUp2(request);
                     if( usuario!= null){
                         HttpSession sesion = request.getSession();

@@ -4,6 +4,10 @@ Created on : 12/10/2022, 10:52:51 PM
 Author     : AKAR
 --%>
 
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.ParseException"%>
+<%@page import="java.util.Date"%>
 <%@page import="org.akar.dao.PSUsuario"%>
 <%@page import="org.akar.helper.PSUsuarioHelper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -89,6 +93,10 @@ Author     : AKAR
                     <div class="col-12">
                         <button type="submit" id="action" name="action" value="send" class="btn btn-primary btn-lg">Registrarse</button>
                         <button type="reset" class="btn btn-secondary btn-lg">Cancelar</button>
+                        <div class="form-group d-md-flex">
+                        ¿Quieres registrar a un menor de edad? <a href="signup2.jsp" style="color: #00e7ff"> Cree su cuenta.</a>
+                        </div>
+                        <script></script>
                     </div>
                 </form>
             </div>
@@ -120,14 +128,8 @@ Author     : AKAR
             option{
                 color: black;
             }
-        </style>
-        
-        
+        </style>        
         <%
-            if( request == null )
-            {
-                return;
-            }
             String action = request.getParameter( "action" );
             if( action == null )
             {
@@ -151,6 +153,7 @@ Author     : AKAR
                     break;
             }
         %>
+        
         
     </body>
 </html>

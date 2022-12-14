@@ -1803,6 +1803,14 @@ form#contact {
   text-align: center;
 }
 
+form#edit {
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+  position: relative;
+  background-color: #fff;
+  border-radius: 23px;
+  text-align: center;
+}
+
 form#contact #map iframe {
   border-top-left-radius: 23px;
   border-bottom-left-radius: 23px;

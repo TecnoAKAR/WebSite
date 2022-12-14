@@ -99,3 +99,6 @@ declare xContraSha nvarchar(200);
 	set xContraSha =(select sha(contrasena));
 	update Usuario set Contrasena= xContraSha where idUsuario=xIdPersona;
 end;//
+
+
+
