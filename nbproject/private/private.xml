@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-            <file>file:/E:/WebSite/web/WEB-INF/web.xml</file>
-            <file>file:/E:/WebSite/web/index.jsp</file>
-            <file>file:/E:/WebSite/sql/AKAR_DB.sql</file>
-            <file>file:/E:/WebSite/web/META-INF/context.xml</file>
-            <file>file:/E:/WebSite/sql/Procedimientos.sql</file>
+            <file>file:/F:/AKAR/akar/web/profile.jsp</file>
+            <file>file:/F:/AKAR/akar/web/Home.jsp</file>
+            <file>file:/F:/AKAR/akar/web/editProf.jsp</file>
         </group>
->>>>>>> dbb3a47b97beb46cbc89c8476a088bfe209c72b4
     </open-files>
 </project-private>

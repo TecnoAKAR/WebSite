@@ -7,6 +7,15 @@
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%
+    try{
+        PSUsuario sesion = (PSUsuario)session.getAttribute("usuario");
+        
+        if(sesion == null){
+            response.sendRedirect("notSession.jsp");
+        }
+        else{
+%>
 <html lang="es">
 
   <head>
@@ -35,7 +44,7 @@
 
 <body>
     <%
-        PSUsuario sesion = (PSUsuario)session.getAttribute("usuario");  
+        
         
         if( request == null )
         {
@@ -164,3 +173,12 @@
   
 </body>
 </html>
+
+<%
+        }
+    }
+    catch(Exception e){
+        response.sendRedirect("Error.jsp");
+    }
+
+%>

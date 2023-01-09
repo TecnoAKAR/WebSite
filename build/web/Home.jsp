@@ -3,6 +3,16 @@
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+
+<%
+    try{
+        PSUsuario sesion = (PSUsuario)session.getAttribute("usuario");
+        
+        if(sesion == null){
+            response.sendRedirect("notSession.jsp");
+        }
+        else{
+%>
 <html lang="es">
 
   <head>
@@ -31,24 +41,23 @@
 
 <body>
     <%
-        PSUsuario sesion = (PSUsuario)session.getAttribute("usuario");  
-        
-        if( request == null )
-        {
-            return;
-        }
-        String action = request.getParameter( "action" );
-        if( action == null )
-        {
-            action = "";
-        }
 
-        switch(action){
-            case "close":
-                request.getSession().removeAttribute("usuario");
-                response.sendRedirect("index.jsp");
-                break;
-        }
+            if( request == null )
+            {
+                return;
+            }
+            String action = request.getParameter( "action" );
+            if( action == null )
+            {
+                action = "";
+            }
+
+            switch(action){
+                case "close":
+                    request.getSession().removeAttribute("usuario");
+                    response.sendRedirect("index.jsp");
+                    break;
+            }
 
 
     %>  
@@ -607,3 +616,12 @@
   
 </body>
 </html>
+
+<%
+        }
+    }
+    catch(Exception e){
+        response.sendRedirect("Error.jsp");
+    }
+
+%>
