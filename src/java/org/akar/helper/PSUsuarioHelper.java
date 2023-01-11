@@ -63,8 +63,8 @@ public class PSUsuarioHelper implements Serializable {
     }
     public PSUsuario SignUp2(HttpServletRequest request){
         
-        psUser=new PSUsuario(new TblUsuario(), new TblTipoUsuario());
-        PSUsuario psUser2=new PSUsuario(new TblUsuario(), new TblTipoUsuario());
+        psUser = new PSUsuario(new TblUsuario(), new TblTipoUsuario());
+        PSUsuario psUser2 = new PSUsuario(new TblUsuario(), new TblTipoUsuario());
         
         psUser.getUsuario().setNom( request.getParameter("nombre"));
         psUser.getUsuario().setApellidoP( request.getParameter("apellido_p"));
@@ -72,14 +72,9 @@ public class PSUsuarioHelper implements Serializable {
         psUser.getUsuario().setFechaNac(getDate(request.getParameter("fecha_nac")));
         psUser.getUsuario().setCorreo( request.getParameter("correo_e"));
         psUser.getUsuario().setNomUser( request.getParameter("usuario"));
+        psUser.getTipo().setIdTipo( Integer.parseInt( request.getParameter("tipoUsuario") ));
         psUser.getUsuario().setPassword( request.getParameter("pass"));
-        psUser2.getUsuario().setNom( request.getParameter("nombre2"));
-        psUser2.getUsuario().setApellidoP( request.getParameter("apellido_p2"));
-        psUser2.getUsuario().setApellidoM( request.getParameter("apellido_m2"));
-        psUser2.getUsuario().setFechaNac(getDate(request.getParameter("fecha_nac2")));
-        psUser2.getUsuario().setCorreo( request.getParameter("correo_e2"));
-        psUser2.getUsuario().setNomUser( request.getParameter("usuario2"));
-        psUser2.getUsuario().setPassword( request.getParameter("pass2"));
+        psUser2.getUsuario().setCorreo( request.getParameter("correo_e_tutor"));
         
         if(psUser.getUsuario().getNom().length() == 0 || psUser.getUsuario().getNom() == null){
             return null;
@@ -99,28 +94,13 @@ public class PSUsuarioHelper implements Serializable {
         if(psUser.getUsuario().getNomUser().length() == 0 || psUser.getUsuario().getNomUser() == null){
             return null;
         }
+        if( psUser.getTipo().getIdTipo() == 0 ){
+            return null;
+        }
         if(psUser.getUsuario().getPassword().length() == 0 || psUser.getUsuario().getPassword() == null){
             return null;
         }
-        if(psUser2.getUsuario().getNom().length() == 0 || psUser2.getUsuario().getNom() == null){
-            return null;
-        }
-        if(psUser2.getUsuario().getApellidoP().length() == 0 || psUser2.getUsuario().getApellidoP() == null){
-            return null;
-        }
-        if(psUser2.getUsuario().getApellidoM().length() == 0 || psUser2.getUsuario().getApellidoM() == null){
-            return null;
-        }
-        if(psUser2.getUsuario().getFechaNac() == null){
-            return null;
-        }
         if(psUser2.getUsuario().getCorreo().length() == 0 || psUser2.getUsuario().getCorreo() == null){
-            return null;
-        }
-        if(psUser2.getUsuario().getNomUser().length() == 0 || psUser2.getUsuario().getNomUser() == null){
-            return null;
-        }
-        if(psUser2.getUsuario().getPassword().length() == 0 || psUser2.getUsuario().getPassword() == null){
             return null;
         }
         
@@ -173,7 +153,7 @@ public class PSUsuarioHelper implements Serializable {
     
     
     public Date getDate( String campo )
-    {
+    {   
         DateFormat dateFormat = null;
         try 
         {

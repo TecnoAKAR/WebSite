@@ -4,6 +4,9 @@ Created on : 12/10/2022, 10:52:51 PM
 Author     : AKAR
 --%>
 
+<%@page import="java.time.Period"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.ParseException"%>
@@ -94,7 +97,7 @@ Author     : AKAR
                         <button type="submit" id="action" name="action" value="send" class="btn btn-primary btn-lg">Registrarse</button>
                         <button type="reset" class="btn btn-secondary btn-lg">Cancelar</button>
                         <div class="form-group d-md-flex">
-                        ¿Quieres registrar a un menor de edad? <a href="signup2.jsp" style="color: #00e7ff"> Cree su cuenta.</a>
+                        ¿Ya tiene una cuenta?&nbsp<a href="login.jsp" style="color: #00e7ff"> Inicie sesión.</a>
                         </div>
                         <script></script>
                     </div>
@@ -137,20 +140,31 @@ Author     : AKAR
             }
             switch(action){
                 case "send":
-                    PSUsuario usuario = new PSUsuarioHelper().SignUp(request);
-                    if( usuario!= null){
-                        HttpSession sesion = request.getSession();
-                        sesion.setAttribute("usuario", usuario);
-                        response.sendRedirect("Home.jsp");
+                    
+                    DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    LocalDate fNac = LocalDate.parse(request.getParameter("fecha_nac"), format);
+                    LocalDate hoy = LocalDate.now();
+                    Period per = Period.between(fNac, hoy);
+                    
+                    if(per.getYears() < 18){
+                        response.sendRedirect("signup2.jsp");
                     }
                     else{
+                        PSUsuario usuario = new PSUsuarioHelper().SignUp(request);
+                        if( usuario!= null){
+                            HttpSession sesion = request.getSession();
+                            sesion.setAttribute("usuario", usuario);
+                            response.sendRedirect("Home.jsp");
+                        }
+                        else{
         %>
-                        <script>
-                            alert("El correo y usuario están en uso.");
-                        </script>
+                            <script>
+                                alert("El correo y usuario están en uso.");
+                            </script>
         <%
+                        }
+                        break;
                     }
-                    break;
             }
         %>
         

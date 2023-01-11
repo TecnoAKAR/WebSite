@@ -41,20 +41,20 @@ Author     : AKAR
         </div>
         <div class="contenedor">
             <div class="container p-5">
-            <br/>
-            <h2 class="heading-section">Cree una cuenta para menor de edad y tutor</h2>
+            <h2 class="heading-section">Cuenta para menor de edad</h2>
+            Para crear una cuenta con control parental el tutor deberá haberse creado una cuenta previamente
                 <form class="row g-3">
                     <div class="col-md-6">
                         <label for="inputEmail4" class="form-label"></label>
-                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre(s) menor de edad" required>
+                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre(s)" required>
                     </div>
                     <div class="col-md-6">
                       <label for="inputEmail4" class="form-label"></label>
-                      <input type="text" class="form-control" id="apellido_p" name="apellido_p" placeholder="Apellido paterno menor de edad" required>
+                      <input type="text" class="form-control" id="apellido_p" name="apellido_p" placeholder="Apellido paterno" required>
                     </div>
                     <div class="col-md-6">
                       <label for="inputEmail4" class="form-label"></label>
-                      <input type="text" class="form-control" id="apellido_m" name="apellido_m" placeholder="Apellido materno menor de edad" required>
+                      <input type="text" class="form-control" id="apellido_m" name="apellido_m" placeholder="Apellido materno" required>
                     </div>
                     <div class="col-md-6">
                       <label for="inputEmail4" class="form-label"></label>
@@ -62,54 +62,38 @@ Author     : AKAR
                     </div>
                     <div class="col-12">
                       <label for="inputEmail4" class="form-label"></label>
-                      <input type="email" class="form-control" id="correo_e" name="correo_e" placeholder="Correo electrónico menor de edad" required>
+                      <input type="email" class="form-control" id="correo_e" name="correo_e" placeholder="Correo electrónico" required>
+                    </div>
+                    <div class="col-12">
+                      <label for="inputEmail4" class="form-label"></label>
+                      <input type="email" class="form-control" id="correo_e" name="correo_e_tutor" placeholder="Correo electrónico del tutor" required>
                     </div>
                     <div class="col-md-6">
                       <label for="inputEmail4" class="form-label"></label>
-                      <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Nombre de usuario menor de edad" required>
+                      <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Nombre de usuario" required>
+                    </div>
+                    <div class="col-md-6    ">
+                        <label for="inputState" class="form-label"></label>
+                        <select id="tipoUsuario" name="tipoUsuario" class="form-control">
+                          <option selected>Tipo de usuario</option>
+                          <option value="2">Usuario Con Síndrome de Asperger (UCSA)</option>
+                          <option value="3">Tutor</option>
+                          <option value="4">Usuario externo</option>
+                        </select>
                     </div>
                     <div class="col-md-6">
                       <label for="inputPassword4" class="form-label"></label>
-                      <input id="password-field" type="password" class="form-control" id="pass" name="pass" placeholder="Contraseña menor de edad" required> 
+                      <input id="password-field" type="password" class="form-control" id="pass" name="pass" placeholder="Contraseña" required> 
                       </br>
                       <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"> </span>
                     </div>
                     <div> 
                         <input type="hidden" id="action" name="action" value="send" />
                     </div>
-                    <div class="col-md-6">
-                        <label for="inputEmail4" class="form-label"></label>
-                      <input type="text" class="form-control" id="nombre2" name="nombre2" placeholder="Nombre(s) del Tutor" required>
-                    </div>
-                    <div class="col-md-6">
-                      <label for="inputEmail4" class="form-label"></label>
-                      <input type="text" class="form-control" id="apellido_p2" name="apellido_p2" placeholder="Apellido paterno del Tutor" required>
-                    </div>
-                    <div class="col-md-6">
-                      <label for="inputEmail4" class="form-label"></label>
-                      <input type="text" class="form-control" id="apellido_m2" name="apellido_m2" placeholder="Apellido materno del Tutor" required>
-                    </div>
-                    <div class="col-md-6">
-                      <label for="inputEmail4" class="form-label"></label>
-                      <input type="Date" class="form-control" id="fecha_nac2" name="fecha_nac2" required>
-                    </div>
                     <div class="col-12">
-                      <label for="inputEmail4" class="form-label"></label>
-                      <input type="email" class="form-control" id="correo_e2" name="correo_e2" placeholder="Correo electrónico del Tutor" required>
-                    </div>
-                    <div class="col-md-6">
-                      <label for="inputEmail4" class="form-label"></label>
-                      <input type="text" class="form-control" id="usuario2" name="usuario2" placeholder="Nombre de usuario del Tutor" required>
-                    </div>
-                    <div class="col-md-6">
-                      <label for="inputPassword4" class="form-label"></label>
-                      <input id="password-field2" type="password" class="form-control" id="pass2" name="pass2" placeholder="Contraseña del Tutor" required> 
-                      </br>
-                      <span toggle="#password-field2" class="fa fa-fw fa-eye field-icon toggle-password"> </span>
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" id="action" name="action" value="send" class="btn btn-primary btn-lg">Registrarse </button>
+                        <button type="submit" id="action" name="action" value="send" class="btn btn-primary btn-lg">Registrarse</button>
                         <button type="reset" class="btn btn-secondary btn-lg">Cancelar</button>
+                        <script></script>
                     </div>
                 </form>
             </div>
