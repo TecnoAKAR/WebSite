@@ -1,3 +1,4 @@
+<%@page import="org.akar.connections.Correo"%>
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -523,10 +524,10 @@
                     </div>
                     <div class="col-lg-6">
                       <fieldset>
-                        <input type="name" name="name" id="name" placeholder="Nombre" autocomplete="on" required>
+                        <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Correo electrónico" required="">
                       </fieldset>
                       <fieldset>
-                        <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Correo electrónico" required="">
+                        <input type="password" name="passApli" id="passApli" placeholder="Contraseña de aplicación" required="">
                       </fieldset>
                       <fieldset>
                         <input type="subject" name="subject" id="subject" placeholder="Asunto" autocomplete="on">
@@ -539,7 +540,7 @@
                     </div>
                     <div class="col-lg-12">
                       <fieldset>
-                        <button type="submit" id="form-submit" class="main-button ">Enviar mensaje</button>
+                        <button type="submit" id="action" name="action" value="send" class="main-button ">Enviar mensaje</button>
                       </fieldset>
                     </div>
                   </div>
@@ -571,5 +572,28 @@
   <script src="sources/assets/js/imagesloaded.js"></script>
   <script src="sources/assets/js/custom.js"></script>
 
+  <%
+        if( request == null )
+        {
+            return;
+        }
+        String action = request.getParameter( "action" );
+        if( action == null )
+        {
+            action = "";
+        }
+        switch(action){
+            case "send":
+                Correo correo = new Correo();
+                boolean enviado = correo.contactoAKAR(request.getParameter("email"), request.getParameter("passApli"), request.getParameter("subject"), request.getParameter("message"));
+                if (enviado == false) {
+  %>
+                    <script>alert("Ha ocurrido un error al enviar los mensajes.")</script>
+  <%
+                }
+                break;
+        }
+  %>
+  
 </body>
 </html>

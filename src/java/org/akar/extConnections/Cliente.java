@@ -1,0 +1,89 @@
+
+package org.akar.extConnections;
+
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class Cliente {
+    private Socket s;
+    private ObjectInputStream ois;
+    private ObjectOutputStream oos;
+    private Boolean connected; 
+    private String status;
+    
+    public Cliente(){
+        connected = false;
+    }
+    
+    public void iniSocket(InetAddress ip, int puerto){
+        try {
+            s = new Socket(ip, puerto);
+        } catch (Exception e) {
+        }
+    }
+    
+    public void flujos(){
+        try {
+            oos = new ObjectOutputStream(s.getOutputStream());
+            ois = new ObjectInputStream(s.getInputStream());
+            oos.flush();
+        } catch (Exception e) {
+        }
+    }
+    
+    public void cerrar(){
+        try {
+            ois.close();
+            oos.close();
+            s.close();
+        } catch (Exception e) {
+        }
+    }
+    
+    public void enviar(String msj){
+        try {
+            status = "";
+            oos.writeObject(msj);
+            oos.flush();
+        } catch (Exception e) {
+        }
+    }
+    
+    public void recibir(){
+        try {
+            boolean c = true;
+            while(c == true){
+                status = (String) ois.readObject();
+            }
+        } catch (Exception e) {
+        }
+    }
+    
+    public void conexion(String sIp, int puerto) {
+        Thread hilo = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    InetAddress ip = InetAddress.getByName(sIp);
+                    iniSocket(ip, puerto);
+                    flujos();
+                    connected = true;
+                    recibir();
+                }catch (Exception ex) {
+                }
+            }
+        });
+        hilo.start();
+    }
+    
+    public Boolean isConnected(){
+        return connected;
+    }
+    
+    public String status(){
+        return status;
+    }
+}
