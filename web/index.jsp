@@ -1,4 +1,4 @@
-<%@page import="org.akar.connections.Correo"%>
+<%@page import="org.akar.extConnections.Correo"%>
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 

@@ -48,7 +48,7 @@ Author     : AKAR
                 <div class="row justify-content-center">
                     <div class="col-md-6 col-lg-4">
                         <div class="login-wrap p-0">
-                            <form action="#" class="signin-form">
+                            <form action="#" class="signin-form" method="post">
                                 <div class="form-group">
                                     <input type="email" name="correo" id="correo" class="form-control" placeholder="Correo electrónico" required>
                                 </div>

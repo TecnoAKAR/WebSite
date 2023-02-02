@@ -43,7 +43,7 @@ Author     : AKAR
             <div class="container p-5">
             <h2 class="heading-section">Cuenta para menor de edad</h2>
             Para crear una cuenta con control parental el tutor deberá haberse creado una cuenta previamente
-                <form class="row g-3">
+                <form class="row g-3" method="post">
                     <div class="col-md-6">
                         <label for="inputEmail4" class="form-label"></label>
                       <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre(s)" required>

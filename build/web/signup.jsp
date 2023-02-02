@@ -49,7 +49,7 @@ Author     : AKAR
             <div class="container p-5">
             <br/>
             <h2 class="heading-section">Cree una cuenta</h2>
-                <form class="row g-3">
+                <form class="row g-3" method="post">
                     <div class="col-md-6">
                         <label for="inputEmail4" class="form-label"></label>
                       <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre(s)" required>

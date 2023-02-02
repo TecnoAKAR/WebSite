@@ -1,4 +1,4 @@
-<%@page import="org.akar.connections.Correo"%>
+<%@page import="org.akar.extConnections.Correo"%>
 <%@page import="org.akar.dao.PSUsuario"%>
 <%@page import="java.io.File"%>
 <!DOCTYPE html>
