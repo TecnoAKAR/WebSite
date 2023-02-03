@@ -20,6 +20,13 @@ public class GatoLogic {
         
     }
     
+    public int getVal(int y, int x){
+        
+        int val = gatoMatriz[y][x];
+        return val;
+        
+    }
+    
     public int tresEnRaya(){
         
         int sum = 0;

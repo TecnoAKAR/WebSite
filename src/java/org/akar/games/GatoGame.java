@@ -23,44 +23,337 @@ import org.akar.extConnections.Servidor;
 @WebServlet(urlPatterns = {"/gato"})
 public class GatoGame extends HttpServlet {
     private GatoLogic gLog;
+    private String act;
     private Servidor servidor;
     private Cliente cliente;
     private int turno;
+    private String msj;
+    private String values;
     
     public GatoGame(){
-        
+        act = null;
+        servidor = null;
+        cliente = null;
+        turno = 1;
+        gLog = new GatoLogic();
+        msj = "";
+        values = "";
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        
         try (PrintWriter out = response.getWriter()) {
-            if(request.getParameter("act").equals("client")){
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Gato</title>");            
-                out.println("</head>");
-                out.println("<body>");
-                out.println(request.getParameter("ip"));
-                out.println("<br>");
-                out.println(request.getParameter("port"));
-                out.println("</body>");
-                out.println("</html>");
-            }else if(request.getParameter("act").equals("server")){
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Gato</title>");            
-                out.println("</head>");
-                out.println("<body>");
-                out.println(request.getParameter("port"));
-                out.println("</body>");
-                out.println("</html>");
+            
+            if(act == null){
+                act = request.getParameter("act");
             }
             
+            if(servidor == null || cliente == null){
+                if(act.equals("client")){
+                    cliente = new Cliente();
+                    cliente.conexion(request.getParameter("ip"), request.getParameter("port"));
+                    while(cliente.isConnected() == false){
+                        out.println("<script> console.log(\"Esperando\"); </script>");
+                        System.out.println("Esperando conexion");
+                        Thread.sleep(1000);
+                    }
+                    out.println("<script> console.log(\"Conexión establecida\"); </script>");
+                    System.out.println("Conexion establecida");
+                    System.out.println(cliente.connectedWith());
+                    
+                }else if(act.equals("server")){
+                    servidor = new Servidor();
+                    servidor.conexion(request.getParameter("port"));
+                    while(servidor.isConnected() == false){
+                        out.println("<script> console.log(\"Esperando\"); </script>");
+                        System.out.println("Esperando conexion");
+                        Thread.sleep(1000);
+                    }
+                    System.out.println(servidor.isConnected().toString());
+                    out.println("<script> console.log(\"Conexión establecida\"); </script>");
+                    System.out.println("Conexion establecida");
+                    System.out.println(servidor.connectedWith());
+                }
+            }
+            
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Gato</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<form>");
+            out.println("<table>");
+            out.println("<tr>");
+            out.println("<td>");
+            out.println("<button id=\"casilla\" name=\"casilla\" value=\"1\">1</button>");
+            out.println("</td>");
+            out.println("<td>");
+            out.println("<button id=\"casilla\" name=\"casilla\" value=\"2\">2</button>");
+            out.println("</td>");
+            out.println("<td>");
+            out.println("<button id=\"casilla\" name=\"casilla\" value=\"3\">3</button>");
+            out.println("</td>");
+            out.println("</tr>");
+            out.println("<tr>");
+            out.println("<td>");
+            out.println("<button id=\"casilla\" name=\"casilla\" value=\"4\">4</button>");
+            out.println("</td>");
+            out.println("<td>");
+            out.println("<button id=\"casilla\" name=\"casilla\" value=\"5\">5</button>");
+            out.println("</td>");
+            out.println("<td>");
+            out.println("<button id=\"casilla\" name=\"casilla\" value=\"6\">6</button>");
+            out.println("</td>");
+            out.println("</tr>");
+            out.println("<tr>");
+            out.println("<td>");
+            out.println("<button id=\"casilla\" name=\"casilla\" value=\"7\">7</button>");
+            out.println("</td>");
+            out.println("<td>");
+            out.println("<button id=\"casilla\" name=\"casilla\" value=\"8\">8</button>");
+            out.println("</td>");
+            out.println("<td>");
+            out.println("<button id=\"casilla\" name=\"casilla\" value=\"9\">9</button>");
+            out.println("</td>");
+            out.println("</tr>");
+            out.println("</table>");
+            out.println("</form>");
+            out.println("</body>");
+            out.println("</html>");
+            
+            if(act.equals("client")){
+                if(turno % 2 == 0){
+                    while(cliente.status().equals(msj)){
+                        
+                    }
+                    msj = cliente.status();
+                    String datos[] = new String[4];
+                    datos = msj.split(":");
+                    turno = Integer.parseInt(datos[0]);
+                    gLog.setVal(Integer.parseInt(datos[3]), Integer.parseInt(datos[2]), Integer.parseInt(datos[1]));
+                    
+                    if(gLog.tresEnRaya() == 6){
+                        out.println("<script> alert(\"Jugador 1 gana.\"); </script>");
+                    }else if(gLog.tresEnRaya() == 12){
+                        out.println("<script> alert(\"Jugador 2 gana.\"); </script>");
+                    }
+                } else{
+                    String par = request.getParameter("casilla");
+                    switch (par){
+                            case "1":
+                                if(gLog.getVal(0,0) != 0){
+                                    out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                }else{
+                                    gLog.setVal(0, 0, 4);
+                                    turno++;
+                                    values = Integer.toString(turno)+":4:0:0";
+                                    servidor.enviar(values);
+                                }
+                                break;
+                            case "2":
+                                if(gLog.getVal(0,1) != 0){
+                                    out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                }else{
+                                    gLog.setVal(0, 1, 4);
+                                    turno++;
+                                    values = Integer.toString(turno)+":4:1:0";
+                                    servidor.enviar(values);
+                                }
+                                break;
+                            case "3":
+                                if(gLog.getVal(0,2) != 0){
+                                    out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                }else{
+                                    gLog.setVal(0, 2, 4);
+                                    turno++;
+                                    values = Integer.toString(turno)+":4:2:0";
+                                    servidor.enviar(values);
+                                }
+                                break;
+                            case "4":
+                                if(gLog.getVal(1,0) != 0){
+                                    out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                }else{
+                                    gLog.setVal(1, 0, 4);
+                                    turno++;
+                                    values = Integer.toString(turno)+":40:1";
+                                    servidor.enviar(values);
+                                }
+                                break;
+                            case "5":
+                                if(gLog.getVal(1,1) != 0){
+                                    out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                }else{
+                                    gLog.setVal(1, 1, 4);
+                                    turno++;
+                                    values = Integer.toString(turno)+":4:1:1";
+                                    servidor.enviar(values);
+                                }
+                                break;
+                            case "6":
+                                if(gLog.getVal(1,2) != 0){
+                                    out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                }else{
+                                    gLog.setVal(1, 2, 4);
+                                    turno++;
+                                    values = Integer.toString(turno)+":4:2:1";
+                                    servidor.enviar(values);
+                                }
+                                break;
+                            case "7":
+                                if(gLog.getVal(2,0) != 0){
+                                    out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                }else{
+                                    gLog.setVal(2, 0, 4);
+                                    turno++;
+                                    values = Integer.toString(turno)+":4:0:2";
+                                    servidor.enviar(values);
+                                }
+                                break;
+                            case "8":
+                                if(gLog.getVal(2,1) != 0){
+                                    out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                }else{
+                                    gLog.setVal(2, 1, 4);
+                                    turno++;
+                                    values = Integer.toString(turno)+":4:1:2";
+                                    servidor.enviar(values);
+                                }
+                                break;
+                            case "9":
+                                if(gLog.getVal(2,2) != 0){
+                                    out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                }else{
+                                    gLog.setVal(2, 2, 4);
+                                    turno++;
+                                    values = Integer.toString(turno)+":4:2:2";
+                                    servidor.enviar(values);
+                                }
+                                break;
+                               
+                    }
+                }
+            }else{ //SERVER
+                if(turno % 2 == 1){
+                    String par = request.getParameter("casilla");
+                    switch (par){
+                            case "1":
+                                if(gLog.getVal(0,0) != 0){
+                                    out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                }else{
+                                    gLog.setVal(0, 0, 2);
+                                    turno++;
+                                    values = Integer.toString(turno)+":2:0:0";
+                                    servidor.enviar(values);
+                                }
+                                break;
+                            case "2":
+                                if(gLog.getVal(0,1) != 0){
+                                    out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                }else{
+                                    gLog.setVal(0, 1, 2);
+                                    turno++;
+                                    values = Integer.toString(turno)+":2:1:0";
+                                    servidor.enviar(values);
+                                }
+                                break;
+                            case "3":
+                                if(gLog.getVal(0,2) != 0){
+                                    out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                }else{
+                                    gLog.setVal(0, 2, 2);
+                                    turno++;
+                                    values = Integer.toString(turno)+":2:2:0";
+                                    servidor.enviar(values);
+                                }
+                                break;
+                            case "4":
+                                if(gLog.getVal(1,0) != 0){
+                                    out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                }else{
+                                    gLog.setVal(1, 0, 2);
+                                    turno++;
+                                    values = Integer.toString(turno)+":2:0:1";
+                                    servidor.enviar(values);
+                                }
+                                break;
+                            case "5":
+                                if(gLog.getVal(1,1) != 0){
+                                    out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                }else{
+                                    gLog.setVal(1, 1, 2);
+                                    turno++;
+                                    values = Integer.toString(turno)+":2:1:1";
+                                    servidor.enviar(values);
+                                }
+                                break;
+                            case "6":
+                                if(gLog.getVal(1,2) != 0){
+                                    out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                }else{
+                                    gLog.setVal(1, 2, 2);
+                                    turno++;
+                                    values = Integer.toString(turno)+":2:2:1";
+                                    servidor.enviar(values);
+                                }
+                                break;
+                            case "7":
+                                if(gLog.getVal(2,0) != 0){
+                                    out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                }else{
+                                    gLog.setVal(2, 0, 2);
+                                    turno++;
+                                    values = Integer.toString(turno)+":2:0:2";
+                                    servidor.enviar(values);
+                                }
+                                break;
+                            case "8":
+                                if(gLog.getVal(2,1) != 0){
+                                    out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                }else{
+                                    gLog.setVal(2, 1, 2);
+                                    turno++;
+                                    values = Integer.toString(turno)+":2:1:2";
+                                    servidor.enviar(values);
+                                }
+                                break;
+                            case "9":
+                                if(gLog.getVal(2,2) != 0){
+                                    out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                }else{
+                                    gLog.setVal(2, 2, 2);
+                                    turno++;
+                                    values = Integer.toString(turno)+":2:2:2";
+                                    servidor.enviar(values);
+                                }
+                                break;
+                               
+                    }
+                } else{
+                    while(cliente.status().equals(msj)){
+                        
+                    }
+                    msj = cliente.status();
+                    String datos[] = new String[4];
+                    datos = msj.split(":");
+                    turno = Integer.parseInt(datos[0]);
+                    gLog.setVal(Integer.parseInt(datos[3]), Integer.parseInt(datos[2]), Integer.parseInt(datos[1]));
+                    if(gLog.tresEnRaya() == 6){
+                        out.println("<script> alert(\"Jugador 1 gana.\"); </script>");
+                    }else if(gLog.tresEnRaya() == 12){
+                        out.println("<script> alert(\"Jugador 2 gana.\"); </script>");
+                    }
+                }
+            }
+            if(turno == 10){
+                out.println("<script> alert(\"Juego empatado.\"); </script>");
+            }
+            
+        }catch(Exception ex){
+            ex.printStackTrace();
         }
     }
     

@@ -45,7 +45,6 @@ public class Cliente {
     
     public void enviar(String msj){
         try {
-            status = "";
             oos.writeObject(msj);
             oos.flush();
         } catch (Exception e) {
@@ -62,12 +61,13 @@ public class Cliente {
         }
     }
     
-    public void conexion(String sIp, int puerto) {
+    public void conexion(String sIp, String puertoS) {
         Thread hilo = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     InetAddress ip = InetAddress.getByName(sIp);
+                    int puerto = Integer.parseInt(puertoS);
                     iniSocket(ip, puerto);
                     flujos();
                     connected = true;
@@ -85,5 +85,9 @@ public class Cliente {
     
     public String status(){
         return status;
+    }
+    
+    public String connectedWith(){
+        return s.getInetAddress().toString();
     }
 }

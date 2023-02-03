@@ -93,7 +93,7 @@
                 response.sendRedirect("gato?act=client&ip="+request.getParameter("ip")+"&port="+request.getParameter("port"));
                 break;
             case "initS":
-                response.sendRedirect("gato?act=server&port=5000"); //MODIFICAR DESPUÉS DE LAS PRUEBAS
+                response.sendRedirect("gato?act=server&port=5001"); //MODIFICAR DESPUÉS DE LAS PRUEBAS
                 break;
         }
     %>
