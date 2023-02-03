@@ -17,6 +17,7 @@ public class Servidor{
     
     public Servidor(){
         connected = false;
+        status = "";
     }
     
     public void iniSocket(int puerto){
