@@ -16,6 +16,7 @@ public class Cliente {
     
     public Cliente(){
         connected = false;
+        status = "";
     }
     
     public void iniSocket(InetAddress ip, int puerto){
