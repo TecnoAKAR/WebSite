@@ -52,32 +52,30 @@ set xContraSha =(select sha(contrasenaP));
 end; //
 
 create procedure sp_Registromenordeedad ( in nom nvarchar(50), pat nvarchar(50),
-mat nvarchar(50), fecha date, correo nvarchar(50),contrasena nvarchar (50), usuario nvarchar(50),nom2 nvarchar(50), pat2 nvarchar(50),
-mat2 nvarchar(50), fecha2 date, correo2 nvarchar(50),contrasena2 nvarchar (50), usuario2 nvarchar(50))
+mat nvarchar(50), fecha date, correo nvarchar(50),contrasena nvarchar (50), usuario nvarchar(50),correo2 nvarchar(50),usuario2 nvarchar(50))
 begin
 declare xIdPersona int;
 declare xIdPersona2 int;
 declare xIdTipo int;
-declare xIdTipo2 int;
-declare existe nvarchar(50);
+declare existe int;
+declare menor int;
 declare xMsj nvarchar(50);
-	set existe=(select count(*) from usuario where Correo=correo and Nombre=nom);
-    if(existe=0)then
-		insert into Usuario( Nombre, ApellidoP, ApellidoM, Correo, Contrasena, NomUsuario, Fecha)
-		values (nom, pat, mat, correo, sha(contrasena), usuario, fecha),(nom2, pat2, mat2, correo2, sha(contrasena2), usuario2, fecha2);
-		set xIdPersona=( select idUsuario from Usuario where Nombre= nom and ApellidoP= pat);
-		set xIdPersona2=( select idUsuario from Usuario where Nombre= nom2 and ApellidoP= pat2);
-		set xIdTipo= 2;
-		set xIdTipo2= 3;
-		insert into RelTipoUsuario( idUsuario, idTipo) values (xIdPersona,xIdTipo),(xIdPersona2,xIdTipo2);
-		insert into RelTutorUCSA ( idUsuario1, idUsuario2) values( xIdPersona,xIdPersona2);
-        select RelTipoUsuario.idRelTipoUsuario, RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre,Usuario.ApellidoP, Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xidPersona;
-    else
-		if(existe>0) then
-			set xMsj="Menor de edad registrado";
-			select xMsj;
+    set menor= (select count(*) from Usuario where Correo=correo and Nombre=nom);
+			if(menor=0)then
+			insert into Usuario( Nombre, ApellidoP, ApellidoM, Correo, Contrasena, NomUsuario, Fecha)
+			values (nom, pat, mat, correo, sha(contrasena), usuario, fecha);
+			set xIdPersona=( select idUsuario from Usuario where Nombre= nom and ApellidoP= pat);
+			set xIdPersona2=( select idUsuario from Usuario where Correo= correo2 and NomUsuario= usuario2);
+			set xIdTipo= 2;
+			insert into RelTipoUsuario( idUsuario, idTipo) values (xIdPersona,xIdTipo);
+			insert into RelTutorUCSA ( idUsuario1, idUsuario2) values( xIdPersona,xIdPersona2);
+			select RelTipoUsuario.idRelTipoUsuario, RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre,Usuario.ApellidoP, Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xidPersona;
+			else
+				if(menor>0)then
+					set xMsj= "Menor ya registrado";
+					select xMsj;
 end if;
-end if;    
+end if;  
 end; //
 
 
