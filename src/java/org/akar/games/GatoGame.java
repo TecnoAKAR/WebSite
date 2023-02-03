@@ -184,7 +184,7 @@ public class GatoGame extends HttpServlet {
             out.println("<button id=\"casilla\" name=\"casilla\" value=\"9\">");
             if (gLog.getVal(2, 2) == 2) {
                 out.println("X");
-            } else if (gLog.getVal(2, 2) == 2) {
+            } else if (gLog.getVal(2, 2) == 4) {
                 out.println("0");
             } else {
                 out.println("-");
