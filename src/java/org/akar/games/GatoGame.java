@@ -199,21 +199,7 @@ public class GatoGame extends HttpServlet {
 
             if (act.equals("client")) { //CLIENTE
                 if (turno % 2 == 0) {
-                    while (cliente.status().equals(msj)) {
-
-                    }
-                    msj = cliente.status();
-                    String datos[] = new String[4];
-                    datos = msj.split(":");
-                    turno = Integer.parseInt(datos[0]);
-                    gLog.setVal(Integer.parseInt(datos[3]), Integer.parseInt(datos[2]), Integer.parseInt(datos[1]));
-
-                    if (gLog.tresEnRaya() == 6) {
-                        out.println("<script> alert(\"Jugador 1 gana.\"); </script>");
-                    } else if (gLog.tresEnRaya() == 12) {
-                        out.println("<script> alert(\"Jugador 2 gana.\"); </script>");
-                    }
-                } else {
+                    
                     String par = request.getParameter("casilla");
                     switch (par) {
                         case "1":
@@ -307,6 +293,21 @@ public class GatoGame extends HttpServlet {
                             }
                             break;
 
+                    }
+                } else {
+                    while (cliente.status().equals(msj)) {
+
+                    }
+                    msj = cliente.status();
+                    String datos[] = new String[4];
+                    datos = msj.split(":");
+                    turno = Integer.parseInt(datos[0]);
+                    gLog.setVal(Integer.parseInt(datos[3]), Integer.parseInt(datos[2]), Integer.parseInt(datos[1]));
+
+                    if (gLog.tresEnRaya() == 6) {
+                        out.println("<script> alert(\"Jugador 1 gana.\"); </script>");
+                    } else if (gLog.tresEnRaya() == 12) {
+                        out.println("<script> alert(\"Jugador 2 gana.\"); </script>");
                     }
                 }
             } else { //SERVER
