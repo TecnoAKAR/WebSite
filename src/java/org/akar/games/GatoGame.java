@@ -312,7 +312,8 @@ public class GatoGame extends HttpServlet {
                 }
             } else { //SERVER
                 if (turno % 2 == 1) {
-                    String par = request.getParameter("casilla");
+                    String par = "";
+                    par = request.getParameter("casilla");
                     switch (par) {
                         case "1":
                             if (gLog.getVal(0, 0) != 0) {
