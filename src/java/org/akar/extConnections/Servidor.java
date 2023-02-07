@@ -1,4 +1,5 @@
 
+
 package org.akar.extConnections;
 
 import java.io.ObjectInputStream;
@@ -25,6 +26,7 @@ public class Servidor{
             sS = new ServerSocket(puerto);
             s = sS.accept();
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     
@@ -34,6 +36,7 @@ public class Servidor{
             ois = new ObjectInputStream(s.getInputStream());
             oos.flush();
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     
@@ -44,6 +47,7 @@ public class Servidor{
             s.close();
             sS.close();
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     
@@ -52,6 +56,7 @@ public class Servidor{
             oos.writeObject(msj);
             oos.flush();
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     
@@ -62,6 +67,7 @@ public class Servidor{
                 status = (String) ois.readObject();
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     
@@ -76,6 +82,7 @@ public class Servidor{
                     connected = true;
                     recibir();
                 }catch (Exception ex) {
+                    ex.printStackTrace();
                 }
             }
         });
