@@ -199,7 +199,7 @@ public class GatoGame extends HttpServlet {
 
             if (act.equals("client")) { //CLIENTE
                 if (turno % 2 == 0) {
-                    String par = null;
+                    String par = "";
                     par = request.getParameter("casilla");
                     switch (par) {
                         case "1":
@@ -408,10 +408,10 @@ public class GatoGame extends HttpServlet {
 
                     }
                 } else {
-                    while (cliente.status().equals(msj)) {
+                    while (servidor.status().equals(msj)) {
 
                     }
-                    msj = cliente.status();
+                    msj = servidor.status();
                     String datos[] = new String[4];
                     datos = msj.split(":");
                     turno = Integer.parseInt(datos[0]);
