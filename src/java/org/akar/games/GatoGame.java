@@ -199,8 +199,8 @@ public class GatoGame extends HttpServlet {
 
             if (act.equals("client")) { //CLIENTE
                 if (turno % 2 == 0) {
-                    
-                    String par = request.getParameter("casilla");
+                    String par = null;
+                    par = request.getParameter("casilla");
                     switch (par) {
                         case "1":
                             if (gLog.getVal(0, 0) != 0) {
@@ -209,7 +209,7 @@ public class GatoGame extends HttpServlet {
                                 gLog.setVal(0, 0, 4);
                                 turno++;
                                 values = Integer.toString(turno) + ":4:0:0";
-                                servidor.enviar(values);
+                                cliente.enviar(values);
                             }
                             break;
                         case "2":
@@ -219,7 +219,7 @@ public class GatoGame extends HttpServlet {
                                 gLog.setVal(0, 1, 4);
                                 turno++;
                                 values = Integer.toString(turno) + ":4:1:0";
-                                servidor.enviar(values);
+                                cliente.enviar(values);
                             }
                             break;
                         case "3":
@@ -229,7 +229,7 @@ public class GatoGame extends HttpServlet {
                                 gLog.setVal(0, 2, 4);
                                 turno++;
                                 values = Integer.toString(turno) + ":4:2:0";
-                                servidor.enviar(values);
+                                cliente.enviar(values);
                             }
                             break;
                         case "4":
@@ -239,7 +239,7 @@ public class GatoGame extends HttpServlet {
                                 gLog.setVal(1, 0, 4);
                                 turno++;
                                 values = Integer.toString(turno) + ":4:0:1";
-                                servidor.enviar(values);
+                                cliente.enviar(values);
                             }
                             break;
                         case "5":
@@ -249,7 +249,7 @@ public class GatoGame extends HttpServlet {
                                 gLog.setVal(1, 1, 4);
                                 turno++;
                                 values = Integer.toString(turno) + ":4:1:1";
-                                servidor.enviar(values);
+                                cliente.enviar(values);
                             }
                             break;
                         case "6":
@@ -259,7 +259,7 @@ public class GatoGame extends HttpServlet {
                                 gLog.setVal(1, 2, 4);
                                 turno++;
                                 values = Integer.toString(turno) + ":4:2:1";
-                                servidor.enviar(values);
+                                cliente.enviar(values);
                             }
                             break;
                         case "7":
@@ -269,7 +269,7 @@ public class GatoGame extends HttpServlet {
                                 gLog.setVal(2, 0, 4);
                                 turno++;
                                 values = Integer.toString(turno) + ":4:0:2";
-                                servidor.enviar(values);
+                                cliente.enviar(values);
                             }
                             break;
                         case "8":
@@ -279,7 +279,7 @@ public class GatoGame extends HttpServlet {
                                 gLog.setVal(2, 1, 4);
                                 turno++;
                                 values = Integer.toString(turno) + ":4:1:2";
-                                servidor.enviar(values);
+                                cliente.enviar(values);
                             }
                             break;
                         case "9":
@@ -289,7 +289,7 @@ public class GatoGame extends HttpServlet {
                                 gLog.setVal(2, 2, 4);
                                 turno++;
                                 values = Integer.toString(turno) + ":4:2:2";
-                                servidor.enviar(values);
+                                cliente.enviar(values);
                             }
                             break;
 
