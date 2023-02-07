@@ -23,6 +23,7 @@ public class Cliente {
         try {
             s = new Socket(ip, puerto);
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     
@@ -32,6 +33,7 @@ public class Cliente {
             ois = new ObjectInputStream(s.getInputStream());
             oos.flush();
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     
@@ -41,6 +43,7 @@ public class Cliente {
             oos.close();
             s.close();
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     
@@ -49,6 +52,7 @@ public class Cliente {
             oos.writeObject(msj);
             oos.flush();
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     
@@ -59,6 +63,7 @@ public class Cliente {
                 status = (String) ois.readObject();
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     
@@ -74,6 +79,7 @@ public class Cliente {
                     connected = true;
                     recibir();
                 }catch (Exception ex) {
+                    ex.printStackTrace();
                 }
             }
         });
