@@ -3,6 +3,8 @@ package org.akar.games;
 
 public class GatoLogic {
     
+    //X=1
+    //0=5
     private Integer[][] gatoMatriz;
     
     public GatoLogic(){
@@ -36,7 +38,7 @@ public class GatoLogic {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 sum = sum+gatoMatriz[i][j];
-                if (sum == 6 || sum == 12) {
+                if (sum == 3 || sum == 15) {
                     return sum;
                 }
             }
@@ -46,7 +48,7 @@ public class GatoLogic {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 sum = sum+gatoMatriz[j][i];
-                if (sum == 6 || sum == 12) {
+                if (sum == 3 || sum == 15) {
                     return sum;
                 }
             }
@@ -57,7 +59,7 @@ public class GatoLogic {
             sum = sum+gatoMatriz[i][i];
         }
         
-        if(sum == 6 || sum == 12){
+        if(sum == 3 || sum == 15){
             return sum;
         }else{
             sum = 0;
@@ -66,7 +68,7 @@ public class GatoLogic {
                 y = y-1;
                 x++;
             }
-            if(sum == 6 || sum == 12){
+            if(sum == 3 || sum == 15){
                 return sum;
             }
             else{
