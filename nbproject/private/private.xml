@@ -2,17 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/web/signup2.jsp</file>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/web/login.jsp</file>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/web/Foro.jsp</file>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/src/java/org/akar/games/GatoGame.java</file>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/src/java/org/akar/service/PSUsuarioService.java</file>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/sql/Procedimientos.sql</file>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/src/java/org/akar/helper/PSUsuarioHelper.java</file>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/src/java/org/akar/extConnections/Cliente.java</file>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/web/gato.jsp</file>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/src/java/org/akar/extConnections/Servidor.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
