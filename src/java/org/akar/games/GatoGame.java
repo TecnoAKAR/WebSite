@@ -76,9 +76,9 @@ public class GatoGame extends HttpServlet {
                     System.out.println("Conexion establecida");
                     System.out.println(servidor.connectedWith());
                 }
-                response.setIntHeader("Refresh", 5);
+                response.setIntHeader("Refresh", 1);
             }else{
-                response.setIntHeader("Refresh", 5);
+                response.setIntHeader("Refresh", 1);
             }
             
             
@@ -95,9 +95,9 @@ public class GatoGame extends HttpServlet {
             out.println("<tr>");
             out.println("<td>");
             out.println("<button id=\"casilla\" name=\"casilla\" value=\"1\">");
-            if (gLog.getVal(0, 0) == 2) {
+            if (gLog.getVal(0, 0) == 1) {
                 out.println("X");
-            } else if (gLog.getVal(0, 0) == 4) {
+            } else if (gLog.getVal(0, 0) == 5) {
                 out.println("0");
             } else {
                 out.println("-");
@@ -106,9 +106,9 @@ public class GatoGame extends HttpServlet {
             out.println("</td>");
             out.println("<td>");
             out.println("<button id=\"casilla\" name=\"casilla\" value=\"2\">");
-            if (gLog.getVal(0, 1) == 2) {
+            if (gLog.getVal(0, 1) == 1) {
                 out.println("X");
-            } else if (gLog.getVal(0, 1) == 4) {
+            } else if (gLog.getVal(0, 1) == 5) {
                 out.println("0");
             } else {
                 out.println("-");
@@ -117,9 +117,9 @@ public class GatoGame extends HttpServlet {
             out.println("</td>");
             out.println("<td>");
             out.println("<button id=\"casilla\" name=\"casilla\" value=\"3\">");
-            if (gLog.getVal(0, 2) == 2) {
+            if (gLog.getVal(0, 2) == 1) {
                 out.println("X");
-            } else if (gLog.getVal(0, 2) == 4) {
+            } else if (gLog.getVal(0, 2) == 5) {
                 out.println("0");
             } else {
                 out.println("-");
@@ -130,9 +130,9 @@ public class GatoGame extends HttpServlet {
             out.println("<tr>");
             out.println("<td>");
             out.println("<button id=\"casilla\" name=\"casilla\" value=\"4\">");
-            if (gLog.getVal(1, 0) == 2) {
+            if (gLog.getVal(1, 0) == 1) {
                 out.println("X");
-            } else if (gLog.getVal(1, 0) == 4) {
+            } else if (gLog.getVal(1, 0) == 5) {
                 out.println("0");
             } else {
                 out.println("-");
@@ -141,9 +141,9 @@ public class GatoGame extends HttpServlet {
             out.println("</td>");
             out.println("<td>");
             out.println("<button id=\"casilla\" name=\"casilla\" value=\"5\">");
-            if (gLog.getVal(1, 1) == 2) {
+            if (gLog.getVal(1, 1) == 1) {
                 out.println("X");
-            } else if (gLog.getVal(1, 1) == 4) {
+            } else if (gLog.getVal(1, 1) == 5) {
                 out.println("0");
             } else {
                 out.println("-");
@@ -152,9 +152,9 @@ public class GatoGame extends HttpServlet {
             out.println("</td>");
             out.println("<td>");
             out.println("<button id=\"casilla\" name=\"casilla\" value=\"6\">");
-            if (gLog.getVal(1, 2) == 2) {
+            if (gLog.getVal(1, 2) == 1) {
                 out.println("X");
-            } else if (gLog.getVal(1, 2) == 4) {
+            } else if (gLog.getVal(1, 2) == 5) {
                 out.println("0");
             } else {
                 out.println("-");
@@ -165,9 +165,9 @@ public class GatoGame extends HttpServlet {
             out.println("<tr>");
             out.println("<td>");
             out.println("<button id=\"casilla\" name=\"casilla\" value=\"7\">");
-            if (gLog.getVal(2, 0) == 2) {
+            if (gLog.getVal(2, 0) == 1) {
                 out.println("X");
-            } else if (gLog.getVal(2, 0) == 4) {
+            } else if (gLog.getVal(2, 0) == 5) {
                 out.println("0");
             } else {
                 out.println("-");
@@ -176,9 +176,9 @@ public class GatoGame extends HttpServlet {
             out.println("</td>");
             out.println("<td>");
             out.println("<button id=\"casilla\" name=\"casilla\" value=\"8\">");
-            if (gLog.getVal(2, 1) == 2) {
+            if (gLog.getVal(2, 1) == 1) {
                 out.println("X");
-            } else if (gLog.getVal(2, 1) == 4) {
+            } else if (gLog.getVal(2, 1) == 5) {
                 out.println("0");
             } else {
                 out.println("-");
@@ -187,9 +187,9 @@ public class GatoGame extends HttpServlet {
             out.println("</td>");
             out.println("<td>");
             out.println("<button id=\"casilla\" name=\"casilla\" value=\"9\">");
-            if (gLog.getVal(2, 2) == 2) {
+            if (gLog.getVal(2, 2) == 1) {
                 out.println("X");
-            } else if (gLog.getVal(2, 2) == 4) {
+            } else if (gLog.getVal(2, 2) == 5) {
                 out.println("0");
             } else {
                 out.println("-");
