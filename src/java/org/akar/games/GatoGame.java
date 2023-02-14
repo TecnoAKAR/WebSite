@@ -42,11 +42,9 @@ public class GatoGame extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");https://github.com/TecnoAKAR/WebSite.git
 
-        try (PrintWriter out = response.getWriter()) {
-            
-            response.setIntHeader("Refresh", 5);
+        try (PrintWriter out = response.getWriter()) {            
 
             if (act == null) {
                 act = request.getParameter("act");
@@ -79,6 +77,8 @@ public class GatoGame extends HttpServlet {
                     System.out.println(servidor.connectedWith());
                 }
             }
+            
+            response.setIntHeader("Refresh", 5);
 
             out.println("<!DOCTYPE html>");
             out.println("<html>");
