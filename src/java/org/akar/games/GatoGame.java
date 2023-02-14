@@ -209,7 +209,7 @@ public class GatoGame extends HttpServlet {
                     switch (par) {
                         case "1":
                             if (gLog.getVal(0, 0) != 0) {
-                                out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                 
                             } else {
                                 gLog.setVal(0, 0, 5);
                                 turno++;
@@ -219,7 +219,7 @@ public class GatoGame extends HttpServlet {
                             break;
                         case "2":
                             if (gLog.getVal(0, 1) != 0) {
-                                out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                 
                             } else {
                                 gLog.setVal(0, 1, 5);
                                 turno++;
@@ -229,7 +229,7 @@ public class GatoGame extends HttpServlet {
                             break;
                         case "3":
                             if (gLog.getVal(0, 2) != 0) {
-                                out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                 
                             } else {
                                 gLog.setVal(0, 2, 5);
                                 turno++;
@@ -239,7 +239,7 @@ public class GatoGame extends HttpServlet {
                             break;
                         case "4":
                             if (gLog.getVal(1, 0) != 0) {
-                                out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                 
                             } else {
                                 gLog.setVal(1, 0, 5);
                                 turno++;
@@ -249,7 +249,7 @@ public class GatoGame extends HttpServlet {
                             break;
                         case "5":
                             if (gLog.getVal(1, 1) != 0) {
-                                out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                 
                             } else {
                                 gLog.setVal(1, 1, 5);
                                 turno++;
@@ -259,7 +259,7 @@ public class GatoGame extends HttpServlet {
                             break;
                         case "6":
                             if (gLog.getVal(1, 2) != 0) {
-                                out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                 
                             } else {
                                 gLog.setVal(1, 2, 5);
                                 turno++;
@@ -269,7 +269,7 @@ public class GatoGame extends HttpServlet {
                             break;
                         case "7":
                             if (gLog.getVal(2, 0) != 0) {
-                                out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                 
                             } else {
                                 gLog.setVal(2, 0, 5);
                                 turno++;
@@ -279,7 +279,7 @@ public class GatoGame extends HttpServlet {
                             break;
                         case "8":
                             if (gLog.getVal(2, 1) != 0) {
-                                out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                 
                             } else {
                                 gLog.setVal(2, 1, 5);
                                 turno++;
@@ -289,7 +289,7 @@ public class GatoGame extends HttpServlet {
                             break;
                         case "9":
                             if (gLog.getVal(2, 2) != 0) {
-                                out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                 
                             } else {
                                 gLog.setVal(2, 2, 5);
                                 turno++;
@@ -321,7 +321,7 @@ public class GatoGame extends HttpServlet {
                     switch (par) {
                         case "1":
                             if (gLog.getVal(0, 0) != 0) {
-                                out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                 
                             } else {
                                 gLog.setVal(0, 0, 1);
                                 turno++;
@@ -331,7 +331,7 @@ public class GatoGame extends HttpServlet {
                             break;
                         case "2":
                             if (gLog.getVal(0, 1) != 0) {
-                                out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                 
                             } else {
                                 gLog.setVal(0, 1, 1);
                                 turno++;
@@ -341,7 +341,7 @@ public class GatoGame extends HttpServlet {
                             break;
                         case "3":
                             if (gLog.getVal(0, 2) != 0) {
-                                out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                 
                             } else {
                                 gLog.setVal(0, 2, 1);
                                 turno++;
@@ -351,7 +351,7 @@ public class GatoGame extends HttpServlet {
                             break;
                         case "4":
                             if (gLog.getVal(1, 0) != 0) {
-                                out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                 
                             } else {
                                 gLog.setVal(1, 0, 1);
                                 turno++;
@@ -361,7 +361,7 @@ public class GatoGame extends HttpServlet {
                             break;
                         case "5":
                             if (gLog.getVal(1, 1) != 0) {
-                                out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                 
                             } else {
                                 gLog.setVal(1, 1, 1);
                                 turno++;
@@ -371,7 +371,7 @@ public class GatoGame extends HttpServlet {
                             break;
                         case "6":
                             if (gLog.getVal(1, 2) != 0) {
-                                out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                 
                             } else {
                                 gLog.setVal(1, 2, 1);
                                 turno++;
@@ -381,7 +381,7 @@ public class GatoGame extends HttpServlet {
                             break;
                         case "7":
                             if (gLog.getVal(2, 0) != 0) {
-                                out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                 
                             } else {
                                 gLog.setVal(2, 0, 1);
                                 turno++;
@@ -391,7 +391,7 @@ public class GatoGame extends HttpServlet {
                             break;
                         case "8":
                             if (gLog.getVal(2, 1) != 0) {
-                                out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                 
                             } else {
                                 gLog.setVal(2, 1, 1);
                                 turno++;
@@ -401,7 +401,7 @@ public class GatoGame extends HttpServlet {
                             break;
                         case "9":
                             if (gLog.getVal(2, 2) != 0) {
-                                out.println("<script> alert(\"(!)La posición ya está ocupada.(!)\"); </script>");
+                                 
                             } else {
                                 gLog.setVal(2, 2, 1);
                                 turno++;
