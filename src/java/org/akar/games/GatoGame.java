@@ -213,7 +213,7 @@ public class GatoGame extends HttpServlet {
                             } else {
                                 gLog.setVal(0, 0, 5);
                                 turno++;
-                                values = Integer.toString(turno) + ":4:0:0";
+                                values = Integer.toString(turno) + ":5:0:0";
                                 cliente.enviar(values);
                             }
                             break;
@@ -223,7 +223,7 @@ public class GatoGame extends HttpServlet {
                             } else {
                                 gLog.setVal(0, 1, 5);
                                 turno++;
-                                values = Integer.toString(turno) + ":4:1:0";
+                                values = Integer.toString(turno) + ":5:1:0";
                                 cliente.enviar(values);
                             }
                             break;
@@ -233,7 +233,7 @@ public class GatoGame extends HttpServlet {
                             } else {
                                 gLog.setVal(0, 2, 5);
                                 turno++;
-                                values = Integer.toString(turno) + ":4:2:0";
+                                values = Integer.toString(turno) + ":5:2:0";
                                 cliente.enviar(values);
                             }
                             break;
@@ -243,7 +243,7 @@ public class GatoGame extends HttpServlet {
                             } else {
                                 gLog.setVal(1, 0, 5);
                                 turno++;
-                                values = Integer.toString(turno) + ":4:0:1";
+                                values = Integer.toString(turno) + ":5:0:1";
                                 cliente.enviar(values);
                             }
                             break;
@@ -253,7 +253,7 @@ public class GatoGame extends HttpServlet {
                             } else {
                                 gLog.setVal(1, 1, 5);
                                 turno++;
-                                values = Integer.toString(turno) + ":4:1:1";
+                                values = Integer.toString(turno) + ":5:1:1";
                                 cliente.enviar(values);
                             }
                             break;
@@ -263,7 +263,7 @@ public class GatoGame extends HttpServlet {
                             } else {
                                 gLog.setVal(1, 2, 5);
                                 turno++;
-                                values = Integer.toString(turno) + ":4:2:1";
+                                values = Integer.toString(turno) + ":5:2:1";
                                 cliente.enviar(values);
                             }
                             break;
@@ -273,7 +273,7 @@ public class GatoGame extends HttpServlet {
                             } else {
                                 gLog.setVal(2, 0, 5);
                                 turno++;
-                                values = Integer.toString(turno) + ":4:0:2";
+                                values = Integer.toString(turno) + ":5:0:2";
                                 cliente.enviar(values);
                             }
                             break;
@@ -283,7 +283,7 @@ public class GatoGame extends HttpServlet {
                             } else {
                                 gLog.setVal(2, 1, 5);
                                 turno++;
-                                values = Integer.toString(turno) + ":4:1:2";
+                                values = Integer.toString(turno) + ":5:1:2";
                                 cliente.enviar(values);
                             }
                             break;
@@ -293,7 +293,7 @@ public class GatoGame extends HttpServlet {
                             } else {
                                 gLog.setVal(2, 2, 5);
                                 turno++;
-                                values = Integer.toString(turno) + ":4:2:2";
+                                values = Integer.toString(turno) + ":5:2:2";
                                 cliente.enviar(values);
                             }
                             break;
@@ -325,7 +325,7 @@ public class GatoGame extends HttpServlet {
                             } else {
                                 gLog.setVal(0, 0, 1);
                                 turno++;
-                                values = Integer.toString(turno) + ":2:0:0";
+                                values = Integer.toString(turno) + ":1:0:0";
                                 servidor.enviar(values);
                             }
                             break;
@@ -335,7 +335,7 @@ public class GatoGame extends HttpServlet {
                             } else {
                                 gLog.setVal(0, 1, 1);
                                 turno++;
-                                values = Integer.toString(turno) + ":2:1:0";
+                                values = Integer.toString(turno) + ":1:1:0";
                                 servidor.enviar(values);
                             }
                             break;
@@ -345,7 +345,7 @@ public class GatoGame extends HttpServlet {
                             } else {
                                 gLog.setVal(0, 2, 1);
                                 turno++;
-                                values = Integer.toString(turno) + ":2:2:0";
+                                values = Integer.toString(turno) + ":1:2:0";
                                 servidor.enviar(values);
                             }
                             break;
@@ -355,7 +355,7 @@ public class GatoGame extends HttpServlet {
                             } else {
                                 gLog.setVal(1, 0, 1);
                                 turno++;
-                                values = Integer.toString(turno) + ":2:0:1";
+                                values = Integer.toString(turno) + ":1:0:1";
                                 servidor.enviar(values);
                             }
                             break;
@@ -365,7 +365,7 @@ public class GatoGame extends HttpServlet {
                             } else {
                                 gLog.setVal(1, 1, 1);
                                 turno++;
-                                values = Integer.toString(turno) + ":2:1:1";
+                                values = Integer.toString(turno) + ":1:1:1";
                                 servidor.enviar(values);
                             }
                             break;
@@ -375,7 +375,7 @@ public class GatoGame extends HttpServlet {
                             } else {
                                 gLog.setVal(1, 2, 1);
                                 turno++;
-                                values = Integer.toString(turno) + ":2:2:1";
+                                values = Integer.toString(turno) + ":1:2:1";
                                 servidor.enviar(values);
                             }
                             break;
@@ -385,7 +385,7 @@ public class GatoGame extends HttpServlet {
                             } else {
                                 gLog.setVal(2, 0, 1);
                                 turno++;
-                                values = Integer.toString(turno) + ":2:0:2";
+                                values = Integer.toString(turno) + ":1:0:2";
                                 servidor.enviar(values);
                             }
                             break;
@@ -395,7 +395,7 @@ public class GatoGame extends HttpServlet {
                             } else {
                                 gLog.setVal(2, 1, 1);
                                 turno++;
-                                values = Integer.toString(turno) + ":2:1:2";
+                                values = Integer.toString(turno) + ":1:1:2";
                                 servidor.enviar(values);
                             }
                             break;
@@ -405,7 +405,7 @@ public class GatoGame extends HttpServlet {
                             } else {
                                 gLog.setVal(2, 2, 1);
                                 turno++;
-                                values = Integer.toString(turno) + ":2:2:2";
+                                values = Integer.toString(turno) + ":1:2:2";
                                 servidor.enviar(values);
                             }
                             break;
