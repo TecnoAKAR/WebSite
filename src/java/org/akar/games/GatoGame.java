@@ -45,6 +45,8 @@ public class GatoGame extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         try (PrintWriter out = response.getWriter()) {
+            
+            response.setIntHeader("Refresh", 5);
 
             if (act == null) {
                 act = request.getParameter("act");
@@ -295,19 +297,18 @@ public class GatoGame extends HttpServlet {
 
                     }
                 } else {
-                    while (cliente.status().equals(msj)) {
+                    if (!cliente.status().equals(msj)) {
+                        msj = cliente.status();
+                        String datos[] = new String[4];
+                        datos = msj.split(":");
+                        turno = Integer.parseInt(datos[0]);
+                        gLog.setVal(Integer.parseInt(datos[3]), Integer.parseInt(datos[2]), Integer.parseInt(datos[1]));
 
-                    }
-                    msj = cliente.status();
-                    String datos[] = new String[4];
-                    datos = msj.split(":");
-                    turno = Integer.parseInt(datos[0]);
-                    gLog.setVal(Integer.parseInt(datos[3]), Integer.parseInt(datos[2]), Integer.parseInt(datos[1]));
-
-                    if (gLog.tresEnRaya() == 3) {
-                        out.println("<script> alert(\"Jugador 1 gana.\"); </script>");
-                    } else if (gLog.tresEnRaya() == 15) {
-                        out.println("<script> alert(\"Jugador 2 gana.\"); </script>");
+                        if (gLog.tresEnRaya() == 3) {
+                            out.println("<script> alert(\"Jugador 1 gana.\"); </script>");
+                        } else if (gLog.tresEnRaya() == 15) {
+                            out.println("<script> alert(\"Jugador 2 gana.\"); </script>");
+                        }
                     }
                 }
             } else { //SERVER
@@ -408,18 +409,17 @@ public class GatoGame extends HttpServlet {
 
                     }
                 } else {
-                    while (servidor.status().equals(msj)) {
-
-                    }
-                    msj = servidor.status();
-                    String datos[] = new String[4];
-                    datos = msj.split(":");
-                    turno = Integer.parseInt(datos[0]);
-                    gLog.setVal(Integer.parseInt(datos[3]), Integer.parseInt(datos[2]), Integer.parseInt(datos[1]));
-                    if (gLog.tresEnRaya() == 3) {
-                        out.println("<script> alert(\"Jugador 1 gana.\"); </script>");
-                    } else if (gLog.tresEnRaya() == 15) {
-                        out.println("<script> alert(\"Jugador 2 gana.\"); </script>");
+                    if (!servidor.status().equals(msj)) {
+                        msj = servidor.status();
+                        String datos[] = new String[4];
+                        datos = msj.split(":");
+                        turno = Integer.parseInt(datos[0]);
+                        gLog.setVal(Integer.parseInt(datos[3]), Integer.parseInt(datos[2]), Integer.parseInt(datos[1]));
+                        if (gLog.tresEnRaya() == 3) {
+                            out.println("<script> alert(\"Jugador 1 gana.\"); </script>");
+                        } else if (gLog.tresEnRaya() == 15) {
+                            out.println("<script> alert(\"Jugador 2 gana.\"); </script>");
+                        }
                     }
                 }
             }
