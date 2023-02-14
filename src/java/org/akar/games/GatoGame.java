@@ -76,9 +76,12 @@ public class GatoGame extends HttpServlet {
                     System.out.println("Conexion establecida");
                     System.out.println(servidor.connectedWith());
                 }
+                response.setIntHeader("Refresh", 5);
+            }else{
+                response.setIntHeader("Refresh", 5);
             }
             
-            response.setIntHeader("Refresh", 5);
+            
 
             out.println("<!DOCTYPE html>");
             out.println("<html>");
