@@ -99,6 +99,10 @@ Author     : AKAR
                         <div class="form-group d-md-flex">
                         ¿Ya tiene una cuenta?&nbsp<a href="login.jsp" style="color: #00e7ff"> Inicie sesión.</a>
                         </div>
+                    <div class="col-13">    
+                        ¿Quiere registrar a un menor? &nbsp<a href="signup2.jsp" style="color: #00e7ff">Registre a un menor</a>
+                        </div>
+                        
                         <script></script>
                     </div>
                 </form>
