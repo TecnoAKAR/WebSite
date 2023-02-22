@@ -46,27 +46,87 @@ Author     : AKAR
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-md-6 col-lg-4">
-                        <div class="login-wrap p-0">
-                            <form action="#" class="signin-form" method="post">
-                                <div class="form-group">
-                                    <input type="email" name="correo" id="correo" class="form-control" placeholder="Correo electrónico" required>
-                                </div>
-                                <div class="form-group">
-                                    <input id="password-field" type="password" class="form-control" id="pass" name="pass" placeholder="Contraseña" required> 
-                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"> </span>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" id="action" name="action" value="send" class="form-control btn btn-primary submit px-3">Iniciar sesión</button>
-                                </div>
-                                <div class="form-group d-md-flex">
-                                    <div class="w-100 text-center">
-                                            ¿Todavía no tienes una cuenta? <a href="signup.jsp" style="color: #00e7ff"> Cree una. </a>
+                    
+                
+                <%
+                    if( request == null )
+                    {
+                        return;
+                    }
+                    String action = request.getParameter( "action" );
+                    if( action == null )
+                    {
+                        action = "";
+                    }
+                    
+                    if(!action.equals("resPass")){
+                %>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="login-wrap p-0">
+                                <form action="#" class="signin-form" method="post">
+                                    <div class="form-group">
+                                        <input type="email" name="correo" id="correo" class="form-control" placeholder="Correo electrónico" required>
                                     </div>
-                                </div>
-                            </form>
+                                    <div class="form-group">
+                                        <input id="password-field" type="password" class="form-control" id="pass" name="pass" placeholder="Contraseña" required> 
+                                        <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"> </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" id="action" name="action" value="send" class="form-control btn btn-primary submit px-3">Iniciar sesión</button>
+                                    </div>
+                                    <div class="form-group d-md-flex">
+                                        <div class="w-100 text-center">
+                                                ¿Todavía no tienes una cuenta? <a href="signup.jsp" style="color: #00e7ff"> Cree una. </a>
+                                        </div>
+                                    </div>
+                                    <div class="form-group d-md-flex">
+                                        <div class="w-100 text-center">
+                                                ¿Olvidó su contraseña? <a href="?action=resPass" style="color: #00e7ff"> Restablecer contraseña. </a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </div>
+                <%    
+                    }
+                    switch(action){
+                        case "send":
+                            PSUsuario usuario = new PSUsuarioHelper().Login(request);
+                            if( usuario != null){
+                                HttpSession sesion = request.getSession();
+                                sesion.setAttribute("usuario", usuario);
+                                response.sendRedirect("Home.jsp");
+                            }
+                            else{
+                %>
+                                <script>
+                                    alert("Los datos que usted ingresó son incorrectos.");
+                                </script>
+                <%
+                            }
+                            break;
+                        case "resPass":
+                            
+                %>   
+                            <div class="col-md-6 col-lg-4">
+                                <div class="login-wrap p-0">
+                                    <form action="#" class="signin-form">
+                                        <div class="form-group">
+                                            <input type="email" name="correo" id="correo" class="form-control" placeholder="Correo electrónico con el que se registró" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" id="action" name="action" value="newPass" class="form-control btn btn-primary submit px-3">Recuperar contraseña</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>   
+                <%
+                            break;
+                        case "newPass":
+                            response.sendRedirect("404.jsp");
+                            break;
+                    }
+                %>
                 </div>
             </div>
         </div>
@@ -93,34 +153,7 @@ Author     : AKAR
             }
         </style>
 
-        <%
-            if( request == null )
-            {
-                return;
-            }
-            String action = request.getParameter( "action" );
-            if( action == null )
-            {
-                action = "";
-            }
-            switch(action){
-                case "send":
-                    PSUsuario usuario = new PSUsuarioHelper().Login(request);
-                    if( usuario != null){
-                        HttpSession sesion = request.getSession();
-                        sesion.setAttribute("usuario", usuario);
-                        response.sendRedirect("Home.jsp");
-                    }
-                    else{
-        %>
-                        <script>
-                            alert("Los datos que usted ingresó son incorrectos.");
-                        </script>
-        <%
-                    }
-                    break;
-            }
-        %>
+        
     </body>
 </html>
 
