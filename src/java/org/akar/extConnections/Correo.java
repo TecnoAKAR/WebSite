@@ -50,4 +50,8 @@ public class Correo {
         
     }
     
+    public boolean resPass(){
+        return false;
+    }
+    
 }

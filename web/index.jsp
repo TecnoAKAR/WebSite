@@ -26,6 +26,11 @@
     <link rel="stylesheet" href="sources/assets/css/akar.css">
     <link rel="stylesheet" href="sources/assets/css/animated.css">
     <link rel="stylesheet" href="sources/assets/css/owl.css">
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    
   </head>
 
 <body>
@@ -527,7 +532,16 @@
                         <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Correo electrónico" required="">
                       </fieldset>
                       <fieldset>
-                        <input type="password" name="passApli" id="passApli" placeholder="Contraseña de aplicación" required="">
+                          <input type="password" name="passApli" id="passApli" placeholder="Contraseña de aplicación" required=""> 
+                          <div class="col-lg-1">
+                            <button onclick="
+                            Swal.fire({
+                            title: '¿Qué es una contraseña de aplicación?',
+                            text: 'Una contraseña de aplicación es una contraseña de 16 dígitos que concede permiso a una aplicación o a un dispositivo menos seguros para acceder a tu cuenta de Google. Estas contraseñas solo se pueden utilizar con cuentas que tengan activada la verificación en dos pasos.',
+                            icon: 'info',
+                            confirmButtonText: 'Entendido'
+                            });">?</button>
+                        </div>
                       </fieldset>
                       <fieldset>
                         <input type="subject" name="subject" id="subject" placeholder="Asunto" autocomplete="on">
