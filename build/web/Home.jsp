@@ -38,6 +38,9 @@
     <link rel="stylesheet" href="sources/assets/css/akar.css">
     <link rel="stylesheet" href="sources/assets/css/animated.css">
     <link rel="stylesheet" href="sources/assets/css/owl.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
   </head>
 
 <body>
@@ -59,14 +62,14 @@
                     response.sendRedirect("index.jsp");
                     break;
                 case "send":
-                Correo correo = new Correo();
-                boolean enviado = correo.contactoAKAR(request.getParameter("email"), request.getParameter("passApli"), request.getParameter("subject"), request.getParameter("message"));
-                if (enviado == false) {
-  %>
-                    <script>alert("Ha ocurrido un error al enviar los mensajes.")</script>
-  <%
-                }
-                break;
+                    Correo correo = new Correo();
+                    boolean enviado = correo.contactoAKAR(request.getParameter("name"), request.getParameter("email"), request.getParameter("subject"), request.getParameter("message"));
+                    if (enviado == false) {
+    %>
+                        <script>alert("Ha ocurrido un error al enviar los mensajes.");</script>
+    <%
+                    }
+                    break;
             }
     %>  
   <!-- ***** Preloader Start ***** -->
@@ -80,6 +83,25 @@
       </div>
     </div>
   </div>
+  
+  <script>
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer);
+          toast.addEventListener('mouseleave', Swal.resumeTimer);
+        }
+      });
+
+      Toast.fire({
+        icon: 'success',
+        title: 'Bienvenido, <%=sesion.getUsuario().getNomUser()%>'
+      });
+  </script>
   <!-- ***** Preloader End ***** -->
 
   <!-- Pre-header Starts --><!-- Esto no me convence
@@ -574,10 +596,10 @@
                     </div>
                     <div class="col-lg-6">
                       <fieldset>
-                        <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Correo electrónico" required="">
+                        <input type="name" name="name" id="name" placeholder="Nombre" autocomplete="on" required>
                       </fieldset>
                       <fieldset>
-                        <input type="password" name="passApli" id="passApli" placeholder="Contraseña de aplicación" required="">
+                        <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Correo electrónico" required="">
                       </fieldset>
                       <fieldset>
                         <input type="subject" name="subject" id="subject" placeholder="Asunto" autocomplete="on">

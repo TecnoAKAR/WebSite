@@ -13,11 +13,7 @@ public class DBConnection implements Serializable{
     public static boolean testDriver(){
         try 
         {
-<<<<<<< HEAD
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-=======
-            Class.forName("com.mysql.cj.jdbc.Driver");
->>>>>>> c892439c887595530d6fd519f09cafa33028b232
             return true;
         } 
         catch (Exception ex) 

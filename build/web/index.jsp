@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="sources/assets/css/akar.css">
     <link rel="stylesheet" href="sources/assets/css/animated.css">
     <link rel="stylesheet" href="sources/assets/css/owl.css">
+    
+    
   </head>
 
 <body>
@@ -524,10 +526,10 @@
                     </div>
                     <div class="col-lg-6">
                       <fieldset>
-                        <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Correo electrónico" required="">
+                        <input type="name" name="name" id="name" placeholder="Nombre" autocomplete="on" required>
                       </fieldset>
                       <fieldset>
-                        <input type="password" name="passApli" id="passApli" placeholder="Contraseña de aplicación" required="">
+                        <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Correo electrónico" required="">
                       </fieldset>
                       <fieldset>
                         <input type="subject" name="subject" id="subject" placeholder="Asunto" autocomplete="on">
@@ -571,6 +573,7 @@
   <script src="sources/assets/js/animation.js"></script>
   <script src="sources/assets/js/imagesloaded.js"></script>
   <script src="sources/assets/js/custom.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <%
         if( request == null )
@@ -585,10 +588,10 @@
         switch(action){
             case "send":
                 Correo correo = new Correo();
-                boolean enviado = correo.contactoAKAR(request.getParameter("email"), request.getParameter("passApli"), request.getParameter("subject"), request.getParameter("message"));
+                boolean enviado = correo.contactoAKAR(request.getParameter("name"), request.getParameter("email"), request.getParameter("subject"), request.getParameter("message"));
                 if (enviado == false) {
   %>
-                    <script>alert("Ha ocurrido un error al enviar los mensajes.")</script>
+                    <script>alert("Ha ocurrido un error al enviar los mensajes.");</script>
   <%
                 }
                 break;

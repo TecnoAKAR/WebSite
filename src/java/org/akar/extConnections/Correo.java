@@ -10,21 +10,21 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class Correo {
-    private String remitente;
+    private String akarSupport;
     private String clave;
     private String correoAKAR;
     
     public Correo(){
     }
     
-    public boolean contactoAKAR(String remitente, String claveemail, String asunto, String cuerpo) {
-        this.remitente = remitente;
-        this.clave = claveemail;
-        correoAKAR = "akartecnologias@gmail.com";
+    public boolean contactoAKAR(String nombre, String mail, String asunto, String cuerpo) {
+        this.akarSupport = "tecno.akar.soporte@gmail.com";
+        this.clave = "fgkebykjmmafajmu";
+        this.correoAKAR = "akartecnologias@gmail.com";
 
         Properties props = System.getProperties();
         props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.user", this.remitente);
+        props.put("mail.smtp.user", this.akarSupport);
         props.put("mail.smtp.clave", this.clave);
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -33,13 +33,15 @@ public class Correo {
         Session session = Session.getDefaultInstance(props);
         MimeMessage message = new MimeMessage(session);
 
+        String msj = "De: "+nombre+"\nCorreo: "+mail+"\nMensaje: "+cuerpo;
+        
         try {
-            message.setFrom(new InternetAddress(remitente));
+            message.setFrom(new InternetAddress(akarSupport));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(correoAKAR));
             message.setSubject(asunto);
-            message.setText(cuerpo);
+            message.setText(msj);
             Transport transport = session.getTransport("smtp");
-            transport.connect("smtp.gmail.com", remitente, claveemail);
+            transport.connect("smtp.gmail.com", akarSupport, clave);
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
             return true;

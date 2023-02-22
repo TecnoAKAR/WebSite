@@ -28,9 +28,6 @@
     <link rel="stylesheet" href="sources/assets/css/owl.css">
     
     
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-    
   </head>
 
 <body>
@@ -529,19 +526,10 @@
                     </div>
                     <div class="col-lg-6">
                       <fieldset>
-                        <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Correo electrónico" required="">
+                        <input type="name" name="name" id="name" placeholder="Nombre" autocomplete="on" required>
                       </fieldset>
                       <fieldset>
-                          <input type="password" name="passApli" id="passApli" placeholder="Contraseña de aplicación" required=""> 
-                          <div class="col-lg-1">
-                            <button onclick="
-                            Swal.fire({
-                            title: '¿Qué es una contraseña de aplicación?',
-                            text: 'Una contraseña de aplicación es una contraseña de 16 dígitos que concede permiso a una aplicación o a un dispositivo menos seguros para acceder a tu cuenta de Google. Estas contraseñas solo se pueden utilizar con cuentas que tengan activada la verificación en dos pasos.',
-                            icon: 'info',
-                            confirmButtonText: 'Entendido'
-                            });">?</button>
-                        </div>
+                        <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Correo electrónico" required="">
                       </fieldset>
                       <fieldset>
                         <input type="subject" name="subject" id="subject" placeholder="Asunto" autocomplete="on">
@@ -585,6 +573,7 @@
   <script src="sources/assets/js/animation.js"></script>
   <script src="sources/assets/js/imagesloaded.js"></script>
   <script src="sources/assets/js/custom.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <%
         if( request == null )
@@ -599,10 +588,10 @@
         switch(action){
             case "send":
                 Correo correo = new Correo();
-                boolean enviado = correo.contactoAKAR(request.getParameter("email"), request.getParameter("passApli"), request.getParameter("subject"), request.getParameter("message"));
+                boolean enviado = correo.contactoAKAR(request.getParameter("name"), request.getParameter("email"), request.getParameter("subject"), request.getParameter("message"));
                 if (enviado == false) {
   %>
-                    <script>alert("Ha ocurrido un error al enviar los mensajes.")</script>
+                    <script>alert("Ha ocurrido un error al enviar los mensajes.");</script>
   <%
                 }
                 break;

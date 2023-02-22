@@ -110,11 +110,7 @@ Author     : AKAR
                 %>   
                             <div class="col-md-6 col-lg-4">
                                 <div class="login-wrap p-0">
-<<<<<<< HEAD
                                     <form action="#" class="signin-form">
-=======
-                                    <form action="#" class="signin-form" method="post">
->>>>>>> c892439c887595530d6fd519f09cafa33028b232
                                         <div class="form-group">
                                             <input type="email" name="correo" id="correo" class="form-control" placeholder="Correo electrónico con el que se registró" required>
                                         </div>
