@@ -95,13 +95,13 @@ declare xContraSha nvarchar(200);
         select RelTipoUsuario.idRelTipoUsuario, RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre,Usuario.ApellidoP, Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xidPersona;
 end;//
 
-create procedure sp_ActualizarContrasena(in contrasena nvarchar (50),idpersona varchar(50))
+create procedure sp_ActualizarContrasena(in correo nvarchar(200), contrasena nvarchar (50))
 begin
-declare xIdPersona int;
+declare xCorreo nvarchar(200);
 declare xContraSha nvarchar(200);
-	set xIdPersona= idpersona;
+	set xIdPersona= contrasena;
 	set xContraSha =(select sha(contrasena));
-	update Usuario set Contrasena= xContraSha where idUsuario=xIdPersona;
+	update Usuario set Contrasena= xContraSha where Usuario.correo=contrasena;
 end;//
 
 
