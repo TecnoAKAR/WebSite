@@ -52,6 +52,20 @@ idUsuario1 int, idUsuario2 int,
 foreign key (idUsuario1) references Usuario(idUsuario),
 foreign key (idUsuario2) references Usuario(idUsuario));
 
+create table resPass(
+	idToken int primary key auto_increment,
+    token varchar(43) not null,
+    exp timestamp not null
+);
+
+create table RelUsuarioResPass(
+	idRelUsRess int primary key auto_increment,
+    idUsuario int,
+    idResPass int,
+    foreign key(idUsuario) references Usuario(idUsuario),
+    foreign key(idResPass) references resPass(idToken)
+);
+
 show tables;
 
 insert into TipoUsuario (Tipo) values ('Psicólogo'), ('UCSA'),('Tutor'),('Externo');

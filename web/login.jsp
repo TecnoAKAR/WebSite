@@ -123,7 +123,7 @@ Author     : AKAR
                 <%
                             break;
                         case "newPass":
-                            response.sendRedirect("404.jsp");
+                            
                             break;
                     }
                 %>
