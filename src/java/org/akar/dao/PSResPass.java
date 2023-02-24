@@ -3,12 +3,12 @@ package org.akar.dao;
 
 import java.io.Serializable;
 
-public class RelUsuarioResPass implements Serializable{
+public class PSResPass implements Serializable{
     
     TblUsuario usuario;
     ResPass resPass;
 
-    public RelUsuarioResPass() {
+    public PSResPass() {
         this.usuario = new TblUsuario();
         this.resPass = new ResPass();
     }

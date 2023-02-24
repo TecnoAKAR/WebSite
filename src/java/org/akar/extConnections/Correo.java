@@ -52,7 +52,7 @@ public class Correo {
         
     }
     
-    public boolean resPass(String user, String mail, String token){
+    public boolean resPass(String mail, String token){
         Properties props = System.getProperties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.user", this.akarSupport);
@@ -64,9 +64,10 @@ public class Correo {
         Session session = Session.getDefaultInstance(props);
         MimeMessage message = new MimeMessage(session);
 
-        String msj = "Hola, "+user+".\nPara poder restablecer su contraseña ingresa en el siguiente link: \n"+"http://localhost:8080/akar/resPass.jsp?token="+token+"\nPodrá cambiar su contraseña en un plazo máximo de 24 horas.\nCualquier situación que se le presente contactenos a "+this.correoAKAR+", estamos para servirle";
+        String msj = "Buenas tardes, estimado usuario.\nPara poder restablecer su contraseña ingresa en el siguiente link: \n"+"http://localhost:8080/akar/resPass.jsp?token="+token+"\nPodrá cambiar su contraseña en un plazo máximo de 24 horas.\nCualquier situación que se le presente contactenos a "+this.correoAKAR+", estamos para servirle";
         
         try {
+            System.out.println(mail);
             message.setFrom(new InternetAddress(akarSupport));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(mail));
             message.setSubject("Correo para restablecer contraseña.");

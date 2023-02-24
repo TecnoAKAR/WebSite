@@ -4,6 +4,8 @@ drop procedure if exists sp_Login;
 drop procedure if exists sp_Registromenordeedad;
 drop procedure if exists sp_ActualizarUsuario;
 drop procedure if exists sp_ActualizarContrasena;
+drop procedure if exists sp_asignarToken;
+drop procedure if exists sp_recDatosToken;
 
 
 delimiter //
@@ -97,11 +99,30 @@ end;//
 
 create procedure sp_ActualizarContrasena(in correo nvarchar(200), contrasena nvarchar (50))
 begin
-declare xCorreo nvarchar(200);
+declare xIdUsuario nvarchar(200);
 declare xContraSha nvarchar(200);
-	set xIdPersona= contrasena;
+	set xIdUsuario = (select IdUsuario from usuario where Usuario.correo = correo);
 	set xContraSha =(select sha(contrasena));
-	update Usuario set Contrasena= xContraSha where Usuario.correo=contrasena;
+	update Usuario set Contrasena = xContraSha where Usuario.IdUsuario = xIdUsuario;
+end;//
+
+create procedure sp_asignarToken(in correo nvarchar(200), token nvarchar(43), creacion timestamp)
+begin
+declare xIdUsuario int;
+declare xIdToken int;
+declare xExp timestamp;
+ set xIdUsuario = (select idUsuario from usuario where Usuario.Correo = correo);
+ set xIdToken = (select ifnull(max(idToken), 0)+1 from resPass);
+ set xExp = (select timestamp(creacion, '24:00:00'));
+ insert into resPass values(xIdToken, token, xExp);
+ insert into RelUsuarioResPass(idUsuario, idResPass) values(xIdUsuario, xIdToken);
+end;//
+
+create procedure sp_recDatosToken(token nvarchar(43))
+begin
+declare xIdToken int;
+set xIdToken = (select idToken from ResPass where ResPass.Token = token);
+select Usuario.correo, respass.token, respass.exp from relusuariorespass inner join usuario on relusuariorespass.idUsuario = usuario.idUsuario inner join resPass on relusuariorespass.idResPass = respass.idToken where relusuariorespass.idResPass = xIdToken;
 end;//
 
 

@@ -4,6 +4,7 @@ Created on : 12/10/2022, 10:52:51 PM
 Author     : AKAR
 --%>
 
+<%@page import="org.akar.helper.PSResPassHelper"%>
 <%@page import="org.akar.dao.PSUsuario"%>
 <%@page import="org.akar.helper.PSUsuarioHelper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -112,7 +113,7 @@ Author     : AKAR
                                 <div class="login-wrap p-0">
                                     <form action="#" class="signin-form">
                                         <div class="form-group">
-                                            <input type="email" name="correo" id="correo" class="form-control" placeholder="Correo electrónico con el que se registró" required>
+                                            <input type="email" name="CorreoRec" id="CorreoRec" class="form-control" placeholder="Correo electrónico con el que se registró" required>
                                         </div>
                                         <div class="form-group">
                                             <button type="submit" id="action" name="action" value="newPass" class="form-control btn btn-primary submit px-3">Recuperar contraseña</button>
@@ -123,7 +124,21 @@ Author     : AKAR
                 <%
                             break;
                         case "newPass":
-                            
+                            boolean isTokenG = new PSResPassHelper().setToken(request);
+                            if (isTokenG = true) {
+                %>
+                                <script>
+                                    alert("Revise su correo electrónico");
+                                </script>
+                <%        
+                            }
+                            else{
+                %>
+                                <script>
+                                    alert("Su token no ha sido generado.");
+                                </script>
+                <% 
+                            }                            
                             break;
                     }
                 %>
@@ -156,5 +171,3 @@ Author     : AKAR
         
     </body>
 </html>
-
-
