@@ -6,6 +6,11 @@ idUsuario int primary key auto_increment, Nombre varchar(40),
  ApellidoP varchar(40), ApellidoM varchar(40), Correo varchar(40), Contrasena varchar(40),
  NomUsuario varchar(40), Fecha date
 );
+create table Tarea(
+idTarea int primary key auto_increment,
+idUsuario int, NomTarea varchar(40), Desc varchar(520),
+Estatus varchar(20), Solu varchar(520),
+foreign key (idUsuario) references Usuario(idUsuario));
 
 create table TipoUsuario(
 idTipo int primary key auto_increment,
