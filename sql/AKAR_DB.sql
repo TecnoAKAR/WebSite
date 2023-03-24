@@ -8,8 +8,9 @@ idUsuario int primary key auto_increment, Nombre varchar(40),
 );
 create table Tarea(
 idTarea int primary key auto_increment,
-idUsuario int, NomTarea varchar(40), Problema varchar(520),
+idResponsable int, idusuario int, NomTarea varchar(40), Problema varchar(520),
 Estatus varchar(20), Solu varchar(520),Fecha datetime,
+foreign key (idResponsable) references Usuario(idUsuario),
 foreign key (idUsuario) references Usuario(idUsuario));
 
 create table TipoUsuario(
@@ -71,7 +72,6 @@ create table RelUsuarioResPass(
     foreign key(idResPass) references resPass(idToken)
 );
 
-show tables;
-
 insert into TipoUsuario (Tipo) values ('Psicólogo'), ('UCSA'),('Tutor'),('Externo'),
 ('Asistente'),('Gerente_Soporte'),('Ingeniero_Soporte'),('Gerente_Mantenimiento'),('Ingeniero_Mantenimiento');
+
