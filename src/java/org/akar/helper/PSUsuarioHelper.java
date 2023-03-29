@@ -5,7 +5,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import org.akar.dao.MsjForo;
 import org.akar.dao.PSUsuario;
 import org.akar.dao.TblTipoUsuario;
 import org.akar.dao.TblUsuario;
@@ -16,6 +18,7 @@ public class PSUsuarioHelper implements Serializable {
     TblUsuario usuario,usuario2;
     TblTipoUsuario tipo,tipo2;
     PSUsuario psUser;
+    MsjForo msjForo;
     
     public PSUsuarioHelper(){
         
@@ -149,6 +152,34 @@ public class PSUsuarioHelper implements Serializable {
         }
         
         return new PSUsuarioService().Update(psUser);
+    }
+    
+    public boolean sendMsg(HttpServletRequest request){
+        msjForo = new MsjForo();
+        msjForo.setMensaje( request.getParameter("msj") );
+        msjForo.getUsuario().setIdUsuario( Integer.parseInt(request.getParameter("idAutor")) );
+        msjForo.setHora( new Date() );
+        
+        if(msjForo.getUsuario().getIdUsuario() == 0){
+            return false;
+        }
+        if(msjForo.getMensaje().length() == 0 || msjForo.getMensaje() == null){
+            return false;
+        }
+        if(msjForo.getHora() == null){
+            return false;
+        }
+        
+        return new PSUsuarioService().sendMsg(msjForo);
+    }
+    
+    public List<MsjForo> getMsg(){
+        List<MsjForo> list = new PSUsuarioService().getMsg();
+        if(list != null){
+            return list;
+        } else{
+            return null;
+        }
     }
     
     

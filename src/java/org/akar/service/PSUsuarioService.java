@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import org.akar.dao.MsjForo;
 import org.akar.dao.PSUsuario;
 import org.akar.dao.TblTipoUsuario;
 import org.akar.dao.TblUsuario;
@@ -211,6 +212,84 @@ public class PSUsuarioService {
             resultSet.close();
             DBConnection.closeConnection(connection);
         }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    
+    public boolean sendMsg(MsjForo msj){
+        try{
+            Connection connection;
+            PreparedStatement preparedStatement;
+            String sql = "call sp_MsjForo(?, ?, ?)";
+            int row = 0;
+            
+            connection = DBConnection.getConnection( );
+            if( connection == null )
+            {
+                return false;
+            }
+            preparedStatement = connection.prepareStatement(sql);
+            if( preparedStatement == null )
+            {
+                return false;
+            }
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, msj.getMensaje() );
+            preparedStatement.setInt(2, msj.getUsuario().getIdUsuario() );
+            preparedStatement.setDate(3, new Date(msj.getHora().getTime()) );
+            row = preparedStatement.executeUpdate();
+            DBConnection.closeConnection(connection);
+            return row == 1;
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return false;
+    }
+    
+    public List<MsjForo> getMsg(){
+        List<MsjForo> msgs= null;
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        MsjForo msgForo = null;
+        String query = null;
+        
+        try 
+        {
+            connection = DBConnection.getConnection( );
+            if( connection == null )
+            {
+                return null;
+            }
+            statement = connection.createStatement( );
+            if( statement == null )
+            {
+                return null;
+            }
+            query = "call sp_getMsjF();";
+            resultSet = statement.executeQuery( query );
+            if( resultSet == null )
+            {
+                return null;
+            }
+            msgs = new ArrayList<>();
+            while( resultSet.next() )
+            {
+                msgForo = new MsjForo();
+                msgForo.getUsuario().setNomUser( resultSet.getString(1) );
+                msgForo.setIdMensaje( resultSet.getInt(2) );
+                msgForo.setMensaje( resultSet.getString(3) );
+                msgForo.setHora( resultSet.getDate(4) );
+                msgs.add(msgForo);
+            }
+            resultSet.close();
+            DBConnection.closeConnection(connection);
+            return msgs;
+        } 
+        catch (SQLException ex) 
+        {
             ex.printStackTrace();
         }
         return null;

@@ -6,6 +6,8 @@ drop procedure if exists sp_ActualizarUsuario;
 drop procedure if exists sp_ActualizarContrasena;
 drop procedure if exists sp_asignarToken;
 drop procedure if exists sp_recDatosToken;
+drop procedure if exists sp_MsjForo;
+drop procedure if exists sp_getMsjF;
 
 
 delimiter //
@@ -125,5 +127,15 @@ set xIdToken = (select idToken from ResPass where ResPass.Token = token);
 select Usuario.correo, respass.token, respass.exp from relusuariorespass inner join usuario on relusuariorespass.idUsuario = usuario.idUsuario inner join resPass on relusuariorespass.idResPass = respass.idToken where relusuariorespass.idResPass = xIdToken;
 end;//
 
+create procedure sp_MsjForo(in msj nvarchar(300), idAutor int, fecha datetime)
+begin
+declare xIdMensaje int;
+set xIdMensaje = (select ifnull(max(idMensaje), 0)+1 from msjForo);
+insert into msjForo values(xIdMensaje, idAutor, msj, fecha);
+end;//
 
+create procedure sp_getMsjF()
+begin
+select Usuario.NomUsuario, msjForo.idMensaje, msjForo.Mensaje, msjForo.Hora from msjForo inner join usuario on msjForo.idAutor = usuario.idUsuario;
+end;//
 

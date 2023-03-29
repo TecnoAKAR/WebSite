@@ -450,6 +450,18 @@
                 tratamiento, implementando foros para que puedan comunicarse con otros padres que pasen por la misma 
                 situación y chats directos con el psicólogo a cargo del tratamiento.
             </h7>
+            <br>
+            <br>
+            <div class="section-heading  wow fadeIn" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                <div class="line-dec"></div>
+                <br>
+                <h6>
+                    ¿Quiere saber si su hijo, usted o algún conocido son potenciales a tener algún síndrome del espectro autista?
+                </h6>
+                <h7>
+                    <a href="Cuestionario.jsp">Realice nuestro cuestionario</a> para saber más.
+                </h7>
+            </div> 
         <div class="col-lg-8 offset-lg-2  wow fadeIn" data-wow-duration="1s" data-wow-delay="0.4s">
         </div>
       </div>

@@ -386,7 +386,7 @@
                 <div class="line-dec"></div>
                 <br>
                 <h6>
-                    ¿Quiere saber si su hijo, usted o algún conocido son potenciales a tener síndrome de Asperger?
+                    ¿Quiere saber si su hijo, usted o algún conocido son potenciales a tener algún síndrome del espectro autista?
                 </h6>
                 <h7>
                     <a href="Cuestionario.jsp">Realice nuestro cuestionario</a> para saber más.

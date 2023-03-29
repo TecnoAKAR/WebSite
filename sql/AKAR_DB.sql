@@ -40,10 +40,12 @@ idJuego int,idUsuario int,puntaje int,
 foreign key (idJuego) references Juego(idJuego),
 foreign key (idUsuario) references Usuario(idUsuario));
 
-create table Mensajes(
+create table msjForo(
 idMensaje int primary key auto_increment,
-Mensaje  varchar(200),
-Hora datetime );
+idAutor int,
+Mensaje  varchar(300),
+Hora datetime,
+foreign key(idAutor) references Usuario(idUsuario) );
 
 create table Chat(
 idChat int primary key auto_increment,
@@ -56,7 +58,7 @@ create table RelChatMensaje(
 idRelChatMensaje int primary key auto_increment,
 idChat int, idMensaje int,
 foreign key(idChat) references Chat(idChat),
-foreign key(idMensaje) references Mensajes(idMensaje));
+foreign key(idMensaje) references msjForo(idMensaje));
 
 create table RelTutorUCSA(
 idRelTutorUCSA int primary key auto_increment,
