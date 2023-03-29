@@ -7,17 +7,30 @@ idUsuario int primary key auto_increment, Nombre varchar(40),
  NomUsuario varchar(40), Fecha date
 );
 
+
 create table Tarea(
 idTarea int primary key auto_increment,
-idResponsable int, nombreU varchar(20), apellidosU varchar(20), correoU varchar(30), nomTarea varchar(40), Problema varchar(520),
-Estatus varchar(20), solucion varchar(520), solMan varchar(520), Fecha datetime,
-foreign key (idResponsable) references Usuario(idUsuario));
+nomTarea varchar(40), Problema varchar(520),
+Estatus varchar(20), solucion varchar(520), Fecha datetime,);
 
-create table RelTareaUsu(
-idRelTareaUsu int primary key auto_increment,
+create table ReporteCambios(
+idReporteCambios int primary key auto_increment,
 idUsuario int, idTarea int, Fecha datetime,
 foreign key (idUsuario) references Usuario(idUsuario),
 foreign key (idTarea) references Tarea(idTarea));
+
+create table RelTareaEncargado(
+idRelTareaEncargado int primary key auto_increment,
+idEncargado int, idTarea,
+foreign key (idEncargado) references Usuario(idUsuario),
+foreign key (idTarea) references Tarea(idTarea));
+
+create table RelTareaUsuario(
+idRelTareaUsuario int primary key auto_increment,
+idUsuario int, idTarea int, Fecha datetime,
+foreign key (idUsuario) references Usuario(idUsuario),
+foreign key (idTarea) references Tarea(idTarea));	
+
 
 create table TipoUsuario(
 idTipo int primary key auto_increment,
