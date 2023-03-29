@@ -9,7 +9,7 @@ idUsuario int primary key auto_increment, Nombre varchar(40),
 create table Tarea(
 idTarea int primary key auto_increment,
 idResponsable int, idUsuario int, NomTarea varchar(40), Problema varchar(520), Departamento varchar(20),
-Estatus varchar(20), Solu varchar(520,,Fecha datetime,
+Estatus varchar(20), Solu varchar(520,Fecha datetime,
 foreign key (idResponsable) references Usuario(idUsuario),
 foreign key (idUsuario) references Usuario(idUsuario));
 
