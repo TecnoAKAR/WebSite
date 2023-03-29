@@ -13,6 +13,12 @@ Estatus varchar(20), Solu varchar(520), SoluMan varchar(520),Fecha datetime,
 foreign key (idResponsable) references Usuario(idUsuario),
 foreign key (idUsuario) references Usuario(idUsuario));
 
+create table RelTareaUsu(
+idRelTareaUsu int primary key auto_increment,
+idUsuario int, idTarea int, Fecha datetime,
+foreign key (idUsuario) references Usuario(idUsuario),
+foreign key (idTarea) references Tarea(idTarea));
+
 create table TipoUsuario(
 idTipo int primary key auto_increment,
 Tipo varchar(40));
