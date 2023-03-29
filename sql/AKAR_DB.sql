@@ -6,12 +6,12 @@ idUsuario int primary key auto_increment, Nombre varchar(40),
  ApellidoP varchar(40), ApellidoM varchar(40), Correo varchar(40), Contrasena varchar(40),
  NomUsuario varchar(40), Fecha date
 );
+
 create table Tarea(
 idTarea int primary key auto_increment,
-idResponsable int, idUsuario int, NomTarea varchar(40), Problema varchar(520),
-Estatus varchar(20), Solu varchar(520),Fecha datetime,
-foreign key (idResponsable) references Usuario(idUsuario),
-foreign key (idUsuario) references Usuario(idUsuario));
+idResponsable int, nombreU varchar(20), apellidosU varchar(20), correoU varchar(30), nomTarea varchar(40), Problema varchar(520),
+Estatus varchar(20), solucion varchar(520), solMan varchar(520), Fecha datetime,
+foreign key (idResponsable) references Usuario(idUsuario));
 
 create table RelTareaUsu(
 idRelTareaUsu int primary key auto_increment,
