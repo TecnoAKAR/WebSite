@@ -11,7 +11,7 @@ idUsuario int primary key auto_increment, Nombre varchar(40),
 create table Tarea(
 idTarea int primary key auto_increment,
 nomTarea varchar(40), Problema varchar(520),
-Estatus varchar(20), solucion varchar(520), Fecha datetime,);
+Estatus varchar(20), solucion varchar(520), Fecha datetime);
 
 create table ReporteCambios(
 idReporteCambios int primary key auto_increment,
@@ -21,7 +21,7 @@ foreign key (idTarea) references Tarea(idTarea));
 
 create table RelTareaEncargado(
 idRelTareaEncargado int primary key auto_increment,
-idEncargado int, idTarea,
+idEncargado int, idTarea int,
 foreign key (idEncargado) references Usuario(idUsuario),
 foreign key (idTarea) references Tarea(idTarea));
 
@@ -95,9 +95,3 @@ create table RelUsuarioResPass(
 
 insert into TipoUsuario (Tipo) values ('Psicólogo'), ('UCSA'),('Tutor'),('Externo'),
 ('Asistente'),('Gerente_Soporte'),('Ingeniero_Soporte'),('Gerente_Mantenimiento'),('Ingeniero_Mantenimiento');
-
-call sp_Registro('Aranza Labra', 'Labra','Marrooquin', '2004-05-24','aranza@gmail.com','4R4NZ4L4BR4','Asistente',5); 
-call sp_Registro('Kalid', 'Avila','Ponce', '2004-07-24','kalid@gmail.com','K4L1D24073005','Gerente de Soporte',6);
-call sp_Registro('Luis Axel', 'Zarate','Lozano', '2004-06-11','luis@gmail.com','LU124X3LZ4R4T3','Ingeniero de Soporte',7);
-call sp_Registro('Alexander', 'Avila','Ponce', '2004-07-24','alexander@gmail.com','4L3X4ND3R24073005','Gerente de Mantenimiento',8);
-call sp_Registro('Rodrigo Vidal', 'Ramirez','Aguila', '2004-05-24','rodrigo@gmail.com','R0DR1G0V1D4L','Ingeniero de Mantenimiento',9);
