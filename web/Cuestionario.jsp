@@ -43,6 +43,7 @@
 
     </head>
     <body>
+        
 
         <!-- ***** Preloader Start ***** -->
         <div id="js-preloader" class="js-preloader">
@@ -118,6 +119,11 @@
         </br>
         <div align="center"> <h1>Cociente de Espectro Autista (AQ)</h1> </div>
         </br>
+        
+        <p align="center"> El cuestionario de coeficiente de espectro autista AQ es una herramienta diseñada para ayudar a los profesionales a evaluar si una persona tiene características relacionadas con el autismo. Es un cuestionario que se responde en forma de preguntas, y se basa en el comportamiento y la forma en que una persona interactúa con su entorno y con otras personas.
+            El cuestionario AQ es una herramienta útil para aquellos que quieren entender mejor a sus hijos o para aquellos que están preocupados por el desarrollo de una persona. Los resultados del cuestionario pueden ayudar a los profesionales a identificar si una persona puede necesitar una evaluación más completa para el autismo. </p>
+        
+        <br/>
         
         <div align="center">
             <form method="post">

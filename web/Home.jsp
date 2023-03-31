@@ -70,6 +70,18 @@
     <%
                     }
                     break;
+                case "satis":
+    %>
+                    <script>
+
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Gracias por contestar',
+                                text: 'Agradecemos tu apoyo hacia la página. Tomaremos en cuenta tu opinión para mejorar',
+                              });
+                    </script>
+    <%
+                    break;
             }
     %>  
   <!-- ***** Preloader Start ***** -->
@@ -625,6 +637,54 @@
                     <div class="col-lg-12">
                       <fieldset>
                         <button type="submit" id="action" name="action" value="send" class="main-button ">Enviar mensaje</button>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="contact" class="contact-us section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+          <div class="section-heading wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+            <h6>Encuesta de satisfacción de la aplicación</h6>
+            <h4> Queremos saber tu opinión</h4>
+            <div class="line-dec"></div>
+          </div>
+        </div>
+        <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
+          <form id="contact" action="" method="post">
+            <div>
+              <div class="col-lg-7">
+                <div class="fill-form">
+                  <div>
+                    <div class="col-lg-6">
+                      <fieldset>
+                        <p>¿Qué tan buena te ha parecido la aplicación?</p>
+                        <input type="radio" id="buena" name="satisfaccion" value="buena">
+                        <label for="buena">Buena</label><br>
+                        <input type="radio" id="regular" name="satisfaccion" value="regular">
+                        <label for="regular">Regular</label><br>
+                        <input type="radio" id="mala" name="satisfaccion" value="mala">
+                        <label for="mala">Mala</label><br>
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-6">
+                      <fieldset>
+                        <p>¿Tienes alguna queja o sugerencia para mejorar la aplicación?</p>
+                        <textarea id="quejas" name="quejas" rows="4" cols="50"></textarea><br><br>
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-12">
+                      <fieldset>
+                        <button type="submit" id="action" name="action" value="satis" class="main-button ">Enviar mensaje</button>
                       </fieldset>
                     </div>
                   </div>

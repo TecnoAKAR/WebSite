@@ -136,6 +136,6 @@ end;//
 
 create procedure sp_getMsjF()
 begin
-select Usuario.NomUsuario, msjForo.idMensaje, msjForo.Mensaje, msjForo.Hora from msjForo inner join usuario on msjForo.idAutor = usuario.idUsuario;
+select Usuario.NomUsuario, msjForo.idMensaje, msjForo.Mensaje, msjForo.Hora from msjForo inner join usuario on msjForo.idAutor = usuario.idUsuario order by msjForo.idMensaje;
 end;//
 
