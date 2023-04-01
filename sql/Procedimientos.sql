@@ -165,7 +165,13 @@ insert into RelReporteEncargado(idEncargado, idReporte) values (xdIdEncargado,xd
 insert into ReporteCambios(idUsuario, idReporte, FechaCambio, EstatusI, EstatusF) values (2, xdIdReporte, xdIdReporte, now(), xestatusi, estatus);
 end;//  
 
-
+create procedure sp_soporte(in idR int, idIng int, estatI nvarchar(20), estat nvarchar(20), sol nvarchar(1024), fFinal datetime, fCambio datetime)
+begin
+declare xIdRepCam int;
+set xIdRepCam = (select ifnull(max(idReporteCambios), 0)+1 from ReporteCambios);
+update Reporte set estatus = estat, solucion = sol, FechaF = fFinal where idReporte = idR;
+insert into ReporteCambios values(xIdRepCam, idIng, idR, fCambio, estatI, estat);
+end;//
 
 
 
