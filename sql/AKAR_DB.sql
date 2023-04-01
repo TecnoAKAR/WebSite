@@ -8,28 +8,28 @@ idUsuario int primary key auto_increment, Nombre varchar(40),
 );
 
 
-create table Tarea(
-idTarea int primary key auto_increment,
-nomTarea varchar(40), Problema varchar(520),
-Estatus varchar(20), solucion varchar(520), Fecha datetime);
+create table Reporte(
+idReporte int primary key auto_increment, Problema varchar(1024),
+Estatus varchar(20), Solucion varchar(1024), FechaI datetime, FechaF datetime);
 
 create table ReporteCambios(
 idReporteCambios int primary key auto_increment,
-idUsuario int, idTarea int, Fecha datetime,
+idUsuario int, idReporte int, FechaCambio datetime,
+EstatusI varchar(20), EstatusF varchar(20), 
 foreign key (idUsuario) references Usuario(idUsuario),
-foreign key (idTarea) references Tarea(idTarea));
+foreign key (idReporte) references Reporte(idReporte));
 
-create table RelTareaEncargado(
-idRelTareaEncargado int primary key auto_increment,
-idEncargado int, idTarea int,
+create table RelReporteEncargado(
+idRelReporteEncargado int primary key auto_increment,
+idEncargado int, idReporte int,
 foreign key (idEncargado) references Usuario(idUsuario),
-foreign key (idTarea) references Tarea(idTarea));
+foreign key (idReporte) references Reporte(idReporte));
 
-create table RelTareaUsuario(
-idRelTareaUsuario int primary key auto_increment,
-idUsuario int, idTarea int, Fecha datetime,
+create table RelReporteUsuario(
+idRelReporteUsuario int primary key auto_increment,
+idUsuario int, idReporte int, 
 foreign key (idUsuario) references Usuario(idUsuario),
-foreign key (idTarea) references Tarea(idTarea));	
+foreign key (idReporte) references Reporte(idReporte));	
 
 
 create table TipoUsuario(
