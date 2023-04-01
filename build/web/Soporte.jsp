@@ -13,13 +13,13 @@
 <%
     PSUsuario sesion = (PSUsuario)session.getAttribute("usuario");
 
-    if(sesion != null){
-        if(!sesion.getTipo().equals("ingSoporte")){
-            response.sendRedirect("notAccess.jsp");
-        }
-    } else{
-        response.sendRedirect("notSession.jsp");
-    }
+//    if(sesion != null){
+//        if(!sesion.getTipo().equals("Ingeniero Soporte")){
+//            response.sendRedirect("notAccess.jsp");
+//        }
+//    } else{
+//        response.sendRedirect("notSession.jsp");
+//    }
 %>
 <html>
     <head>
@@ -127,6 +127,7 @@
             } else if(action.equals("rep")){
         %>
                 <jsp:include page="reporte.jsp" />
+                
         <%
             }
 

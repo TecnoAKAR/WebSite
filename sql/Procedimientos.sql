@@ -8,10 +8,10 @@ drop procedure if exists sp_asignarToken;
 drop procedure if exists sp_recDatosToken;
 drop procedure if exists sp_MsjForo;
 drop procedure if exists sp_getMsjF;
+drop procedure if exists sp_getMsjF;
+drop procedure if exists sp_Soporte;
 drop procedure if exists sp_GerenteSopIng;
 drop procedure if exists sp_GerenteSopMan;
-
-
 delimiter //
 
 create procedure sp_Registro( in nom nvarchar(50), pat nvarchar(50),
@@ -141,6 +141,14 @@ begin
 select Usuario.NomUsuario, msjForo.idMensaje, msjForo.Mensaje, msjForo.Hora from msjForo inner join usuario on msjForo.idAutor = usuario.idUsuario order by msjForo.idMensaje;
 end;//
 
+create procedure sp_Soporte(in idR int, idIng int, estatI nvarchar(20), estat nvarchar(20), sol nvarchar(1024), fFinal datetime, fCambio datetime)
+begin
+declare xIdRepCam int;
+set xIdRepCam = (select ifnull(max(idMensaje), 0)+1 from ReporteCambios);
+update Reporte set estatus = estat, solucion = sol, FechaF = fFinal where idReporte = idR;
+insert into ReporteCambios values(xIdRepCam, idIng, idR, fCambio, estatI, estat);
+end;//
+
 create procedure sp_GerenteSopIng(in problema nvarchar(1024), estatus nvarchar(40), nomEncargado nvarchar(40))
 begin
 declare xdIdEncargado int;
@@ -173,8 +181,13 @@ update Reporte set estatus = estat, solucion = sol, FechaF = fFinal where idRepo
 insert into ReporteCambios values(xIdRepCam, idIng, idR, fCambio, estatI, estat);
 end;//
 
-
-
+create procedure sp_mantenimiento(in idR int, idIng int, estatI nvarchar(20), estat nvarchar(20), sol nvarchar(1024), fFinal datetime, fCambio datetime)
+begin
+declare xIdRepCam int;
+set xIdRepCam = (select ifnull(max(idReporteCambios), 0)+1 from ReporteCambios);
+update Reporte set estatus = estat, solucion = sol, FechaF = fFinal where idReporte = idR;
+insert into ReporteCambios values(xIdRepCam, idIng, idR, fCambio, estatI, estat);
+end;//
 
 
 call sp_Registro('Aranza Labra', 'Labra','Garcia', '2004-05-24','aranza@gmail.com','4R4NZ4L4BR4','Asistente',5); 
