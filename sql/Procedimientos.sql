@@ -12,6 +12,8 @@ drop procedure if exists sp_getMsjF;
 drop procedure if exists sp_Soporte;
 drop procedure if exists sp_GerenteSopIng;
 drop procedure if exists sp_GerenteSopMan;
+drop procedure if exists sp_GerenteManSop;
+drop procedure if exists sp_GerenteManIng;
 delimiter //
 
 create procedure sp_Registro( in nom nvarchar(50), pat nvarchar(50),
@@ -171,6 +173,47 @@ set xdIdReporte=(select idReporte from Reporte where Problema=problema and Soluc
 set xestatusi=(select Estatus from Reporte where Problema=problema and Solucion=solucion);
 insert into RelReporteEncargado(idEncargado, idReporte) values (xdIdEncargado,xdIdReporte);
 insert into ReporteCambios(idUsuario, idReporte, FechaCambio, EstatusI, EstatusF) values (2, xdIdReporte, xdIdReporte, now(), xestatusi, estatus);
+end;//  
+
+create procedure sp_soporte(in idR int, idIng int, estatI nvarchar(20), estat nvarchar(20), sol nvarchar(1024), fFinal datetime, fCambio datetime)
+begin
+declare xIdRepCam int;
+set xIdRepCam = (select ifnull(max(idReporteCambios), 0)+1 from ReporteCambios);
+update Reporte set estatus = estat, solucion = sol, FechaF = fFinal where idReporte = idR;
+insert into ReporteCambios values(xIdRepCam, idIng, idR, fCambio, estatI, estat);
+end;//
+
+create procedure sp_mantenimiento(in idR int, idIng int, estatI nvarchar(20), estat nvarchar(20), sol nvarchar(1024), fFinal datetime, fCambio datetime)
+begin
+declare xIdRepCam int;
+set xIdRepCam = (select ifnull(max(idReporteCambios), 0)+1 from ReporteCambios);
+update Reporte set estatus = estat, solucion = sol, FechaF = fFinal where idReporte = idR;
+insert into ReporteCambios values(xIdRepCam, idIng, idR, fCambio, estatI, estat);
+end;//
+
+
+create procedure sp_GerenteManIng(in problema nvarchar(1024), estatus nvarchar(40), nomEncargado nvarchar(40))
+begin
+declare xdIdEncargado int;
+declare xdIdReporte int;
+declare xestatusi nvarchar(40);
+set xdIdEncargado=(select idUsuario from Usuario where NomUsuario=nomEncargado);
+set xdIdReporte=(select idReporte from Reporte where Problema=problema);
+set xestatusi=(select Estatus from Reporte where Problema=problema);
+insert into RelReporteEncargado(idEncargado, idReporte) values (xdIdEncargado,xdIdReporte);
+insert into ReporteCambios(idUsuario, idReporte, FechaCambio, EstatusI, EstatusF) values (4, xdIdReporte, xdIdReporte, now(), xestatusi, estatus);
+end;//   
+
+create procedure sp_GerenteManSop(in problema nvarchar(1024), estatus nvarchar(40), solucion nvarchar(1024), nomEncargado nvarchar(40))
+begin
+declare xdIdEncargado int;
+declare xdIdReporte int;
+declare xestatusi nvarchar(40);
+set xdIdEncargado=(select idUsuario from Usuario where NomUsuario=nomEncargado);
+set xdIdReporte=(select idReporte from Reporte where Problema=problema and Solucion=solucion);
+set xestatusi=(select Estatus from Reporte where Problema=problema and Solucion=solucion);
+insert into RelReporteEncargado(idEncargado, idReporte) values (xdIdEncargado,xdIdReporte);
+insert into ReporteCambios(idUsuario, idReporte, FechaCambio, EstatusI, EstatusF) values (4, xdIdReporte, xdIdReporte, now(), xestatusi, estatus);
 end;//  
 
 call sp_Registro('Aranza Labra', 'Labra','Garcia', '2004-05-24','aranza@gmail.com','4R4NZ4L4BR4','Asistente',5); 
