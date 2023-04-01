@@ -8,6 +8,8 @@ drop procedure if exists sp_asignarToken;
 drop procedure if exists sp_recDatosToken;
 drop procedure if exists sp_MsjForo;
 drop procedure if exists sp_getMsjF;
+drop procedure if exists sp_GerenteSopIng;
+drop procedure if exists sp_GerenteSopMan;
 
 
 delimiter //
@@ -138,6 +140,33 @@ create procedure sp_getMsjF()
 begin
 select Usuario.NomUsuario, msjForo.idMensaje, msjForo.Mensaje, msjForo.Hora from msjForo inner join usuario on msjForo.idAutor = usuario.idUsuario order by msjForo.idMensaje;
 end;//
+
+create procedure sp_GerenteSopIng(in problema nvarchar(1024), estatus nvarchar(40), nomEncargado nvarchar(40))
+begin
+declare xdIdEncargado int;
+declare xdIdReporte int;
+declare xestatusi nvarchar(40);
+set xdIdEncargado=(select idUsuario from Usuario where NomUsuario=nomEncargado);
+set xdIdReporte=(select idReporte from Reporte where Problema=problema);
+set xestatusi=(select Estatus from Reporte where Problema=problema);
+insert into RelReporteEncargado(idEncargado, idReporte) values (xdIdEncargado,xdIdReporte);
+insert into ReporteCambios(idUsuario, idReporte, FechaCambio, EstatusI, EstatusF) values (2, xdIdReporte, xdIdReporte, now(), xestatusi, estatus);
+end;//   
+
+create procedure sp_GerenteSopMan(in problema nvarchar(1024), estatus nvarchar(40), solucion nvarchar(1024), nomEncargado nvarchar(40))
+begin
+declare xdIdEncargado int;
+declare xdIdReporte int;
+declare xestatusi nvarchar(40);
+set xdIdEncargado=(select idUsuario from Usuario where NomUsuario=nomEncargado);
+set xdIdReporte=(select idReporte from Reporte where Problema=problema and Solucion=solucion);
+set xestatusi=(select Estatus from Reporte where Problema=problema and Solucion=solucion);
+insert into RelReporteEncargado(idEncargado, idReporte) values (xdIdEncargado,xdIdReporte);
+insert into ReporteCambios(idUsuario, idReporte, FechaCambio, EstatusI, EstatusF) values (2, xdIdReporte, xdIdReporte, now(), xestatusi, estatus);
+end;//  
+
+
+
 
 
 
