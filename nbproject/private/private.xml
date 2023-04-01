@@ -4,15 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/web/Soporte.jsp</file>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/web/index.jsp</file>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/web/Foro.jsp</file>
             <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/src/java/org/akar/service/PSUsuarioService.java</file>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/src/java/org/akar/games/GatoGame.java</file>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/src/java/org/akar/helper/PSUsuarioHelper.java</file>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/src/java/org/akar/dao/MsjForo.java</file>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/web/Home.jsp</file>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/web/editProf.jsp</file>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/web/Cuestionario.jsp</file>
+            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/sql/Procedimientos.sql</file>
+            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/web/reporte.jsp</file>
+            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/sql/AKAR_DB.sql</file>
         </group>
     </open-files>
 </project-private>

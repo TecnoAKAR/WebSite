@@ -117,15 +117,19 @@
         </br>
         </br>
         </br>
-        <div align="center"> <h1>Cociente de Espectro Autista (AQ)</h1> </div>
+        <div align="center"> <h1>Cuestionario de cociente de Espectro Autista (AQ)</h1> </div>
         </br>
         
-        <p align="center"> El cuestionario de coeficiente de espectro autista AQ es una herramienta diseñada para ayudar a los profesionales a evaluar si una persona tiene características relacionadas con el autismo. Es un cuestionario que se responde en forma de preguntas, y se basa en el comportamiento y la forma en que una persona interactúa con su entorno y con otras personas.
+        <p align="center"> El cuestionario de cociente de espectro autista AQ es una herramienta diseñada para ayudar a los profesionales a evaluar si una persona tiene características relacionadas con el autismo. Es un cuestionario que se responde en forma de preguntas, y se basa en el comportamiento y la forma en que una persona interactúa con su entorno y con otras personas.
             El cuestionario AQ es una herramienta útil para aquellos que quieren entender mejor a sus hijos o para aquellos que están preocupados por el desarrollo de una persona. Los resultados del cuestionario pueden ayudar a los profesionales a identificar si una persona puede necesitar una evaluación más completa para el autismo. </p>
         
         <br/>
         
         <div align="center">
+            
+            <p> Responda a todas las preguntas con total sinceridad. </p>
+            <br/>
+            
             <form method="post">
                 <table width="70%">
                     <tr>
@@ -157,7 +161,8 @@
                         <td><input type="radio" name="p3" value="0" required></td>
                     </tr>
                     <tr>
-                        <td>4 Cuando trata de imaginarse algo, le parece muy fácil crear la imagen en su cabeza.</td>
+                        <td>4 Con frecuencia queda tan absorto/a en una actividad que parece no darse cuenta de las cosas que suceden a su alrededor.
+</td>
                         <td><input type="radio" name="p4" value="3" required></td>
                         <td><input type="radio" name="p4" value="2" required></td>
                         <td><input type="radio" name="p4" value="1" required></td>
@@ -283,7 +288,7 @@
                         <td><input type="radio" name="p21" value="0" required></td>
                     </tr>
                     <tr>
-                        <td>22 Le cuesta hacer nuevos amigos.</td>
+                        <td>22 No le cuesta hacer nuevos amigos.</td>
                         <td><input type="radio" name="p22" value="3" required></td>
                         <td><input type="radio" name="p22" value="2" required></td>
                         <td><input type="radio" name="p22" value="1" required></td>
@@ -388,7 +393,7 @@
                         <td><input type="radio" name="p36" value="0" required></td>
                     </tr>
                     <tr>
-                        <td>37 Cuando hay alguna interrupción, puede volver facilidad a lo que estaba haciendo.</td>
+                        <td>37 Cuando hay alguna interrupción, puede volver con facilidad a lo que estaba haciendo.</td>
                         <td><input type="radio" name="p37" value="3" required></td>
                         <td><input type="radio" name="p37" value="2" required></td>
                         <td><input type="radio" name="p37" value="1" required></td>
@@ -472,7 +477,7 @@
                         <td><input type="radio" name="p48" value="0" required></td>
                     </tr>
                     <tr>
-                        <td>49 Va con cuidado para no herir los sentimientos de la gente.</td>
+                        <td>49 No se le da bien recordar las fechas de cumpleaños.</td>
                         <td><input type="radio" name="p49" value="3" required></td>
                         <td><input type="radio" name="p49" value="2" required></td>
                         <td><input type="radio" name="p49" value="1" required></td>
@@ -553,7 +558,7 @@
                             
                             Swal.fire({
                                 icon: 'warning',
-                                title: 'La posibilidad de que tenga algún síndrome del espectro autista es: media alta.',
+                                title: 'La posibilidad de que tenga algún síndrome del espectro autista es: alta.',
                                 text: 'Le recomendamos visitar a un profesional.',
                                 footer: '<button type="button" class="btn btn-light"> <a href="index.jsp">Volver al index.</a> </button>'
                               });
