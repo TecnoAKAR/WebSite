@@ -14,7 +14,7 @@ public class SolucionHelper {
     
     public SolucionHelper(){
         rep = new Reporte();
-        rel = new ReporteCambios();
+        repCam = new ReporteCambios();
     }
 //    
 //    public List<Reporte> getListSop(){
