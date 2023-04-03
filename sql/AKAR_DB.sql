@@ -10,7 +10,7 @@ idUsuario int primary key auto_increment, Nombre varchar(40),
 
 create table Reporte(
 idReporte int primary key auto_increment, Problema varchar(1024),
-Estatus varchar(20), Solucion varchar(1024), FechaI datetime, FechaF datetime);
+Estatus varchar(40), Solucion varchar(1024), FechaI datetime, FechaF datetime);
 
 create table ReporteCambios(
 idReporteCambios int primary key auto_increment,
@@ -95,3 +95,10 @@ create table RelUsuarioResPass(
 
 insert into TipoUsuario (Tipo) values ('Psicólogo'), ('UCSA'),('Tutor'),('Externo'),
 ('Asistente'),('Gerente_Soporte'),('Ingeniero_Soporte'),('Gerente_Mantenimiento'),('Ingeniero_Mantenimiento');
+
+
+
+
+
+
+
