@@ -1,4 +1,3 @@
-
 package org.akar.dao;
 
 import java.io.Serializable;
