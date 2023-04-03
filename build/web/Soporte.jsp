@@ -4,8 +4,8 @@
     Author     : Axel Zarate Lozano
 --%>
 
+<%@page import="org.akar.dao.Reporte"%>
 <%@page import="org.akar.dao.PSUsuario"%>
-<%@page import="org.akar.dao.Solucion"%>
 <%@page import="java.util.List"%>
 <%@page import="org.akar.helper.SolucionHelper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,13 +13,13 @@
 <%
     PSUsuario sesion = (PSUsuario)session.getAttribute("usuario");
 
-//    if(sesion != null){
-//        if(!sesion.getTipo().equals("Ingeniero Soporte")){
-//            response.sendRedirect("notAccess.jsp");
-//        }
-//    } else{
-//        response.sendRedirect("notSession.jsp");
-//    }
+    if(sesion != null){
+        if(sesion.getTipo().getIdTipo() != 7){
+            response.sendRedirect("notAccess.jsp");
+        }
+    } else{
+        response.sendRedirect("notSession.jsp");
+    }
 %>
 <html>
     <head>
@@ -41,15 +41,15 @@
         <br/>
         
         <div align="center">
-            <a href="?action=solu"> <button type="button" class="btn btn-danger"> A solucionar </button> </a>
-            <a href="?action=mant"> <button type="button" class="btn btn-warning"> De mantenimiento </button> </a>
+            <a href="?action=solu"> <button type="button" class="btn btn-danger"> A reportar </button> </a>
+            <a href="?action=mant"> <button type="button" class="btn btn-warning"> Mantenimiento finalizado </button> </a>
         </div>
         
         <br/>
         <br/>
         <%
             if(action.equals("solu")){
-                List<Solucion> list = new SolucionHelper().getListSop();
+                List<Reporte> list = new SolucionHelper().getListSop( sesion.getUsuario().getIdUsuario() );
                 if (list == null){
         %>
                     <h3> Sin reportes </h3>
@@ -68,14 +68,14 @@
                             </tr>
 
                             <%
-                                for(Solucion solucion : list){
+                                for(Reporte reporte : list){
                             %>
                                     <tr>
                                         <td>
-                                            <a href="?action=rep&tipo=Sol&idreporte=<%=solucion.getIdTarea()%>"> <%=solucion.getIdTarea()%>. <%=solucion.getNomTarea()%> </a>
+                                            <a href="?action=rep&tipo=Sol&idreporte=<%=reporte.getIdReporte()%>"> <button type="button" class="btn btn-Light"> <%=reporte.getIdReporte()%> </button> </a>
                                         </td>
                                         <td>
-                                            <%=solucion.getFecha().toString()%>
+                                            <%=reporte.getFechaI()%>
                                         </td>
                                     </tr>    
                             <%
@@ -87,7 +87,7 @@
         <%
                 }
             } else if(action.equals("mant")){
-                List<Solucion> list = new SolucionHelper().getListMan();
+                List<Reporte> list = new SolucionHelper().getListMan( sesion.getUsuario().getIdUsuario() );
                 if (list == null){
         %>
                     <h3> Sin reportes </h3>
@@ -106,14 +106,14 @@
                             </tr>
 
                             <%
-                                for(Solucion solucion : list){
+                                for(Reporte reporte : list){
                             %>
                                     <tr>
                                         <td>
-                                            <a href="?action=rep&tipo=Man&idreporte=<%=solucion.getIdTarea()%>"> <%=solucion.getIdTarea()%>. <%=solucion.getNomTarea()%> </a>
+                                            <a href="?action=rep&tipo=Mant&idreporte=<%=reporte.getIdReporte()%>"> <button type="button" class="btn btn-Light"> <%=reporte.getIdReporte()%> </button> </a>
                                         </td>
                                         <td>
-                                            <%=solucion.getFecha().toString()%>
+                                            <%=reporte.getFechaI()%>
                                         </td>
                                     </tr>    
                             <%
@@ -121,7 +121,7 @@
                             %>
 
                         </table>
-                    </div>
+                    </div>    
         <%
                 }
             } else if(action.equals("rep")){
@@ -137,7 +137,16 @@
             }
             
             if(send.equals("enviar")){
-                boolean updated = new SolucionHelper().update(request);
+                boolean updated = new SolucionHelper().sp_Soporte(request);
+                if(updated == true){
+        %>
+                    <script> alert("Reporte finalizado"); </script>
+        <%
+                } else{
+        %>
+                    <script> alert("Hubo un error al actualizar el reporte"); </script>
+        <%
+                }        
             }
         %>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
