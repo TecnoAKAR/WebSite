@@ -53,13 +53,14 @@
                                 <label for="exampleFormControlInput1" class="form-label"> <b> Estatus </b> </label>
                                 <select id="tipoUsuario" name="Estatus" class="form-control">
                                     <option selected> <%=sol.getEstatus()%> </option>
-                                    <option value="En Proceso">En proceso</option>
+                                    <option value="En proceso">En proceso</option>
                                     <option value="A Mantenimiento">A Mantenimiento</option>
+                                    <option value="Mantenimiento hecho">Mantenimiento hecho</option>
                                 </select>
 
                                 <select id="idEncargado" name="idEncargado" class="form-select" aria-label="Default select example">
                                 <option selected>Selecciona Personal</option>
-                                <option aria-label="Default select example" value="Ingeniero Soporte">Ingeniero Soporte</option>
+                                <option aria-label="Default select example" value="Ingeniero de Soporte">Ingeniero Soporte</option>
                                 <option aria-label="Default select example" value="Gerente Mantenimiento">Gerente Mantenimiento</option>
                                 </select>
                         </div>

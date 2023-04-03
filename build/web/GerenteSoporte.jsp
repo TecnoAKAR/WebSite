@@ -53,13 +53,16 @@
                                     <jsp:include page="ReporteGerente.jsp" />
                             <%
                                 }
-                        String send=request.getParameter("send");
+                        String send = request.getParameter("send");
                         String condicion= request.getParameter("Estatus");
                         if(send==null){
                             send="";
                         }
+                        if(condicion==null){
+                            send="";
+                        }
                         if(send.equals("enviar")){
-                        if(condicion.equals("A Soporte")){
+                        if(condicion.equals("En proceso")){
                         boolean reporte;
                         reporte=new ReporteGerenteHelper().AsignarReporteIng(request);
                         if(reporte==true){
@@ -77,7 +80,7 @@
                             else{
                         if(condicion.equals("A Mantenimiento")){
                         boolean reporte;
-                        reporte=new ReporteGerenteHelper().AsignarReporteMan(request);
+                        reporte=new ReporteGerenteHelper().AsignarReporteIng(request);
                         if(reporte==true){
                             %>
                                <script> alert("Reporte actualizado"); </script>
@@ -89,6 +92,19 @@
                             <%
                             }
                           }
+                        if(condicion.equals("Mantenimiento hecho")){
+                            boolean reporte;
+                            reporte = new ReporteGerenteHelper().AsignarReporteIng(request);
+                            if (reporte == true) {
+                            %>
+                               <script> alert("Reporte actualizado"); </script>
+                            <%
+                            } else {
+                            %>
+                               <script> alert("Reporte No Actualizado"); </script>
+                            <%
+                                }
+                        }
                         }
                         }
 %>

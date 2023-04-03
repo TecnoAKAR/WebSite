@@ -10,6 +10,7 @@ drop procedure if exists sp_MsjForo;
 drop procedure if exists sp_getMsjF;
 drop procedure if exists sp_getMsjF;
 drop procedure if exists sp_soporte;
+drop procedure if exists sp_mantenimiento;
 drop procedure if exists sp_GerenteSopIng;
 drop procedure if exists sp_GerenteSopMan;
 drop procedure if exists sp_GerenteManSop;
@@ -147,22 +148,22 @@ create procedure sp_GerenteSopIng(in problema nvarchar(1024), estatus nvarchar(4
 begin
 declare xdIdEncargado int;
 declare xdIdReporte int;
-set xdIdEncargado=(select idUsuario from Usuario where NomUsuario=nomEncargado);
-set xdIdReporte=(select idReporte from Reporte where Problema=problema);
-insert into RelReporteEncargado(idEncargado, idReporte) values (xdIdEncargado,xdIdReporte);
+set xdIdEncargado=(select idUsuario from Usuario where Usuario.NomUsuario = nomEncargado);
+set xdIdReporte=(select idReporte from Reporte where Reporte.Problema = problema);
+insert into RelReporteEncargado(idEncargado, idReporte) values (xdIdEncargado, xdIdReporte);
 insert into ReporteCambios(idUsuario, idReporte, FechaCambio, EstatusI, EstatusF) values (2, xdIdReporte, now(), 'Abierto', estatus);
-update Reporte set Estatus=estatus where idReporte=xdIdReporte; 
+update Reporte set Reporte.Estatus = estatus where idReporte = xdIdReporte; 
 end;//   
 
 create procedure sp_GerenteSopMan(in problema nvarchar(1024), estatus nvarchar(40), solucion nvarchar(1024), nomEncargado nvarchar(40))
 begin
 declare xdIdEncargado int;
 declare xdIdReporte int;
-set xdIdEncargado=(select idUsuario from Usuario where NomUsuario=nomEncargado);
-set xdIdReporte=(select idReporte from Reporte where Problema=problema);
+set xdIdEncargado=(select idUsuario from Usuario where Usuario.NomUsuario=nomEncargado);
+set xdIdReporte=(select idReporte from Reporte where Reporte.Problema=problema);
 insert into RelReporteEncargado(idEncargado, idReporte) values (xdIdEncargado,xdIdReporte);
 insert into ReporteCambios(idUsuario, idReporte, FechaCambio, EstatusI, EstatusF) values (2, xdIdReporte, now(), 'Abierto', estatus);
-update Reporte set Estatus=estatus where idReporte=xdIdReporte; 
+update Reporte set Reporte.Estatus=estatus where Reporte.idReporte = xdIdReporte; 
 end;//   
 
 
@@ -174,11 +175,11 @@ update Reporte set estatus = estat, solucion = sol, FechaF = fFinal where idRepo
 insert into ReporteCambios values(xIdRepCam, idIng, idR, fCambio, estatI, estat);
 end;//
 
-create procedure sp_mantenimiento(in idR int, idIng int, estatI nvarchar(20), estat nvarchar(20), sol nvarchar(1024), fFinal datetime, fCambio datetime)
+create procedure sp_mantenimiento(in idR int, idIng int, estatI nvarchar(20), estat nvarchar(20), sol nvarchar(1024), fCambio datetime)
 begin
 declare xIdRepCam int;
 set xIdRepCam = (select ifnull(max(idReporteCambios), 0)+1 from ReporteCambios);
-update Reporte set estatus = estat, solucion = sol, FechaF = fFinal where idReporte = idR;
+update Reporte set estatus = estat, solucion = sol where idReporte = idR;
 insert into ReporteCambios values(xIdRepCam, idIng, idR, fCambio, estatI, estat);
 end;//
 
@@ -187,22 +188,22 @@ create procedure sp_GerenteManIng(in problema nvarchar(1024), estatus nvarchar(4
 begin
 declare xdIdEncargado int;
 declare xdIdReporte int;
-set xdIdEncargado=(select idUsuario from Usuario where NomUsuario=nomEncargado);
-set xdIdReporte=(select idReporte from Reporte where Problema=problema);
-insert into RelReporteEncargado(idEncargado, idReporte) values (xdIdEncargado,xdIdReporte);
+set xdIdEncargado=(select idUsuario from Usuario where Usuario.NomUsuario=nomEncargado);
+set xdIdReporte=(select idReporte from Reporte where Reporte.Problema=problema);
+insert into RelReporteEncargado(idEncargado, idReporte) values (xdIdEncargado, xdIdReporte);
 insert into ReporteCambios(idUsuario, idReporte, FechaCambio, EstatusI, EstatusF) values (4, xdIdReporte, now(), 'A Mantenimiento', estatus);
-update Reporte set Estatus=estatus where idReporte=xdIdReporte; 
+update Reporte set Reporte.Estatus=estatus where Reporte.idReporte=xdIdReporte; 
 end;//   
 
 create procedure sp_GerenteManSop(in problema nvarchar(1024), estatus nvarchar(40), solucion nvarchar(1024), nomEncargado nvarchar(40))
 begin
 declare xdIdEncargado int;
 declare xdIdReporte int;
-set xdIdEncargado=(select idUsuario from Usuario where NomUsuario=nomEncargado);
-set xdIdReporte=(select idReporte from Reporte where Problema=problema);
+set xdIdEncargado=(select idUsuario from Usuario where Usuario.NomUsuario=nomEncargado);
+set xdIdReporte=(select idReporte from Reporte where Reporte.Problema=problema);
 insert into RelReporteEncargado(idEncargado, idReporte) values (xdIdEncargado,xdIdReporte);
 insert into ReporteCambios(idUsuario, idReporte, FechaCambio, EstatusI, EstatusF) values (4, xdIdReporte, now(), 'En Mantenimiento', estatus);
-update Reporte set Estatus=estatus where idReporte=xdIdReporte; 
+update Reporte set Reporte.Estatus=estatus where Reporte.idReporte=xdIdReporte; 
 end;//
 
 

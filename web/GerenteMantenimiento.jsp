@@ -75,7 +75,7 @@
                             }
                           }
                             else{
-                        if(condicion.equals("A Mantenimiento")){
+                        if(condicion.equals("Mantenimiento Finalizado")){
                         boolean reporte;
                         reporte=new ReporteGerenteMHelper().AsignarReporteSop(request);
                         if(reporte==true){

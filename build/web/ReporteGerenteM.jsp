@@ -50,17 +50,18 @@
                         <div>
                             <form method="post">
                                 <input hidden="true" id="Problema" name="Problema" value="<%=sol.getProblema()%>">
+                                <input hidden="true" id="Solucion" name="Solucion" value="<%=sol.getSolucion()%>">
                                 <label for="exampleFormControlInput1" class="form-label"> <b> Estatus </b> </label>
                                 <select id="tipoUsuario" name="Estatus" class="form-control">
                                     <option selected> <%=sol.getEstatus()%> </option>
-                                    <option value="En Proceso">En Mantenimiento</option>
-                                    <option value="A Mantenimiento">Mantenimiento Finalizado</option>
+                                    <option value="En Mantenimiento">En Mantenimiento</option>
+                                    <option value="Mantenimiento Finalizado">Mantenimiento Finalizado</option>
                                 </select>
 
                                 <select id="idEncargado" name="idEncargado" class="form-select" aria-label="Default select example">
                                 <option selected>Selecciona Personal</option>
-                                <option aria-label="Default select example" value="Ingeniero Soporte">Ingeniero Mantenimiento</option>
-                                <option aria-label="Default select example" value="Gerente Mantenimiento">Gerente de Soporte</option>
+                                <option aria-label="Default select example" value="Ingeniero de Mantenimiento">Ingeniero Mantenimiento</option>
+                                <option aria-label="Default select example" value="Gerente de Soporte">Gerente de Soporte</option>
                                 </select>
                         </div>
 

@@ -15,7 +15,7 @@ Estatus varchar(40), Solucion varchar(1024), FechaI datetime, FechaF datetime);
 create table ReporteCambios(
 idReporteCambios int primary key auto_increment,
 idUsuario int, idReporte int, FechaCambio datetime,
-EstatusI varchar(20), EstatusF varchar(20), 
+EstatusI varchar(40), EstatusF varchar(40), 
 foreign key (idUsuario) references Usuario(idUsuario),
 foreign key (idReporte) references Reporte(idReporte));
 
