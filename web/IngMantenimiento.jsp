@@ -15,7 +15,7 @@
     <%
     PSUsuario sesion = (PSUsuario)session.getAttribute("usuario");
     if(sesion != null){
-        if(sesion.getTipo().getIdTipo() != 9){
+        if(sesion.getTipo().getIdTipo() != 9 && sesion.getTipo().getIdTipo() != 10){
             response.sendRedirect("notAccess.jsp");
         }
     } else{

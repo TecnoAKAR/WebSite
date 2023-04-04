@@ -26,10 +26,10 @@ public class SolucionService {
     public List<Reporte> getListSop(TblUsuario usu){
         List<Reporte> list = null;
         Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        Statement statement = null;
         ResultSet resultSet = null;
         rep = null;
-        String query = "SELECT DISTINCT r.idReporte, r.Problema, r.Estatus, r.Solucion, r.FechaI, r.FechaF FROM Reporte r INNER JOIN RelReporteEncargado rel ON r.idReporte = rel.idReporte WHERE r.Estatus = 'En proceso' AND rel.idEncargado = ?;";
+        String query = "SELECT DISTINCT r.idReporte, r.Problema, r.Estatus, r.Solucion, r.FechaI, r.FechaF FROM Reporte r INNER JOIN RelReporteEncargado rel ON r.idReporte = rel.idReporte WHERE r.Estatus = 'En proceso' AND rel.idEncargado = 3;";
         
         try 
         {
@@ -38,9 +38,8 @@ public class SolucionService {
             {
                 return null;
             }
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, usu.getIdUsuario());
-            resultSet = preparedStatement.executeQuery( );
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
             if( resultSet == null )
             {
                 return null;
@@ -71,10 +70,10 @@ public class SolucionService {
     public List<Reporte> getListMan(TblUsuario usu){
         List<Reporte> list = null;
         Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        Statement statement = null;
         ResultSet resultSet = null;
         rep = null;
-        String query = "SELECT DISTINCT r.idReporte, r.Problema, r.Estatus, r.Solucion, r.FechaI, r.FechaF FROM Reporte r INNER JOIN RelReporteEncargado rel ON r.idReporte = rel.idReporte WHERE r.Estatus = 'Mantenimiento hecho' AND rel.idEncargado = ?;";
+        String query = "SELECT DISTINCT r.idReporte, r.Problema, r.Estatus, r.Solucion, r.FechaI, r.FechaF FROM Reporte r INNER JOIN RelReporteEncargado rel ON r.idReporte = rel.idReporte WHERE r.Estatus = 'Mantenimiento hecho' AND rel.idEncargado = 3;";
         
         try 
         {
@@ -83,9 +82,8 @@ public class SolucionService {
             {
                 return null;
             }
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, usu.getIdUsuario());
-            resultSet = preparedStatement.executeQuery( );
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
             if( resultSet == null )
             {
                 return null;

@@ -176,7 +176,7 @@ update Reporte set estatus = estat, solucion = sol, FechaF = fFinal where idRepo
 insert into ReporteCambios values(xIdRepCam, idIng, idR, fCambio, estatI, estat);
 end;//
 
-create procedure sp_mantenimiento(in idR int, idIng int, estatI nvarchar(20), estat nvarchar(20), sol nvarchar(1024), fCambio datetime)
+create procedure sp_mantenimiento(in idR int, idIng int, estatI nvarchar(40), estat nvarchar(40), sol nvarchar(1024), fCambio datetime)
 begin
 declare xIdRepCam int;
 set xIdRepCam = (select ifnull(max(idReporteCambios), 0)+1 from ReporteCambios);
@@ -232,5 +232,7 @@ call sp_Registro('Kalid', 'Avila','Ponce', '2004-07-24','kalid@gmail.com','geren
 call sp_Registro('Luis Axel', 'Zarate','Lozano', '2004-06-11','luis@gmail.com','ingenierodesoporte','Ingeniero de Soporte',7);
 call sp_Registro('Alexander', 'Avila','Ponce', '2004-07-24','alexander@gmail.com','gerentedemantenimiento','Gerente de Mantenimiento',8);
 call sp_Registro('Rodrigo Vidal', 'Ramirez','Aguilar', '2004-05-24','rodrigo@gmail.com','ingenierodemantenimiento','Ingeniero de Mantenimiento',9);
+call sp_Registro('Usuario', 'Suoer','Super', '2004-05-24','superusuario@gmail.com','superusuario','Administrador',10);
+call sp_Registro('Test', 'Test','Test', '2000-01-01','root@gmail.com','n0m3l0','Root', 4);
 
 

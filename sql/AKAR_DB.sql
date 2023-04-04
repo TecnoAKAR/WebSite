@@ -94,7 +94,7 @@ create table RelUsuarioResPass(
 );
 
 insert into TipoUsuario (Tipo) values ('Psicólogo'), ('UCSA'),('Tutor'),('Externo'),
-('Asistente'),('Gerente_Soporte'),('Ingeniero_Soporte'),('Gerente_Mantenimiento'),('Ingeniero_Mantenimiento');
+('Asistente'),('Gerente_Soporte'),('Ingeniero_Soporte'),('Gerente_Mantenimiento'),('Ingeniero_Mantenimiento'), ('Administrador');
 
 
 

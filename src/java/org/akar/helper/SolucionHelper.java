@@ -91,7 +91,7 @@ public class SolucionHelper {
         if(rep.getIdReporte()== 0){
             return false;
         }
-        if(rep.getSolucion() == null || rep.getSolucion().length() > 1024 || rep.getSolucion().length() == 0 || rep.getSolucion().equals("")){
+        if(rep.getSolucion() == null || rep.getSolucion().length() > 1024 || rep.getSolucion().length() == 0 || rep.getSolucion().equals(" ")){
             return false;
         }
         if(rep.getEstatus().equals( repCam.getEstatusI() )){
