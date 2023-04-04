@@ -10,6 +10,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.akar.dao.PSReporte;
 import org.akar.dao.Reporte;
+import org.akar.dao.ReporteCambios;
 import org.akar.dao.TblUsuario;
 import org.akar.service.ReporteGerenteMService;
 import org.akar.service.ReporteGerenteService;
@@ -23,6 +24,7 @@ public class ReporteGerenteMHelper implements Serializable{
     private List<Reporte> reporte;
     Reporte reportito;
     TblUsuario usuario;
+    ReporteCambios repCam;
     PSReporte psrep;
 
     public ReporteGerenteMHelper() {
@@ -50,14 +52,14 @@ public class ReporteGerenteMHelper implements Serializable{
         psrep= new PSReporte(new Reporte(), new TblUsuario());
         
         
-        psrep.getReportito().setEstatus(request.getParameter("Estatus"));
+        repCam.setEstatusI( request.getParameter("estatI"));
         psrep.getUsuario().setNomUser(request.getParameter("idEncargado"));
         psrep.getReportito().setProblema(request.getParameter("Problema"));
         
         if(psrep.getUsuario().getNomUser().length() == 0 || psrep.getUsuario().getNomUser()== null){
             return false;
         }
-        if(psrep.getReportito().getEstatus().length() == 0 || psrep.getReportito().getEstatus()== null){
+        if(psrep.getReportito().getEstatus().equals(repCam.getEstatusI())){
             return false;
         }
         if(psrep.getReportito().getProblema().length() == 0 || psrep.getReportito().getProblema()== null){
@@ -70,7 +72,7 @@ public class ReporteGerenteMHelper implements Serializable{
         public boolean AsignarReporteSop(HttpServletRequest request){
         psrep= new PSReporte(new Reporte(), new TblUsuario());
         
-        psrep.getReportito().setEstatus(request.getParameter("Estatus"));
+        repCam.setEstatusI( request.getParameter("estatI"));
         psrep.getUsuario().setNomUser(request.getParameter("idEncargado"));
         psrep.getReportito().setProblema(request.getParameter("Problema"));
         psrep.getReportito().setSolucion(request.getParameter("Solucion"));
@@ -78,7 +80,7 @@ public class ReporteGerenteMHelper implements Serializable{
         if(psrep.getUsuario().getNomUser().length() == 0 || psrep.getUsuario().getNomUser()== null){
             return false;
         }
-        if(psrep.getReportito().getEstatus().length() == 0 || psrep.getReportito().getEstatus()== null){
+        if(psrep.getReportito().getEstatus().equals(repCam.getEstatusI())){
             return false;
         }
         if(psrep.getReportito().getProblema().length() == 0 || psrep.getReportito().getProblema()== null){

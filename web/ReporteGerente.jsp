@@ -57,7 +57,7 @@
                                     <option value="A Mantenimiento">A Mantenimiento</option>
                                     <option value="Mantenimiento hecho">Mantenimiento hecho</option>
                                 </select>
-
+                                <label for="exampleFormControlInput1" class="form-label"> <b> Encargado </b> </label>
                                 <select id="idEncargado" name="idEncargado" class="form-select" aria-label="Default select example">
                                 <option selected>Selecciona Personal</option>
                                 <option aria-label="Default select example" value="Ingeniero de Soporte">Ingeniero Soporte</option>

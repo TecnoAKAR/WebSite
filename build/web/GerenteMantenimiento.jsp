@@ -14,23 +14,37 @@
         <title>Gerente de Mantenimiento</title>
     </head>
     <body>
+ <h1><center>Reportes en Mantenimiento</center></h1>
+      <br>
+     <br>
     <%
             String action = request.getParameter("action");
+            List<Reporte> Reportito= new ReporteGerenteMHelper().getList();
             if(action == null){
                 action = "";
             }
+            if(Reportito==null){
+                %>
+     <h4><center>Sin reportes que necesiten mantenimiento</center></h4>
+                <%
+            }
+            else{
         %>
     <div align="center">
-        <h1><center>Reportes Abiertos y en Mantenimiento</center></h1>
                         <table class="table">
                             <tr>
                                 <th>
                                     Reporte
                                 </th>
+                                <th>
+                                    Estatus
+                                </th>
+                                <th>
+                                    Fecha Inicial
+                                </th>
                             </tr>
 
                             <%
-                                 List<Reporte> Reportito= new ReporteGerenteMHelper().getList();
                                 for(Reporte reportito : Reportito){
                             %>
                                     <tr>
@@ -38,14 +52,23 @@
                                             <a href="?action=rep&idreporte=<%=reportito.getIdReporte()%>"> <%=reportito.getIdReporte()%></a>
                                         </td>
                                         <td>
-                                            
+                                            <%=reportito.getEstatus() %>
                                         </td>
-                                    </tr>    
+                                        <td>
+                                            <%=reportito.getFechaI()%>
+                                        </td>
+                                    </tr>  
                             <%
+                                }
                                 }
                             %>
 
                         </table>
+        
+        
+        <br>
+        <br>
+        
                     </div>        
                             <%
                                 if (action.equals("rep")) {

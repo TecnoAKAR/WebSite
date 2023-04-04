@@ -36,7 +36,7 @@
                 <hr>
                 <center>
                     <div class="Solucion" id="scroll">
-                        <form>
+                        <form method="post">
                             <label for="exampleFormControlTextarea1" class="form-label"><h4>Identificador</h4></label>
                             <br>
                             <input type="hidden" name="IdReporte" value="<%=sol.getRep().getIdReporte()%>"><%=sol.getRep().getIdReporte()%></input>
