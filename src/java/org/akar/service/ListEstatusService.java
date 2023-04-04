@@ -47,7 +47,7 @@ public class ListEstatusService {
             {
                 return null;
             }
-            resultSet = statement.executeQuery( "select distinct Reporte.idReporte, Problema,FechaI, FechaCambio, EstatusI from Reporte inner join ReporteCambios on Reporte.IdReporte=ReporteCambios.IdReporte inner join RelReporteEncargado on Reporte.IdReporte=RelReporteEncargado.IdReporte where IdEncargado=5 and estatusI='A Mantenimiento'" );
+            resultSet = statement.executeQuery( "select distinct Reporte.idReporte, Problema,FechaI, Estatus from Reporte inner join RelReporteEncargado on Reporte.IdReporte=RelReporteEncargado.IdReporte where IdEncargado=5 and estatus='En mantenimiento'" );
             if( resultSet == null )
             {
                 return null;
@@ -60,8 +60,7 @@ public class ListEstatusService {
                 listEstatusC.getRep().setIdReporte(resultSet.getInt(1));
                 listEstatusC.getRep().setProblema(resultSet.getString(2));
                 listEstatusC.getRep().setFechaI(resultSet.getDate(3));
-                listEstatusC.setFechaCambio(resultSet.getDate(4));
-                listEstatusC.setEstatusI(resultSet.getString(5));
+                listEstatusC.getRep().setEstatus(resultSet.getString(4));
                 ListEstatusC.add(listEstatusC);
             }
             resultSet.close();
@@ -79,7 +78,7 @@ public class ListEstatusService {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         ReporteCambios sol = null;
-        String sql = "select Reporte.idReporte, Problema,FechaI, FechaCambio, EstatusI from Reporte inner join ReporteCambios on Reporte.IdReporte=ReporteCambios.IdReporte inner join RelReporteEncargado on Reporte.IdReporte=RelReporteEncargado.IdReporte where Reporte.IdReporte=?";
+        String sql = "select Reporte.idReporte, Problema,FechaI, FechaCambio, Estatus from Reporte inner join ReporteCambios on Reporte.IdReporte=ReporteCambios.IdReporte inner join RelReporteEncargado on Reporte.IdReporte=RelReporteEncargado.IdReporte where Reporte.IdReporte=?";
         try 
         {
             connection = DBConnection.getConnection( );

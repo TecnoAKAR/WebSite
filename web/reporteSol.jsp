@@ -46,12 +46,6 @@
                             
                             <label for="exampleFormControlTextarea1" class="form-label"><%=sol.getRep().getProblema() %></label>
                             <br>
-                            <label for="exampleFormControlTextarea1" class="form-label"><h4>Última actualización</h4></label>
-                            <br>
-                            
-                            <label for="exampleFormControlTextarea1" class="form-label"><%=sol.getFechaCambio() %></label>
-                            <br>
-                            
                             <label for="exampleFormControlTextarea1" class="form-label"><h4>Identificador encargado</h4></label>
                             <br>
                             <input type="hidden" name="IdUsuario" value="5">5</input>
@@ -64,7 +58,7 @@
                             <label for="exampleFormControlTextarea1" class="form-label"><h4>Cambiar Estatus</h4></label>
                             <select class="form-select" aria-label="Default select example" name="EstatusF">
                                     <option selected>Selecciona el estatus</option>
-                                    <option aria-label="Default select example" value="Concluido">Concluido</option>
+                                    <option aria-label="Default select example" value="Mantenimiento finalizado">Mantenimiento finalizado</option>
                             </select>
                             <br>
                             <div class="mb-3">
