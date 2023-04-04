@@ -44,19 +44,19 @@ end if;
 end if;
 end; //
 
-create procedure sp_Login(in correoP nvarchar(50),contrasenaP nvarchar(50))
+create procedure sp_Login(in nomU nvarchar(50),contrasenaP nvarchar(50))
 begin
 declare xidPersona int;
 declare existe int;
 declare xMsj nvarchar(50);
 declare xContraSha nvarchar(200);
 set xContraSha =(select sha(contrasenaP));
-		set existe=(select count(*) from Usuario where Correo=correoP and Contrasena=xContraSha);
+		set existe=(select count(*) from Usuario where NomUsuario=nomU and Contrasena=xContraSha);
         if(existe=0) then
 			set xMsj="No existe usuario";
         else
 			if(existe = 1)then
-				set xidPersona=(select idUsuario from Usuario where Correo = correoP and Contrasena = xContraSha );
+				set xidPersona=(select idUsuario from Usuario where NomUsuario=nomU and Contrasena = xContraSha );
 				select RelTipoUsuario.idRelTipoUsuario, RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre,Usuario.ApellidoP, Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xidPersona;
 		end if;
         end if;
@@ -233,6 +233,6 @@ call sp_Registro('Kalid', 'Avila','Ponce', '2004-07-24','kalid@gmail.com','geren
 call sp_Registro('Luis Axel', 'Zarate','Lozano', '2004-06-11','luis@gmail.com','ingenierodesoporte','Ingeniero de Soporte',7);
 call sp_Registro('Alexander', 'Avila','Ponce', '2004-07-24','alexander@gmail.com','gerentedemantenimiento','Gerente de Mantenimiento',8);
 call sp_Registro('Rodrigo Vidal', 'Ramirez','Aguilar', '2004-05-24','rodrigo@gmail.com','ingenierodemantenimiento','Ingeniero de Mantenimiento',9);
-call sp_Registro('Usuario', 'Suoer','Super', '2004-05-24','superusuario@gmail.com','superusuario','Administrador',10);
+call sp_Registro('Usuario', 'Super','Super', '2004-05-24','superusuario@gmail.com','superusuario','Super usuario',10);
 call sp_Registro('Test', 'Test','Test', '2000-01-01','root@gmail.com','n0m3l0','Root', 4);
 
