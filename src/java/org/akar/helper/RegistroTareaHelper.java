@@ -24,7 +24,7 @@ public class RegistroTareaHelper {
     public boolean addRegistro( HttpServletRequest request ){
         reporte = new RelReporteUsuario();
         reporte.getRep().setProblema( request.getParameter("desc") );
-        reporte.getRep().setEstatus("estatus");
+        reporte.getRep().setEstatus(request.getParameter("estatus"));
         reporte.getRep().setFechaI( new Date() );
         reporte.getUser().setCorreo(request.getParameter("correo"));
         if( reporte.getRep().getProblema()== null || reporte.getRep().getProblema().length()==0 )
