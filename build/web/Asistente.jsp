@@ -70,7 +70,10 @@
                     <br>
                 </div>
                 <div>
-                    <input type="text" class="form-control" id="estatus" name="estatus" placeholder="Estatus" required>
+                    <select id="estatus" name="estatus" required class="form-select">
+                        <option selected>Selecciona el estatus del reporte</option>
+                        <option>Abierto</option>
+                    </select>
                     <br>
                     <br>
                 </div>
