@@ -87,7 +87,7 @@
                         reporte=new ReporteGerenteMHelper().AsignarReporteIng(request);
                         if(reporte==true){
                             %>
-                               <script> alert("Mantenimiento Finalizado"); </script>
+                               <script> alert("Reporte Actualizado"); </script>
                             <%
                         }
                             else{

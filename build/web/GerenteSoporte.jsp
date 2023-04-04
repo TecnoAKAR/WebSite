@@ -42,6 +42,9 @@
                                 <th>
                                     Fecha Inicial
                                 </th>
+                                <th>
+                                    Fecha Final
+                                </th>
                             </tr>
 
                             <%
@@ -56,6 +59,9 @@
                                         </td>
                                         <td>
                                             <%=reportito.getFechaI()%>
+                                        </td>
+                                         <td>
+                                            <%=reportito.getFechaF()%>
                                         </td>
                                     </tr>    
                             <%

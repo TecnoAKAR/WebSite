@@ -81,7 +81,7 @@ public class ReporteGerenteService {
             if(statement==null){
                 return null;
             }
-            resultSet=statement.executeQuery("Select idReporte,Problema, Estatus,Solucion, FechaI from Reporte");
+            resultSet=statement.executeQuery("Select idReporte,Problema, Estatus,Solucion, FechaI, FechaF from Reporte");
             if(resultSet==null){
                 return null;
             }
@@ -93,6 +93,7 @@ public class ReporteGerenteService {
                 reportito.setEstatus(resultSet.getString(3));
                 reportito.setSolucion(resultSet.getString(4));
                 reportito.setFechaI(resultSet.getDate(5));
+                reportito.setFechaF(resultSet.getDate(6));
                 Reportito.add(reportito);
             }
             resultSet.close();

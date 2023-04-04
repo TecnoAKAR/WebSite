@@ -36,7 +36,7 @@
                 <hr>
                 <center>
                     <div class="Solucion" id="scroll">
-                        <form method="post">
+                        <form>
                             <label for="exampleFormControlTextarea1" class="form-label"><h4>Identificador</h4></label>
                             <br>
                             <input type="hidden" name="IdReporte" value="<%=sol.getRep().getIdReporte()%>"><%=sol.getRep().getIdReporte()%></input>
@@ -58,7 +58,7 @@
                             <label for="exampleFormControlTextarea1" class="form-label"><h4>Cambiar Estatus</h4></label>
                             <select class="form-select" aria-label="Default select example" name="EstatusF">
                                     <option selected>Selecciona el estatus</option>
-                                    <option aria-label="Default select example" value="Mantenimiento finalizado">Mantenimiento finalizado</option>
+                                    <option aria-label="Default select example" value="Mantenimiento Finalizado">Mantenimiento Finalizado</option>
                             </select>
                             <br>
                             <div class="mb-3">

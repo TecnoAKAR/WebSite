@@ -117,7 +117,7 @@
         <%
                 } else{
         %>
-                    <div align="center">
+                    <div>
                         <table class="table">
                             <tr>
                                 <th>
@@ -136,7 +136,7 @@
                             %>
                                     <tr>
                                         <td>
-                                            <a href="?action=rep&tipo=Sol&idreporte=<%=reporte.getIdReporte()%>"> <button type="button" class="btn btn-Light"> <%=reporte.getIdReporte()%> </button> </a>
+                                            <a href="?action=rep&tipo=Sol&idreporte=<%=reporte.getIdReporte()%>"> <button type="button" class="btn btn-dark"> <%=reporte.getIdReporte()%> </button> </a>
                                         </td>
                                         <td>
                                             <%=reporte.getFechaI()%>
@@ -161,7 +161,7 @@
         <%
                 } else{
         %>
-                    <div align="center">
+                    <div>
                         <table class="table">
                             <tr>
                                 <th>
@@ -180,7 +180,7 @@
                             %>
                                     <tr>
                                         <td>
-                                            <a href="?action=rep&tipo=Mant&idreporte=<%=reporte.getIdReporte()%>"> <button type="button" class="btn btn-Light"> <%=reporte.getIdReporte()%> </button> </a>
+                                            <a href="?action=rep&tipo=Mant&idreporte=<%=reporte.getIdReporte()%>"> <button type="button" class="btn btn-dark"> <%=reporte.getIdReporte()%> </button> </a>
                                         </td>
                                         <td>
                                             <%=reporte.getFechaI()%>

@@ -48,10 +48,10 @@
                             </table>
                         </div>
                         <div>
-                            <form method="post">
+                            <form>
                                 <input hidden="true" id="Problema" name="Problema" value="<%=sol.getProblema()%>">
                                 <label for="exampleFormControlInput1" class="form-label"> <b> Estatus </b> </label>
-                                <select id="tipoUsuario" name="Estatus" class="form-control">
+                                <select id="Estatus" name="Estatus" class="form-control">
                                     <option selected> <%=sol.getEstatus()%> </option>
                                     <option value="En proceso">En proceso</option>
                                     <option value="A Mantenimiento">A Mantenimiento</option>
@@ -63,7 +63,6 @@
                                 <option aria-label="Default select example" value="Ingeniero de Soporte">Ingeniero Soporte</option>
                                 <option aria-label="Default select example" value="Gerente Mantenimiento">Gerente Mantenimiento</option>
                                 </select>
-                        </div>
 
                                 <button type="submit" id="send" name="send" value="enviar" class="btn btn-primary btn-lg">Asignar</button>
                             </form>

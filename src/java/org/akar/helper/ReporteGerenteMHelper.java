@@ -52,27 +52,30 @@ public class ReporteGerenteMHelper implements Serializable{
         psrep= new PSReporte(new Reporte(), new TblUsuario());
         
         
-        repCam.setEstatusI( request.getParameter("estatI"));
+        psrep.getReportito().setEstatus(request.getParameter("Estatus"));
         psrep.getUsuario().setNomUser(request.getParameter("idEncargado"));
         psrep.getReportito().setProblema(request.getParameter("Problema"));
         
         if(psrep.getUsuario().getNomUser().length() == 0 || psrep.getUsuario().getNomUser()== null){
             return false;
         }
-        if(psrep.getReportito().getEstatus().equals(repCam.getEstatusI())){
+        if(psrep.getReportito().getEstatus().length()==0||psrep.getReportito().getEstatus()== null){
             return false;
         }
         if(psrep.getReportito().getProblema().length() == 0 || psrep.getReportito().getProblema()== null){
             return false;
         }
-               
+        if(psrep.getReportito().getEstatus().equals("A Mantenimiento")){
+            return false;
+        }
+        
         return new ReporteGerenteMService().AsignarReporteIng(psrep.getUsuario(), psrep.getReportito());
         
     }
         public boolean AsignarReporteSop(HttpServletRequest request){
         psrep= new PSReporte(new Reporte(), new TblUsuario());
         
-        repCam.setEstatusI( request.getParameter("estatI"));
+        psrep.getReportito().setEstatus(request.getParameter("Estatus"));
         psrep.getUsuario().setNomUser(request.getParameter("idEncargado"));
         psrep.getReportito().setProblema(request.getParameter("Problema"));
         psrep.getReportito().setSolucion(request.getParameter("Solucion"));
@@ -80,13 +83,16 @@ public class ReporteGerenteMHelper implements Serializable{
         if(psrep.getUsuario().getNomUser().length() == 0 || psrep.getUsuario().getNomUser()== null){
             return false;
         }
-        if(psrep.getReportito().getEstatus().equals(repCam.getEstatusI())){
+        if(psrep.getReportito().getEstatus().length()==0||psrep.getReportito().getEstatus()== null){
             return false;
         }
         if(psrep.getReportito().getProblema().length() == 0 || psrep.getReportito().getProblema()== null){
             return false;
         }
         if(psrep.getReportito().getSolucion().length() == 0 || psrep.getReportito().getSolucion()== null){
+            return false;
+        }
+        if(psrep.getReportito().getEstatus().equals("A Mantenimiento")){
             return false;
         }
         return new ReporteGerenteMService().AsignarReporteSop(psrep.getUsuario(), psrep.getReportito());
