@@ -15,6 +15,7 @@ drop procedure if exists sp_GerenteSopIng;
 drop procedure if exists sp_GerenteSopMan;
 drop procedure if exists sp_GerenteManSop;
 drop procedure if exists sp_GerenteManIng;
+drop procedure if exists sp_addReporte;
 delimiter //
 
 create procedure sp_Registro( in nom nvarchar(50), pat nvarchar(50),
@@ -215,10 +216,21 @@ declare xIdUsuario int;
 declare xIdEncargado int;
 insert into Reporte (Problema, Estatus, Solucion, FechaI, FechaF) values (problema, estatus, ' ', now(), ' ');
 end;//
-call sp_Registro('Aranza Labra', 'Labra','Garcia', '2004-05-24','aranza@gmail.com','4R4NZ4L4BR4','Asistente',5); 
-call sp_Registro('Kalid', 'Avila','Ponce', '2004-07-24','kalid@gmail.com','K4L1D24073005','Gerente de Soporte',6);
-call sp_Registro('Luis Axel', 'Zarate','Lozano', '2004-06-11','luis@gmail.com','LU124X3LZ4R4T3','Ingeniero de Soporte',7);
-call sp_Registro('Alexander', 'Avila','Ponce', '2004-07-24','alexander@gmail.com','4L3X4ND3R24073005','Gerente de Mantenimiento',8);
-call sp_Registro('Rodrigo Vidal', 'Ramirez','Aguilar', '2004-05-24','rodrigo@gmail.com','R0DR1G0V1D4L','Ingeniero de Mantenimiento',9);
+
+create procedure sp_addReporte(in prob nvarchar(200), est nvarchar(40), fI date, usuC nvarchar(200))
+begin
+declare xIdUsuario int;
+declare xIdReo int;
+set xIdUsuario = (select idUsuario from usuario where correo = usuC);
+set xIdReo = (select ifnull(max(idReporte), 0)+1 from Reporte);
+insert into Reporte(idReporte,Problema,Estatus,FechaI) values(xIdReo ,prob, est, fI);
+insert into RelReporteUsuario(idUsuario, idReporte) values(xIdUsuario, xIdReo);
+end;//
+
+call sp_Registro('Aranza Labra', 'Labra','Garcia', '2004-05-24','aranza@gmail.com','asistente','Asistente',5); 
+call sp_Registro('Kalid', 'Avila','Ponce', '2004-07-24','kalid@gmail.com','gerentedesoporte','Gerente de Soporte',6);
+call sp_Registro('Luis Axel', 'Zarate','Lozano', '2004-06-11','luis@gmail.com','ingenierodesoporte','Ingeniero de Soporte',7);
+call sp_Registro('Alexander', 'Avila','Ponce', '2004-07-24','alexander@gmail.com','gerentedemantenimiento','Gerente de Mantenimiento',8);
+call sp_Registro('Rodrigo Vidal', 'Ramirez','Aguilar', '2004-05-24','rodrigo@gmail.com','ingenierodemantenimiento','Ingeniero de Mantenimiento',9);
 
 

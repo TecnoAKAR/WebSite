@@ -47,7 +47,7 @@ public class ListEstatusService {
             {
                 return null;
             }
-            resultSet = statement.executeQuery( "select distinct Reporte.idReporte, Problema,FechaI, FechaCambio, EstatusI from Reporte inner join ReporteCambios on Reporte.IdReporte=ReporteCambios.IdReporte inner join RelReporteEncargado on Reporte.IdReporte=RelReporteEncargado.IdReporte where IdEncargado=5 and estatusI='En Mantenimiento'" );
+            resultSet = statement.executeQuery( "select distinct Reporte.idReporte, Problema,FechaI, FechaCambio, EstatusI from Reporte inner join ReporteCambios on Reporte.IdReporte=ReporteCambios.IdReporte inner join RelReporteEncargado on Reporte.IdReporte=RelReporteEncargado.IdReporte where IdEncargado=5 and estatusI='A Mantenimiento'" );
             if( resultSet == null )
             {
                 return null;

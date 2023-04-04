@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
-        <file>
-            <url>src/java/org/akar/dao/RelTareaUsu.java</url>
-            <bookmark id="1">
-                <name/>
-                <line>6</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/src/java/org/akar/service/ReporteGerenteService.java</file>
-            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/web/GerenteSoporte.jsp</file>
-            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/src/java/org/akar/helper/ReporteGerenteMHelper.java</file>
-            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/web/GerenteMantenimiento.jsp</file>
-            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/src/java/org/akar/helper/ReporteGerenteHelper.java</file>
-            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/src/java/org/akar/dao/PSReporte.java</file>
-            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/src/java/org/akar/service/ReporteGerenteMService.java</file>
-=======
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/web/Soporte.jsp</file>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/src/java/org/akar/service/SolucionService.java</file>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/src/java/org/akar/helper/SolucionHelper.java</file>
-            <file>file:/C:/Users/Axel%20Zarate%20Lozano/Documents/NetBeansProjects/akar/web/reporte.jsp</file>
->>>>>>> 63ec7b7786dc353b32d378bdf0b2b4891fb85465
+            <file>file:/C:/Users/kalid/OneDrive/Documentos/NetBeansProjects/WebSite/web/Asistente.jsp</file>
+            <file>file:/C:/Users/kalid/OneDrive/Documentos/NetBeansProjects/WebSite/src/java/org/akar/service/RegistroService.java</file>
+            <file>file:/C:/Users/kalid/OneDrive/Documentos/NetBeansProjects/WebSite/web/Soporte.jsp</file>
+            <file>file:/C:/Users/kalid/OneDrive/Documentos/NetBeansProjects/WebSite/src/java/org/akar/service/ListEstatusService.java</file>
+            <file>file:/C:/Users/kalid/OneDrive/Documentos/NetBeansProjects/WebSite/src/java/org/akar/helper/RegistroTareaHelper.java</file>
         </group>
     </open-files>
 </project-private>
