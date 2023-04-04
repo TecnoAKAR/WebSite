@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.akar.dao.PSReporte;
 import org.akar.dao.Reporte;
 import org.akar.dao.TblUsuario;
+import org.akar.dao.ReporteCambios;
 import org.akar.service.ReporteGerenteService;
 
 /**
@@ -22,14 +23,15 @@ public class ReporteGerenteHelper implements Serializable{
     private List<Reporte> reporte;
     Reporte reportito;
     TblUsuario usuario;
-    PSReporte psrep;
+    ReporteCambios repCam;
+    PSReporte psrep,psrepor1;
 
     public ReporteGerenteHelper() {
     }
     
     
         public Reporte getById(HttpServletRequest par){
-        Reporte rep= new Reporte();
+            Reporte rep= new Reporte();
         rep.setIdReporte( Integer.parseInt(par.getParameter("idreporte")) );
         
         if(rep.getIdReporte() == 0){
@@ -56,10 +58,13 @@ public class ReporteGerenteHelper implements Serializable{
         if(psrep.getUsuario().getNomUser().length() == 0 || psrep.getUsuario().getNomUser()== null){
             return false;
         }
-        if(psrep.getReportito().getEstatus().length() == 0 || psrep.getReportito().getEstatus()== null){
+        if(psrep.getReportito().getEstatus().length()==0||psrep.getReportito().getEstatus()== null){
             return false;
         }
         if(psrep.getReportito().getProblema().length() == 0 || psrep.getReportito().getProblema()== null){
+            return false;
+        }
+        if(psrep.getReportito().getEstatus().equals("Abierto")){
             return false;
         }
                
@@ -77,7 +82,7 @@ public class ReporteGerenteHelper implements Serializable{
         if(psrep.getUsuario().getNomUser().length() == 0 || psrep.getUsuario().getNomUser()== null){
             return false;
         }
-        if(psrep.getReportito().getEstatus().length() == 0 || psrep.getReportito().getEstatus()== null){
+        if(psrep.getReportito().getEstatus().length()==0||psrep.getReportito().getEstatus()== null){
             return false;
         }
         if(psrep.getReportito().getProblema().length() == 0 || psrep.getReportito().getProblema()== null){

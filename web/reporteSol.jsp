@@ -58,7 +58,7 @@
                             <label for="exampleFormControlTextarea1" class="form-label"><h4>Cambiar Estatus</h4></label>
                             <select class="form-select" aria-label="Default select example" name="EstatusF">
                                     <option selected>Selecciona el estatus</option>
-                                    <option aria-label="Default select example" value="Mantenimiento finalizado">Mantenimiento finalizado</option>
+                                    <option aria-label="Default select example" value="Mantenimiento Finalizado">Mantenimiento Finalizado</option>
                             </select>
                             <br>
                             <div class="mb-3">

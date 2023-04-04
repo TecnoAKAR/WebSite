@@ -10,6 +10,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.akar.dao.PSReporte;
 import org.akar.dao.Reporte;
+import org.akar.dao.ReporteCambios;
 import org.akar.dao.TblUsuario;
 import org.akar.service.ReporteGerenteMService;
 import org.akar.service.ReporteGerenteService;
@@ -21,8 +22,11 @@ import org.akar.service.ReporteGerenteService;
 public class ReporteGerenteMHelper implements Serializable{
     
     private List<Reporte> reporte;
+    private List<TblUsuario> ing;
+    private List<TblUsuario> gen;
     Reporte reportito;
     TblUsuario usuario;
+    ReporteCambios repCam;
     PSReporte psrep;
 
     public ReporteGerenteMHelper() {
@@ -37,13 +41,15 @@ public class ReporteGerenteMHelper implements Serializable{
             return null;
         }
         
-        Reporte report = new ReporteGerenteService().getById(rep);
+        Reporte report = new ReporteGerenteMService().getById(rep);
         if(report != null){
             return report;
         } else{
             return null;
         }
     }
+
+
 
     
     public boolean AsignarReporteIng(HttpServletRequest request){
@@ -57,13 +63,16 @@ public class ReporteGerenteMHelper implements Serializable{
         if(psrep.getUsuario().getNomUser().length() == 0 || psrep.getUsuario().getNomUser()== null){
             return false;
         }
-        if(psrep.getReportito().getEstatus().length() == 0 || psrep.getReportito().getEstatus()== null){
+        if(psrep.getReportito().getEstatus().length()==0||psrep.getReportito().getEstatus()== null){
             return false;
         }
         if(psrep.getReportito().getProblema().length() == 0 || psrep.getReportito().getProblema()== null){
             return false;
         }
-               
+        if(psrep.getReportito().getEstatus().equals("A Mantenimiento")){
+            return false;
+        }
+        
         return new ReporteGerenteMService().AsignarReporteIng(psrep.getUsuario(), psrep.getReportito());
         
     }
@@ -78,7 +87,7 @@ public class ReporteGerenteMHelper implements Serializable{
         if(psrep.getUsuario().getNomUser().length() == 0 || psrep.getUsuario().getNomUser()== null){
             return false;
         }
-        if(psrep.getReportito().getEstatus().length() == 0 || psrep.getReportito().getEstatus()== null){
+        if(psrep.getReportito().getEstatus().length()==0||psrep.getReportito().getEstatus()== null){
             return false;
         }
         if(psrep.getReportito().getProblema().length() == 0 || psrep.getReportito().getProblema()== null){
@@ -87,13 +96,16 @@ public class ReporteGerenteMHelper implements Serializable{
         if(psrep.getReportito().getSolucion().length() == 0 || psrep.getReportito().getSolucion()== null){
             return false;
         }
+        if(psrep.getReportito().getEstatus().equals("A Mantenimiento")){
+            return false;
+        }
         return new ReporteGerenteMService().AsignarReporteSop(psrep.getUsuario(), psrep.getReportito());
         
     }
     
     
     public boolean loadList(){
-        reporte= ReporteGerenteService.getListReporte();
+        reporte= ReporteGerenteMService.getListReporte();
         return reporte!=null && reporte.size()>0;
     }
     
@@ -110,4 +122,21 @@ public class ReporteGerenteMHelper implements Serializable{
         this.reporte=reporte;
     }
     
+
+    public boolean loadlist2(){
+        ing = ReporteGerenteMService.getListIng();
+        return ing != null && ing.size()>0;
+}
+    public List<TblUsuario>getlist(){
+        if(ing==null || ing.size()==0){
+            if(!loadlist2()){
+                return null;
+            }
+        }
+        return ing;
+    }
+    
+    public void setlist(List<TblUsuario> ing){
+        this.ing=ing;
+    }
 }

@@ -65,7 +65,7 @@
                         <%
                             if(request.getParameter("tipo").equals("Sol")){
                         %>
-                                <div>
+                                <div class="center">
                                     <form method="post" action="Soporte.jsp">
 
                                         <input type="hidden" id="idTarea" name="idRep" value="<%=rep.getRep().getIdReporte()%>">
@@ -81,15 +81,17 @@
                                         <label for="exampleFormControlTextarea1" class="form-label"> <b> Solución </b> </label>
                                         <textarea class="form-control" name="sol" id="sol" rows="3"> </textarea>
 
-                                        <button type="submit" id="send" name="send" value="enviar" class="btn btn-primary btn-lg">Subir</button>
-                                        <a href="?action=solu"> <button type="button" class="btn btn-secondary btn-lg">Regresar a la lista</button> </a>
-
+                                        </br>
+                                        <center>
+                                            <button type="submit" id="send" name="send" value="enviar" class="btn btn-primary btn-dark">Subir</button>
+                                            <a href="?action=solu"> <button type="button" class="btn btn-secondary btn-lg">Regresar a la lista</button> </a>
+                                        </center>    
                                     </form>
                                 </div>
                         <%
                             } else{
                         %>
-                                <div>
+                                <div> 
                                     <form method="post" action="Soporte.jsp">
 
                                         <input type="hidden" id="idTarea" name="idRep" value="<%=rep.getRep().getIdReporte()%>">
@@ -106,11 +108,14 @@
                                         <label for="exampleFormControlTextarea1" class="form-label"> <b> Solución </b> </label>
                                         <textarea disabled="true" class="form-control" rows="3"> <%=rep.getRep().getSolucion()%> </textarea>
 
-                                        <button type="submit" id="send" name="send" value="enviar" class="btn btn-primary btn-lg">Subir</button>
-                                        <a href="?action=solu"> <button type="button" class="btn btn-secondary btn-lg">Regresar a la lista</button> </a>
-
+                                        </br>
+                                        <center>  
+                                            <button type="submit" id="send" name="send" value="enviar" class="btn btn-primary btn-lg">Subir</button>
+                                            <a href="?action=solu"> <button type="button" class="btn btn-secondary btn-lg">Regresar a la lista</button> </a>
+                                        </center>
                                     </form>
-                                </div>
+                                        
+                                 </div>
         <%                                
                     }
                 }

@@ -1,5 +1,6 @@
 use AKAR;
 drop procedure if exists sp_Registro;
+drop procedure if exists sp_asis;
 drop procedure if exists sp_Login;
 drop procedure if exists sp_Registromenordeedad;
 drop procedure if exists sp_ActualizarUsuario;
@@ -234,5 +235,4 @@ call sp_Registro('Alexander', 'Avila','Ponce', '2004-07-24','alexander@gmail.com
 call sp_Registro('Rodrigo Vidal', 'Ramirez','Aguilar', '2004-05-24','rodrigo@gmail.com','ingenierodemantenimiento','Ingeniero de Mantenimiento',9);
 call sp_Registro('Usuario', 'Suoer','Super', '2004-05-24','superusuario@gmail.com','superusuario','Administrador',10);
 call sp_Registro('Test', 'Test','Test', '2000-01-01','root@gmail.com','n0m3l0','Root', 4);
-
 
