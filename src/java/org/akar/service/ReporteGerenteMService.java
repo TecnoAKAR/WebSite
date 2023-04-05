@@ -125,7 +125,7 @@ public class ReporteGerenteMService {
             if(statement==null){
                 return null;
             }
-            resultSet=statement.executeQuery("select * from Reporte where Estatus='A Mantenimiento'");
+            resultSet=statement.executeQuery("select * from Reporte where Estatus='Mantenimiento Finalizado' or 'A Mantenimiento'");
             if(resultSet==null){
                 return null;
             }

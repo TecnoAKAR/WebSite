@@ -4,6 +4,8 @@
     Author     : kalid
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="org.akar.dao.TblUsuario"%>
 <%@page import="org.akar.helper.ReporteGerenteHelper"%>
 <%@page import="org.akar.dao.Reporte"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -77,7 +79,6 @@
                                         <%
                                     }
                                 %>
-                                <option aria-label="Default select example" value="Gerente Mantenimiento">Gerente Mantenimiento</option>
                                 </select>
 
                                 <button type="submit" id="send" name="send" value="enviar" class="btn btn-primary btn-lg">Asignar</button>
