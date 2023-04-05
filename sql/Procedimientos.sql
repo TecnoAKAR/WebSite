@@ -228,11 +228,11 @@ insert into Reporte(idReporte,Problema,Estatus,FechaI) values(xIdReo ,prob, est,
 insert into RelReporteUsuario(idUsuario, idReporte) values(xIdUsuario, xIdReo);
 end;//
 
-call sp_Registro('Aranza Labra', 'Labra','Garcia', '2004-05-24','aranza@gmail.com','asistente','Asistente',5); 
-call sp_Registro('Kalid', 'Avila','Ponce', '2004-07-24','kalid@gmail.com','gerentedesoporte','Gerente de Soporte',6);
-call sp_Registro('Luis Axel', 'Zarate','Lozano', '2004-06-11','luis@gmail.com','ingenierodesoporte','Ingeniero de Soporte',7);
-call sp_Registro('Alexander', 'Avila','Ponce', '2004-07-24','alexander@gmail.com','gerentedemantenimiento','Gerente de Mantenimiento',8);
-call sp_Registro('Rodrigo Vidal', 'Ramirez','Aguilar', '2004-05-24','rodrigo@gmail.com','ingenierodemantenimiento','Ingeniero de Mantenimiento',9);
-call sp_Registro('Usuario', 'Super','Super', '2004-05-24','superusuario@gmail.com','superusuario','Super usuario',10);
+call sp_Registro('Aranza Paulina', 'Labra','Garcia', '2004-05-24','aranza@gmail.com','asistente','ARANZA',5); 
+call sp_Registro('Kalid', 'Avila','Ponce', '2004-07-24','kalid@gmail.com','gerentedesoporte','KALID',6);
+call sp_Registro('Luis Axel', 'Zarate','Lozano', '2004-06-11','luis@gmail.com','ingenierodesoporte','LUIS AXEL',7);
+call sp_Registro('Alexander', 'Avila','Ponce', '2004-07-24','alexander@gmail.com','gerentedemantenimiento','ALEXANDER',8);
+call sp_Registro('Rodrigo Vidal', 'Ramirez','Aguilar', '2004-05-24','rodrigo@gmail.com','ingenierodemantenimiento','RODRIGO VIDAL',9);
+call sp_Registro('Usuario', 'Super','Super', '2004-05-24','superusuario@gmail.com','superusuario','Administrador',10);
 call sp_Registro('Test', 'Test','Test', '2000-01-01','root@gmail.com','n0m3l0','Root', 4);
 

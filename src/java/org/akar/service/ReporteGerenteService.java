@@ -105,6 +105,81 @@ public class ReporteGerenteService {
             e.printStackTrace();
         }
         return null;}
+        public static List<TblUsuario> getListIng(){
+        List<TblUsuario> reportito=null;
+        Connection con=null;
+        Statement statement=null;
+        ResultSet resultSet=null;
+        TblUsuario rep =null;
+        try{
+            con=getConnection();
+            if (con==null){
+                return null;
+            }
+            statement=con.createStatement();
+            if(statement==null){
+                return null;
+            }
+            resultSet=statement.executeQuery("SELECT NomUsuario FROM Usuario JOIN RelTipoUsuario ON Usuario.idUsuario = RelTipoUsuario.idUsuario\n" +
+            "JOIN TipoUsuario ON RelTipoUsuario.idTipo = TipoUsuario.idTipo\n" +
+            "WHERE TipoUsuario.idTipo = '7';");
+            if(resultSet==null){
+                return null;
+            }
+            reportito = new ArrayList<>();
+            while(resultSet.next()){
+                rep = new TblUsuario();
+                rep.setNomUser(resultSet.getString(1));
+                reportito.add(rep);
+            }
+            resultSet.close();
+            closeConnection(con);
+            return reportito;
+        }
+        
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+        public static List<TblUsuario> getListGer(){
+        List<TblUsuario> reportito=null;
+        Connection con=null;
+        Statement statement=null;
+        ResultSet resultSet=null;
+        TblUsuario rep =null;
+        try{
+            con=getConnection();
+            if (con==null){
+                return null;
+            }
+            statement=con.createStatement();
+            if(statement==null){
+                return null;
+            }
+            resultSet=statement.executeQuery("SELECT NomUsuario FROM Usuario JOIN RelTipoUsuario ON Usuario.idUsuario = RelTipoUsuario.idUsuario\n" +
+            "JOIN TipoUsuario ON RelTipoUsuario.idTipo = TipoUsuario.idTipo\n" +
+            "WHERE TipoUsuario.idTipo = '8';");
+            if(resultSet==null){
+                return null;
+            }
+            reportito = new ArrayList<>();
+            while(resultSet.next()){
+                rep = new TblUsuario();
+                rep.setNomUser(resultSet.getString(1));
+                reportito.add(rep);
+            }
+            resultSet.close();
+            closeConnection(con);
+            return reportito;
+        }
+        
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public boolean AsignarReporteIng(TblUsuario usuario, Reporte reportito){
         Connection connection = null;

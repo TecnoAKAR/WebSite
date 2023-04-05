@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.akar.dao.PSReporte;
 import org.akar.dao.Reporte;
 import org.akar.dao.ReporteCambios;
+import org.akar.dao.TblTipoUsuario;
 import org.akar.dao.TblUsuario;
 import org.akar.service.ReporteGerenteMService;
 import org.akar.service.ReporteGerenteService;
@@ -48,14 +49,9 @@ public class ReporteGerenteMHelper implements Serializable{
             return null;
         }
     }
-
-
-
-    
+        
     public boolean AsignarReporteIng(HttpServletRequest request){
-        psrep= new PSReporte(new Reporte(), new TblUsuario());
-        
-        
+        psrep= new PSReporte(new Reporte(), new TblUsuario(), new TblTipoUsuario());
         psrep.getReportito().setEstatus(request.getParameter("Estatus"));
         psrep.getUsuario().setNomUser(request.getParameter("idEncargado"));
         psrep.getReportito().setProblema(request.getParameter("Problema"));
@@ -72,12 +68,18 @@ public class ReporteGerenteMHelper implements Serializable{
         if(psrep.getReportito().getEstatus().equals("A Mantenimiento")){
             return false;
         }
+        if(psrep.getReportito().getEstatus().equals("En Mantenimiento") && psrep.getUsuario().getNomUser().equals("KALID")){
+            return false;
+        }
+        if(psrep.getReportito().getEstatus().equals("Mantenimiento Finalizado") && psrep.getUsuario().getNomUser().equals("RODRIO VIDAL")){
+            return false;
+        }
         
         return new ReporteGerenteMService().AsignarReporteIng(psrep.getUsuario(), psrep.getReportito());
         
     }
         public boolean AsignarReporteSop(HttpServletRequest request){
-        psrep= new PSReporte(new Reporte(), new TblUsuario());
+        psrep= new PSReporte(new Reporte(), new TblUsuario(),new TblTipoUsuario());
         
         psrep.getReportito().setEstatus(request.getParameter("Estatus"));
         psrep.getUsuario().setNomUser(request.getParameter("idEncargado"));
@@ -99,6 +101,13 @@ public class ReporteGerenteMHelper implements Serializable{
         if(psrep.getReportito().getEstatus().equals("A Mantenimiento")){
             return false;
         }
+        if(psrep.getReportito().getEstatus().equals("En Mantenimiento") && psrep.getUsuario().getNomUser().equals("KALID")){
+            return false;
+        }
+        if(psrep.getReportito().getEstatus().equals("Mantenimiento Finalizado") && psrep.getUsuario().getNomUser().equals("RODRIO VIDAL")){
+            return false;
+        }
+        
         return new ReporteGerenteMService().AsignarReporteSop(psrep.getUsuario(), psrep.getReportito());
         
     }
@@ -138,5 +147,21 @@ public class ReporteGerenteMHelper implements Serializable{
     
     public void setlist(List<TblUsuario> ing){
         this.ing=ing;
+    }
+    public boolean loadlist3(){
+        gen = ReporteGerenteMService.getListGer();
+        return gen != null && gen.size()>0;
+}
+    public List<TblUsuario>getlist2(){
+        if(gen==null || gen.size()==0){
+            if(!loadlist3()){
+                return null;
+            }
+        }
+        return gen;
+    }
+    
+    public void setlist2(List<TblUsuario> gen){
+        this.gen=gen;
     }
 }

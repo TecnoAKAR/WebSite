@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+<<<<<<< HEAD
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/proyectosoportef/WebSite/web/Asistente.jsp</file>
             <file>file:/D:/proyectosoportef/WebSite/src/java/org/akar/helper/RegistroTareaHelper.java</file>
+=======
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/src/java/org/akar/service/ReporteGerenteService.java</file>
+            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/web/GerenteSoporte.jsp</file>
+            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/web/ReporteGerenteM.jsp</file>
+            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/src/java/org/akar/helper/ReporteGerenteHelper.java</file>
+            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/src/java/org/akar/dao/Reporte.java</file>
+            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/web/Asistente.jsp</file>
+            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/src/java/org/akar/service/ReporteGerenteMService.java</file>
+            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/web/Soporte.jsp</file>
+            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/web/ReporteGerente.jsp</file>
+>>>>>>> 17905aeeba6bfa5d3aec272a8d146b6ce54bcff4
         </group>
     </open-files>
 </project-private>
