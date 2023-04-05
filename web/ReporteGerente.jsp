@@ -63,7 +63,7 @@
                                 </select>
                                 <label for="exampleFormControlInput1" class="form-label"> <b> Encargado </b> </label>
                                 <select id="idEncargado" name="idEncargado" class="form-select" aria-label="Default select example">
-                                <option selected>Ingenieros de Soporte</option>
+                                    <option selected>Ingenieros de Soporte</option>
                                 <%
                                     for(TblUsuario repor : reportito){
                                         %>
