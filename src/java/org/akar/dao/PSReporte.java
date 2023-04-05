@@ -13,10 +13,12 @@ public class PSReporte {
     
     Reporte reportito;
     TblUsuario usuario;
+    TblTipoUsuario tipo;
     
-    public PSReporte(Reporte reporte, TblUsuario usuario){
+    public PSReporte(Reporte reporte, TblUsuario usuario,TblTipoUsuario tipo ){
         this.reportito=reporte;
         this.usuario=usuario;
+        this.tipo=tipo;
     }
 
     public TblUsuario getUsuario() {
@@ -33,6 +35,13 @@ public class PSReporte {
 
     public void setReportito(Reporte reportito) {
         this.reportito = reportito;
+    }
+    public TblTipoUsuario getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TblTipoUsuario tipo) {
+        this.tipo = tipo;
     }
     
     

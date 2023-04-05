@@ -20,6 +20,7 @@
             
                     Reporte sol = new ReporteGerenteMHelper().getById(request);
                     List<TblUsuario> reportito = new ReporteGerenteMHelper().getlist();
+                    List<TblUsuario> reportito2= new ReporteGerenteMHelper().getlist2();
                     if(sol == null){
         %>
                         <h3> Ha ocurrido un error </h3>
@@ -51,7 +52,7 @@
                             </table>
                         </div>
                         <div>
-                            <form method="post">
+                            <form method="post" action="GerenteMantenimiento.jsp">
                                 <input hidden="true" id="Problema" name="Problema" value="<%=sol.getProblema()%>">
                                 <input hidden="true" id="Solucion" name="Solucion" value="<%=sol.getSolucion()%>">
                                 <label for="exampleFormControlInput1" class="form-label"> <b> Estatus </b> </label>
@@ -72,8 +73,14 @@
                                     }
                                 %>
                                 <option selected>Gerentes de Soporte</option>
+                                 <%
+                                    for(TblUsuario repor : reportito2){
+                                        %>
+                                            <option value="<%=repor.getNomUser()%>"> <%=repor.getNomUser()%> </option>                            
+                                        <%
+                                    }
+                                %>
                                 </select>
-                        </div>
 
                                 <button type="submit" id="send" name="send" value="enviar" class="btn btn-primary btn-lg">Asignar</button>
                             </form>

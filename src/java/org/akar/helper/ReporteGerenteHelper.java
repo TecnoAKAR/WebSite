@@ -12,6 +12,7 @@ import org.akar.dao.PSReporte;
 import org.akar.dao.Reporte;
 import org.akar.dao.TblUsuario;
 import org.akar.dao.ReporteCambios;
+import org.akar.dao.TblTipoUsuario;
 import org.akar.service.ReporteGerenteService;
 
 /**
@@ -48,7 +49,7 @@ public class ReporteGerenteHelper implements Serializable{
 
     
     public boolean AsignarReporteIng(HttpServletRequest request){
-        psrep= new PSReporte(new Reporte(), new TblUsuario());
+        psrep= new PSReporte(new Reporte(), new TblUsuario(), new TblTipoUsuario());
         
         
         psrep.getReportito().setEstatus(request.getParameter("Estatus"));
@@ -72,7 +73,7 @@ public class ReporteGerenteHelper implements Serializable{
         
     }
         public boolean AsignarReporteMan(HttpServletRequest request){
-        psrep= new PSReporte(new Reporte(), new TblUsuario());
+        psrep= new PSReporte(new Reporte(), new TblUsuario(), new TblTipoUsuario());
         
         psrep.getReportito().setEstatus(request.getParameter("Estatus"));
         psrep.getUsuario().setNomUser(request.getParameter("idEncargado"));
