@@ -125,7 +125,7 @@ public class ReporteGerenteMService {
             if(statement==null){
                 return null;
             }
-            resultSet=statement.executeQuery("select * from Reporte where Estatus='Mantenimiento Finalizado' or 'A Mantenimiento'");
+            resultSet=statement.executeQuery("SELECT * FROM Reporte WHERE Estatus = 'A Mantenimiento' OR Estatus = 'Mantenimiento Finalizado';");
             if(resultSet==null){
                 return null;
             }
@@ -167,7 +167,7 @@ public class ReporteGerenteMService {
             }
             resultSet=statement.executeQuery("SELECT NomUsuario FROM Usuario JOIN RelTipoUsuario ON Usuario.idUsuario = RelTipoUsuario.idUsuario\n" +
             "JOIN TipoUsuario ON RelTipoUsuario.idTipo = TipoUsuario.idTipo\n" +
-            "WHERE TipoUsuario.idTipo = '9';");
+            "WHERE TipoUsuario.idTipo = '9'");
             if(resultSet==null){
                 return null;
             }
@@ -204,7 +204,7 @@ public class ReporteGerenteMService {
             }
             resultSet=statement.executeQuery("SELECT NomUsuario FROM Usuario JOIN RelTipoUsuario ON Usuario.idUsuario = RelTipoUsuario.idUsuario\n" +
             "JOIN TipoUsuario ON RelTipoUsuario.idTipo = TipoUsuario.idTipo\n" +
-            "WHERE TipoUsuario.idTipo = '6';");
+            "WHERE TipoUsuario.idTipo = '6'");
             if(resultSet==null){
                 return null;
             }

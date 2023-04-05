@@ -12,6 +12,7 @@ public class Reporte implements Serializable{
     String solucion;
     Date fechaI;
     Date fechaF;
+    Date fechaC;
 
     public int getIdReporte() {
         return idReporte;
@@ -59,6 +60,14 @@ public class Reporte implements Serializable{
 
     public void setFechaF(Date fechaF) {
         this.fechaF = fechaF;
+    }
+
+    public Date getFechaC() {
+        return fechaC;
+    }
+
+    public void setFechaC(Date fechaC) {
+        this.fechaC = fechaC;
     }
     
 }

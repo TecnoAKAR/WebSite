@@ -52,7 +52,7 @@
                             </table>
                         </div>
                         <div>
-                            <form>
+                            <form method="post" action="GerenteSoporte.jsp">
                                 <input hidden="true" id="Problema" name="Problema" value="<%=sol.getProblema()%>">
                                 <label for="exampleFormControlInput1" class="form-label"> <b> Estatus </b> </label>
                                 <select id="Estatus" name="Estatus" class="form-control">
