@@ -1,8 +1,24 @@
+<%@page import="org.akar.dao.PSUsuario"%>
 <%@page import="org.akar.dao.PSReporte"%>
 <%@page import="org.akar.helper.ReporteGerenteHelper"%>
 <%@page import="java.util.List"%>
 <%@page import="org.akar.dao.Reporte"%>
+<%
+    PSUsuario sesion = (PSUsuario)session.getAttribute("usuario");
+
+    if(sesion != null){
+        if(sesion.getTipo().getIdTipo() != 6 && sesion.getTipo().getIdTipo() != 10){
+            response.sendRedirect("notAccess.jsp");
+        }
+    } else{
+        response.sendRedirect("notSession.jsp");
+    }
+%>
 <html lang="esp">
+    <link rel="stylesheet" href="sources/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="sources/assets/css/akar.css">
+    <link rel="stylesheet" href="sources/assets/css/animated.css">
+    <link rel="stylesheet" href="sources/assets/css/owl.css">
     
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,6 +30,64 @@
         <title>Gerente de Soporte</title>
     </head>
     <body>
+        <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="main-nav">
+                            <%
+                                if(sesion.getTipo().getIdTipo() == 10){
+                            %>
+                                    <ul class="nav">
+                                        <li class="scroll-to-section"><a href="Asistente.jsp">Asistente</a></li>
+                                        <li class="scroll-to-section"><a href="GerenteSoporte.jsp">Gerente de soporte</a></li>
+                                        <li class="scroll-to-section"><a href="GerenteMantenimiento.jsp">Gerente de mantenimiento</a></li>
+                                        <li class="scroll-to-section"><a href="IngMantenimiento.jsp">Ing de mantenimiento</a></li>
+                                        <li class="scroll-to-section"><a href="Soporte.jsp" class="active">Ing de soporte</a></li>
+                                        <li class="scroll-to-section"><a href="?action=close">Cerrar sesión</a></li> 
+                                    </ul>        
+                                    <a class='menu-trigger'>
+                                        <span>Menu</span>
+                                    </a>
+                            <%
+                                } else{
+                            %>
+                                    <ul class="nav">
+                                    <li class="scroll-to-section"><a href="#top" class="active">Inicio</a></li>
+                                    <li class="scroll-to-section"><a href="#sobrenosotros">Sobre nosotros</a></li>
+                                    <li class="scroll-to-section"><a href="#proyecto">Proyecto</a></li>
+                                    <li class="scroll-to-section"><a href="#galeria">Galería</a></li>
+                                    <li class="scroll-to-section"><a href="Foro.jsp">Foro</a></li>
+                                    <li class="scroll-to-section"><a href="#contact">Contáctanos</a></li> 
+                                    <li class="scroll-to-section">
+                                      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="true"> <%= sesion.getUsuario().getNomUser() %> </a>
+                                      <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="profile.jsp">Perfil</a></li>
+                                        <li><a class="dropdown-item" href="editProf.jsp">Editar perfil</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="?action=close" id="action" name="action" value="close">Cerrar sesión</a></li>
+                                      </ul>
+                                    </li>
+
+
+
+                                  </ul>        
+                                  <a class='menu-trigger'>
+                                      <span>Menu</span>
+                                  </a>
+                            <%
+                                }
+                            %>
+                            
+                            <!-- ***** Menu End ***** -->
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+                                      <br>
+                            <br>
+                            <br><br><br>
      <h1><center>Reportes Abiertos y en Mantenimiento</center></h1>
      <br>
      <br>
@@ -140,7 +214,17 @@
                         }
                         }
                         }
-%>
+            if(action == null){
+                action = "";
+            }
+            switch(action){
+                case "close":
+                    request.getSession().removeAttribute("usuario");
+                    response.sendRedirect("index.jsp");
+                    break;
+            }        
+        %>
+
                             
                 
 

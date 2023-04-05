@@ -5,7 +5,12 @@
         <group>
             <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/src/java/org/akar/service/ReporteGerenteService.java</file>
             <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/web/GerenteSoporte.jsp</file>
+            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/web/ReporteGerenteM.jsp</file>
             <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/src/java/org/akar/helper/ReporteGerenteHelper.java</file>
+            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/src/java/org/akar/dao/Reporte.java</file>
+            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/web/Asistente.jsp</file>
+            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/src/java/org/akar/service/ReporteGerenteMService.java</file>
+            <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/web/Soporte.jsp</file>
             <file>file:/C:/Users/kalid/OneDrive/Documentos/WebSite/web/ReporteGerente.jsp</file>
         </group>
     </open-files>
