@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import org.akar.dao.RelReporteEncargado;
 import org.akar.dao.RelReporteUsuario;
 import org.akar.dao.ReporteCambios;
 import org.akar.dao.Reporte;
@@ -25,28 +26,9 @@ public class SolucionHelper {
         usu = new TblUsuario();
     }
     
-    public List<Reporte> getListSop(int idUsuario){
-        usu.setIdUsuario(idUsuario);
-
-        if(usu.getIdUsuario() == 0){
-            return null;
-        }
+    public List<RelReporteEncargado> getList(){
         
-        List<Reporte> list = new SolucionService().getListSop(usu);
-        if(list != null){
-            return list;
-        } else{
-            return null;
-        }
-    }
-    
-    public List<Reporte> getListMan(int idUsuario){
-        usu.setIdUsuario(idUsuario);
-        if(usu.getIdUsuario() == 0){
-            return null;
-        }
-        
-        List<Reporte> list = new SolucionService().getListMan(usu);
+        List<RelReporteEncargado> list = new SolucionService().getList();
         if(list != null){
             return list;
         } else{
@@ -69,7 +51,7 @@ public class SolucionHelper {
         }
     }
     
-    public boolean sp_Soporte(HttpServletRequest par){
+    public String sp_Soporte(HttpServletRequest par){
         Date fecha = new Date();
         rep.setIdReporte( Integer.parseInt(par.getParameter("idRep")) );
         rep.setEstatus( par.getParameter("estat") );
@@ -80,25 +62,25 @@ public class SolucionHelper {
         usu.setIdUsuario( Integer.parseInt(par.getParameter("idIng")) );
         
         if(repCam.getEstatusI() == null ||  repCam.getEstatusI().length() == 0){
-            return false;
+            return "Estatus inicial inválido";
         }
         if(repCam.getFechaCambio() == null ){
-            return false;
+            return "Fecha de cambio nula";
         }
         if(usu.getIdUsuario() == 0 ){
-            return false;
+            return "ID del usuario inválida";
         }
         if(rep.getIdReporte()== 0){
-            return false;
+            return "ID del reporte inválida";
         }
         if(rep.getSolucion() == null || rep.getSolucion().length() > 1024 || rep.getSolucion().length() == 0 || rep.getSolucion().equals(" ")){
-            return false;
+            return "Solución inválida";
         }
         if(rep.getEstatus().equals( repCam.getEstatusI() )){
-            return false;
+            return "Debe cambiar el estatus para continuar";
         }
         if(rep.getFechaF() == null ){
-            return false;
+            return "Fecha final inválida";
         }
         
         return new SolucionService().sp_Soporte(rep, usu, repCam);

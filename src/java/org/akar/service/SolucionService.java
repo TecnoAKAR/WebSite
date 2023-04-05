@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import org.akar.dao.RelReporteEncargado;
 import org.akar.dao.RelReporteUsuario;
 import org.akar.dao.ReporteCambios;
 import org.akar.dao.Reporte;
@@ -19,17 +20,18 @@ public class SolucionService {
     Reporte rep;
     ReporteCambios repCam;
     RelReporteUsuario relRepUsu;
+    RelReporteEncargado relRepEnc;
     
     public SolucionService(){
     }
     
-    public List<Reporte> getListSop(TblUsuario usu){
-        List<Reporte> list = null;
+    public List<RelReporteEncargado> getList(){
+        List<RelReporteEncargado> list = null;
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
-        rep = null;
-        String query = "SELECT DISTINCT r.idReporte, r.Problema, r.Estatus, r.Solucion, r.FechaI, r.FechaF FROM Reporte r INNER JOIN RelReporteEncargado rel ON r.idReporte = rel.idReporte WHERE r.Estatus = 'En proceso' AND rel.idEncargado = 3;";
+        relRepEnc = null;
+        String query = "SELECT DISTINCT idRelReporteEncargado, idEncargado, r.* FROM RelReporteEncargado re INNER JOIN Reporte r ON re.idReporte = r.idReporte;";
         
         try 
         {
@@ -47,58 +49,16 @@ public class SolucionService {
             list = new ArrayList<>();
             while( resultSet.next() )
             {
-                rep = new Reporte();
-                rep.setIdReporte( resultSet.getInt(1) );
-                rep.setProblema( resultSet.getString(2) );
-                rep.setEstatus( resultSet.getString(3) );
-                rep.setSolucion(resultSet.getString(4) );
-                rep.setFechaI( resultSet.getDate(5) );
-                rep.setFechaF( resultSet.getDate(6) );
-                list.add(rep);
-            }
-            resultSet.close();
-            DBConnection.closeConnection(connection);
-            return list;
-        } 
-        catch (SQLException ex) 
-        {
-            ex.printStackTrace();
-        }
-        return null;
-    }
-//    
-    public List<Reporte> getListMan(TblUsuario usu){
-        List<Reporte> list = null;
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
-        rep = null;
-        String query = "SELECT DISTINCT r.idReporte, r.Problema, r.Estatus, r.Solucion, r.FechaI, r.FechaF FROM Reporte r INNER JOIN RelReporteEncargado rel ON r.idReporte = rel.idReporte WHERE r.Estatus = 'Mantenimiento hecho' AND rel.idEncargado = 3;";
-        
-        try 
-        {
-            connection = DBConnection.getConnection( );
-            if( connection == null )
-            {
-                return null;
-            }
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(query);
-            if( resultSet == null )
-            {
-                return null;
-            }
-            list = new ArrayList<>();
-            while( resultSet.next() )
-            {
-                rep = new Reporte();
-                rep.setIdReporte( resultSet.getInt(1) );
-                rep.setProblema( resultSet.getString(2) );
-                rep.setEstatus( resultSet.getString(3) );
-                rep.setSolucion(resultSet.getString(4) );
-                rep.setFechaI( resultSet.getDate(5) );
-                rep.setFechaF( resultSet.getDate(6) );
-                list.add(rep);
+                relRepEnc = new RelReporteEncargado();
+                relRepEnc.setIdRel( resultSet.getInt(1) );
+                relRepEnc.getEncargado().setIdUsuario( resultSet.getInt(2) );
+                relRepEnc.getRep().setIdReporte( resultSet.getInt(3) );
+                relRepEnc.getRep().setProblema( resultSet.getString(4) );
+                relRepEnc.getRep().setEstatus( resultSet.getString(5) );
+                relRepEnc.getRep().setSolucion(resultSet.getString(6) );
+                relRepEnc.getRep().setFechaI( resultSet.getDate(7) );
+                relRepEnc.getRep().setFechaF( resultSet.getDate(8) );
+                list.add(relRepEnc);
             }
             resultSet.close();
             DBConnection.closeConnection(connection);
@@ -153,7 +113,7 @@ public class SolucionService {
         return null;
     }
     
-    public boolean sp_Soporte(Reporte rep, TblUsuario usuario, ReporteCambios cam){
+    public String sp_Soporte(Reporte rep, TblUsuario usuario, ReporteCambios cam){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         String sql = "call sp_soporte(?, ?, ?, ?, ?, ?, ?);";
@@ -163,12 +123,12 @@ public class SolucionService {
             connection = DBConnection.getConnection( );
             if( connection == null )
             {
-                return false;
+                return "Error al conectar a la base de datos";
             }
             preparedStatement = connection.prepareStatement(sql);
             if( preparedStatement == null )
             {
-                return false;
+                return "Error al conectar a la base de datos";
             }
             preparedStatement.setInt(1, rep.getIdReporte() );
             preparedStatement.setInt(2, usuario.getIdUsuario() );
@@ -180,14 +140,14 @@ public class SolucionService {
             
             row = preparedStatement.executeUpdate();
             DBConnection.closeConnection(connection);
-            return row == 1;
+            return "Reporte actualizado";
             
         } 
         catch (SQLException ex) 
         {
             ex.printStackTrace();
         }
-        return false;
+        return "Error al conectar a la base de datos";
     }
     
 }

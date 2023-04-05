@@ -4,6 +4,7 @@
     Author     : Axel Zarate Lozano
 --%>
 
+<%@page import="org.akar.dao.RelReporteEncargado"%>
 <%@page import="org.akar.dao.Reporte"%>
 <%@page import="org.akar.dao.PSUsuario"%>
 <%@page import="java.util.List"%>
@@ -13,15 +14,14 @@
 <%
     PSUsuario sesion = (PSUsuario)session.getAttribute("usuario");
 
-    if(sesion != null){
+    if(sesion == null){
+        response.sendRedirect("notSession.jsp");
+    } else{
         if(sesion.getTipo().getIdTipo() != 7 && sesion.getTipo().getIdTipo() != 10){
             response.sendRedirect("notAccess.jsp");
         }
-    } else{
-        response.sendRedirect("notSession.jsp");
-    }
 %>
-<html>
+<html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -43,6 +43,9 @@
         <link rel="stylesheet" href="sources/assets/css/animated.css">
         <link rel="stylesheet" href="sources/assets/css/owl.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+        
+        
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     
     <body>    
@@ -128,103 +131,217 @@
         <br/>
         <br/>
         
-        <div align="center">
-            <a href="?action=solu"> <button type="button" class="btn btn-danger"> A reportar </button> </a>
-            <a href="?action=mant"> <button type="button" class="btn btn-warning"> Mantenimiento finalizado </button> </a>
-        </div>
-        
         <br/>
         <br/>
         <%
-            if(action.equals("solu")){
-                List<Reporte> list = new SolucionHelper().getListSop( sesion.getUsuario().getIdUsuario() );
+            if(!action.equals("rep")){
+                List<RelReporteEncargado> list = new SolucionHelper().getList();
                 if (list == null){
         %>
-                    <h3> Sin reportes </h3>
+                    <h3> No hay reportes asignados </h3>
         <%
-                } else{
+                } else {
         %>
                     <div>
-                        <table class="table">
+                        <table width="70%" align="center">
                             <tr>
                                 <th>
-                                    Reporte
+                                    <h4 align="center">Reportes en proceso</h4>
                                 </th>
                                 <th>
-                                    Fecha de creación
-                                </th>
+                                    <h4 align="center">Reportes concluidos</h4>
+                                </th>   
                                 <th>
-                                    Estatus
+                                    <h4 align="center">Reportes finalizados</h4>
                                 </th>
                             </tr>
+                            <tr>
+                                <td>
+                                    <table class="table">
+                                        <tr>
+                                            <th>
+                                                Reporte
+                                            </th>
+                                            <th>
+                                                Fecha de creación
+                                            </th>
+                                            <th>
+                                                Estatus
+                                            </th>
+                                        </tr>
 
-                            <%
-                                for(Reporte reporte : list){
-                            %>
-                                    <tr>
-                                        <td>
-                                            <a href="?action=rep&tipo=Sol&idreporte=<%=reporte.getIdReporte()%>"> <button type="button" class="btn btn-dark"> <%=reporte.getIdReporte()%> </button> </a>
-                                        </td>
-                                        <td>
-                                            <%=reporte.getFechaI()%>
-                                        </td>
-                                        <td>
-                                            <%=reporte.getEstatus()%>
-                                        </td>
-                                    </tr>    
-                            <%
-                                }
-                            %>
+                                        <%
+                                            if(sesion.getTipo().getIdTipo() == 10){
+                                                for(RelReporteEncargado reporte : list){
+                                                    if(reporte.getRep().getEstatus().equals("En proceso")){
+                                        %>
+                                                        <tr>
+                                                            <td>
+                                                                <a href="?action=rep&tipo=Sol&idreporte=<%=reporte.getRep().getIdReporte()%>"> <button type="button" class="btn btn-dark"> <%=reporte.getRep().getIdReporte()%> </button> </a>
+                                                            </td>
+                                                            <td>
+                                                                <%=reporte.getRep().getFechaI()%>
+                                                            </td>
+                                                            <td>
+                                                                <%=reporte.getRep().getEstatus()%>
+                                                            </td>
+                                                        </tr>    
+                                        <%
+                                                    }
+                                                }
+                                            } else {
+                                                for(RelReporteEncargado reporte : list){
+                                                    if(reporte.getRep().getEstatus().equals("En proceso")){
+                                                        if(reporte.getEncargado().getIdUsuario() == sesion.getUsuario().getIdUsuario()){
+                                        %>
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="?action=rep&tipo=Sol&idreporte=<%=reporte.getRep().getIdReporte()%>"> <button type="button" class="btn btn-dark"> <%=reporte.getRep().getIdReporte()%> </button> </a>
+                                                                </td>
+                                                                <td>
+                                                                    <%=reporte.getRep().getFechaI()%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=reporte.getRep().getEstatus()%>
+                                                                </td>
+                                                            </tr>
+                                        <%
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        %>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table class="table">
+                                        <tr>
+                                            <th>
+                                                Reporte
+                                            </th>
+                                            <th>
+                                                Fecha de creación
+                                            </th>
+                                            <th>
+                                                Estatus
+                                            </th>
+                                        </tr>
 
+                                        <%
+                                            if(sesion.getTipo().getIdTipo() == 10){
+                                                for(RelReporteEncargado reporte : list){
+                                                    if(reporte.getRep().getEstatus().equals("Concluido")){
+                                        %>
+                                                        <tr>
+                                                            <td>
+                                                                <a href="?action=rep&tipo=Sol&idreporte=<%=reporte.getRep().getIdReporte()%>"> <button type="button" class="btn btn-dark"> <%=reporte.getRep().getIdReporte()%> </button> </a>
+                                                            </td>
+                                                            <td>
+                                                                <%=reporte.getRep().getFechaI()%>
+                                                            </td>
+                                                            <td>
+                                                                <%=reporte.getRep().getEstatus()%>
+                                                            </td>
+                                                        </tr>    
+                                        <%
+                                                    }
+                                                }
+                                            } else {
+                                                for(RelReporteEncargado reporte : list){
+                                                    if(reporte.getRep().getEstatus().equals("Concluido")){
+                                                        if(reporte.getEncargado().getIdUsuario() == sesion.getUsuario().getIdUsuario()){
+                                        %>
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="?action=rep&tipo=Sol&idreporte=<%=reporte.getRep().getIdReporte()%>"> <button type="button" class="btn btn-dark"> <%=reporte.getRep().getIdReporte()%> </button> </a>
+                                                                </td>
+                                                                <td>
+                                                                    <%=reporte.getRep().getFechaI()%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=reporte.getRep().getEstatus()%>
+                                                                </td>
+                                                            </tr>
+                                        <%
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        %>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table class="table">
+                                        <tr>
+                                            <th>
+                                                Reporte
+                                            </th>
+                                            <th>
+                                                Fecha de creación
+                                            </th>
+                                            <th>
+                                                Fecha de finalización
+                                            </th>
+                                            <th>
+                                                Estatus
+                                            </th>
+                                        </tr>
+
+                                        <%
+                                            if(sesion.getTipo().getIdTipo() == 10){
+                                                for(RelReporteEncargado reporte : list){
+                                                    if(reporte.getRep().getEstatus().equals("Finalizado")){
+                                        %>
+                                                        <tr>
+                                                            <td>
+                                                                <a href="?action=rep&tipo=Sol&idreporte=<%=reporte.getRep().getIdReporte()%>"> <button type="button" class="btn btn-dark"> <%=reporte.getRep().getIdReporte()%> </button> </a>
+                                                            </td>
+                                                            <td>
+                                                                <%=reporte.getRep().getFechaI()%>
+                                                            </td>
+                                                            <td>
+                                                                <%=reporte.getRep().getFechaF()%>
+                                                            </td>
+                                                            <td>
+                                                                <%=reporte.getRep().getEstatus()%>
+                                                            </td>
+                                                        </tr>    
+                                        <%
+                                                    }
+                                                }
+                                            } else {
+                                                for(RelReporteEncargado reporte : list){
+                                                    if(reporte.getRep().getEstatus().equals("Finalizado")){
+                                                        if(reporte.getEncargado().getIdUsuario() == sesion.getUsuario().getIdUsuario()){
+                                        %>
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="?action=rep&tipo=Sol&idreporte=<%=reporte.getRep().getIdReporte()%>"> <button type="button" class="btn btn-dark"> <%=reporte.getRep().getIdReporte()%> </button> </a>
+                                                                </td>
+                                                                <td>
+                                                                    <%=reporte.getRep().getFechaI()%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=reporte.getRep().getFechaF()%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=reporte.getRep().getEstatus()%>
+                                                                </td>
+                                                            </tr>
+                                        <%
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        %>
+                                    </table>
+                                </td>
+                            </tr>
                         </table>
                     </div>        
         <%
                 }
-            } else if(action.equals("mant")){
-                List<Reporte> list = new SolucionHelper().getListMan( sesion.getUsuario().getIdUsuario() );
-                if (list == null){
-        %>
-                    <h3> Sin reportes </h3>
-        <%
-                } else{
-        %>
-                    <div>
-                        <table class="table">
-                            <tr>
-                                <th>
-                                    Reporte
-                                </th>
-                                <th>
-                                    Fecha de creación
-                                </th>
-                                <th>
-                                    Estatus
-                                </th>
-                            </tr>
-
-                            <%
-                                for(Reporte reporte : list){
-                            %>
-                                    <tr>
-                                        <td>
-                                            <a href="?action=rep&tipo=Mant&idreporte=<%=reporte.getIdReporte()%>"> <button type="button" class="btn btn-dark"> <%=reporte.getIdReporte()%> </button> </a>
-                                        </td>
-                                        <td>
-                                            <%=reporte.getFechaI()%>
-                                        </td>
-                                        <td>
-                                            <%=reporte.getEstatus()%>
-                                        </td>
-                                    </tr>    
-                            <%
-                                }
-                            %>
-
-                        </table>
-                    </div>    
-        <%
-                }
-            } else if(action.equals("rep")){
+            }else{
         %>
                 <jsp:include page="reporte.jsp" />
                 
@@ -237,16 +354,30 @@
             }
             
             if(send.equals("enviar")){
-                boolean updated = new SolucionHelper().sp_Soporte(request);
-                if(updated == true){
+                String updated = new SolucionHelper().sp_Soporte(request);
+                if(!updated.equals("Reporte actualizado")){
         %>
-                    <script> alert("Reporte finalizado"); </script>
-        <%
+                    <script> 
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Alerta',
+                            text: '<%=updated%>',
+                            footer: '<button type="button" class="btn btn-light"> <a href="Soporte.jsp">Actualizar página</a> </button>'
+                          }); 
+                    </script>
+        <%        
                 } else{
         %>
-                    <script> alert("Hubo un error al actualizar el reporte"); </script>
-        <%
-                }        
+                    <script> 
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Atención',
+                            text: '<%=updated%>',
+                            footer: '<button type="button" class="btn btn-light"> <a href="Soporte.jsp">Actualizar página</a> </button>'
+                          }); 
+                    </script>
+        <%                
+                }
             }
         %>
         
@@ -257,3 +388,6 @@
     </body>
 
 </html>
+<%
+    }
+%>

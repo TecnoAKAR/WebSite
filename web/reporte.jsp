@@ -22,7 +22,7 @@
         response.sendRedirect("notSession.jsp");
     }
 %>
-<html>
+<html lang="es">
     <body>
         <%
             String action = request.getParameter("action");
@@ -37,11 +37,10 @@
         <%
                 } else{
         %>
-                    <div align="left">
-                        <table width="50%">
+                        <table align="center">
                             <tr>
                                 <th>
-                                    <h3> Reporte: <%=rep.getRep().getIdReporte()%> </h3>
+                                    <h3> Reporte: </br> <%=rep.getRep().getIdReporte()%> </h3>
                                 </th>
                             </tr>
                             <tr>
@@ -60,12 +59,11 @@
                                 </td>    
                             </tr>
                         </table>
-                    </div>
                     
                         <%
-                            if(request.getParameter("tipo").equals("Sol")){
+                            if(rep.getRep().getEstatus().equals("En proceso")){
                         %>
-                                <div class="center">
+                                <div> 
                                     <form method="post" action="Soporte.jsp">
 
                                         <input type="hidden" id="idTarea" name="idRep" value="<%=rep.getRep().getIdReporte()%>">
@@ -73,23 +71,42 @@
                                         <input type="hidden" id="estatusInicial" name="idIng" value="<%=sesion.getUsuario().getIdUsuario()%>">
 
                                         <label for="exampleFormControlInput1" class="form-label"> <b> Estatus </b> </label>
-                                        <select id="tipoUsuario" name="estat" class="form-control">
+                                        <select id="tipoUsuario" name="estat" class="form-control" required>
                                             <option selected> <%=rep.getRep().getEstatus()%> </option>
-                                            <option value="Finalizado"> Finalizado </option>
+                                            <option value="Concluido"> Concluido </option>
                                         </select>
-
+                                            
                                         <label for="exampleFormControlTextarea1" class="form-label"> <b> Solución </b> </label>
-                                        <textarea class="form-control" name="sol" id="sol" rows="3"> </textarea>
+                                        <%
+                                            if(rep.getRep().getSolucion().equals("") || rep.getRep().getSolucion().equals(" ") || rep.getRep().getSolucion()==null){
+                                                if(request.getParameter("sol") == null){
+                                        %>
+                                                    <textarea name="sol" id="sol" class="form-control" rows="3" required> </textarea>
+                                        <%
+                                                }else{
+                                        %>
+                                                    <textarea name="sol" id="sol" class="form-control" rows="3" required> <%=request.getParameter("sol")%> </textarea>
+                                        <%
+                                                }
+                                            }else{
+                                        %>
+                                                <input type="hidden" id="sol" name="sol" value="<%=rep.getRep().getSolucion()%>">
+                                                <textarea disabled="true" class="form-control" rows="3"> <%=rep.getRep().getSolucion()%> </textarea>
+                                        <%
+                                            }
+                                        %>
+                                        
 
                                         </br>
-                                        <center>
-                                            <button type="submit" id="send" name="send" value="enviar" class="btn btn-primary btn-dark">Subir</button>
-                                            <a href="?action=solu"> <button type="button" class="btn btn-secondary btn-lg">Regresar a la lista</button> </a>
-                                        </center>    
+                                        <center>  
+                                            <button type="submit" id="send" name="send" value="enviar" class="btn btn-primary btn-lg">Subir</button>
+                                            <a href="Soporte.jsp"> <button type="button" class="btn btn-secondary btn-lg">Regresar a la lista</button> </a>
+                                        </center>
                                     </form>
+                                        
                                 </div>
                         <%
-                            } else{
+                            } else if(rep.getRep().getEstatus().equals("Concluido")){
                         %>
                                 <div> 
                                     <form method="post" action="Soporte.jsp">
@@ -100,22 +117,41 @@
                                         <input type="hidden" id="sol" name="sol" value="<%=rep.getRep().getSolucion()%>">
 
                                         <label for="exampleFormControlInput1" class="form-label"> <b> Estatus </b> </label>
-                                        <select id="tipoUsuario" name="estat" class="form-control">
+                                        <select id="tipoUsuario" name="estat" class="form-control" required>
                                             <option selected> <%=rep.getRep().getEstatus()%> </option>
                                             <option value="Finalizado"> Finalizado </option>
                                         </select>
-
                                         <label for="exampleFormControlTextarea1" class="form-label"> <b> Solución </b> </label>
                                         <textarea disabled="true" class="form-control" rows="3"> <%=rep.getRep().getSolucion()%> </textarea>
 
                                         </br>
                                         <center>  
                                             <button type="submit" id="send" name="send" value="enviar" class="btn btn-primary btn-lg">Subir</button>
-                                            <a href="?action=solu"> <button type="button" class="btn btn-secondary btn-lg">Regresar a la lista</button> </a>
+                                            <a href="Soporte.jsp"> <button type="button" class="btn btn-secondary btn-lg">Regresar a la lista</button> </a>
                                         </center>
                                     </form>
                                         
-                                 </div>
+                                </div>
+                        <%
+                            } else if(rep.getRep().getEstatus().equals("Finalizado")){
+                        %>
+                                <div> 
+                                    <table align="center">
+                                        <tr>
+                                            <td>
+                                                <b> Finalizado el: </b> <br/> <%=rep.getRep().getFechaF()%>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b> Solución: </b> <br/> <%=rep.getRep().getSolucion()%>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <center>         
+                                        <a href="Soporte.jsp"> <button type="button" class="btn btn-secondary btn-lg">Regresar a la lista</button> </a>
+                                    </center>
+                                </div>
         <%                                
                     }
                 }
