@@ -139,8 +139,8 @@ public class PSUsuarioService {
                 return null;
             }
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, psUser.getUsuario().getCorreo());
-            preparedStatement.setString(2, psUser.getUsuario().getPassword() );
+            preparedStatement.setString(1, psUser.getUsuario().getNomUser());
+            preparedStatement.setString(2, psUser.getUsuario().getPassword());
             resultSet = preparedStatement.executeQuery( );
             if( resultSet == null )
             {

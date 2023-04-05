@@ -49,13 +49,9 @@ public class ReporteGerenteMHelper implements Serializable{
             return null;
         }
     }
-
-
-
-    
+        
     public boolean AsignarReporteIng(HttpServletRequest request){
         psrep= new PSReporte(new Reporte(), new TblUsuario(), new TblTipoUsuario());
-        
         psrep.getReportito().setEstatus(request.getParameter("Estatus"));
         psrep.getUsuario().setNomUser(request.getParameter("idEncargado"));
         psrep.getReportito().setProblema(request.getParameter("Problema"));
@@ -72,7 +68,10 @@ public class ReporteGerenteMHelper implements Serializable{
         if(psrep.getReportito().getEstatus().equals("A Mantenimiento")){
             return false;
         }
-        if(gen.contains(psrep.getUsuario().setNomUser(request.getParameter("idEncargado"))) && psrep.getReportito().getEstatus().equals("En Mantenimiento")){
+        if(psrep.getReportito().getEstatus().equals("En Mantenimiento") && psrep.getUsuario().getNomUser().equals("KALID")){
+            return false;
+        }
+        if(psrep.getReportito().getEstatus().equals("Mantenimiento Finalizado") && psrep.getUsuario().getNomUser().equals("RODRIO VIDAL")){
             return false;
         }
         
@@ -102,6 +101,13 @@ public class ReporteGerenteMHelper implements Serializable{
         if(psrep.getReportito().getEstatus().equals("A Mantenimiento")){
             return false;
         }
+        if(psrep.getReportito().getEstatus().equals("En Mantenimiento") && psrep.getUsuario().getNomUser().equals("KALID")){
+            return false;
+        }
+        if(psrep.getReportito().getEstatus().equals("Mantenimiento Finalizado") && psrep.getUsuario().getNomUser().equals("RODRIO VIDAL")){
+            return false;
+        }
+        
         return new ReporteGerenteMService().AsignarReporteSop(psrep.getUsuario(), psrep.getReportito());
         
     }

@@ -57,29 +57,50 @@
                             </a>
                             <!-- ***** Logo End ***** -->
                             <!-- ***** Menu Start ***** -->
-                            <ul class="nav">
-                                <li class="scroll-to-section"><a href="Home.jsp" class="active">Inicio</a></li>
-                                <li class="scroll-to-section"><a href="Home.jsp#sobrenosotros">Sobre nosotros</a></li>
-                                <li class="scroll-to-section"><a href="Home.jsp#proyecto">Proyecto</a></li>
-                                <li class="scroll-to-section"><a href="Home.jsp#galeria">Galería</a></li>
-                                <li class="scroll-to-section"><a href="Foro.jsp">Foro</a></li>
-                                <li class="scroll-to-section"><a href="Home.jsp#contact">Contáctanos</a></li> 
-                                <li class="scroll-to-section">
-                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="true"> <%= sesion.getUsuario().getNomUser()%> </a>
-                                    <ul class="dropdown-menu">
+                            <%
+                                if(sesion.getTipo().getIdTipo() == 10){
+                            %>
+                                    <ul class="nav">
+                                        <li class="scroll-to-section"><a href="Asistente.jsp">Asistente</a></li>
+                                        <li class="scroll-to-section"><a href="GerenteSoporte.jsp">Gerente de soporte</a></li>
+                                        <li class="scroll-to-section"><a href="GerenteMantenimiento.jsp">Gerente de mantenimiento</a></li>
+                                        <li class="scroll-to-section"><a href="IngMantenimiento.jsp">Ing de mantenimiento</a></li>
+                                        <li class="scroll-to-section"><a href="Soporte.jsp" class="active">Ing de soporte</a></li>
+                                        <li class="scroll-to-section"><a href="?action=close">Cerrar sesión</a></li> 
+                                    </ul>        
+                                    <a class='menu-trigger'>
+                                        <span>Menu</span>
+                                    </a>
+                            <%
+                                } else{
+                            %>
+                                    <ul class="nav">
+                                    <li class="scroll-to-section"><a href="#top" class="active">Inicio</a></li>
+                                    <li class="scroll-to-section"><a href="#sobrenosotros">Sobre nosotros</a></li>
+                                    <li class="scroll-to-section"><a href="#proyecto">Proyecto</a></li>
+                                    <li class="scroll-to-section"><a href="#galeria">Galería</a></li>
+                                    <li class="scroll-to-section"><a href="Foro.jsp">Foro</a></li>
+                                    <li class="scroll-to-section"><a href="#contact">Contáctanos</a></li> 
+                                    <li class="scroll-to-section">
+                                      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="true"> <%= sesion.getUsuario().getNomUser() %> </a>
+                                      <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="profile.jsp">Perfil</a></li>
                                         <li><a class="dropdown-item" href="editProf.jsp">Editar perfil</a></li>
                                         <li><hr class="dropdown-divider"></li>
                                         <li><a class="dropdown-item" href="?action=close" id="action" name="action" value="close">Cerrar sesión</a></li>
-                                    </ul>
-                                </li>
+                                      </ul>
+                                    </li>
 
 
 
-                            </ul>        
-                            <a class='menu-trigger'>
-                                <span>Menu</span>
-                            </a>
+                                  </ul>        
+                                  <a class='menu-trigger'>
+                                      <span>Menu</span>
+                                  </a>
+                            <%
+                                }
+                            %>
+                            
                             <!-- ***** Menu End ***** -->
                         </nav>
                     </div>
@@ -92,6 +113,12 @@
             if(action == null){
                 action = "";
             }
+            switch(action){
+                case "close":
+                    request.getSession().removeAttribute("usuario");
+                    response.sendRedirect("index.jsp");
+                    break;
+            }        
         %>
         
         <br/>

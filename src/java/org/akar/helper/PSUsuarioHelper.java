@@ -113,9 +113,10 @@ public class PSUsuarioHelper implements Serializable {
     public PSUsuario Login(HttpServletRequest request){
         psUser = new PSUsuario(new TblUsuario(), new TblTipoUsuario());
         
-        psUser.getUsuario().setCorreo( request.getParameter( "correo" ) );
+        psUser.getUsuario().setNomUser(request.getParameter( "nomU" ) );
         psUser.getUsuario().setPassword( request.getParameter( "pass" ) );
-        if(psUser.getUsuario().getCorreo().length() == 0 || psUser.getUsuario().getCorreo() == null){
+        
+        if(psUser.getUsuario().getNomUser().length() == 0 || psUser.getUsuario().getNomUser() == null){
             return null;
         }
         if(psUser.getUsuario().getPassword().length() == 0 || psUser.getUsuario().getPassword() == null){
