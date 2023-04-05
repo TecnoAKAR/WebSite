@@ -47,7 +47,7 @@ public class ListEstatusService {
             {
                 return null;
             }
-            resultSet = statement.executeQuery( "select distinct Reporte.idReporte, Problema,FechaI, Estatus from Reporte inner join RelReporteEncargado on Reporte.IdReporte=RelReporteEncargado.IdReporte where IdEncargado=5 and estatus='En mantenimiento'" );
+            resultSet = statement.executeQuery("select distinct Reporte.idReporte, Problema,FechaI, Estatus, Usuario.Correo from Reporte inner join RelReporteUsuario on RelReporteUsuario.idReporte=Reporte.idReporte inner join Usuario on Usuario.idUsuario=RelReporteUsuario.idUsuario inner join RelReporteEncargado on Reporte.IdReporte=RelReporteEncargado.IdReporte where RelReporteEncargado.IdEncargado=5 and estatus='A Mantenimiento'");
             if( resultSet == null )
             {
                 return null;
@@ -61,6 +61,7 @@ public class ListEstatusService {
                 listEstatusC.getRep().setProblema(resultSet.getString(2));
                 listEstatusC.getRep().setFechaI(resultSet.getDate(3));
                 listEstatusC.getRep().setEstatus(resultSet.getString(4));
+                listEstatusC.getUsuario().setCorreo(resultSet.getString(5));
                 ListEstatusC.add(listEstatusC);
             }
             resultSet.close();
@@ -78,7 +79,7 @@ public class ListEstatusService {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         ReporteCambios sol = null;
-        String sql = "select Reporte.idReporte, Problema,FechaI, FechaCambio, Estatus from Reporte inner join ReporteCambios on Reporte.IdReporte=ReporteCambios.IdReporte inner join RelReporteEncargado on Reporte.IdReporte=RelReporteEncargado.IdReporte where Reporte.IdReporte=?";
+        String sql = "select distinct Reporte.idReporte, Problema,FechaI, Estatus, Usuario.Correo from Reporte inner join RelReporteUsuario on RelReporteUsuario.idReporte=Reporte.idReporte inner join Usuario on Usuario.idUsuario=RelReporteUsuario.idUsuario inner join RelReporteEncargado on Reporte.IdReporte=RelReporteEncargado.IdReporte where RelReporteEncargado.IdReporte=?";
         try 
         {
             connection = DBConnection.getConnection( );
@@ -99,8 +100,8 @@ public class ListEstatusService {
                 sol.getRep().setIdReporte(resultSet.getInt(1));
                 sol.getRep().setProblema(resultSet.getString(2));
                 sol.getRep().setFechaI(resultSet.getDate(3));
-                sol.setFechaCambio(resultSet.getDate(4));
-                sol.setEstatusI(resultSet.getString(5));
+                sol.setEstatusI(resultSet.getString(4));
+                sol.getUsuario().setCorreo(resultSet.getString(5));
             }
             resultSet.close();
             DBConnection.closeConnection(connection);

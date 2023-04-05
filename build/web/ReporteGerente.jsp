@@ -4,6 +4,8 @@
     Author     : kalid
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="org.akar.dao.TblUsuario"%>
 <%@page import="org.akar.helper.ReporteGerenteHelper"%>
 <%@page import="org.akar.dao.Reporte"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,6 +19,8 @@
             }  
             
                     Reporte sol = new ReporteGerenteHelper().getById(request);
+                    List<TblUsuario> reportito = new ReporteGerenteHelper().getlist();
+                    List<TblUsuario> reportito2= new ReporteGerenteHelper().getlist2();
                     if(sol == null){
         %>
                         <h3> Ha ocurrido un error </h3>
@@ -48,7 +52,7 @@
                             </table>
                         </div>
                         <div>
-                            <form>
+                            <form method="post" action="GerenteSoporte.jsp">
                                 <input hidden="true" id="Problema" name="Problema" value="<%=sol.getProblema()%>">
                                 <label for="exampleFormControlInput1" class="form-label"> <b> Estatus </b> </label>
                                 <select id="Estatus" name="Estatus" class="form-control">
@@ -59,9 +63,22 @@
                                 </select>
                                 <label for="exampleFormControlInput1" class="form-label"> <b> Encargado </b> </label>
                                 <select id="idEncargado" name="idEncargado" class="form-select" aria-label="Default select example">
-                                <option selected>Selecciona Personal</option>
-                                <option aria-label="Default select example" value="Ingeniero de Soporte">Ingeniero Soporte</option>
-                                <option aria-label="Default select example" value="Gerente Mantenimiento">Gerente Mantenimiento</option>
+                                    <option selected>Ingenieros de Soporte</option>
+                                <%
+                                    for(TblUsuario repor : reportito){
+                                        %>
+                                            <option value="<%=repor.getNomUser()%>"> <%=repor.getNomUser()%> </option>                            
+                                        <%
+                                    }
+                                %>
+                                <option selected>Gerentes de Mantenimiento</option>
+                                 <%
+                                    for(TblUsuario repor : reportito2){
+                                        %>
+                                            <option value="<%=repor.getNomUser()%>"> <%=repor.getNomUser()%> </option>                            
+                                        <%
+                                    }
+                                %>
                                 </select>
 
                                 <button type="submit" id="send" name="send" value="enviar" class="btn btn-primary btn-lg">Asignar</button>

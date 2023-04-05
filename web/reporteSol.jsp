@@ -15,10 +15,11 @@
         <style>
         #scroll{
             border:1px solid;
-            height:700px;
+            height:300px;
             width:90%;
             overflow-y:scroll;
             overflow-x:hidden;
+            scroll-behavior: auto;
         }
     </style>
     </head>
@@ -55,6 +56,11 @@
                             <input type="hidden" name="EstatusI" value="<%=sol.getEstatusI() %>"><%=sol.getEstatusI() %></input>
                             
                             <br>
+                            <label for="exampleFormControlTextarea1" class="form-label"><h4>Usuario</h4></label>
+                            <br>
+                            <input type="hidden" name="EstatusI" value="<%=sol.getUsuario().getCorreo()%>"><%=sol.getUsuario().getCorreo()%></input>
+                            
+                            <br>
                             <label for="exampleFormControlTextarea1" class="form-label"><h4>Cambiar Estatus</h4></label>
                             <select class="form-select" aria-label="Default select example" name="EstatusF">
                                     <option selected>Selecciona el estatus</option>
@@ -68,7 +74,7 @@
                             
                             <label for="exampleFormControlTextarea1" class="form-label"><h4>Fecha</h4></label>
                                 <br>
-                                <label for="exampleFormControlTextarea1" class="form-label" name="FechaC" value="<%=sol.getFechaCambio() %>"><%=sol.getFechaCambio() %></label>
+                                <label for="exampleFormControlTextarea1" class="form-label" name="FechaC" value="<%=sol.getRep().getFechaI()%>"><%=sol.getRep().getFechaI() %></label>
                                 <br>
                                 <br>
                             <%

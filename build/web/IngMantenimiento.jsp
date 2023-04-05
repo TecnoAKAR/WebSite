@@ -51,17 +51,17 @@
         
         .left{
            background: #f3f3f3;
-           width: 35%;
+           width: 100%;
            position: fixed ;
-           top: 0px;
-           height: 100%;
+           top: 50px;
+           height: 40%;
            left: 0px;
         }
         .right{
-            width: 65%;
-            height: 100%;
+            width: 100%;
+            height: 60%;
             position: fixed;
-            top: 0px;
+            bottom: 0px;
             right: 0px;
         }
         .Solucion{
@@ -72,10 +72,69 @@
         }
     </style>
     <body>
+        <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="main-nav">
+                            <!-- ***** Logo Start ***** -->
+                            <a href="Home.jsp" class="logo">
+                                <img src="sources/assets/images/loguitoakar.png" alt="">
+                            </a>
+                            <!-- ***** Logo End ***** -->
+                            <!-- ***** Menu Start ***** -->
+                            <%
+                                if(sesion.getTipo().getIdTipo() == 10){
+                            %>
+                                    <ul class="nav">
+                                        <li class="scroll-to-section"><a href="Asistente.jsp">Asistente</a></li>
+                                        <li class="scroll-to-section"><a href="GerenteSoporte.jsp">Gerente de soporte</a></li>
+                                        <li class="scroll-to-section"><a href="GerenteMantenimiento.jsp">Gerente de mantenimiento</a></li>
+                                        <li class="scroll-to-section"><a href="IngMantenimiento.jsp">Ing de mantenimiento</a></li>
+                                        <li class="scroll-to-section"><a href="Soporte.jsp" class="active">Ing de soporte</a></li>
+                                        <li class="scroll-to-section"><a href="?action=close">Cerrar sesión</a></li> 
+                                    </ul>        
+                                    <a class='menu-trigger'>
+                                        <span>Menu</span>
+                                    </a>
+                            <%
+                                } else{
+                            %>
+                                    <ul class="nav">
+                                    <li class="scroll-to-section"><a href="#top" class="active">Inicio</a></li>
+                                    <li class="scroll-to-section"><a href="#sobrenosotros">Sobre nosotros</a></li>
+                                    <li class="scroll-to-section"><a href="#proyecto">Proyecto</a></li>
+                                    <li class="scroll-to-section"><a href="#galeria">Galería</a></li>
+                                    <li class="scroll-to-section"><a href="Foro.jsp">Foro</a></li>
+                                    <li class="scroll-to-section"><a href="#contact">Contáctanos</a></li> 
+                                    <li class="scroll-to-section"><a href="?action=close">Cerrar sesión</a></li>
+
+
+
+                                  </ul>        
+                                  <a class='menu-trigger'>
+                                      <span>Menu</span>
+                                  </a>
+                            <%
+                                }
+                            %>
+                            
+                            <!-- ***** Menu End ***** -->
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
         <%
             String action = request.getParameter("action");
             if(action == null){
                 action = "";
+            }
+            switch(action){
+                case "close":
+                    request.getSession().removeAttribute("usuario");
+                    response.sendRedirect("index.jsp");
+                    break;
             }
         %>
         <div class="container">
@@ -90,7 +149,8 @@
                               <th><h4>Identificador</h4></th> 
                               <th><h4>Tareas asignadas</h4></th>
                               <th><h4>Estatus</h4></th>
-                            <th><h4>Fecha de reporte</h4></th>  
+                              <th><h4>Fecha de reporte</h4></th>  
+                              <th><h4>Usuario</h4></th>  
                           </tr>
                         </thead>
                         <tbody class="table-group-divider">
@@ -103,11 +163,14 @@
                         %>
                           <tr>
                             <th value="<%=listEstatus.getRep().getIdReporte()%>">
+                                
                                 <a href="?action=rep&idreporte=<%=listEstatus.getRep().getIdReporte()%>"> <%=listEstatus.getRep().getIdReporte()%> </a>
+                                
                             </th>
                             <th><%=listEstatus.getRep().getProblema()%></th>
                             <th><%=listEstatus.getRep().getEstatus()%></th>
                             <th><%=listEstatus.getRep().getFechaI()%></th>
+                            <th><%=listEstatus.getUsuario().getCorreo()%></th>
                             
                             
                             <%

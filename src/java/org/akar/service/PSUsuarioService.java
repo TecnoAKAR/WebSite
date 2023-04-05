@@ -285,6 +285,7 @@ public class PSUsuarioService {
                 msgForo.setHora( resultSet.getDate(4) );
                 msgs.add(msgForo);
             }
+            
             resultSet.close();
             DBConnection.closeConnection(connection);
             return msgs;

@@ -12,6 +12,7 @@ import org.akar.dao.PSReporte;
 import org.akar.dao.Reporte;
 import org.akar.dao.TblUsuario;
 import org.akar.dao.ReporteCambios;
+import org.akar.dao.TblTipoUsuario;
 import org.akar.service.ReporteGerenteService;
 
 /**
@@ -25,6 +26,8 @@ public class ReporteGerenteHelper implements Serializable{
     TblUsuario usuario;
     ReporteCambios repCam;
     PSReporte psrep,psrepor1;
+    private List<TblUsuario> ing;
+    private List<TblUsuario> gen;
 
     public ReporteGerenteHelper() {
     }
@@ -48,7 +51,7 @@ public class ReporteGerenteHelper implements Serializable{
 
     
     public boolean AsignarReporteIng(HttpServletRequest request){
-        psrep= new PSReporte(new Reporte(), new TblUsuario());
+        psrep= new PSReporte(new Reporte(), new TblUsuario(), new TblTipoUsuario());
         
         
         psrep.getReportito().setEstatus(request.getParameter("Estatus"));
@@ -67,12 +70,18 @@ public class ReporteGerenteHelper implements Serializable{
         if(psrep.getReportito().getEstatus().equals("Abierto")){
             return false;
         }
+        if(psrep.getReportito().getEstatus().equals("A Mantenimiento") && psrep.getUsuario().getNomUser().equals("LUIS AXEL")){
+            return false;
+        }
+        if(psrep.getReportito().getEstatus().equals("En Soporte") && psrep.getUsuario().getNomUser().equals("ALEXANDER")){
+            return false;
+        }
                
         return new ReporteGerenteService().AsignarReporteIng(psrep.getUsuario(), psrep.getReportito());
         
     }
         public boolean AsignarReporteMan(HttpServletRequest request){
-        psrep= new PSReporte(new Reporte(), new TblUsuario());
+        psrep= new PSReporte(new Reporte(), new TblUsuario(), new TblTipoUsuario());
         
         psrep.getReportito().setEstatus(request.getParameter("Estatus"));
         psrep.getUsuario().setNomUser(request.getParameter("idEncargado"));
@@ -113,5 +122,38 @@ public class ReporteGerenteHelper implements Serializable{
     public void setList(List<Reporte> reporte){
         this.reporte=reporte;
     }
+        
+
+    public boolean loadlist2(){
+        ing = ReporteGerenteService.getListIng();
+        return ing != null && ing.size()>0;
+}
+    public List<TblUsuario>getlist(){
+        if(ing==null || ing.size()==0){
+            if(!loadlist2()){
+                return null;
+            }
+        }
+        return ing;
+    }
     
+    public void setlist(List<TblUsuario> ing){
+        this.ing=ing;
+    }
+    public boolean loadlist3(){
+        gen = ReporteGerenteService.getListGer();
+        return gen != null && gen.size()>0;
+}
+    public List<TblUsuario>getlist2(){
+        if(gen==null || gen.size()==0){
+            if(!loadlist3()){
+                return null;
+            }
+        }
+        return gen;
+    }
+    
+    public void setlist2(List<TblUsuario> gen){
+        this.gen=gen;
+    }
 }
