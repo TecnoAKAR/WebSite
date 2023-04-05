@@ -43,6 +43,9 @@
                                     Fecha Inicial
                                 </th>
                                 <th>
+                                    Ultima Fecha de modificación
+                                </th>
+                                <th>
                                     Fecha Final
                                 </th>
                             </tr>

@@ -4,7 +4,9 @@
     Author     : kalid
 --%>
 
-<%@page import="org.akar.helper.ReporteGerenteHelper"%>
+<%@page import="java.util.List"%>
+<%@page import="org.akar.dao.TblUsuario"%>
+<%@page import="org.akar.helper.ReporteGerenteMHelper"%>
 <%@page import="org.akar.dao.Reporte"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,7 +18,8 @@
                 action = "";
             }  
             
-                    Reporte sol = new ReporteGerenteHelper().getById(request);
+                    Reporte sol = new ReporteGerenteMHelper().getById(request);
+                    List<TblUsuario> reportito = new ReporteGerenteMHelper().getlist();
                     if(sol == null){
         %>
                         <h3> Ha ocurrido un error </h3>
@@ -57,11 +60,18 @@
                                     <option value="En Mantenimiento">En Mantenimiento</option>
                                     <option value="Mantenimiento Finalizado">Mantenimiento Finalizado</option>
                                 </select>
-                                <label for="exampleFormControlInput1" class="form-label"> <b>Personal Encargado</b> </label>
+                                <label for="exampleFormControlInput1" class="form-label"><b>Personal Encargado</b></label>
                                 <select id="idEncargado" name="idEncargado" class="form-select" aria-label="Default select example">
                                 <option selected>Selecciona Personal</option>
-                                <option aria-label="Default select example" value="Ingeniero de Mantenimiento">Ingeniero Mantenimiento</option>
-                                <option aria-label="Default select example" value="Gerente de Soporte">Gerente de Soporte</option>
+                                <option selected>Ingenieros Mantenimiento</option>
+                                <%
+                                    for(TblUsuario repor : reportito){
+                                        %>
+                                            <option value="<%=repor.getNomUser()%>"> <%=repor.getNomUser()%> </option>                            
+                                        <%
+                                    }
+                                %>
+                                <option selected>Gerentes de Soporte</option>
                                 </select>
                         </div>
 

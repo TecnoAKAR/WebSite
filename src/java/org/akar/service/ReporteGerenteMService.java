@@ -65,8 +65,51 @@ public class ReporteGerenteMService {
         }
         return null;
     }
-    
+        public Reporte getIngenierosById(TblUsuario nomUser){
+        Reporte rep  = new Reporte();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String sql ="SELECT Usuario.nomUser\n" +
+                    "FROM Usuario\n" +
+                    "JOIN RelTipoUsuario ON Usuario.idUsuario = RelTipoUsuario.idUsuario\n" +
+                    "JOIN TipoUsuario ON RelTipoUsuario.idTipo = TipoUsuario.idTipo\n" +
+                    "WHERE TipoUsuario.idTipo = 9;";
+        try 
+        {
+            connection = DBConnection.getConnection( );
+            if( connection == null )
+            {
+                return null;
+            }
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, nomUser.getNomUser());
+            resultSet = preparedStatement.executeQuery( );
+            if( resultSet == null )
+            {
+                return null;
+            }
+            while( resultSet.next() )
+            {
+                rep.setIdReporte(resultSet.getInt(1));
+                rep.setProblema(resultSet.getString(2));
+                rep.setEstatus(resultSet.getString(3));
+                rep.setSolucion(resultSet.getString(4));
+                rep.setFechaI(resultSet.getDate(5));
+                rep.setFechaF(resultSet.getDate(6));
+                
 
+            }
+            resultSet.close();
+            DBConnection.closeConnection(connection);
+            return rep;
+        } 
+        catch (SQLException ex) 
+        {
+            ex.printStackTrace();
+        }
+        return null;
+    }
     public static List<Reporte> getListReporte(){
         List<Reporte> Reportito=null;
         Connection con=null;
@@ -82,7 +125,7 @@ public class ReporteGerenteMService {
             if(statement==null){
                 return null;
             }
-            resultSet=statement.executeQuery("Select idReporte,Problema, Estatus,Solucion, FechaI from Reporte WHERE Estatus = 'A Mantenimiento'");
+            resultSet=statement.executeQuery("select * from Reporte where Estatus='A Mantenimiento'");
             if(resultSet==null){
                 return null;
             }
@@ -99,6 +142,44 @@ public class ReporteGerenteMService {
             resultSet.close();
             closeConnection(con);
             return Reportito;
+        }
+        
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;}
+
+    
+    public static List<TblUsuario> getListIng(){
+        List<TblUsuario> reportito=null;
+        Connection con=null;
+        Statement statement=null;
+        ResultSet resultSet=null;
+        TblUsuario rep =null;
+        try{
+            con=getConnection();
+            if (con==null){
+                return null;
+            }
+            statement=con.createStatement();
+            if(statement==null){
+                return null;
+            }
+            resultSet=statement.executeQuery("SELECT NomUsuario FROM Usuario JOIN RelTipoUsuario ON Usuario.idUsuario = RelTipoUsuario.idUsuario\n" +
+            "JOIN TipoUsuario ON RelTipoUsuario.idTipo = TipoUsuario.idTipo\n" +
+            "WHERE TipoUsuario.idTipo = '9';");
+            if(resultSet==null){
+                return null;
+            }
+            reportito = new ArrayList<>();
+            while(resultSet.next()){
+                rep = new TblUsuario();
+                rep.setNomUser(resultSet.getString(1));
+                reportito.add(rep);
+            }
+            resultSet.close();
+            closeConnection(con);
+            return reportito;
         }
         
         catch(SQLException e){

@@ -22,6 +22,8 @@ import org.akar.service.ReporteGerenteService;
 public class ReporteGerenteMHelper implements Serializable{
     
     private List<Reporte> reporte;
+    private List<TblUsuario> ing;
+    private List<TblUsuario> gen;
     Reporte reportito;
     TblUsuario usuario;
     ReporteCambios repCam;
@@ -39,13 +41,15 @@ public class ReporteGerenteMHelper implements Serializable{
             return null;
         }
         
-        Reporte report = new ReporteGerenteService().getById(rep);
+        Reporte report = new ReporteGerenteMService().getById(rep);
         if(report != null){
             return report;
         } else{
             return null;
         }
     }
+
+
 
     
     public boolean AsignarReporteIng(HttpServletRequest request){
@@ -101,7 +105,7 @@ public class ReporteGerenteMHelper implements Serializable{
     
     
     public boolean loadList(){
-        reporte= ReporteGerenteService.getListReporte();
+        reporte= ReporteGerenteMService.getListReporte();
         return reporte!=null && reporte.size()>0;
     }
     
@@ -118,4 +122,21 @@ public class ReporteGerenteMHelper implements Serializable{
         this.reporte=reporte;
     }
     
+
+    public boolean loadlist2(){
+        ing = ReporteGerenteMService.getListIng();
+        return ing != null && ing.size()>0;
+}
+    public List<TblUsuario>getlist(){
+        if(ing==null || ing.size()==0){
+            if(!loadlist2()){
+                return null;
+            }
+        }
+        return ing;
+    }
+    
+    public void setlist(List<TblUsuario> ing){
+        this.ing=ing;
+    }
 }
