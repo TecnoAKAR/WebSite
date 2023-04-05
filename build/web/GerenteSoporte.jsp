@@ -63,6 +63,9 @@
                                         <td>
                                             <%=reportito.getFechaI()%>
                                         </td>
+                                        <td>
+                                            
+                                        </td>
                                          <td>
                                             <%=reportito.getFechaF()%>
                                         </td>

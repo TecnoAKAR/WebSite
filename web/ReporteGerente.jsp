@@ -17,6 +17,8 @@
             }  
             
                     Reporte sol = new ReporteGerenteHelper().getById(request);
+                    List<TblUsuario> reportito = new ReporteGerenteHelper().getlist();
+                    List<TblUsuario> reportito2= new ReporteGerenteHelper().getlist2();
                     if(sol == null){
         %>
                         <h3> Ha ocurrido un error </h3>
@@ -59,8 +61,22 @@
                                 </select>
                                 <label for="exampleFormControlInput1" class="form-label"> <b> Encargado </b> </label>
                                 <select id="idEncargado" name="idEncargado" class="form-select" aria-label="Default select example">
-                                <option selected>Selecciona Personal</option>
-                                <option aria-label="Default select example" value="Ingeniero de Soporte">Ingeniero Soporte</option>
+                                <option selected>Ingenieros de Soporte</option>
+                                <%
+                                    for(TblUsuario repor : reportito){
+                                        %>
+                                            <option value="<%=repor.getNomUser()%>"> <%=repor.getNomUser()%> </option>                            
+                                        <%
+                                    }
+                                %>
+                                <option selected>Gerentes de Mantenimiento</option>
+                                 <%
+                                    for(TblUsuario repor : reportito2){
+                                        %>
+                                            <option value="<%=repor.getNomUser()%>"> <%=repor.getNomUser()%> </option>                            
+                                        <%
+                                    }
+                                %>
                                 <option aria-label="Default select example" value="Gerente Mantenimiento">Gerente Mantenimiento</option>
                                 </select>
 

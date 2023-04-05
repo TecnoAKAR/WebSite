@@ -26,6 +26,8 @@ public class ReporteGerenteHelper implements Serializable{
     TblUsuario usuario;
     ReporteCambios repCam;
     PSReporte psrep,psrepor1;
+    private List<TblUsuario> ing;
+    private List<TblUsuario> gen;
 
     public ReporteGerenteHelper() {
     }
@@ -66,6 +68,12 @@ public class ReporteGerenteHelper implements Serializable{
             return false;
         }
         if(psrep.getReportito().getEstatus().equals("Abierto")){
+            return false;
+        }
+        if(psrep.getReportito().getEstatus().equals("A Mantenimiento") && psrep.getUsuario().getNomUser().equals("LUIS AXEL")){
+            return false;
+        }
+        if(psrep.getReportito().getEstatus().equals("En Soporte") && psrep.getUsuario().getNomUser().equals("ALEXANDER")){
             return false;
         }
                
@@ -114,5 +122,38 @@ public class ReporteGerenteHelper implements Serializable{
     public void setList(List<Reporte> reporte){
         this.reporte=reporte;
     }
+        
+
+    public boolean loadlist2(){
+        ing = ReporteGerenteService.getListIng();
+        return ing != null && ing.size()>0;
+}
+    public List<TblUsuario>getlist(){
+        if(ing==null || ing.size()==0){
+            if(!loadlist2()){
+                return null;
+            }
+        }
+        return ing;
+    }
     
+    public void setlist(List<TblUsuario> ing){
+        this.ing=ing;
+    }
+    public boolean loadlist3(){
+        gen = ReporteGerenteService.getListGer();
+        return gen != null && gen.size()>0;
+}
+    public List<TblUsuario>getlist2(){
+        if(gen==null || gen.size()==0){
+            if(!loadlist3()){
+                return null;
+            }
+        }
+        return gen;
+    }
+    
+    public void setlist2(List<TblUsuario> gen){
+        this.gen=gen;
+    }
 }
