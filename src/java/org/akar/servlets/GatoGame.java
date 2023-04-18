@@ -1,4 +1,4 @@
-package org.akar.games;
+package org.akar.servlets;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

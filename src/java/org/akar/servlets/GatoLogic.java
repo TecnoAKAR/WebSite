@@ -1,5 +1,5 @@
 
-package org.akar.games;
+package org.akar.servlets;
 
 public class GatoLogic {
     

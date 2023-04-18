@@ -3,7 +3,11 @@
     Created on : 24/02/2023, 04:50:49 AM
     Author     : Axel Zarate Lozano
 --%>
-
+<%@page import="org.akar.dao.PSUsuario"%>
+<%
+    try{
+        PSUsuario sesion = (PSUsuario)session.getAttribute("usuario");
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -79,39 +83,88 @@
           </div>
         </div>-->
         <!-- Pre-header End -->
-
-        <!-- ***** Header Area Start ***** -->
-        <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <nav class="main-nav">
-                            <!-- ***** Logo Start ***** -->
-                            <a href="index.jsp" class="logo">
-                                <img src="sources/assets/images/loguitoakar.png" alt="">
-                            </a>
-                            <!-- ***** Logo End ***** -->
-                            <!-- ***** Menu Start ***** -->
-                            <ul class="nav">
-                                <li class="scroll-to-section"><a href="index.jsp#top" class="active">Inicio</a></li>
-                                <li class="scroll-to-section"><a href="index.jsp#sobrenosotros">Sobre nosotros</a></li>
-                                <li class="scroll-to-section"><a href="index.jsp#proyecto">Proyecto</a></li>
-                                <li class="scroll-to-section"><a href="index.jsp#galeria">Galería</a></li>
-                                <li class="scroll-to-section"><a href="index.jsp#contact">Contáctanos</a></li> 
-                                <li class="scroll-to-section"><a href="signup.jsp">Registrarse</a></li>
-                                <li class="scroll-to-section"><div class="border-first-button"><a href="login.jsp">Iniciar sesión</a></div></li> 
-                            </ul>        
-                            <a class='menu-trigger'>
-                                <span>Menu</span>
-                            </a>
-                            <!-- ***** Menu End ***** -->
-                        </nav>
+        <%
+            if(session==null){
+        %>
+            <!-- ***** Header Area Start ***** -->
+            <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <nav class="main-nav">
+                                <!-- ***** Logo Start ***** -->
+                                <a href="index.jsp" class="logo">
+                                    <img src="sources/assets/images/loguitoakar.png" alt="">
+                                </a>
+                                <!-- ***** Logo End ***** -->
+                                <!-- ***** Menu Start ***** -->
+                                <ul class="nav">
+                                    <li class="scroll-to-section"><a href="index.jsp#top">Inicio</a></li>
+                                    <li class="scroll-to-section"><a href="index.jsp#sobrenosotros">Sobre nosotros</a></li>
+                                    <li class="scroll-to-section"><a href="index.jsp#proyecto">Proyecto</a></li>
+                                    <li class="scroll-to-section"><a href="index.jsp#galeria">Galería</a></li>
+                                    <li class="scroll-to-section"><a href="index.jsp#contact">Contáctanos</a></li> 
+                                    <li class="scroll-to-section"><a href="signup.jsp">Registrarse</a></li>
+                                    <li class="scroll-to-section"><div class="border-first-button"><a href="login.jsp">Iniciar sesión</a></div></li> 
+                                </ul>        
+                                <a class='menu-trigger'>
+                                    <span>Menu</span>
+                                </a>
+                                <!-- ***** Menu End ***** -->
+                            </nav>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </header>
-        <!-- ***** Header Area End ***** -->
-        
+            </header>
+            <!-- ***** Header Area End ***** -->
+        <%
+            } else{
+        %>
+            <!-- ***** Header Area Start ***** -->
+            <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+              <div class="container">
+                <div class="row">
+                  <div class="col-12">
+                    <nav class="main-nav">
+                      <!-- ***** Logo Start ***** -->
+                      <a href="Home.jsp" class="logo">
+                        <img src="sources/assets/images/loguitoakar.png" alt="">
+                      </a>
+                      <!-- ***** Logo End ***** -->
+                      <!-- ***** Menu Start ***** -->
+                      <ul class="nav">
+                        <li class="scroll-to-section"><a href="#top">Inicio</a></li>
+                        <li class="scroll-to-section"><a href="#sobrenosotros">Sobre nosotros</a></li>
+                        <li class="scroll-to-section"><a href="#proyecto">Proyecto</a></li>
+                        <li class="scroll-to-section"><a href="#galeria">Galería</a></li>
+                        <li class="scroll-to-section"><a href="Foro.jsp">Foro</a></li>
+                        <li class="scroll-to-section"><a href="#contact">Contáctanos</a></li> 
+                        <li class="scroll-to-section">
+                          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="true"> <%= sesion.getUsuario().getNomUser() %> </a>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="profile.jsp">Perfil</a></li>
+                            <li><a class="dropdown-item" href="editProf.jsp">Editar perfil</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="?action=close" id="action" name="action" value="close">Cerrar sesión</a></li>
+                          </ul>
+                        </li>
+
+
+
+                      </ul>        
+                      <a class='menu-trigger'>
+                          <span>Menu</span>
+                      </a>
+                      <!-- ***** Menu End ***** -->
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </header>
+            <!-- ***** Header Area End ***** -->
+        <%
+            }
+        %>
         </br>
         </br>
         </br>
@@ -148,60 +201,60 @@
                     </tr>
                     <tr>
                         <td>2 Prefiere hacer las cosas de una misma manera una y otra vez.</td>
-                        <td><input type="radio" name="p2" value="3" required></td>
-                        <td><input type="radio" name="p2" value="2" required></td>
-                        <td><input type="radio" name="p2" value="1" required></td>
                         <td><input type="radio" name="p2" value="0" required></td>
+                        <td><input type="radio" name="p2" value="1" required></td>
+                        <td><input type="radio" name="p2" value="2" required></td>
+                        <td><input type="radio" name="p2" value="3" required></td>
                     </tr>
                     <tr>
                         <td>3 Cuando trata de imaginarse algo, le parece muy fácil crear la imagen en su cabeza.</td>
-                        <td><input type="radio" name="p3" value="3" required></td>
-                        <td><input type="radio" name="p3" value="2" required></td>
-                        <td><input type="radio" name="p3" value="1" required></td>
                         <td><input type="radio" name="p3" value="0" required></td>
+                        <td><input type="radio" name="p3" value="1" required></td>
+                        <td><input type="radio" name="p3" value="2" required></td>
+                        <td><input type="radio" name="p3" value="3" required></td>
                     </tr>
                     <tr>
                         <td>4 Con frecuencia queda tan absorto/a en una actividad que parece no darse cuenta de las cosas que suceden a su alrededor.
 </td>
-                        <td><input type="radio" name="p4" value="3" required></td>
-                        <td><input type="radio" name="p4" value="2" required></td>
-                        <td><input type="radio" name="p4" value="1" required></td>
                         <td><input type="radio" name="p4" value="0" required></td>
+                        <td><input type="radio" name="p4" value="1" required></td>
+                        <td><input type="radio" name="p4" value="2" required></td>
+                        <td><input type="radio" name="p4" value="3" required></td>
                     </tr>
                     <tr>
                         <td>5 Usualmente puede oír débiles sonidos que otros no.</td>
-                        <td><input type="radio" name="p5" value="3" required></td>
-                        <td><input type="radio" name="p5" value="2" required></td>
-                        <td><input type="radio" name="p5" value="1" required></td>
                         <td><input type="radio" name="p5" value="0" required></td>
+                        <td><input type="radio" name="p5" value="1" required></td>
+                        <td><input type="radio" name="p5" value="2" required></td>
+                        <td><input type="radio" name="p5" value="3" required></td>
                     </tr>
                     <tr>
                         <td>6 A menudo le llaman la atención los números de las casas, matrículas de coches, números impresos en carteles o información similar.</td>
-                        <td><input type="radio" name="p6" value="3" required></td>
-                        <td><input type="radio" name="p6" value="2" required></td>
-                        <td><input type="radio" name="p6" value="1" required></td>
                         <td><input type="radio" name="p6" value="0" required></td>
+                        <td><input type="radio" name="p6" value="1" required></td>
+                        <td><input type="radio" name="p6" value="2" required></td>
+                        <td><input type="radio" name="p6" value="3" required></td>
                     </tr>   
                     <tr>      
                         <td>7 Tiene dificultad en comprender las reglas de la conducta cortés.</td>
-                        <td><input type="radio" name="p7" value="3" required></td>
-                        <td><input type="radio" name="p7" value="2" required></td>
-                        <td><input type="radio" name="p7" value="1" required></td>
                         <td><input type="radio" name="p7" value="0" required></td>
+                        <td><input type="radio" name="p7" value="1" required></td>
+                        <td><input type="radio" name="p7" value="2" required></td>
+                        <td><input type="radio" name="p7" value="3" required></td>
                     </tr>
                     <tr>
                         <td>8 Cuando lee un cuento, le resulta fácil imaginarse cómo son los personajes.</td>
-                        <td><input type="radio" name="p8" value="3" required></td>
-                        <td><input type="radio" name="p8" value="2" required></td>
-                        <td><input type="radio" name="p8" value="1" required></td>
                         <td><input type="radio" name="p8" value="0" required></td>
+                        <td><input type="radio" name="p8" value="1" required></td>
+                        <td><input type="radio" name="p8" value="2" required></td>
+                        <td><input type="radio" name="p8" value="3" required></td>
                     </tr>
                     <tr>
                         <td>9 Le fascinan las fechas.</td>
-                        <td><input type="radio" name="p9" value="3" required></td>
-                        <td><input type="radio" name="p9" value="2" required></td>
-                        <td><input type="radio" name="p9" value="1" required></td>
                         <td><input type="radio" name="p9" value="0" required></td>
+                        <td><input type="radio" name="p9" value="1" required></td>
+                        <td><input type="radio" name="p9" value="2" required></td>
+                        <td><input type="radio" name="p9" value="3" required></td>
                     </tr>
                     <tr>
                         <td>10 Cuando está con otras personas, puede seguir varias conversaciones de distintas personas.</td>
@@ -219,17 +272,17 @@
                     </tr>
                     <tr>
                         <td>12 Suele fijarse en detalles que a otros no les llaman la atención.</td>
-                        <td><input type="radio" name="p12" value="3" required></td>
-                        <td><input type="radio" name="p12" value="2" required></td>
-                        <td><input type="radio" name="p12" value="1" required></td>
                         <td><input type="radio" name="p12" value="0" required></td>
+                        <td><input type="radio" name="p12" value="1" required></td>
+                        <td><input type="radio" name="p12" value="2" required></td>
+                        <td><input type="radio" name="p12" value="3" required></td>
                     </tr>
                     <tr>
                         <td>13 Se sentiría más a gusto en una biblioteca que en una fiesta de cumpleaños.</td>
-                        <td><input type="radio" name="p13" value="3" required></td>
-                        <td><input type="radio" name="p13" value="2" required></td>
-                        <td><input type="radio" name="p13" value="1" required></td>
                         <td><input type="radio" name="p13" value="0" required></td>
+                        <td><input type="radio" name="p13" value="1" required></td>
+                        <td><input type="radio" name="p13" value="2" required></td>
+                        <td><input type="radio" name="p13" value="3" required></td>
                     </tr>
                     <tr>
                         <td>14 Inventa historias con facilidad.</td>
@@ -247,10 +300,10 @@
                     </tr>
                     <tr>
                         <td>16 Algunas cosas le interesan mucho y se molesta si no puede dedicarles tiempo.</td>
-                        <td><input type="radio" name="p16" value="3" required></td>
-                        <td><input type="radio" name="p16" value="2" required></td>
-                        <td><input type="radio" name="p16" value="1" required></td>
                         <td><input type="radio" name="p16" value="0" required></td>
+                        <td><input type="radio" name="p16" value="1" required></td>
+                        <td><input type="radio" name="p16" value="2" required></td>
+                        <td><input type="radio" name="p16" value="3" required></td>
                     </tr>
                     <tr>
                         <td>17 Le gusta conversar sobre temas interesantes sin importancia.</td>
@@ -261,45 +314,45 @@
                     </tr>
                     <tr>
                         <td>18 Cuando habla no siempre es fácil para los demás intervenir en la conversación.</td>
-                        <td><input type="radio" name="p18" value="3" required></td>
-                        <td><input type="radio" name="p18" value="2" required></td>
-                        <td><input type="radio" name="p18" value="1" required></td>
                         <td><input type="radio" name="p18" value="0" required></td>
+                        <td><input type="radio" name="p18" value="1" required></td>
+                        <td><input type="radio" name="p18" value="2" required></td>
+                        <td><input type="radio" name="p18" value="3" required></td>
                     </tr>
                     <tr>
                         <td>19 Le fascinan los números.</td>
-                        <td><input type="radio" name="p19" value="3" required></td>
-                        <td><input type="radio" name="p19" value="2" required></td>
-                        <td><input type="radio" name="p19" value="1" required></td>
                         <td><input type="radio" name="p19" value="0" required></td>
+                        <td><input type="radio" name="p19" value="1" required></td>
+                        <td><input type="radio" name="p19" value="2" required></td>
+                        <td><input type="radio" name="p19" value="3" required></td>
                     </tr>
                     <tr>
                         <td>20 Cuando lee un cuento le cuesta identificar las intenciones o sentimientos de los personajes.</td>
-                        <td><input type="radio" name="p20" value="3" required></td>
-                        <td><input type="radio" name="p20" value="2" required></td>
-                        <td><input type="radio" name="p20" value="1" required></td>
                         <td><input type="radio" name="p20" value="0" required></td>
+                        <td><input type="radio" name="p20" value="1" required></td>
+                        <td><input type="radio" name="p20" value="2" required></td>
+                        <td><input type="radio" name="p20" value="3" required></td>
                     </tr>
                     <tr>
                         <td>21 No le gustan los cuentos de historias de ficción.</td>
-                        <td><input type="radio" name="p21" value="3" required></td>
-                        <td><input type="radio" name="p21" value="2" required></td>
-                        <td><input type="radio" name="p21" value="1" required></td>
                         <td><input type="radio" name="p21" value="0" required></td>
+                        <td><input type="radio" name="p21" value="1" required></td>
+                        <td><input type="radio" name="p21" value="2" required></td>
+                        <td><input type="radio" name="p21" value="3" required></td>
                     </tr>
                     <tr>
-                        <td>22 No le cuesta hacer nuevos amigos.</td>
-                        <td><input type="radio" name="p22" value="3" required></td>
-                        <td><input type="radio" name="p22" value="2" required></td>
-                        <td><input type="radio" name="p22" value="1" required></td>
+                        <td>22 Le cuesta hacer nuevos amigos.</td>
                         <td><input type="radio" name="p22" value="0" required></td>
+                        <td><input type="radio" name="p22" value="1" required></td>
+                        <td><input type="radio" name="p22" value="2" required></td>
+                        <td><input type="radio" name="p22" value="3" required></td>
                     </tr>
                     <tr>
                         <td>23 Siempre está encontrando patrones o regularidades en las cosas.</td>
-                        <td><input type="radio" name="p23" value="3" required></td>
-                        <td><input type="radio" name="p23" value="2" required></td>
-                        <td><input type="radio" name="p23" value="1" required></td>
                         <td><input type="radio" name="p23" value="0" required></td>
+                        <td><input type="radio" name="p23" value="1" required></td>
+                        <td><input type="radio" name="p23" value="2" required></td>
+                        <td><input type="radio" name="p23" value="3" required></td>
                     </tr>
                     <tr>
                         <td>24 Le gusta más ir al cine que a un museo.</td>
@@ -317,10 +370,10 @@
                     </tr>
                     <tr>
                         <td>26 No sabe como hacer para conversar con niños de su edad.</td>
-                        <td><input type="radio" name="p26" value="3" required></td>
-                        <td><input type="radio" name="p26" value="2" required></td>
-                        <td><input type="radio" name="p26" value="1" required></td>
                         <td><input type="radio" name="p26" value="0" required></td>
+                        <td><input type="radio" name="p26" value="1" required></td>
+                        <td><input type="radio" name="p26" value="2" required></td>
+                        <td><input type="radio" name="p26" value="3" required></td>
                     </tr>
                     <tr>
                         <td>27 No le cuesta “leer entre líneas” cuando otras personas le dicen algo.</td>
@@ -352,10 +405,10 @@
                     </tr>
                     <tr>
                         <td>31 Cuando habla, se da cuenta cuando la gente se aburre con lo que dice.</td>
-                        <td><input type="radio" name="p31" value="3" required></td>
-                        <td><input type="radio" name="p31" value="2" required></td>
-                        <td><input type="radio" name="p31" value="1" required></td>
                         <td><input type="radio" name="p31" value="0" required></td>
+                        <td><input type="radio" name="p31" value="1" required></td>
+                        <td><input type="radio" name="p31" value="2" required></td>
+                        <td><input type="radio" name="p31" value="3" required></td>
                     </tr>
                     <tr>
                         <td>32 Le es fácil hacer más de una cosa a la vez.</td>
@@ -366,10 +419,10 @@
                     </tr>
                     <tr>
                         <td>33 Cuando habla por teléfono no sabe cuando es su turno para hablar.</td>
-                        <td><input type="radio" name="p33" value="3" required></td>
-                        <td><input type="radio" name="p33" value="2" required></td>
-                        <td><input type="radio" name="p33" value="1" required></td>
                         <td><input type="radio" name="p33" value="0" required></td>
+                        <td><input type="radio" name="p33" value="1" required></td>
+                        <td><input type="radio" name="p33" value="2" required></td>
+                        <td><input type="radio" name="p33" value="3" required></td>
                     </tr>
                     <tr>
                         <td>34 Le gusta hacer cosas de manera espontánea.</td>
@@ -380,10 +433,10 @@
                     </tr>
                     <tr>
                         <td>35 Es el/la último/a en entender un chiste o una broma.</td>
-                        <td><input type="radio" name="p35" value="3" required></td>
-                        <td><input type="radio" name="p35" value="2" required></td>
-                        <td><input type="radio" name="p35" value="1" required></td>
                         <td><input type="radio" name="p35" value="0" required></td>
+                        <td><input type="radio" name="p35" value="1" required></td>
+                        <td><input type="radio" name="p35" value="2" required></td>
+                        <td><input type="radio" name="p35" value="3" required></td>
                     </tr>
                     <tr>
                         <td>36 Se da cuenta fácilmente de lo que piensa o siente una persona sólo con mirarla a la cara.</td>
@@ -408,10 +461,10 @@
                     </tr>
                     <tr>
                         <td>39 La gente dice que él/ella siempre habla del mismo tema.</td>
-                        <td><input type="radio" name="p39" value="3" required></td>
-                        <td><input type="radio" name="p39" value="2" required></td>
-                        <td><input type="radio" name="p39" value="1" required></td>
                         <td><input type="radio" name="p39" value="0" required></td>
+                        <td><input type="radio" name="p39" value="1" required></td>
+                        <td><input type="radio" name="p39" value="2" required></td>
+                        <td><input type="radio" name="p39" value="3" required></td>
                     </tr>
                     <tr>
                         <td>40 Cuando estaba en preescolar le gustaba jugar a juegos de simulación con otros niños ( por ejemplo: vaqueros, mamá y papá,...).</td>
@@ -422,24 +475,24 @@
                     </tr>
                     <tr>
                         <td>41 Le gusta juntar información sobre categorías de cosas (autos, trenes, aviones, plantas, animales, etc.).</td>
-                        <td><input type="radio" name="p41" value="3" required></td>
-                        <td><input type="radio" name="p41" value="2" required></td>
-                        <td><input type="radio" name="p41" value="1" required></td>
                         <td><input type="radio" name="p41" value="0" required></td>
+                        <td><input type="radio" name="p41" value="1" required></td>
+                        <td><input type="radio" name="p41" value="2" required></td>
+                        <td><input type="radio" name="p41" value="3" required></td>
                     </tr>
                     <tr>
                         <td>42 Le cuesta imaginarse como sería ser otra persona.</td>
-                        <td><input type="radio" name="p42" value="3" required></td>
-                        <td><input type="radio" name="p42" value="2" required></td>
-                        <td><input type="radio" name="p42" value="1" required></td>
                         <td><input type="radio" name="p42" value="0" required></td>
+                        <td><input type="radio" name="p42" value="1" required></td>
+                        <td><input type="radio" name="p42" value="2" required></td>
+                        <td><input type="radio" name="p42" value="3" required></td>
                     </tr>
                     <tr>
                         <td>43 Le gusta planificar cuidadosamente cualquier actividad en la que vaya a participar.</td>
-                        <td><input type="radio" name="p43" value="3" required></td>
-                        <td><input type="radio" name="p43" value="2" required></td>
-                        <td><input type="radio" name="p43" value="1" required></td>
                         <td><input type="radio" name="p43" value="0" required></td>
+                        <td><input type="radio" name="p43" value="1" required></td>
+                        <td><input type="radio" name="p43" value="2" required></td>
+                        <td><input type="radio" name="p43" value="3" required></td>
                     </tr>
                     <tr>
                         <td>44 Disfruta de situaciones o eventos sociales.</td>
@@ -450,17 +503,17 @@
                     </tr>
                     <tr>
                         <td>45 Le es difícil darse cuenta de las intenciones de las otras personas.</td>
-                        <td><input type="radio" name="p45" value="3" required></td>
-                        <td><input type="radio" name="p45" value="2" required></td>
-                        <td><input type="radio" name="p45" value="1" required></td>
                         <td><input type="radio" name="p45" value="0" required></td>
+                        <td><input type="radio" name="p45" value="1" required></td>
+                        <td><input type="radio" name="p45" value="2" required></td>
+                        <td><input type="radio" name="p45" value="3" required></td>
                     </tr>
                     <tr>
                         <td>46 Las situaciones nuevas le generan ansiedad.</td>
-                        <td><input type="radio" name="p46" value="3" required></td>
-                        <td><input type="radio" name="p46" value="2" required></td>
-                        <td><input type="radio" name="p46" value="1" required></td>
                         <td><input type="radio" name="p46" value="0" required></td>
+                        <td><input type="radio" name="p46" value="1" required></td>
+                        <td><input type="radio" name="p46" value="2" required></td>
+                        <td><input type="radio" name="p46" value="3" required></td>
                     </tr>
                     <tr>
                         <td>47 Disfruta conociendo gente nueva.</td>
@@ -593,3 +646,10 @@
         
     </body>
 </html>
+<%
+    }
+    catch(Exception e){
+        response.sendRedirect("Error.jsp");
+    }
+
+%>

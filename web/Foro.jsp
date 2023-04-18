@@ -12,9 +12,7 @@
 <!DOCTYPE html>
 
 <%
-    try{
-        response.setIntHeader("Refresh", 5);
-        
+    try{        
         PSUsuario sesion = (PSUsuario)session.getAttribute("usuario");
         
         if(sesion == null){
@@ -73,11 +71,11 @@
                             <!-- ***** Logo End ***** -->
                             <!-- ***** Menu Start ***** -->
                             <ul class="nav">
-                                <li class="scroll-to-section"><a href="Home.jsp" class="active">Inicio</a></li>
+                                <li class="scroll-to-section"><a href="Home.jsp">Inicio</a></li>
                                 <li class="scroll-to-section"><a href="Home.jsp#sobrenosotros">Sobre nosotros</a></li>
                                 <li class="scroll-to-section"><a href="Home.jsp#proyecto">Proyecto</a></li>
                                 <li class="scroll-to-section"><a href="Home.jsp#galeria">Galería</a></li>
-                                <li class="scroll-to-section"><a href="Foro.jsp">Foro</a></li>
+                                <li class="scroll-to-section"><a href="Foro.jsp" class="active">Foro</a></li>
                                 <li class="scroll-to-section"><a href="Home.jsp#contact">Contáctanos</a></li> 
                                 <li class="scroll-to-section">
                                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="true"> <%= sesion.getUsuario().getNomUser()%> </a>
@@ -109,33 +107,38 @@
         </br>
         </br>
         
-        <%
-            List<MsjForo> msgs = new PSUsuarioHelper().getMsg();
-            for(MsjForo msjs : msgs){
-                if(!sesion.getUsuario().getNomUser().equals(msjs.getUsuario().getNomUser())){
-        %>
-                    <div>
-                        <%=msjs.getIdMensaje()%>
-                        <font style="color: blue"> <%=msjs.getUsuario().getNomUser()%> </font> <%=msjs.getMensaje()%> <font style="color: graytext"><%=msjs.getHora().toString()%></font>
-                    </div>
-        <%
-                } else{
-        %>   
-                    <div align="right">
-                        <%=msjs.getIdMensaje()%>
-                        <font style="color: green"> <%=msjs.getUsuario().getNomUser()%> </font> <%=msjs.getMensaje()%> <font style="color: graytext"><%=msjs.getHora().toString()%></font>
-                    </div>
-        <%
-                }
-            }
-        %>
+        <div id="chat-mensajes">
+            
+        </div>
+        
+        <script>
+            function getNewMessages() {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                  if (this.readyState == 4 && this.status == 200) {
+                    var messages = JSON.parse(this.responseText);
+                    var chatMessages = document.getElementById("chat-mensajes");
+                    chatMessages.innerHTML = '';
+                    for (var i = 0; i < messages.length; i++) {
+                      var message = messages[i];
+                      var messageDiv = document.createElement("div");
+                      messageDiv.innerHTML = "<b> <font color=\"green\"> "+message.usuario.nomUser+" </font> </b> "+message.mensaje+" <font color=\"grey\"> "+message.hora+" </p>";
+                      chatMessages.appendChild(messageDiv);
+                    }
+                  }
+                };
+                xhr.open("GET", "ForoServlet", true);
+                xhr.send();
+              }
+
+            setInterval(getNewMessages, 1000);
+        </script>
         <hr>
-        <form method="post">
+        <form method="post" id="envMsj">
             <input type="hidden" id="idAutor" name="idAutor" value="<%=sesion.getUsuario().getIdUsuario()%>">
-            <textarea class="form-control" name="msj" id="msj" rows="3"> </textarea><button type="submit" id="action" name="action" value="send"> > </button>
+            <textarea class="form-control" name="msj" id="msj" rows="3"></textarea>
+            <button type="submit" id="action" name="action" value="send" class="btn-dark"> Enviar > </button>
         </form>
-            
-            
             <footer>
                 <div class="container">
                     <div class="row">
