@@ -398,7 +398,7 @@
     </div>
   </div>
 
-
+  <!-->
   <div id="galeria" class="our-portfolio section">
     <div class="container">
       <div class="row">
@@ -485,7 +485,7 @@
       </div>
     </div>
   </div>
-
+  <!-->
   <div id="contact" class="contact-us section">
     <div class="container">
       <div class="row">

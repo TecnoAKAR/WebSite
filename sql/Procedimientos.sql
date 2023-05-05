@@ -233,6 +233,9 @@ call sp_Registro('Kalid', 'Avila','Ponce', '2004-07-24','kalid@gmail.com','geren
 call sp_Registro('Luis Axel', 'Zarate','Lozano', '2004-06-11','luis@gmail.com','ingenierodesoporte','LUIS AXEL',7);
 call sp_Registro('Alexander', 'Avila','Ponce', '2004-07-24','alexander@gmail.com','gerentedemantenimiento','ALEXANDER',8);
 call sp_Registro('Rodrigo Vidal', 'Ramirez','Aguilar', '2004-05-24','rodrigo@gmail.com','ingenierodemantenimiento','RODRIGO VIDAL',9);
-call sp_Registro('Usuario', 'Super','Super', '2004-05-24','superusuario@gmail.com','superusuario','Administrador',10);
+call sp_Registro('Usuario', 'Super','Super', '2004-05-24','superusuario@gmail.com','superusuario','Super Usuario',10);
 call sp_Registro('Test', 'Test','Test', '2000-01-01','root@gmail.com','n0m3l0','Root', 4);
+call sp_Registro('Luis', 'Zarate','Lozano', '2000-01-02','zarate.lozano.luis.axel@gmail.com','luisin','LuisAPP', 4);
+call sp_Registro('Rodri', 'Ramirez','Aguilar', '2000-01-03','rodri@gmail.com','rodri','Rodri', 4);
+call sp_Registro('Lucifer', 'Estrella','De la Mañana', '2000-01-03','luciestrelladelamañana@gmail.com','luciestrelladelamañana','Lucy', 4);
 

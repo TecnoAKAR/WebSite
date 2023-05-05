@@ -84,84 +84,84 @@
         </div>-->
         <!-- Pre-header End -->
         <%
-            if(session==null){
+            if(sesion == null){
         %>
-            <!-- ***** Header Area Start ***** -->
-            <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <nav class="main-nav">
-                                <!-- ***** Logo Start ***** -->
-                                <a href="index.jsp" class="logo">
-                                    <img src="sources/assets/images/loguitoakar.png" alt="">
-                                </a>
-                                <!-- ***** Logo End ***** -->
-                                <!-- ***** Menu Start ***** -->
-                                <ul class="nav">
-                                    <li class="scroll-to-section"><a href="index.jsp#top">Inicio</a></li>
-                                    <li class="scroll-to-section"><a href="index.jsp#sobrenosotros">Sobre nosotros</a></li>
-                                    <li class="scroll-to-section"><a href="index.jsp#proyecto">Proyecto</a></li>
-                                    <li class="scroll-to-section"><a href="index.jsp#galeria">Galería</a></li>
-                                    <li class="scroll-to-section"><a href="index.jsp#contact">Contáctanos</a></li> 
-                                    <li class="scroll-to-section"><a href="signup.jsp">Registrarse</a></li>
-                                    <li class="scroll-to-section"><div class="border-first-button"><a href="login.jsp">Iniciar sesión</a></div></li> 
-                                </ul>        
-                                <a class='menu-trigger'>
-                                    <span>Menu</span>
-                                </a>
-                                <!-- ***** Menu End ***** -->
-                            </nav>
+                <!-- ***** Header Area Start ***** -->
+                <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <nav class="main-nav">
+                                    <!-- ***** Logo Start ***** -->
+                                    <a href="index.jsp" class="logo">
+                                        <img src="sources/assets/images/loguitoakar.png" alt="">
+                                    </a>
+                                    <!-- ***** Logo End ***** -->
+                                    <!-- ***** Menu Start ***** -->
+                                    <ul class="nav">
+                                        <li class="scroll-to-section"><a href="index.jsp#top">Inicio</a></li>
+                                        <li class="scroll-to-section"><a href="index.jsp#sobrenosotros">Sobre nosotros</a></li>
+                                        <li class="scroll-to-section"><a href="index.jsp#proyecto">Proyecto</a></li>
+                                        <li class="scroll-to-section"><a href="index.jsp#galeria">Galería</a></li>
+                                        <li class="scroll-to-section"><a href="index.jsp#contact">Contáctanos</a></li> 
+                                        <li class="scroll-to-section"><a href="signup.jsp">Registrarse</a></li>
+                                        <li class="scroll-to-section"><div class="border-first-button"><a href="login.jsp">Iniciar sesión</a></div></li> 
+                                    </ul>        
+                                    <a class='menu-trigger'>
+                                        <span>Menu</span>
+                                    </a>
+                                    <!-- ***** Menu End ***** -->
+                                </nav>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </header>
-            <!-- ***** Header Area End ***** -->
+                </header>
+                <!-- ***** Header Area End ***** -->
         <%
             } else{
         %>
-            <!-- ***** Header Area Start ***** -->
-            <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
-              <div class="container">
-                <div class="row">
-                  <div class="col-12">
-                    <nav class="main-nav">
-                      <!-- ***** Logo Start ***** -->
-                      <a href="Home.jsp" class="logo">
-                        <img src="sources/assets/images/loguitoakar.png" alt="">
-                      </a>
-                      <!-- ***** Logo End ***** -->
-                      <!-- ***** Menu Start ***** -->
-                      <ul class="nav">
-                        <li class="scroll-to-section"><a href="#top">Inicio</a></li>
-                        <li class="scroll-to-section"><a href="#sobrenosotros">Sobre nosotros</a></li>
-                        <li class="scroll-to-section"><a href="#proyecto">Proyecto</a></li>
-                        <li class="scroll-to-section"><a href="#galeria">Galería</a></li>
-                        <li class="scroll-to-section"><a href="Foro.jsp">Foro</a></li>
-                        <li class="scroll-to-section"><a href="#contact">Contáctanos</a></li> 
-                        <li class="scroll-to-section">
-                          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="true"> <%= sesion.getUsuario().getNomUser() %> </a>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="profile.jsp">Perfil</a></li>
-                            <li><a class="dropdown-item" href="editProf.jsp">Editar perfil</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="?action=close" id="action" name="action" value="close">Cerrar sesión</a></li>
-                          </ul>
-                        </li>
+                <!-- ***** Header Area Start ***** -->
+                <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-12">
+                        <nav class="main-nav">
+                          <!-- ***** Logo Start ***** -->
+                          <a href="Home.jsp" class="logo">
+                            <img src="sources/assets/images/loguitoakar.png" alt="">
+                          </a>
+                          <!-- ***** Logo End ***** -->
+                          <!-- ***** Menu Start ***** -->
+                          <ul class="nav">
+                            <li class="scroll-to-section"><a href="#top">Inicio</a></li>
+                            <li class="scroll-to-section"><a href="#sobrenosotros">Sobre nosotros</a></li>
+                            <li class="scroll-to-section"><a href="#proyecto">Proyecto</a></li>
+                            <li class="scroll-to-section"><a href="#galeria">Galería</a></li>
+                            <li class="scroll-to-section"><a href="Foro.jsp">Foro</a></li>
+                            <li class="scroll-to-section"><a href="#contact">Contáctanos</a></li> 
+                            <li class="scroll-to-section">
+                              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="true"> <%= sesion.getUsuario().getNomUser() %> </a>
+                              <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="profile.jsp">Perfil</a></li>
+                                <li><a class="dropdown-item" href="editProf.jsp">Editar perfil</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="?action=close" id="action" name="action" value="close">Cerrar sesión</a></li>
+                              </ul>
+                            </li>
 
 
 
-                      </ul>        
-                      <a class='menu-trigger'>
-                          <span>Menu</span>
-                      </a>
-                      <!-- ***** Menu End ***** -->
-                    </nav>
+                          </ul>        
+                          <a class='menu-trigger'>
+                              <span>Menu</span>
+                          </a>
+                          <!-- ***** Menu End ***** -->
+                        </nav>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </header>
-            <!-- ***** Header Area End ***** -->
+                </header>
+                <!-- ***** Header Area End ***** -->
         <%
             }
         %>

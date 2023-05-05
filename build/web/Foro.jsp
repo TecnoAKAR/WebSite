@@ -122,7 +122,7 @@
                     for (var i = 0; i < messages.length; i++) {
                       var message = messages[i];
                       var messageDiv = document.createElement("div");
-                      messageDiv.innerHTML = "<b> <font color=\"green\"> "+message.usuario.nomUser+" </font> </b> "+message.mensaje+" <font color=\"grey\"> "+message.hora+" </p>";
+                      messageDiv.innerHTML = "<b> <font color=\"green\"> "+message.usuario.nomUser+" </font> </b> "+message.mensaje+" <font color=\"grey\"> "+message.hora+" </b>";
                       chatMessages.appendChild(messageDiv);
                     }
                   }

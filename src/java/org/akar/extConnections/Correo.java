@@ -64,7 +64,7 @@ public class Correo {
         Session session = Session.getDefaultInstance(props);
         MimeMessage message = new MimeMessage(session);
 
-        String msj = "Buenas tardes, estimado usuario.\nPara poder restablecer su contraseña ingresa en el siguiente link: \n"+"http://localhost:8080/akar/resPass.jsp?token="+token+"\nPodrá cambiar su contraseña en un plazo máximo de 24 horas.\nCualquier situación que se le presente contactenos a "+this.correoAKAR+", estamos para servirle";
+        String msj = "Buenas tardes, estimado usuario.\nPara poder restablecer su contraseña ingresa en el siguiente link: \n"+"http://192.168.21.29:8080/akar/resPass.jsp?token="+token+"\nPodrá cambiar su contraseña en un plazo máximo de 24 horas.\nCualquier situación que se le presente contactenos a "+this.correoAKAR+", estamos para servirle";
         
         try {
             System.out.println(mail);
