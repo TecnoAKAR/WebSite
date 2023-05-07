@@ -4,6 +4,7 @@ Created on : 12/10/2022, 10:52:51 PM
 Author     : AKAR
 --%>
 
+<%@page import="org.akar.helper.PSResPassHelper"%>
 <%@page import="java.time.Period"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.LocalDate"%>
@@ -156,9 +157,20 @@ Author     : AKAR
                     else{
                         PSUsuario usuario = new PSUsuarioHelper().SignUp(request);
                         if( usuario!= null){
-                            HttpSession sesion = request.getSession();
-                            sesion.setAttribute("usuario", usuario);
-                            response.sendRedirect("Home.jsp");
+                            boolean tokenA = new PSResPassHelper().setToken(request);
+                            if(tokenA == true){
+        %>
+                                <script>
+                                    alert("Revise su correo para confirmar su cuenta.");
+                                </script>
+        <%                                
+                            }else{
+        %>
+                                <script>
+                                    alert("¡Algo ha salido mal!, contacte a soporte de inmediato para solucionar el problema.");
+                                </script>
+        <%                                 
+                            }
                         }
                         else{
         %>

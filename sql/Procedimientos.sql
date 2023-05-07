@@ -9,7 +9,7 @@ drop procedure if exists sp_asignarToken;
 drop procedure if exists sp_recDatosToken;
 drop procedure if exists sp_MsjForo;
 drop procedure if exists sp_getMsjF;
-drop procedure if exists sp_getMsjF;
+drop procedure if exists sp_VerCuenta;
 drop procedure if exists sp_soporte;
 drop procedure if exists sp_mantenimiento;
 drop procedure if exists sp_GerenteSopIng;
@@ -28,14 +28,14 @@ declare existe int;
 declare xMsj nvarchar(50);
 	set existe=(select count(*) from usuario where Usuario.Correo=correo or Usuario.NomUsuario = usuario);
     if (existe=0) then
-		insert into Usuario( Nombre, ApellidoP, ApellidoM, Correo, Contrasena, NomUsuario, Fecha)
-		values (nom, pat, mat, correo, sha(contrasena), usuario, fecha);
+		insert into Usuario( Nombre, ApellidoP, ApellidoM, Correo, Contrasena, NomUsuario, Fecha, Ver)
+		values (nom, pat, mat, correo, sha(contrasena), usuario, fecha, false);
 		set xIdPersona=( select idUsuario from Usuario where Nombre= nom and ApellidoP= pat);
 		set xIdTipo= tipo;
 		insert into RelTipoUsuario( idUsuario, idTipo) values (xIdPersona,xIdTipo);
         select RelTipoUsuario.idRelTipoUsuario, 
     RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre, Usuario.ApellidoP, 
-    Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario  from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xidPersona;
+    Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario  from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xIdPersona;
 	else
 		if(existe>0)then
 		set xMsj="Usuario o correo en uso";
@@ -50,14 +50,22 @@ declare xidPersona int;
 declare existe int;
 declare xMsj nvarchar(50);
 declare xContraSha nvarchar(200);
+declare xVer boolean;
 set xContraSha =(select sha(contrasenaP));
 		set existe=(select count(*) from Usuario where NomUsuario=nomU and Contrasena=xContraSha);
         if(existe=0) then
 			set xMsj="No existe usuario";
+            select xMsj;
         else
 			if(existe = 1)then
 				set xidPersona=(select idUsuario from Usuario where NomUsuario=nomU and Contrasena = xContraSha );
-				select RelTipoUsuario.idRelTipoUsuario, RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre,Usuario.ApellidoP, Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xidPersona;
+                set xVer = (select Ver from Usuario where idUsuario = xIdPersona);
+                if(xVer = true)then
+					select RelTipoUsuario.idRelTipoUsuario, RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre,Usuario.ApellidoP, Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xidPersona;
+				else
+					set xMsj="Usuario no verificado";
+                    select xMsj;
+        end if;            
 		end if;
         end if;
 end; //
@@ -75,8 +83,8 @@ declare xMsj nvarchar(50);
     set tutorexist = (select count(*) from Usuario where Usuario.Correo=correo2);
     set menorexist = (select count(*) from Usuario where Usuario.Correo=correo or Usuario.NomUsuario = usuario);
 			if(tutorexist>0 and menorexist=0)then
-			insert into Usuario( Nombre, ApellidoP, ApellidoM, Correo, Contrasena, NomUsuario, Fecha)
-			values (nom, pat, mat, correo, sha(contrasena), usuario, fecha);
+			insert into Usuario( Nombre, ApellidoP, ApellidoM, Correo, Contrasena, NomUsuario, Fecha, Ver)
+			values (nom, pat, mat, correo, sha(contrasena), usuario, fecha, false);
 			set xIdPersona=( select idUsuario from Usuario where NomUsuario = usuario and Usuario.Correo = correo);
 			set xIdPersona2=( select idUsuario from Usuario where Usuario.Correo = correo2);
 			set xIdTipo= tipo;
@@ -146,6 +154,14 @@ begin
 select Usuario.NomUsuario, msjForo.idMensaje, msjForo.Mensaje, msjForo.Hora from msjForo inner join usuario on msjForo.idAutor = usuario.idUsuario order by msjForo.idMensaje;
 end;//
 
+create procedure sp_VerCuenta(in correoU nvarchar(200))
+begin
+declare xIdUsuario int;
+set xIdUsuario = (select idUsuario from Usuario where Correo = correoU);
+update Usuario set Ver = true where idUsuario = xIdUsuario;
+select RelTipoUsuario.idRelTipoUsuario, RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre,Usuario.ApellidoP, Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xIdUsuario;
+end;//
+
 create procedure sp_GerenteSopIng(in problema nvarchar(1024), estatus nvarchar(40), nomEncargado nvarchar(40))
 begin
 declare xdIdEncargado int;
@@ -185,7 +201,6 @@ update Reporte set estatus = estat, solucion = sol where idReporte = idR;
 insert into ReporteCambios values(xIdRepCam, idIng, idR, fCambio, estatI, estat);
 end;//
 
-
 create procedure sp_GerenteManIng(in problema nvarchar(1024), estatus nvarchar(40), nomEncargado nvarchar(40))
 begin
 declare xdIdEncargado int;
@@ -208,8 +223,6 @@ insert into ReporteCambios(idUsuario, idReporte, FechaCambio, EstatusI, EstatusF
 update Reporte set Reporte.Estatus=estatus where Reporte.idReporte=xdIdReporte; 
 end;//
 
-
-
 create procedure sp_asis(in nomuser varchar(40), correouser varchar(40), problema varchar(1024), estatus varchar(40))
 begin
 declare xIdPersona int; 
@@ -228,14 +241,7 @@ insert into Reporte(idReporte,Problema,Estatus,FechaI) values(xIdReo ,prob, est,
 insert into RelReporteUsuario(idUsuario, idReporte) values(xIdUsuario, xIdReo);
 end;//
 
-call sp_Registro('Aranza Paulina', 'Labra','Garcia', '2004-05-24','aranza@gmail.com','asistente','ARANZA',5); 
-call sp_Registro('Kalid', 'Avila','Ponce', '2004-07-24','kalid@gmail.com','gerentedesoporte','KALID',6);
-call sp_Registro('Luis Axel', 'Zarate','Lozano', '2004-06-11','luis@gmail.com','ingenierodesoporte','LUIS AXEL',7);
-call sp_Registro('Alexander', 'Avila','Ponce', '2004-07-24','alexander@gmail.com','gerentedemantenimiento','ALEXANDER',8);
-call sp_Registro('Rodrigo Vidal', 'Ramirez','Aguilar', '2004-05-24','rodrigo@gmail.com','ingenierodemantenimiento','RODRIGO VIDAL',9);
-call sp_Registro('Usuario', 'Super','Super', '2004-05-24','superusuario@gmail.com','superusuario','Super Usuario',10);
-call sp_Registro('Test', 'Test','Test', '2000-01-01','root@gmail.com','n0m3l0','Root', 4);
-call sp_Registro('Luis', 'Zarate','Lozano', '2000-01-02','zarate.lozano.luis.axel@gmail.com','luisin','LuisAPP', 4);
-call sp_Registro('Rodri', 'Ramirez','Aguilar', '2000-01-03','rodri@gmail.com','rodri','Rodri', 4);
-call sp_Registro('Lucifer', 'Estrella','De la Mañana', '2000-01-03','luciestrelladelamañana@gmail.com','luciestrelladelamañana','Lucy', 4);
+delimiter ;
 
+call sp_Registro('Usuario', 'Super','Super', '2004-05-24','superusuario@akar.com','superusuario','Super Usuario', 10);
+call sp_VerCuenta('superusuario@akar.com');

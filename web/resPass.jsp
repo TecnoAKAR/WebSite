@@ -4,6 +4,9 @@ Created on : 12/10/2022, 10:52:51 PM
 Author     : AKAR
 --%>
 
+<%@page import="java.time.Instant"%>
+<%@page import="java.sql.Timestamp"%>
+<%@page import="org.akar.dao.PSResPass"%>
 <%@page import="org.akar.helper.PSResPassHelper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -27,8 +30,11 @@ Author     : AKAR
     
     <body class="img js-fullheight" style="background-image: url(sources/assets/images/quote-bg-v2.jpg);">
     <%
-        if(new PSResPassHelper().getToken(request) == true)
-        {
+        PSResPass iToken = new PSResPassHelper().getToken(request);
+        if(iToken != null){
+            Timestamp ts = Timestamp.from(Instant.now());
+            if(ts.compareTo(iToken.getResPass().getExp()) < 0)
+            {
     %>   
         <div id="js-preloader" class="js-preloader">
             <div class="preloader-inner">
@@ -132,12 +138,19 @@ Author     : AKAR
         </style>
 
     <%
+            }else{
+    %>
+                <script>
+                    alert("Su token ha caducado. Genere otro por favor.");
+                </script>
+    <%
+            }
         }else{
     %>
-            <script>
-                alert("Su token ha caducado o es incorrecto. Genere otro por favor.");
-            </script>
-    <%
+                <script>
+                    alert("Su token es inválido.");
+                </script>
+    <%        
         }
     %>   
     </body>

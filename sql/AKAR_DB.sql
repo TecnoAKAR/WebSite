@@ -4,8 +4,7 @@ use AKAR;
 create table Usuario(
 idUsuario int primary key auto_increment, Nombre varchar(40), 
  ApellidoP varchar(40), ApellidoM varchar(40), Correo varchar(40), Contrasena varchar(40),
- NomUsuario varchar(40), Fecha date
-);
+ NomUsuario varchar(40), Fecha date, Ver boolean);
 
 
 create table Reporte(
@@ -30,7 +29,6 @@ idRelReporteUsuario int primary key auto_increment,
 idUsuario int, idReporte int, 
 foreign key (idUsuario) references Usuario(idUsuario),
 foreign key (idReporte) references Reporte(idReporte));	
-
 
 create table TipoUsuario(
 idTipo int primary key auto_increment,
