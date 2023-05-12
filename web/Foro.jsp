@@ -74,7 +74,6 @@
                                 <li class="scroll-to-section"><a href="Home.jsp">Inicio</a></li>
                                 <li class="scroll-to-section"><a href="Home.jsp#sobrenosotros">Sobre nosotros</a></li>
                                 <li class="scroll-to-section"><a href="Home.jsp#proyecto">Proyecto</a></li>
-                                <li class="scroll-to-section"><a href="Home.jsp#galeria">Galería</a></li>
                                 <li class="scroll-to-section"><a href="Foro.jsp" class="active">Foro</a></li>
                                 <li class="scroll-to-section"><a href="Home.jsp#contact">Contáctanos</a></li> 
                                 <li class="scroll-to-section">
@@ -113,6 +112,7 @@
         
         <script>
             function getNewMessages() {
+                var usuario = "<%=sesion.getUsuario().getNomUser()%>";
                 var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function() {
                   if (this.readyState === 4 && this.status === 200) {
@@ -121,9 +121,15 @@
                     chatMessages.innerHTML = '';
                     for (var i = 0; i < messages.length; i++) {
                       var message = messages[i];
-                      var messageDiv = document.createElement("div");
-                      messageDiv.innerHTML = "<b> <font color=\"green\"> "+message.usuario.nomUser+" </font> </b> "+message.mensaje+" <font color=\"grey\"> "+message.hora+" </b>";
-                      chatMessages.appendChild(messageDiv);
+                      if(message.usuario.nomUser === usuario){
+                        var messageDiv = document.createElement("div");
+                        messageDiv.innerHTML = "<span style=\"text-align: left;\"> <b> <font color=\"blue\"> "+message.usuario.nomUser+" </font> </b> "+message.mensaje+" <font color=\"grey\"> "+message.hora+" </b> </span>";
+                        chatMessages.appendChild(messageDiv);
+                      }else{
+                        var messageDiv = document.createElement("div");
+                        messageDiv.innerHTML = "<b> <font color=\"green\"> "+message.usuario.nomUser+" </font> </b> "+message.mensaje+" <font color=\"grey\"> "+message.hora+" </b>";
+                        chatMessages.appendChild(messageDiv);
+                      }
                     }
                   }
                 };

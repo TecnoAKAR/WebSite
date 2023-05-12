@@ -1,9 +1,3 @@
-<%-- 
-Document   : login
-Created on : 12/10/2022, 10:52:51 PM
-Author     : AKAR
---%>
-
 <%@page import="org.akar.helper.PSResPassHelper"%>
 <%@page import="java.util.Date"%>
 <%@page import="org.akar.dao.PSUsuario"%>
@@ -78,7 +72,6 @@ Author     : AKAR
                         <select id="tipoUsuario" name="tipoUsuario" class="form-control">
                           <option selected>Tipo de usuario</option>
                           <option value="2">Usuario Con Síndrome de Asperger (UCSA)</option>
-                          <option value="3">Tutor</option>
                           <option value="4">Usuario externo</option>
                         </select>
                     </div>

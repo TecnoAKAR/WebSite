@@ -102,7 +102,6 @@
                                         <li class="scroll-to-section"><a href="index.jsp#top">Inicio</a></li>
                                         <li class="scroll-to-section"><a href="index.jsp#sobrenosotros">Sobre nosotros</a></li>
                                         <li class="scroll-to-section"><a href="index.jsp#proyecto">Proyecto</a></li>
-                                        <li class="scroll-to-section"><a href="index.jsp#galeria">Galería</a></li>
                                         <li class="scroll-to-section"><a href="index.jsp#contact">Contáctanos</a></li> 
                                         <li class="scroll-to-section"><a href="signup.jsp">Registrarse</a></li>
                                         <li class="scroll-to-section"><div class="border-first-button"><a href="login.jsp">Iniciar sesión</a></div></li> 

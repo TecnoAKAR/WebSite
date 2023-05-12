@@ -43,29 +43,6 @@
       </div>
     </div>
   </div>
-  <!-- ***** Preloader End ***** -->
-
-  <!-- Pre-header Starts --><!-- Esto no me convence
-  <div class="pre-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-sm-8 col-7">
-          <ul class="info">
-            <li><a href="#"><i class="fa fa-envelope"></i>akar@gmail.com</a></li>
-            <li><a href="#"><i class="fa fa-phone"></i>55 4514 9922</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-4 col-sm-4 col-5">
-          <ul class="social-media">
-            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>-->
-  <!-- Pre-header End -->
 
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
@@ -83,7 +60,6 @@
               <li class="scroll-to-section"><a href="#top" class="active">Inicio</a></li>
               <li class="scroll-to-section"><a href="#sobrenosotros">Sobre nosotros</a></li>
               <li class="scroll-to-section"><a href="#proyecto">Proyecto</a></li>
-              <li class="scroll-to-section"><a href="#galeria">Galería</a></li>
               <li class="scroll-to-section"><a href="#contact">Contáctanos</a></li> 
               <li class="scroll-to-section"><a href="signup.jsp">Registrarse</a></li>
               <li class="scroll-to-section"><div class="border-first-button"><a href="login.jsp">Iniciar sesión</a></div></li> 
@@ -398,94 +374,6 @@
     </div>
   </div>
 
-  <!-->
-  <div id="galeria" class="our-portfolio section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-5">
-          <div class="section-heading wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
-            <h6>Galería</h6>
-            <h4>Look &amp; Feel</em></h4>
-            <div class="line-dec"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container-fluid wow fadeIn" data-wow-duration="1s" data-wow-delay="0.7s">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="loop owl-carousel">
-            <div class="item">
-              <a href="#">
-                <div class="portfolio-item">
-                <div class="thumb">
-                  <img src="sources/assets/images/portfolio-01.jpg" alt="">
-                </div>
-                <div class="down-content">
-                  <h4>Inicio</h4>
-                  <span>Android</span>
-                </div>
-              </div>
-              </a>  
-            </div>
-            <div class="item">
-              <a href="#">
-                <div class="portfolio-item">
-                <div class="thumb">
-                  <img src="sources/assets/images/portfolio-01.jpg" alt="">
-                </div>
-                <div class="down-content">
-                  <h4>Login</h4>
-                  <span>Android</span>
-                </div>
-              </div>
-              </a>  
-            </div>
-            <div class="item">
-              <a href="#">
-                <div class="portfolio-item">
-                <div class="thumb">
-                  <img src="sources/assets/images/portfolio-02.jpg" alt="">
-                </div>
-                <div class="down-content">
-                  <h4>Pinturillo</h4>
-                  <span>Android</span>
-                </div>
-              </div>
-              </a>  
-            </div>
-            <div class="item">
-              <a href="#">
-                <div class="portfolio-item">
-                <div class="thumb">
-                  <img src="sources/assets/images/portfolio-03.jpg" alt="">
-                </div>
-                <div class="down-content">
-                  <h4>Ajedrez</h4>
-                  <span>Android</span>
-                </div>
-              </div>
-              </a>  
-            </div>
-            <div class="item">
-              <a href="#">
-                <div class="portfolio-item">
-                <div class="thumb">
-                  <img src="sources/assets/images/portfolio-04.jpg" alt="">
-                </div>
-                <div class="down-content">
-                  <h4>Simón dice</h4>
-                  <span>Android</span>
-                </div>
-              </div>
-              </a>  
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-->
   <div id="contact" class="contact-us section">
     <div class="container">
       <div class="row">

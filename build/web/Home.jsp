@@ -114,29 +114,6 @@
         title: 'Bienvenido, <%=sesion.getUsuario().getNomUser()%>'
       });
   </script>
-  <!-- ***** Preloader End ***** -->
-
-  <!-- Pre-header Starts --><!-- Esto no me convence
-  <div class="pre-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-sm-8 col-7">
-          <ul class="info">
-            <li><a href="#"><i class="fa fa-envelope"></i>akar@gmail.com</a></li>
-            <li><a href="#"><i class="fa fa-phone"></i>55 4514 9922</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-4 col-sm-4 col-5">
-          <ul class="social-media">
-            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>-->
-  <!-- Pre-header End -->
 
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
@@ -154,7 +131,6 @@
               <li class="scroll-to-section"><a href="#top" class="active">Inicio</a></li>
               <li class="scroll-to-section"><a href="#sobrenosotros">Sobre nosotros</a></li>
               <li class="scroll-to-section"><a href="#proyecto">Proyecto</a></li>
-              <li class="scroll-to-section"><a href="#galeria">Galería</a></li>
               <li class="scroll-to-section"><a href="Foro.jsp">Foro</a></li>
               <li class="scroll-to-section"><a href="#contact">Contáctanos</a></li> 
               <li class="scroll-to-section">
@@ -480,95 +456,6 @@
     </div>
   </div>
 
-  <!-->
-  <div id="galeria" class="our-portfolio section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-5">
-          <div class="section-heading wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
-            <h6>Galería</h6>
-            <h4>Look &amp; Feel</em></h4>
-            <div class="line-dec"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container-fluid wow fadeIn" data-wow-duration="1s" data-wow-delay="0.7s">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="loop owl-carousel">
-            <div class="item">
-              <a href="#">
-                <div class="portfolio-item">
-                <div class="thumb">
-                  <img src="sources/assets/images/portfolio-01.jpg" alt="">
-                </div>
-                <div class="down-content">
-                  <h4>Inicio</h4>
-                  <span>Android</span>
-                </div>
-              </div>
-              </a>  
-            </div>
-            <div class="item">
-              <a href="#">
-                <div class="portfolio-item">
-                <div class="thumb">
-                  <img src="sources/assets/images/portfolio-01.jpg" alt="">
-                </div>
-                <div class="down-content">
-                  <h4>Login</h4>
-                  <span>Android</span>
-                </div>
-              </div>
-              </a>  
-            </div>
-            <div class="item">
-              <a href="#">
-                <div class="portfolio-item">
-                <div class="thumb">
-                  <img src="sources/assets/images/portfolio-02.jpg" alt="">
-                </div>
-                <div class="down-content">
-                  <h4>Pinturillo</h4>
-                  <span>Android</span>
-                </div>
-              </div>
-              </a>  
-            </div>
-            <div class="item">
-              <a href="#">
-                <div class="portfolio-item">
-                <div class="thumb">
-                  <img src="sources/assets/images/portfolio-03.jpg" alt="">
-                </div>
-                <div class="down-content">
-                  <h4>Ajedrez</h4>
-                  <span>Android</span>
-                </div>
-              </div>
-              </a>  
-            </div>
-            <div class="item">
-              <a href="#">
-                <div class="portfolio-item">
-                <div class="thumb">
-                  <img src="sources/assets/images/portfolio-04.jpg" alt="">
-                </div>
-                <div class="down-content">
-                  <h4>Simón dice</h4>
-                  <span>Android</span>
-                </div>
-              </div>
-              </a>  
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-->
-  
   <div id="contact" class="contact-us section">
     <div class="container">
       <div class="row">
@@ -660,40 +547,32 @@
             <div class="line-dec"></div>
           </div>
         </div>
-        <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
-          <form id="contact" action="" method="post">
-            <div>
-              <div class="col-lg-7">
-                <div class="fill-form">
-                  <div>
-                    <div class="col-lg-6">
-                      <fieldset>
-                        <p>¿Qué tan buena te ha parecido la aplicación?</p>
-                        <input type="radio" id="buena" name="satisfaccion" value="buena">
-                        <label for="buena">Buena</label><br>
-                        <input type="radio" id="regular" name="satisfaccion" value="regular">
-                        <label for="regular">Regular</label><br>
-                        <input type="radio" id="mala" name="satisfaccion" value="mala">
-                        <label for="mala">Mala</label><br>
-                      </fieldset>
-                    </div>
-                    <div class="col-lg-6">
-                      <fieldset>
-                        <p>¿Tienes alguna queja o sugerencia para mejorar la aplicación?</p>
-                        <textarea id="quejas" name="quejas" rows="4" cols="50"></textarea><br><br>
-                      </fieldset>
-                    </div>
-                    <div class="col-lg-12">
-                      <fieldset>
-                        <button type="submit" id="action" name="action" value="satis" class="main-button ">Enviar mensaje</button>
-                      </fieldset>
-                    </div>
-                  </div>
-                </div>
+          
+          <form class="row g-3">
+              <div class="col-lg-6">
+                  <label for="inputEmail4" class="form-label">¿Qué tan buena le ha parecido la aplicación?</label>
+                  <fieldset>
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="buena">
+                      <label class="form-check-label" for="buena">Buena</label><br>
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="regular">
+                      <label class="form-check-label" for="regular">Regular</label><br>
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="mala">
+                      <label class="form-check-label" for="mala">Mala</label><br>
+                  </fieldset>
               </div>
-            </div>
+              <div class="col-lg-6">
+                  <label for="inputEmail4" class="form-label">¿Tienes alguna queja o sugerencia para mejorar la aplicación?</label>
+                  <fieldset>
+                      <textarea class="form-control" aria-label="With textarea" id="quejas" name="quejas" rows="4" cols="50"></textarea><br><br>
+                  </fieldset>
+              </div>
+              <div class="col-lg-12">
+                  <fieldset>
+                      <button class="btn btn-dark" type="submit" id="action" name="action" value="satis">Enviar mensaje</button>
+                  </fieldset>
+              </div>
           </form>
-        </div>
+          
       </div>
     </div>
   </div>
