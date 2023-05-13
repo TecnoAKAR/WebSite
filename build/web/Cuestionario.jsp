@@ -10,7 +10,7 @@
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
         
         <meta charset="UTF-8">
@@ -132,12 +132,11 @@
                           <!-- ***** Logo End ***** -->
                           <!-- ***** Menu Start ***** -->
                           <ul class="nav">
-                            <li class="scroll-to-section"><a href="#top">Inicio</a></li>
-                            <li class="scroll-to-section"><a href="#sobrenosotros">Sobre nosotros</a></li>
-                            <li class="scroll-to-section"><a href="#proyecto">Proyecto</a></li>
-                            <li class="scroll-to-section"><a href="#galeria">Galería</a></li>
+                            <li class="scroll-to-section"><a href="Home.jsp#top">Inicio</a></li>
+                            <li class="scroll-to-section"><a href="Home.jsp#sobrenosotros">Sobre nosotros</a></li>
+                            <li class="scroll-to-section"><a href="Home.jsp#proyecto">Proyecto</a></li>
                             <li class="scroll-to-section"><a href="Foro.jsp">Foro</a></li>
-                            <li class="scroll-to-section"><a href="#contact">Contáctanos</a></li> 
+                            <li class="scroll-to-section"><a href="Home.jsp#contact">Contáctanos</a></li> 
                             <li class="scroll-to-section">
                               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="true"> <%= sesion.getUsuario().getNomUser() %> </a>
                               <ul class="dropdown-menu">
@@ -188,7 +187,7 @@
                         <th>Pregunta</th>
                         <th>Muy en desacuerdo</th>
                         <th>Medianamente en desacuerdo</th>
-                        <th>Medianamente correcto</th>
+                        <th>Medianamente de acuerdo</th>
                         <th>Muy de acuerdo</th>
                     </tr>
                     <tr>
@@ -213,8 +212,7 @@
                         <td><input type="radio" name="p3" value="3" required></td>
                     </tr>
                     <tr>
-                        <td>4 Con frecuencia queda tan absorto/a en una actividad que parece no darse cuenta de las cosas que suceden a su alrededor.
-</td>
+                        <td>4 Con frecuencia queda tan absorto/a en una actividad que parece no darse cuenta de las cosas que suceden a su alrededor.</td>
                         <td><input type="radio" name="p4" value="0" required></td>
                         <td><input type="radio" name="p4" value="1" required></td>
                         <td><input type="radio" name="p4" value="2" required></td>
