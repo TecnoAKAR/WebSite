@@ -27,7 +27,15 @@
 
             switch(action){
                 case "send":
-                    boolean enviado = new PSUsuarioHelper().sendMsg(request);
+                    if(request.getParameter("msj").contains("<") && request.getParameter("msj").contains(">")){
+%>
+                        <script>
+                            alert("No se pueden enviar mensajes que contengan los carácteres '<' y '>'");
+                        </script>
+<%                        
+                    }else{
+                        boolean enviado = new PSUsuarioHelper().sendMsg(request);
+                    }
                     break;
                 case "close":
                     request.getSession().removeAttribute("usuario");
