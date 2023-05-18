@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="java.util.List"%>
-<%@page import="org.akar.dao.TblUsuario"%>
+<%@page import="org.akar.dao.TblUser"%>
 <%@page import="org.akar.helper.ReporteGerenteHelper"%>
 <%@page import="org.akar.dao.Reporte"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,8 +19,8 @@
             }  
             
                     Reporte sol = new ReporteGerenteHelper().getById(request);
-                    List<TblUsuario> reportito = new ReporteGerenteHelper().getlist();
-                    List<TblUsuario> reportito2= new ReporteGerenteHelper().getlist2();
+                    List<TblUser> reportito = new ReporteGerenteHelper().getlist();
+                    List<TblUser> reportito2= new ReporteGerenteHelper().getlist2();
                     if(sol == null){
         %>
                         <h3> Ha ocurrido un error </h3>
@@ -65,7 +65,7 @@
                                 <select id="idEncargado" name="idEncargado" class="form-select" aria-label="Default select example">
                                     <option selected>Ingenieros de Soporte</option>
                                 <%
-                                    for(TblUsuario repor : reportito){
+                                    for(TblUser repor : reportito){
                                         %>
                                             <option value="<%=repor.getNomUser()%>"> <%=repor.getNomUser()%> </option>                            
                                         <%
@@ -73,7 +73,7 @@
                                 %>
                                 <option selected>Gerentes de Mantenimiento</option>
                                  <%
-                                    for(TblUsuario repor : reportito2){
+                                    for(TblUser repor : reportito2){
                                         %>
                                             <option value="<%=repor.getNomUser()%>"> <%=repor.getNomUser()%> </option>                            
                                         <%

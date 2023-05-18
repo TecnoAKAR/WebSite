@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="java.util.List"%>
-<%@page import="org.akar.dao.TblUsuario"%>
+<%@page import="org.akar.dao.TblUser"%>
 <%@page import="org.akar.helper.ReporteGerenteMHelper"%>
 <%@page import="org.akar.dao.Reporte"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,8 +19,8 @@
             }  
             
                     Reporte sol = new ReporteGerenteMHelper().getById(request);
-                    List<TblUsuario> reportito = new ReporteGerenteMHelper().getlist();
-                    List<TblUsuario> reportito2= new ReporteGerenteMHelper().getlist2();
+                    List<TblUser> reportito = new ReporteGerenteMHelper().getlist();
+                    List<TblUser> reportito2= new ReporteGerenteMHelper().getlist2();
                     if(sol == null){
         %>
                         <h3> Ha ocurrido un error </h3>
@@ -66,7 +66,7 @@
                                 <option selected>Selecciona Personal</option>
                                 <option selected>Ingenieros Mantenimiento</option>
                                 <%
-                                    for(TblUsuario repor : reportito){
+                                    for(TblUser repor : reportito){
                                         %>
                                             <option value="<%=repor.getNomUser()%>"> <%=repor.getNomUser()%> </option>                            
                                         <%
@@ -74,7 +74,7 @@
                                 %>
                                 <option selected>Gerentes de Soporte</option>
                                  <%
-                                    for(TblUsuario repor : reportito2){
+                                    for(TblUser repor : reportito2){
                                         %>
                                             <option value="<%=repor.getNomUser()%>"> <%=repor.getNomUser()%> </option>                            
                                         <%

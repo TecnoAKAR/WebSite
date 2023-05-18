@@ -11,19 +11,19 @@ import org.akar.dao.RelReporteEncargado;
 import org.akar.dao.RelReporteUsuario;
 import org.akar.dao.ReporteCambios;
 import org.akar.dao.Reporte;
-import org.akar.dao.TblUsuario;
+import org.akar.dao.TblUser;
 import org.akar.service.SolucionService;
 
 public class SolucionHelper {
     
     Reporte rep;
     ReporteCambios repCam;
-    TblUsuario usu;
+    TblUser usu;
     
     public SolucionHelper(){
         rep = new Reporte();
         repCam = new ReporteCambios();
-        usu = new TblUsuario();
+        usu = new TblUser();
     }
     
     public List<RelReporteEncargado> getList(){

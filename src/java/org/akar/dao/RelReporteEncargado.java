@@ -5,11 +5,11 @@ import java.io.Serializable;
 public class RelReporteEncargado implements Serializable {
 
     int idRel;
-    TblUsuario encargado;
+    TblUser encargado;
     Reporte rep;
 
     public RelReporteEncargado() {
-        encargado = new TblUsuario();
+        encargado = new TblUser();
         rep = new Reporte();
     }
 
@@ -21,11 +21,11 @@ public class RelReporteEncargado implements Serializable {
         this.idRel = idRel;
     }
 
-    public TblUsuario getEncargado() {
+    public TblUser getEncargado() {
         return encargado;
     }
 
-    public void setEncargado(TblUsuario encargado) {
+    public void setEncargado(TblUser encargado) {
         this.encargado = encargado;
     }
 

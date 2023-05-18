@@ -4,10 +4,10 @@ package org.akar.dao;
 public class PSUsuario {
     
     int idRelTipUs;
-    TblUsuario usuario;
+    TblUser usuario;
     TblTipoUsuario tipo;
 
-    public PSUsuario(TblUsuario usuario, TblTipoUsuario tipo) {
+    public PSUsuario(TblUser usuario, TblTipoUsuario tipo) {
         this.usuario = usuario;
         this.tipo = tipo;
     }
@@ -19,11 +19,11 @@ public class PSUsuario {
         this.idRelTipUs = idRelTipUs;
     }
     
-    public TblUsuario getUsuario() {
+    public TblUser getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(TblUsuario usuario) {
+    public void setUsuario(TblUser usuario) {
         this.usuario = usuario;
     }
     

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.akar.dao.PSReporte;
 import org.akar.dao.Reporte;
-import org.akar.dao.TblUsuario;
+import org.akar.dao.TblUser;
 import static org.akar.service.DBConnection.closeConnection;
 import static org.akar.service.DBConnection.getConnection;
 
@@ -105,12 +105,12 @@ public class ReporteGerenteService {
             e.printStackTrace();
         }
         return null;}
-        public static List<TblUsuario> getListIng(){
-        List<TblUsuario> reportito=null;
+        public static List<TblUser> getListIng(){
+        List<TblUser> reportito=null;
         Connection con=null;
         Statement statement=null;
         ResultSet resultSet=null;
-        TblUsuario rep =null;
+        TblUser rep =null;
         try{
             con=getConnection();
             if (con==null){
@@ -128,7 +128,7 @@ public class ReporteGerenteService {
             }
             reportito = new ArrayList<>();
             while(resultSet.next()){
-                rep = new TblUsuario();
+                rep = new TblUser();
                 rep.setNomUser(resultSet.getString(1));
                 reportito.add(rep);
             }
@@ -142,12 +142,12 @@ public class ReporteGerenteService {
         }
         return null;
     }
-        public static List<TblUsuario> getListGer(){
-        List<TblUsuario> reportito=null;
+        public static List<TblUser> getListGer(){
+        List<TblUser> reportito=null;
         Connection con=null;
         Statement statement=null;
         ResultSet resultSet=null;
-        TblUsuario rep =null;
+        TblUser rep =null;
         try{
             con=getConnection();
             if (con==null){
@@ -165,7 +165,7 @@ public class ReporteGerenteService {
             }
             reportito = new ArrayList<>();
             while(resultSet.next()){
-                rep = new TblUsuario();
+                rep = new TblUser();
                 rep.setNomUser(resultSet.getString(1));
                 reportito.add(rep);
             }
@@ -181,7 +181,7 @@ public class ReporteGerenteService {
     }
 
 
-    public boolean AsignarReporteIng(TblUsuario usuario, Reporte reportito){
+    public boolean AsignarReporteIng(TblUser usuario, Reporte reportito){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         String sql = "call sp_GerenteSopIng(?, ?, ?)";
@@ -213,7 +213,7 @@ public class ReporteGerenteService {
         return false;
     }
 
-    public boolean AsignarReporteMan(TblUsuario usuario, Reporte reportito){
+    public boolean AsignarReporteMan(TblUser usuario, Reporte reportito){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         String sql = "call sp_GerenteSopMan(?, ?, ?, ?)";

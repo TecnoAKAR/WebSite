@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.akar.dao.MsjForo;
 import org.akar.dao.PSUsuario;
 import org.akar.dao.TblTipoUsuario;
-import org.akar.dao.TblUsuario;
+import org.akar.dao.TblUser;
 import org.akar.service.PSUsuarioService;
 
 public class PSUsuarioHelper implements Serializable {
     
-    TblUsuario usuario,usuario2;
+    TblUser usuario,usuario2;
     TblTipoUsuario tipo,tipo2;
     PSUsuario psUser;
     MsjForo msjForo;
@@ -26,7 +26,7 @@ public class PSUsuarioHelper implements Serializable {
     
     public PSUsuario SignUp(HttpServletRequest request){
         
-        psUser=new PSUsuario(new TblUsuario(), new TblTipoUsuario());
+        psUser=new PSUsuario(new TblUser(), new TblTipoUsuario());
         
         psUser.getUsuario().setNom( request.getParameter("nombre"));
         psUser.getUsuario().setApellidoP( request.getParameter("apellido_p"));
@@ -66,8 +66,8 @@ public class PSUsuarioHelper implements Serializable {
     }
     public PSUsuario SignUp2(HttpServletRequest request){
         
-        psUser = new PSUsuario(new TblUsuario(), new TblTipoUsuario());
-        PSUsuario psUser2 = new PSUsuario(new TblUsuario(), new TblTipoUsuario());
+        psUser = new PSUsuario(new TblUser(), new TblTipoUsuario());
+        PSUsuario psUser2 = new PSUsuario(new TblUser(), new TblTipoUsuario());
         
         psUser.getUsuario().setNom( request.getParameter("nombre"));
         psUser.getUsuario().setApellidoP( request.getParameter("apellido_p"));
@@ -111,7 +111,7 @@ public class PSUsuarioHelper implements Serializable {
     }
     
     public PSUsuario Login(HttpServletRequest request){
-        psUser = new PSUsuario(new TblUsuario(), new TblTipoUsuario());
+        psUser = new PSUsuario(new TblUser(), new TblTipoUsuario());
         
         psUser.getUsuario().setNomUser(request.getParameter( "nomU" ) );
         psUser.getUsuario().setPassword( request.getParameter( "pass" ) );
@@ -128,7 +128,7 @@ public class PSUsuarioHelper implements Serializable {
     
     public PSUsuario update(HttpServletRequest request){
         
-        psUser = new PSUsuario(new TblUsuario(), new TblTipoUsuario());
+        psUser = new PSUsuario(new TblUser(), new TblTipoUsuario());
         
         psUser.getUsuario().setNomUser( request.getParameter( "nomU" ) );
         psUser.getUsuario().setNom( request.getParameter( "nom" ) );

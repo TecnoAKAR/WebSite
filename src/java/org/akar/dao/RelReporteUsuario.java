@@ -7,11 +7,11 @@ public class RelReporteUsuario implements Serializable{
     
     int idRelReporteUsuario;
     Reporte rep;
-    TblUsuario user;
+    TblUser user;
 
     public RelReporteUsuario() {
         this.rep = new Reporte();
-        this.user = new TblUsuario();
+        this.user = new TblUser();
     }
 
     public int getIdRelReporteUsuario() {
@@ -30,11 +30,11 @@ public class RelReporteUsuario implements Serializable{
         this.rep = rep;
     }
 
-    public TblUsuario getUser() {
+    public TblUser getUser() {
         return user;
     }
 
-    public void setUser(TblUsuario user) {
+    public void setUser(TblUser user) {
         this.user = user;
     }
 

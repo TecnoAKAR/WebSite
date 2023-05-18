@@ -13,7 +13,7 @@ import org.akar.dao.RelReporteEncargado;
 import org.akar.dao.RelReporteUsuario;
 import org.akar.dao.ReporteCambios;
 import org.akar.dao.Reporte;
-import org.akar.dao.TblUsuario;
+import org.akar.dao.TblUser;
 
 public class SolucionService {
     
@@ -113,7 +113,7 @@ public class SolucionService {
         return null;
     }
     
-    public String sp_Soporte(Reporte rep, TblUsuario usuario, ReporteCambios cam){
+    public String sp_Soporte(Reporte rep, TblUser usuario, ReporteCambios cam){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         String sql = "call sp_soporte(?, ?, ?, ?, ?, ?, ?);";

@@ -7,12 +7,12 @@ import java.util.Date;
 public class MsjForo implements Serializable{
     
     int idMensaje;
-    TblUsuario usuario;
+    TblUser usuario;
     String mensaje;
     Date hora;
 
     public MsjForo() {
-        usuario = new TblUsuario();
+        usuario = new TblUser();
     }
 
     public int getIdMensaje() {
@@ -39,11 +39,11 @@ public class MsjForo implements Serializable{
         this.hora = hora;
     }
 
-    public TblUsuario getUsuario() {
+    public TblUser getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(TblUsuario usuario) {
+    public void setUsuario(TblUser usuario) {
         this.usuario = usuario;
     }
     

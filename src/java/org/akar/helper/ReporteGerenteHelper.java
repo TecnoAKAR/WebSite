@@ -10,7 +10,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.akar.dao.PSReporte;
 import org.akar.dao.Reporte;
-import org.akar.dao.TblUsuario;
+import org.akar.dao.TblUser;
 import org.akar.dao.ReporteCambios;
 import org.akar.dao.TblTipoUsuario;
 import org.akar.service.ReporteGerenteService;
@@ -23,11 +23,11 @@ public class ReporteGerenteHelper implements Serializable{
     
     private List<Reporte> reporte;
     Reporte reportito;
-    TblUsuario usuario;
+    TblUser usuario;
     ReporteCambios repCam;
     PSReporte psrep,psrepor1;
-    private List<TblUsuario> ing;
-    private List<TblUsuario> gen;
+    private List<TblUser> ing;
+    private List<TblUser> gen;
 
     public ReporteGerenteHelper() {
     }
@@ -51,7 +51,7 @@ public class ReporteGerenteHelper implements Serializable{
 
     
     public boolean AsignarReporteIng(HttpServletRequest request){
-        psrep= new PSReporte(new Reporte(), new TblUsuario(), new TblTipoUsuario());
+        psrep= new PSReporte(new Reporte(), new TblUser(), new TblTipoUsuario());
         
         
         psrep.getReportito().setEstatus(request.getParameter("Estatus"));
@@ -81,7 +81,7 @@ public class ReporteGerenteHelper implements Serializable{
         
     }
         public boolean AsignarReporteMan(HttpServletRequest request){
-        psrep= new PSReporte(new Reporte(), new TblUsuario(), new TblTipoUsuario());
+        psrep= new PSReporte(new Reporte(), new TblUser(), new TblTipoUsuario());
         
         psrep.getReportito().setEstatus(request.getParameter("Estatus"));
         psrep.getUsuario().setNomUser(request.getParameter("idEncargado"));
@@ -128,7 +128,7 @@ public class ReporteGerenteHelper implements Serializable{
         ing = ReporteGerenteService.getListIng();
         return ing != null && ing.size()>0;
 }
-    public List<TblUsuario>getlist(){
+    public List<TblUser>getlist(){
         if(ing==null || ing.size()==0){
             if(!loadlist2()){
                 return null;
@@ -137,14 +137,14 @@ public class ReporteGerenteHelper implements Serializable{
         return ing;
     }
     
-    public void setlist(List<TblUsuario> ing){
+    public void setlist(List<TblUser> ing){
         this.ing=ing;
     }
     public boolean loadlist3(){
         gen = ReporteGerenteService.getListGer();
         return gen != null && gen.size()>0;
 }
-    public List<TblUsuario>getlist2(){
+    public List<TblUser>getlist2(){
         if(gen==null || gen.size()==0){
             if(!loadlist3()){
                 return null;
@@ -153,7 +153,7 @@ public class ReporteGerenteHelper implements Serializable{
         return gen;
     }
     
-    public void setlist2(List<TblUsuario> gen){
+    public void setlist2(List<TblUser> gen){
         this.gen=gen;
     }
 }

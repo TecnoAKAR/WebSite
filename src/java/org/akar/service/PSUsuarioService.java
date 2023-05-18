@@ -11,14 +11,14 @@ import java.util.List;
 import org.akar.dao.MsjForo;
 import org.akar.dao.PSUsuario;
 import org.akar.dao.TblTipoUsuario;
-import org.akar.dao.TblUsuario;
+import org.akar.dao.TblUser;
 
 public class PSUsuarioService {
 
     public PSUsuarioService() {
     }
     
-    public PSUsuario SignUp(TblUsuario usuario, TblTipoUsuario tipo){
+    public PSUsuario SignUp(TblUser usuario, TblTipoUsuario tipo){
         try{
             Connection connection = null;
             PreparedStatement preparedStatement = null;
@@ -52,7 +52,7 @@ public class PSUsuarioService {
             }
             while( resultSet.next() )
             {
-                PSUsuario query = new PSUsuario( new TblUsuario(), new TblTipoUsuario());
+                PSUsuario query = new PSUsuario( new TblUser(), new TblTipoUsuario());
                 query.setIdRelTipUs( resultSet.getInt(1));
                 query.getUsuario().setIdUsuario( resultSet.getInt(2));
                 query.getTipo().setIdTipo(resultSet.getInt(3));
@@ -105,7 +105,7 @@ public class PSUsuarioService {
             }
             while( resultSet.next() )
             {
-                PSUsuario query = new PSUsuario(new TblUsuario(), new TblTipoUsuario());
+                PSUsuario query = new PSUsuario(new TblUser(), new TblTipoUsuario());
                 query.setIdRelTipUs( resultSet.getInt(1));
                 query.getUsuario().setIdUsuario( resultSet.getInt(2));
                 query.getTipo().setIdTipo(resultSet.getInt(3));
@@ -148,7 +148,7 @@ public class PSUsuarioService {
             }
             while( resultSet.next() )
             {
-                PSUsuario query = new PSUsuario( new TblUsuario(), new TblTipoUsuario());
+                PSUsuario query = new PSUsuario( new TblUser(), new TblTipoUsuario());
                 query.setIdRelTipUs( resultSet.getInt(1));
                 query.getUsuario().setIdUsuario( resultSet.getInt(2));
                 query.getTipo().setIdTipo(resultSet.getInt(3));
@@ -199,7 +199,7 @@ public class PSUsuarioService {
             }
             while( resultSet.next() )
             {
-                PSUsuario query = new PSUsuario( new TblUsuario(), new TblTipoUsuario());
+                PSUsuario query = new PSUsuario( new TblUser(), new TblTipoUsuario());
                 query.setIdRelTipUs( resultSet.getInt(1));
                 query.getUsuario().setIdUsuario( resultSet.getInt(2));
                 query.getTipo().setIdTipo(resultSet.getInt(3));

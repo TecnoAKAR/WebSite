@@ -5,19 +5,19 @@ import java.io.Serializable;
 
 public class PSResPass implements Serializable{
     
-    TblUsuario usuario;
+    TblUser usuario;
     ResPass resPass;
 
     public PSResPass() {
-        this.usuario = new TblUsuario();
+        this.usuario = new TblUser();
         this.resPass = new ResPass();
     }
 
-    public TblUsuario getUsuario() {
+    public TblUser getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(TblUsuario usuario) {
+    public void setUsuario(TblUser usuario) {
         this.usuario = usuario;
     }
 

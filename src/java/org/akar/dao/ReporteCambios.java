@@ -7,13 +7,13 @@ import java.util.Date;
 public class ReporteCambios implements Serializable {
     
     int idReporteCambios;
-    TblUsuario usuario;
+    TblUser usuario;
     Reporte rep;
     Date fechaCambio;
     String estatusI;
     
     public ReporteCambios(){
-        usuario = new TblUsuario();
+        usuario = new TblUser();
         rep = new Reporte();
     }
 
@@ -25,11 +25,11 @@ public class ReporteCambios implements Serializable {
         this.idReporteCambios = idReporteCambios;
     }
 
-    public TblUsuario getUsuario() {
+    public TblUser getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(TblUsuario usuario) {
+    public void setUsuario(TblUser usuario) {
         this.usuario = usuario;
     }
 

@@ -1,31 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.akar.dao;
 
-/**
- *
- * @author kalid
- */
 public class PSReporte {
     
     Reporte reportito;
-    TblUsuario usuario;
+    TblUser usuario;
     TblTipoUsuario tipo;
     
-    public PSReporte(Reporte reporte, TblUsuario usuario,TblTipoUsuario tipo ){
+    public PSReporte(Reporte reporte, TblUser usuario,TblTipoUsuario tipo ){
         this.reportito=reporte;
         this.usuario=usuario;
         this.tipo=tipo;
     }
 
-    public TblUsuario getUsuario() {
+    public TblUser getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(TblUsuario usuario) {
+    public void setUsuario(TblUser usuario) {
         this.usuario = usuario;
     }
 
