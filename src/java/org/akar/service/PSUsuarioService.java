@@ -297,4 +297,32 @@ public class PSUsuarioService {
         return null;
     }
     
+    public boolean delMsg(MsjForo msj){
+        try{
+            Connection connection;
+            PreparedStatement preparedStatement;
+            String sql = "call sp_delMsj(?)";
+            int row = 0;
+            
+            connection = DBConnection.getConnection( );
+            if( connection == null )
+            {
+                return false;
+            }
+            preparedStatement = connection.prepareStatement(sql);
+            if( preparedStatement == null )
+            {
+                return false;
+            }
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, msj.getIdMensaje());
+            row = preparedStatement.executeUpdate();
+            DBConnection.closeConnection(connection);
+            return row == 1;
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return false;
+    }
 }

@@ -41,6 +41,18 @@
                     request.getSession().removeAttribute("usuario");
                     response.sendRedirect("index.jsp");
                     break;
+                case "delMsj":
+                    boolean elim = new PSUsuarioHelper().delMsg(request);
+                    if(elim != true){
+%>
+                        <script>
+                            alert("No se ha eliminado el mensaje.");
+                        </script>
+<%                        
+                    }else{
+                        response.sendRedirect("Foro.jsp");
+                    }
+                    break;
             }
     
 %>
@@ -57,7 +69,7 @@
         <title>Foro</title>
         <!-- Bootstrap core CSS -->
         <link href="sources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
         <!-- Additional CSS Files -->
         <link rel="stylesheet" href="sources/assets/css/fontawesome.css">
@@ -89,6 +101,13 @@
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="profile.jsp">Perfil</a></li>
                                         <li><a class="dropdown-item" href="editProf.jsp">Editar perfil</a></li>
+        <%
+                                    if(sesion.getTipo().getIdTipo() == 10){
+        %>
+                                        <li><a class="dropdown-item" href="AdminSignUp.jsp">Registrar administradores</a></li>
+        <%                                
+                                    } 
+        %>                                        
                                         <li><hr class="dropdown-divider"></li>
                                         <li><a class="dropdown-item" href="?action=close" id="action" name="action" value="close">Cerrar sesión</a></li>
                                     </ul>
@@ -115,35 +134,51 @@
         </br>
         
         <div id="chat-mensajes">
-            
+
         </div>
         
         <script>
             function getNewMessages() {
                 var usuario = "<%=sesion.getUsuario().getNomUser()%>";
+                var tipo = <%=sesion.getTipo().getIdTipo()%>;
                 var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function() {
                   if (this.readyState === 4 && this.status === 200) {
                     var messages = JSON.parse(this.responseText);
                     var chatMessages = document.getElementById("chat-mensajes");
                     chatMessages.innerHTML = '';
-                    for (var i = 0; i < messages.length; i++) {
-                      var message = messages[i];
-                      if(message.usuario.nomUser === usuario){
-                        var messageDiv = document.createElement("div");
-                        messageDiv.innerHTML = "<span style=\"text-align: left;\"> <b> <font color=\"blue\"> "+message.usuario.nomUser+" </font> </b> "+message.mensaje+" <font color=\"grey\"> "+message.hora+" </b> </span>";
-                        chatMessages.appendChild(messageDiv);
-                      }else{
-                        var messageDiv = document.createElement("div");
-                        messageDiv.innerHTML = "<b> <font color=\"green\"> "+message.usuario.nomUser+" </font> </b> "+message.mensaje+" <font color=\"grey\"> "+message.hora+" </b>";
-                        chatMessages.appendChild(messageDiv);
-                      }
+                    if(tipo === 10){
+                        for (var i = 0; i < messages.length; i++) {
+                            var message = messages[i];
+                            if(message.usuario.nomUser === usuario){
+                              var messageDiv = document.createElement("div");
+                              messageDiv.innerHTML = "<span style=\"text-align: left;\"> <b> <font color=\"blue\"> "+message.usuario.nomUser+" </font> </b> "+message.mensaje+" <font color=\"grey\"> "+message.hora+" </b> </span> <a href=\"?idMsj="+message.idMensaje+"&action=delMsj\"> <button type=\"submit\" class=\"btn btn-danger\"> Eliminar 🗑 </button> </a>";
+                              chatMessages.appendChild(messageDiv);
+                            }else{
+                              var messageDiv = document.createElement("div");
+                              messageDiv.innerHTML = "<b> <font color=\"green\"> "+message.usuario.nomUser+" </font> </b> "+message.mensaje+" <font color=\"grey\"> "+message.hora+" </b> <a href=\"?idMsj="+message.idMensaje+"&action=delMsj\"> <button type=\"submit\" class=\"btn btn-danger\"> Eliminar 🗑 </button> </a>";
+                              chatMessages.appendChild(messageDiv);
+                            }
+                        }
+                    }else{
+                        for (var i = 0; i < messages.length; i++) {
+                            var message = messages[i];
+                            if(message.usuario.nomUser === usuario){
+                              var messageDiv = document.createElement("div");
+                              messageDiv.innerHTML = "<span style=\"text-align: left;\"> <b> <font color=\"blue\"> "+message.usuario.nomUser+" </font> </b> "+message.mensaje+" <font color=\"grey\"> "+message.hora+" </b> </span>";
+                              chatMessages.appendChild(messageDiv);
+                            }else{
+                              var messageDiv = document.createElement("div");
+                              messageDiv.innerHTML = "<b> <font color=\"green\"> "+message.usuario.nomUser+" </font> </b> "+message.mensaje+" <font color=\"grey\"> "+message.hora+" </b>";
+                              chatMessages.appendChild(messageDiv);
+                            }
+                        }
                     }
                   }
                 };
                 xhr.open("GET", "ForoServlet", true);
                 xhr.send();
-              }
+            }
 
             setInterval(getNewMessages, 1000);
         </script>
@@ -151,7 +186,7 @@
         <form method="post" id="envMsj">
             <input type="hidden" id="idAutor" name="idAutor" value="<%=sesion.getUsuario().getIdUsuario()%>">
             <textarea class="form-control" name="msj" id="msj" rows="3"></textarea>
-            <button type="submit" id="action" name="action" value="send" class="btn-dark"> Enviar > </button>
+            <button type="submit" id="action" name="action" value="send" class="btn btn-dark"> Enviar ⩥ </button>
         </form>
             <footer>
                 <div class="container">

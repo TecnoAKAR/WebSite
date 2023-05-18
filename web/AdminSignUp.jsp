@@ -17,13 +17,23 @@ Author     : AKAR
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!doctype html>
+<%
+    try{
+        PSUsuario sesion = (PSUsuario)session.getAttribute("usuario");
 
+        if(sesion == null){
+            response.sendRedirect("notSession.jsp");
+        } else{
+            if(sesion.getTipo().getIdTipo() != 10){
+                response.sendRedirect("notAccess.jsp");
+            }    
+%>
 <html lang="es">
     <head>
         <title>Sign Up</title>
         <link rel="icon" href="sources\assets\images\logoAKAR100.png">
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="sources/login&signup/css/style.css"> 
@@ -46,10 +56,60 @@ Author     : AKAR
                 </div>
             </div>
         </div>
+        
+        <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="main-nav">
+                            <!-- ***** Logo Start ***** -->
+                            <a href="Home.jsp" class="logo">
+                                <img src="sources/assets/images/loguitoakar.png" alt="">
+                            </a>
+                            <!-- ***** Logo End ***** -->
+                            <!-- ***** Menu Start ***** -->
+                            <ul class="nav">
+                                <li class="scroll-to-section"><a href="Home.jsp#top" class="active">Inicio</a></li>
+                                <li class="scroll-to-section"><a href="Home.jsp#sobrenosotros">Sobre nosotros</a></li>
+                                <li class="scroll-to-section"><a href="Home.jsp#proyecto">Proyecto</a></li>
+                                <li class="scroll-to-section"><a href="Home.jspForo.jsp">Foro</a></li>
+                                <li class="scroll-to-section"><a href="Home.jsp#contact">Contáctanos</a></li> 
+                                <li class="scroll-to-section">
+                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="true"> <%= sesion.getUsuario().getNomUser()%> </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="profile.jsp">Perfil</a></li>
+                                        <li><a class="dropdown-item" href="editProf.jsp">Editar perfil</a></li>
+        <%
+                                        if(sesion.getTipo().getIdTipo() == 10){
+        %>
+                                        <li><a class="dropdown-item" href="AdminSignUp.jsp">Registrar administradores</a></li>
+        <%                                
+                                        } 
+        %>                                
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="?action=close" id="action" name="action" value="close">Cerrar sesión</a></li>
+                                    </ul>
+                                </li>
+
+
+
+                            </ul>        
+                            <a class='menu-trigger'>
+                                <span>Menu</span>
+                            </a>
+                            <!-- ***** Menu End ***** -->
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+                                        
+        </br>
+        
         <div class="contenedor">
             <div class="container p-5">
             <br/>
-            <h2 class="heading-section">Cree una cuenta</h2>
+            <h2 class="heading-section">Cree una cuenta con privilegios de administrador</h2>
                 <form class="row g-3" method="post">
                     <div class="col-md-6">
                         <label for="inputEmail4" class="form-label"></label>
@@ -79,10 +139,7 @@ Author     : AKAR
                         <label for="inputState" class="form-label"></label>
                         <select id="tipoUsuario" name="tipoUsuario" class="form-control">
                           <option selected>Tipo de usuario</option>
-                          <option value="2">Usuario Con Síndrome de Asperger (UCSA)</option>
-                          <option value="3">Tutor</option>
-                          <option value="1">Psicólogo</option>
-                          <option value="4">Usuario externo</option>
+                          <option value="10">Administrador</option>
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -97,14 +154,6 @@ Author     : AKAR
                     <div class="col-12">
                         <button type="submit" id="action" name="action" value="send" class="btn btn-primary btn-lg">Registrarse</button>
                         <button type="reset" class="btn btn-secondary btn-lg">Cancelar</button>
-                        <div class="form-group d-md-flex">
-                        ¿Ya tiene una cuenta?&nbsp<a href="login.jsp" style="color: #00e7ff"> Inicie sesión.</a>
-                        </div>
-                    <div class="col-13">    
-                        ¿Quiere registrar a un menor? &nbsp<a href="signup2.jsp" style="color: #00e7ff">Registre a un menor</a>
-                        </div>
-                        
-                        <script></script>
                     </div>
                 </form>
             </div>
@@ -144,6 +193,10 @@ Author     : AKAR
                 action = "";
             }
             switch(action){
+                case "close":
+                    request.getSession().removeAttribute("usuario");
+                    response.sendRedirect("index.jsp");
+                    break;                        
                 case "send":
                     
                     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -152,7 +205,11 @@ Author     : AKAR
                     Period per = Period.between(fNac, hoy);
                     
                     if(per.getYears() < 18){
-                        response.sendRedirect("signup2.jsp");
+        %>
+                        <script>
+                            alert("No creo que sea correcto que un menor de edad sea un administrador.");
+                        </script>
+        <% 
                     }
                     else{
                         PSUsuario usuario = new PSUsuarioHelper().SignUp(request);
@@ -187,5 +244,8 @@ Author     : AKAR
         
     </body>
 </html>
-
-
+<%
+        }
+    }catch(Exception e){
+    }
+%>

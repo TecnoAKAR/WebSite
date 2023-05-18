@@ -337,7 +337,7 @@
           </div>
         </div>
         <h7>Se estima que aproximadamente el 1% de la población mexicana es afectada por el síndrome de asperger, 
-                síndrome que es difícil de detectar y afecta las relaciones sociales. Se ha detectado que los tratamientos que tiene el este síndrome 
+                síndrome que es difícil de detectar y afecta las relaciones sociales. Se ha detectado que los tratamientos que tiene este síndrome 
                 se puede implementar con el uso de las TIC’s, además de que traería diversas ventajas, solo que 
                 existen dos inconvenientes principales; el primero es que el mercado de aplicaciones que ayudan 
                 a niños con alguna TEA no es muy amplio, pues comparado con otros, existen muy pocas aplicaciones 

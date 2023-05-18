@@ -14,7 +14,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="sources\assets\images\logoAKAR100.png">
@@ -142,6 +142,13 @@
                               <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="profile.jsp">Perfil</a></li>
                                 <li><a class="dropdown-item" href="editProf.jsp">Editar perfil</a></li>
+        <%
+                                if(sesion.getTipo().getIdTipo() == 10){
+        %>
+                                    <li><a class="dropdown-item" href="AdminSignUp.jsp">Registrar administradores</a></li>
+        <%                                
+                                } 
+        %>                        
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="?action=close" id="action" name="action" value="close">Cerrar sesión</a></li>
                               </ul>

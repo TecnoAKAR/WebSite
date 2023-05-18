@@ -1,348 +1,354 @@
-drop database if exists AKAR;
-create database AKAR;
-use AKAR;
-create table Usuario(
-idUsuario int primary key auto_increment, Nombre varchar(40), 
- ApellidoP varchar(40), ApellidoM varchar(40), Correo varchar(40), Contrasena varchar(40),
- NomUsuario varchar(40), Fecha date, Ver boolean);
+DROP DATABASE IF EXISTS AKAR;
+CREATE DATABASE AKAR;
+USE AKAR;
+CREATE TABLE USUARIO(
+IDUSUARIO INT PRIMARY KEY AUTO_INCREMENT, NOMBRE VARCHAR(40), 
+ APELLIDOP VARCHAR(40), APELLIDOM VARCHAR(40), CORREO VARCHAR(40), CONTRASENA VARCHAR(40),
+ NOMUSUARIO VARCHAR(40), FECHA DATE, VER BOOLEAN);
 
 
-create table Reporte(
-idReporte int primary key auto_increment, Problema varchar(1024),
-Estatus varchar(40), Solucion varchar(1024), FechaI datetime, FechaF datetime);
+CREATE TABLE REPORTE(
+IDREPORTE INT PRIMARY KEY AUTO_INCREMENT, PROBLEMA VARCHAR(1024),
+ESTATUS VARCHAR(40), SOLUCION VARCHAR(1024), FECHAI DATETIME, FECHAF DATETIME);
 
-create table ReporteCambios(
-idReporteCambios int primary key auto_increment,
-idUsuario int, idReporte int, FechaCambio datetime,
-EstatusI varchar(40), EstatusF varchar(40), 
-foreign key (idUsuario) references Usuario(idUsuario),
-foreign key (idReporte) references Reporte(idReporte));
+CREATE TABLE REPORTECAMBIOS(
+IDREPORTECAMBIOS INT PRIMARY KEY AUTO_INCREMENT,
+IDUSUARIO INT, IDREPORTE INT, FECHACAMBIO DATETIME,
+ESTATUSI VARCHAR(40), ESTATUSF VARCHAR(40), 
+FOREIGN KEY (IDUSUARIO) REFERENCES USUARIO(IDUSUARIO),
+FOREIGN KEY (IDREPORTE) REFERENCES REPORTE(IDREPORTE));
 
-create table RelReporteEncargado(
-idRelReporteEncargado int primary key auto_increment,
-idEncargado int, idReporte int,
-foreign key (idEncargado) references Usuario(idUsuario),
-foreign key (idReporte) references Reporte(idReporte));
+CREATE TABLE RELREPORTEENCARGADO(
+IDRELREPORTEENCARGADO INT PRIMARY KEY AUTO_INCREMENT,
+IDENCARGADO INT, IDREPORTE INT,
+FOREIGN KEY (IDENCARGADO) REFERENCES USUARIO(IDUSUARIO),
+FOREIGN KEY (IDREPORTE) REFERENCES REPORTE(IDREPORTE));
 
-create table RelReporteUsuario(
-idRelReporteUsuario int primary key auto_increment,
-idUsuario int, idReporte int, 
-foreign key (idUsuario) references Usuario(idUsuario),
-foreign key (idReporte) references Reporte(idReporte));	
+CREATE TABLE RELREPORTEUSUARIO(
+IDRELREPORTEUSUARIO INT PRIMARY KEY AUTO_INCREMENT,
+IDUSUARIO INT, IDREPORTE INT, 
+FOREIGN KEY (IDUSUARIO) REFERENCES USUARIO(IDUSUARIO),
+FOREIGN KEY (IDREPORTE) REFERENCES REPORTE(IDREPORTE));	
 
-create table TipoUsuario(
-idTipo int primary key auto_increment,
-Tipo varchar(40));
+CREATE TABLE TIPOUSUARIO(
+IDTIPO INT PRIMARY KEY AUTO_INCREMENT,
+TIPO VARCHAR(40));
 
-create table RelTipoUsuario(
-idRelTipoUsuario int primary key auto_increment,
-idUsuario int, idTipo int,
-foreign key (idUsuario) references Usuario(idUsuario),
-foreign key (idTipo) references TipoUsuario(idTipo)
+CREATE TABLE RELTIPOUSUARIO(
+IDRELTIPOUSUARIO INT PRIMARY KEY AUTO_INCREMENT,
+IDUSUARIO INT, IDTIPO INT,
+FOREIGN KEY (IDUSUARIO) REFERENCES USUARIO(IDUSUARIO),
+FOREIGN KEY (IDTIPO) REFERENCES TIPOUSUARIO(IDTIPO)
 );
 
-create table Juego(
-idJuego int primary key auto_increment,
-NombreJuego varchar(40));
+CREATE TABLE JUEGO(
+IDJUEGO INT PRIMARY KEY AUTO_INCREMENT,
+NOMBREJUEGO VARCHAR(40));
 
-create table RelJuegoUsuario(
-idRelJuegoUsuario int primary key auto_increment,
-idJuego int,idUsuario int,puntaje int,
-foreign key (idJuego) references Juego(idJuego),
-foreign key (idUsuario) references Usuario(idUsuario));
+CREATE TABLE RELJUEGOUSUARIO(
+IDRELJUEGOUSUARIO INT PRIMARY KEY AUTO_INCREMENT,
+IDJUEGO INT,IDUSUARIO INT,PUNTAJE INT,
+FOREIGN KEY (IDJUEGO) REFERENCES JUEGO(IDJUEGO),
+FOREIGN KEY (IDUSUARIO) REFERENCES USUARIO(IDUSUARIO));
 
-create table msjForo(
-idMensaje int primary key auto_increment,
-idAutor int,
-Mensaje  varchar(300),
-Hora datetime,
-foreign key(idAutor) references Usuario(idUsuario) );
+CREATE TABLE MSJFORO(
+IDMENSAJE INT PRIMARY KEY AUTO_INCREMENT,
+IDAUTOR INT,
+MENSAJE  VARCHAR(300),
+HORA DATETIME,
+FOREIGN KEY(IDAUTOR) REFERENCES USUARIO(IDUSUARIO) );
 
-create table Chat(
-idChat int primary key auto_increment,
-idUsuario1 int, idUsuario2 int,
-foreign key (idUsuario1) references Usuario(idUsuario),
-foreign key (idUsuario2) references Usuario(idUsuario));
+CREATE TABLE CHAT(
+IDCHAT INT PRIMARY KEY AUTO_INCREMENT,
+IDUSUARIO1 INT, IDUSUARIO2 INT,
+FOREIGN KEY (IDUSUARIO1) REFERENCES USUARIO(IDUSUARIO),
+FOREIGN KEY (IDUSUARIO2) REFERENCES USUARIO(IDUSUARIO));
 
 
-create table RelChatMensaje(
-idRelChatMensaje int primary key auto_increment,
-idChat int, idMensaje int,
-foreign key(idChat) references Chat(idChat),
-foreign key(idMensaje) references msjForo(idMensaje));
+CREATE TABLE RELCHATMENSAJE(
+IDRELCHATMENSAJE INT PRIMARY KEY AUTO_INCREMENT,
+IDCHAT INT, IDMENSAJE INT,
+FOREIGN KEY(IDCHAT) REFERENCES CHAT(IDCHAT),
+FOREIGN KEY(IDMENSAJE) REFERENCES MSJFORO(IDMENSAJE));
 
-create table RelTutorUCSA(
-idRelTutorUCSA int primary key auto_increment,
-idUsuario1 int, idUsuario2 int,
-foreign key (idUsuario1) references Usuario(idUsuario),
-foreign key (idUsuario2) references Usuario(idUsuario));
+CREATE TABLE RELTUTORUCSA(
+IDRELTUTORUCSA INT PRIMARY KEY AUTO_INCREMENT,
+IDUSUARIO1 INT, IDUSUARIO2 INT,
+FOREIGN KEY (IDUSUARIO1) REFERENCES USUARIO(IDUSUARIO),
+FOREIGN KEY (IDUSUARIO2) REFERENCES USUARIO(IDUSUARIO));
 
-create table resPass(
-	idToken int primary key auto_increment,
-    token varchar(43) not null,
-    exp timestamp not null
+CREATE TABLE RESPASS(
+	IDTOKEN INT PRIMARY KEY AUTO_INCREMENT,
+    TOKEN VARCHAR(43) NOT NULL,
+    EXP TIMESTAMP NOT NULL
 );
 
-create table RelUsuarioResPass(
-	idRelUsRess int primary key auto_increment,
-    idUsuario int,
-    idResPass int,
-    foreign key(idUsuario) references Usuario(idUsuario),
-    foreign key(idResPass) references resPass(idToken)
+CREATE TABLE RELUSUARIORESPASS(
+	IDRELUSRESS INT PRIMARY KEY AUTO_INCREMENT,
+    IDUSUARIO INT,
+    IDRESPASS INT,
+    FOREIGN KEY(IDUSUARIO) REFERENCES USUARIO(IDUSUARIO),
+    FOREIGN KEY(IDRESPASS) REFERENCES RESPASS(IDTOKEN)
 );
 
-insert into TipoUsuario (Tipo) values ('Psicólogo'), ('UCSA'),('Tutor'),('Externo'),
+INSERT INTO TIPOUSUARIO (TIPO) VALUES ('Psicólogo'), ('UCSA'),('Tutor'),('Externo'),
 ('Asistente'),('Gerente de Soporte'),('Ingeniero de Soporte'),('Gerente de Mantenimiento'),('Ingeniero de Mantenimiento'), ('Administrador');
 
+#PROCEDIMIENTOS ALMACENADOS
 
-#Procedimientos Almacenados
+DROP PROCEDURE IF EXISTS sp_REGISTRO;
+DROP PROCEDURE IF EXISTS sp_ASIS;
+DROP PROCEDURE IF EXISTS sp_LOGIN;
+DROP PROCEDURE IF EXISTS sp_REGISTROMENORDEEDAD;
+DROP PROCEDURE IF EXISTS sp_ACTUALIZARUSUARIO;
+DROP PROCEDURE IF EXISTS sp_ACTUALIZARCONTRASENA;
+DROP PROCEDURE IF EXISTS sp_ASIGNARTOKEN;
+DROP PROCEDURE IF EXISTS sp_RECDATOSTOKEN;
+DROP PROCEDURE IF EXISTS sp_MSJFORO;
+DROP PROCEDURE IF EXISTS sp_GETMSJF;
+DROP PROCEDURE IF EXISTS sp_DELMSJ;
+DROP PROCEDURE IF EXISTS sp_VERCUENTA;
+DROP PROCEDURE IF EXISTS sp_SOPORTE;
+DROP PROCEDURE IF EXISTS sp_MANTENIMIENTO;
+DROP PROCEDURE IF EXISTS sp_GERENTESOPING;
+DROP PROCEDURE IF EXISTS sp_GERENTESOPMAN;
+DROP PROCEDURE IF EXISTS sp_GERENTEMANSOP;
+DROP PROCEDURE IF EXISTS sp_GERENTEMANING;
+DROP PROCEDURE IF EXISTS sp_ADDREPORTE;
 
-drop procedure if exists sp_Registro;
-drop procedure if exists sp_asis;
-drop procedure if exists sp_Login;
-drop procedure if exists sp_Registromenordeedad;
-drop procedure if exists sp_ActualizarUsuario;
-drop procedure if exists sp_ActualizarContrasena;
-drop procedure if exists sp_asignarToken;
-drop procedure if exists sp_recDatosToken;
-drop procedure if exists sp_MsjForo;
-drop procedure if exists sp_getMsjF;
-drop procedure if exists sp_VerCuenta;
-drop procedure if exists sp_soporte;
-drop procedure if exists sp_mantenimiento;
-drop procedure if exists sp_GerenteSopIng;
-drop procedure if exists sp_GerenteSopMan;
-drop procedure if exists sp_GerenteManSop;
-drop procedure if exists sp_GerenteManIng;
-drop procedure if exists sp_addReporte;
 delimiter //
 
-create procedure sp_Registro( in nom nvarchar(50), pat nvarchar(50),
-mat nvarchar(50), fecha date, correo nvarchar(50),contrasena nvarchar (50), usuario nvarchar(50),tipo int)
-begin
-declare xIdPersona int;
-declare xIdTipo int;
-declare existe int;
-declare xMsj nvarchar(50);
-	set existe=(select count(*) from usuario where Usuario.Correo=correo or Usuario.NomUsuario = usuario);
-    if (existe=0) then
-		insert into Usuario( Nombre, ApellidoP, ApellidoM, Correo, Contrasena, NomUsuario, Fecha, Ver)
-		values (nom, pat, mat, correo, sha(contrasena), usuario, fecha, false);
-		set xIdPersona=( select idUsuario from Usuario where Nombre= nom and ApellidoP= pat);
-		set xIdTipo= tipo;
-		insert into RelTipoUsuario( idUsuario, idTipo) values (xIdPersona,xIdTipo);
-        select RelTipoUsuario.idRelTipoUsuario, 
-    RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre, Usuario.ApellidoP, 
-    Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario  from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xIdPersona;
-	else
-		if(existe>0)then
-		set xMsj="Usuario o correo en uso";
-        select xMsj;
-end if;
-end if;
-end; //
+CREATE PROCEDURE sp_REGISTRO( IN NOM NVARCHAR(50), PAT NVARCHAR(50),
+MAT NVARCHAR(50), FECHA DATE, CORREO NVARCHAR(50),CONTRASENA NVARCHAR (50), USUARIO NVARCHAR(50),TIPO INT)
+BEGIN
+DECLARE XIDPERSONA INT;
+DECLARE XIDTIPO INT;
+DECLARE EXISTE INT;
+DECLARE XMSJ NVARCHAR(50);
+	SET EXISTE=(SELECT COUNT(*) FROM USUARIO WHERE USUARIO.CORREO=CORREO OR USUARIO.NOMUSUARIO = USUARIO);
+    IF (EXISTE=0) THEN
+		INSERT INTO USUARIO( NOMBRE, APELLIDOP, APELLIDOM, CORREO, CONTRASENA, NOMUSUARIO, FECHA, VER)
+		VALUES (NOM, PAT, MAT, CORREO, SHA(CONTRASENA), USUARIO, FECHA, FALSE);
+		SET XIDPERSONA=( SELECT IDUSUARIO FROM USUARIO WHERE NOMBRE= NOM AND APELLIDOP= PAT);
+		SET XIDTIPO= TIPO;
+		INSERT INTO RELTIPOUSUARIO( IDUSUARIO, IDTIPO) VALUES (XIDPERSONA,XIDTIPO);
+        SELECT RELTIPOUSUARIO.IDRELTIPOUSUARIO, 
+    RELTIPOUSUARIO.IDUSUARIO, RELTIPOUSUARIO.IDTIPO, USUARIO.NOMBRE, USUARIO.APELLIDOP, 
+    USUARIO.APELLIDOM, USUARIO.CORREO, USUARIO.NOMUSUARIO  FROM RELTIPOUSUARIO INNER JOIN USUARIO  ON RELTIPOUSUARIO.IDUSUARIO = USUARIO.IDUSUARIO INNER JOIN TIPOUSUARIO ON RELTIPOUSUARIO.IDTIPO = TIPOUSUARIO.IDTIPO WHERE RELTIPOUSUARIO.IDUSUARIO = XIDPERSONA;
+	ELSE
+		IF(EXISTE>0)THEN
+		SET XMSJ="USUARIO O CORREO EN USO";
+        SELECT XMSJ;
+END IF;
+END IF;
+END; //
 
-create procedure sp_Login(in nomU nvarchar(50),contrasenaP nvarchar(50))
-begin
-declare xidPersona int;
-declare existe int;
-declare xMsj nvarchar(50);
-declare xContraSha nvarchar(200);
-declare xVer boolean;
-set xContraSha =(select sha(contrasenaP));
-		set existe=(select count(*) from Usuario where NomUsuario=nomU and Contrasena=xContraSha);
-        if(existe=0) then
-			set xMsj="No existe usuario";
-            select xMsj;
-        else
-			if(existe = 1)then
-				set xidPersona=(select idUsuario from Usuario where NomUsuario=nomU and Contrasena = xContraSha );
-                set xVer = (select Ver from Usuario where idUsuario = xIdPersona);
-                if(xVer = true)then
-					select RelTipoUsuario.idRelTipoUsuario, RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre,Usuario.ApellidoP, Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xidPersona;
-				else
-					set xMsj="Usuario no verificado";
-                    select xMsj;
-        end if;            
-		end if;
-        end if;
-end; //
+CREATE PROCEDURE sp_LOGIN(IN NOMU NVARCHAR(50),CONTRASENAP NVARCHAR(50))
+BEGIN
+DECLARE XIDPERSONA INT;
+DECLARE EXISTE INT;
+DECLARE XMSJ NVARCHAR(50);
+DECLARE XCONTRASHA NVARCHAR(200);
+DECLARE XVER BOOLEAN;
+SET XCONTRASHA =(SELECT SHA(CONTRASENAP));
+		SET EXISTE=(SELECT COUNT(*) FROM USUARIO WHERE NOMUSUARIO=NOMU AND CONTRASENA=XCONTRASHA);
+        IF(EXISTE=0) THEN
+			SET XMSJ="NO EXISTE USUARIO";
+            SELECT XMSJ;
+        ELSE
+			IF(EXISTE = 1)THEN
+				SET XIDPERSONA=(SELECT IDUSUARIO FROM USUARIO WHERE NOMUSUARIO=NOMU AND CONTRASENA = XCONTRASHA );
+                SET XVER = (SELECT VER FROM USUARIO WHERE IDUSUARIO = XIDPERSONA);
+                IF(XVER = TRUE)THEN
+					SELECT RELTIPOUSUARIO.IDRELTIPOUSUARIO, RELTIPOUSUARIO.IDUSUARIO, RELTIPOUSUARIO.IDTIPO, USUARIO.NOMBRE,USUARIO.APELLIDOP, USUARIO.APELLIDOM, USUARIO.CORREO, USUARIO.NOMUSUARIO FROM RELTIPOUSUARIO INNER JOIN USUARIO  ON RELTIPOUSUARIO.IDUSUARIO = USUARIO.IDUSUARIO INNER JOIN TIPOUSUARIO ON RELTIPOUSUARIO.IDTIPO = TIPOUSUARIO.IDTIPO WHERE RELTIPOUSUARIO.IDUSUARIO = XIDPERSONA;
+				ELSE
+					SET XMSJ="USUARIO NO VERIFICADO";
+                    SELECT XMSJ;
+        END IF;            
+		END IF;
+        END IF;
+END; //
 
-create procedure sp_Registromenordeedad ( in nom nvarchar(50), pat nvarchar(50),
-mat nvarchar(50), fecha date, correo nvarchar(50),contrasena nvarchar (50), usuario nvarchar(50), tipo int, correo2 nvarchar(50))
-begin
-declare xIdPersona int;
-declare xIdPersona2 int;
-declare xIdTipo int;
-declare existe int;
-declare menorexist int;
-declare tutorexist int;
-declare xMsj nvarchar(50);
-    set tutorexist = (select count(*) from Usuario where Usuario.Correo=correo2);
-    set menorexist = (select count(*) from Usuario where Usuario.Correo=correo or Usuario.NomUsuario = usuario);
-			if(tutorexist>0 and menorexist=0)then
-			insert into Usuario( Nombre, ApellidoP, ApellidoM, Correo, Contrasena, NomUsuario, Fecha, Ver)
-			values (nom, pat, mat, correo, sha(contrasena), usuario, fecha, false);
-			set xIdPersona=( select idUsuario from Usuario where NomUsuario = usuario and Usuario.Correo = correo);
-			set xIdPersona2=( select idUsuario from Usuario where Usuario.Correo = correo2);
-			set xIdTipo= tipo;
-			insert into RelTipoUsuario( idUsuario, idTipo) values (xIdPersona,xIdTipo);
-			insert into RelTutorUCSA ( idUsuario1, idUsuario2) values( xIdPersona,xIdPersona2);
-			select RelTipoUsuario.idRelTipoUsuario, RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre,Usuario.ApellidoP, Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xidPersona;
-			else
-				if(tutorexist=0)then
-					set xMsj= "El tutor no existe";
-					select xMsj;
-                    end if;
-				if(menorexist=1)then
-					set xMsj= "El usuario ya existe";
-					select xMsj;
-end if;
-end if;  
-end; //
-
-
-create procedure sp_ActualizarUsuario(in nom nvarchar(50), pat nvarchar(50),
-mat nvarchar(50), usuario nvarchar(50), idpersona varchar(50))
-begin
-declare xIdPersona int;
-declare xContraSha nvarchar(200);
-	set xIdPersona= idpersona;	
-	update Usuario set Nombre=nom , ApellidoP = pat, ApellidoM = mat , NomUsuario= usuario where idUsuario=xIdPersona;
-        select RelTipoUsuario.idRelTipoUsuario, RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre,Usuario.ApellidoP, Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xidPersona;
-end;//
-
-create procedure sp_ActualizarContrasena(in correo nvarchar(200), contrasena nvarchar (50))
-begin
-declare xIdUsuario nvarchar(200);
-declare xContraSha nvarchar(200);
-	set xIdUsuario = (select IdUsuario from usuario where Usuario.correo = correo);
-	set xContraSha =(select sha(contrasena));
-	update Usuario set Contrasena = xContraSha where Usuario.IdUsuario = xIdUsuario;
-end;//
-
-create procedure sp_asignarToken(in correo nvarchar(200), token nvarchar(43), creacion timestamp)
-begin
-declare xIdUsuario int;
-declare xIdToken int;
-declare xExp timestamp;
- set xIdUsuario = (select idUsuario from usuario where Usuario.Correo = correo);
- set xIdToken = (select ifnull(max(idToken), 0)+1 from resPass);
- set xExp = (select timestamp(creacion, '24:00:00'));
- insert into resPass values(xIdToken, token, xExp);
- insert into RelUsuarioResPass(idUsuario, idResPass) values(xIdUsuario, xIdToken);
-end;//
-
-create procedure sp_recDatosToken(token nvarchar(43))
-begin
-declare xIdToken int;
-set xIdToken = (select idToken from ResPass where ResPass.Token = token);
-select Usuario.correo, respass.token, respass.exp from relusuariorespass inner join usuario on relusuariorespass.idUsuario = usuario.idUsuario inner join resPass on relusuariorespass.idResPass = respass.idToken where relusuariorespass.idResPass = xIdToken;
-end;//
-
-create procedure sp_MsjForo(in msj nvarchar(300), idAutor int, fecha datetime)
-begin
-declare xIdMensaje int;
-set xIdMensaje = (select ifnull(max(idMensaje), 0)+1 from msjForo);
-insert into msjForo values(xIdMensaje, idAutor, msj, fecha);
-end;//
-
-create procedure sp_getMsjF()
-begin
-select Usuario.NomUsuario, msjForo.idMensaje, msjForo.Mensaje, msjForo.Hora from msjForo inner join usuario on msjForo.idAutor = usuario.idUsuario order by msjForo.idMensaje;
-end;//
-
-create procedure sp_VerCuenta(in correoU nvarchar(200))
-begin
-declare xIdUsuario int;
-set xIdUsuario = (select idUsuario from Usuario where Correo = correoU);
-update Usuario set Ver = true where idUsuario = xIdUsuario;
-select RelTipoUsuario.idRelTipoUsuario, RelTipoUsuario.idUsuario, RelTipoUsuario.idTipo, Usuario.Nombre,Usuario.ApellidoP, Usuario.ApellidoM, Usuario.Correo, Usuario.NomUsuario from RelTipoUsuario inner join Usuario  on RelTipoUsuario.idUsuario = Usuario.idUsuario inner join TipoUsuario on RelTipoUsuario.idTipo = TipoUsuario.idTipo where RelTipoUsuario.idUsuario = xIdUsuario;
-end;//
-
-create procedure sp_GerenteSopIng(in problema nvarchar(1024), estatus nvarchar(40), nomEncargado nvarchar(40))
-begin
-declare xdIdEncargado int;
-declare xdIdReporte int;
-set xdIdEncargado=(select idUsuario from Usuario where Usuario.NomUsuario = nomEncargado);
-set xdIdReporte=(select idReporte from Reporte where Reporte.Problema = problema);
-insert into RelReporteEncargado(idEncargado, idReporte) values (xdIdEncargado, xdIdReporte);
-insert into ReporteCambios(idUsuario, idReporte, FechaCambio, EstatusI, EstatusF) values (2, xdIdReporte, now(), 'Abierto', estatus);
-update Reporte set Reporte.Estatus = estatus where idReporte = xdIdReporte; 
-end;//   
-
-create procedure sp_GerenteSopMan(in problema nvarchar(1024), estatus nvarchar(40), solucion nvarchar(1024), nomEncargado nvarchar(40))
-begin
-declare xdIdEncargado int;
-declare xdIdReporte int;
-set xdIdEncargado=(select idUsuario from Usuario where Usuario.NomUsuario=nomEncargado);
-set xdIdReporte=(select idReporte from Reporte where Reporte.Problema=problema);
-insert into RelReporteEncargado(idEncargado, idReporte) values (xdIdEncargado,xdIdReporte);
-insert into ReporteCambios(idUsuario, idReporte, FechaCambio, EstatusI, EstatusF) values (2, xdIdReporte, now(), 'Abierto', estatus);
-update Reporte set Reporte.Estatus=estatus where Reporte.idReporte = xdIdReporte; 
-end;//   
+CREATE PROCEDURE sp_REGISTROMENORDEEDAD ( IN NOM NVARCHAR(50), PAT NVARCHAR(50),
+MAT NVARCHAR(50), FECHA DATE, CORREO NVARCHAR(50),CONTRASENA NVARCHAR (50), USUARIO NVARCHAR(50), TIPO INT, CORREO2 NVARCHAR(50))
+BEGIN
+DECLARE XIDPERSONA INT;
+DECLARE XIDPERSONA2 INT;
+DECLARE XIDTIPO INT;
+DECLARE EXISTE INT;
+DECLARE MENOREXIST INT;
+DECLARE TUTOREXIST INT;
+DECLARE XMSJ NVARCHAR(50);
+    SET TUTOREXIST = (SELECT COUNT(*) FROM USUARIO WHERE USUARIO.CORREO=CORREO2);
+    SET MENOREXIST = (SELECT COUNT(*) FROM USUARIO WHERE USUARIO.CORREO=CORREO OR USUARIO.NOMUSUARIO = USUARIO);
+			IF(TUTOREXIST>0 AND MENOREXIST=0)THEN
+			INSERT INTO USUARIO( NOMBRE, APELLIDOP, APELLIDOM, CORREO, CONTRASENA, NOMUSUARIO, FECHA, VER)
+			VALUES (NOM, PAT, MAT, CORREO, SHA(CONTRASENA), USUARIO, FECHA, FALSE);
+			SET XIDPERSONA=( SELECT IDUSUARIO FROM USUARIO WHERE NOMUSUARIO = USUARIO AND USUARIO.CORREO = CORREO);
+			SET XIDPERSONA2=( SELECT IDUSUARIO FROM USUARIO WHERE USUARIO.CORREO = CORREO2);
+			SET XIDTIPO= TIPO;
+			INSERT INTO RELTIPOUSUARIO( IDUSUARIO, IDTIPO) VALUES (XIDPERSONA,XIDTIPO);
+			INSERT INTO RELTUTORUCSA ( IDUSUARIO1, IDUSUARIO2) VALUES( XIDPERSONA,XIDPERSONA2);
+			SELECT RELTIPOUSUARIO.IDRELTIPOUSUARIO, RELTIPOUSUARIO.IDUSUARIO, RELTIPOUSUARIO.IDTIPO, USUARIO.NOMBRE,USUARIO.APELLIDOP, USUARIO.APELLIDOM, USUARIO.CORREO, USUARIO.NOMUSUARIO FROM RELTIPOUSUARIO INNER JOIN USUARIO  ON RELTIPOUSUARIO.IDUSUARIO = USUARIO.IDUSUARIO INNER JOIN TIPOUSUARIO ON RELTIPOUSUARIO.IDTIPO = TIPOUSUARIO.IDTIPO WHERE RELTIPOUSUARIO.IDUSUARIO = XIDPERSONA;
+			ELSE
+				IF(TUTOREXIST=0)THEN
+					SET XMSJ= "EL TUTOR NO EXISTE";
+					SELECT XMSJ;
+                    END IF;
+				IF(MENOREXIST=1)THEN
+					SET XMSJ= "EL USUARIO YA EXISTE";
+					SELECT XMSJ;
+END IF;
+END IF;  
+END; //
 
 
-create procedure sp_soporte(in idR int, idIng int, estatI nvarchar(20), estat nvarchar(20), sol nvarchar(1024), fFinal datetime, fCambio datetime)
-begin
-declare xIdRepCam int;
-set xIdRepCam = (select ifnull(max(idReporteCambios), 0)+1 from ReporteCambios);
-update Reporte set estatus = estat, solucion = sol, FechaF = fFinal where idReporte = idR;
-insert into ReporteCambios values(xIdRepCam, idIng, idR, fCambio, estatI, estat);
-end;//
+CREATE PROCEDURE sp_ACTUALIZARUSUARIO(IN NOM NVARCHAR(50), PAT NVARCHAR(50),
+MAT NVARCHAR(50), USUARIO NVARCHAR(50), IDPERSONA VARCHAR(50))
+BEGIN
+DECLARE XIDPERSONA INT;
+DECLARE XCONTRASHA NVARCHAR(200);
+	SET XIDPERSONA= IDPERSONA;	
+	UPDATE USUARIO SET NOMBRE=NOM , APELLIDOP = PAT, APELLIDOM = MAT , NOMUSUARIO= USUARIO WHERE IDUSUARIO=XIDPERSONA;
+        SELECT RELTIPOUSUARIO.IDRELTIPOUSUARIO, RELTIPOUSUARIO.IDUSUARIO, RELTIPOUSUARIO.IDTIPO, USUARIO.NOMBRE,USUARIO.APELLIDOP, USUARIO.APELLIDOM, USUARIO.CORREO, USUARIO.NOMUSUARIO FROM RELTIPOUSUARIO INNER JOIN USUARIO  ON RELTIPOUSUARIO.IDUSUARIO = USUARIO.IDUSUARIO INNER JOIN TIPOUSUARIO ON RELTIPOUSUARIO.IDTIPO = TIPOUSUARIO.IDTIPO WHERE RELTIPOUSUARIO.IDUSUARIO = XIDPERSONA;
+END;//
 
-create procedure sp_mantenimiento(in idR int, idIng int, estatI nvarchar(40), estat nvarchar(40), sol nvarchar(1024), fCambio datetime)
-begin
-declare xIdRepCam int;
-set xIdRepCam = (select ifnull(max(idReporteCambios), 0)+1 from ReporteCambios);
-update Reporte set estatus = estat, solucion = sol where idReporte = idR;
-insert into ReporteCambios values(xIdRepCam, idIng, idR, fCambio, estatI, estat);
-end;//
+CREATE PROCEDURE sp_ACTUALIZARCONTRASENA(IN CORREO NVARCHAR(200), CONTRASENA NVARCHAR (50))
+BEGIN
+DECLARE XIDUSUARIO NVARCHAR(200);
+DECLARE XCONTRASHA NVARCHAR(200);
+	SET XIDUSUARIO = (SELECT IDUSUARIO FROM USUARIO WHERE USUARIO.CORREO = CORREO);
+	SET XCONTRASHA =(SELECT SHA(CONTRASENA));
+	UPDATE USUARIO SET CONTRASENA = XCONTRASHA WHERE USUARIO.IDUSUARIO = XIDUSUARIO;
+END;//
 
-create procedure sp_GerenteManIng(in problema nvarchar(1024), estatus nvarchar(40), nomEncargado nvarchar(40))
-begin
-declare xdIdEncargado int;
-declare xdIdReporte int;
-set xdIdEncargado=(select idUsuario from Usuario where Usuario.NomUsuario=nomEncargado);
-set xdIdReporte=(select idReporte from Reporte where Reporte.Problema=problema);
-insert into RelReporteEncargado(idEncargado, idReporte) values (xdIdEncargado, xdIdReporte);
-insert into ReporteCambios(idUsuario, idReporte, FechaCambio, EstatusI, EstatusF) values (4, xdIdReporte, now(), 'A Mantenimiento', estatus);
-update Reporte set Reporte.Estatus=estatus where Reporte.idReporte=xdIdReporte; 
-end;//   
+CREATE PROCEDURE sp_ASIGNARTOKEN(IN CORREO NVARCHAR(200), TOKEN NVARCHAR(43), CREACION TIMESTAMP)
+BEGIN
+DECLARE XIDUSUARIO INT;
+DECLARE XIDTOKEN INT;
+DECLARE XEXP TIMESTAMP;
+ SET XIDUSUARIO = (SELECT IDUSUARIO FROM USUARIO WHERE USUARIO.CORREO = CORREO);
+ SET XIDTOKEN = (SELECT IFNULL(MAX(IDTOKEN), 0)+1 FROM RESPASS);
+ SET XEXP = (SELECT TIMESTAMP(CREACION, '24:00:00'));
+ INSERT INTO RESPASS VALUES(XIDTOKEN, TOKEN, XEXP);
+ INSERT INTO RELUSUARIORESPASS(IDUSUARIO, IDRESPASS) VALUES(XIDUSUARIO, XIDTOKEN);
+END;//
 
-create procedure sp_GerenteManSop(in problema nvarchar(1024), estatus nvarchar(40), solucion nvarchar(1024), nomEncargado nvarchar(40))
-begin
-declare xdIdEncargado int;
-declare xdIdReporte int;
-set xdIdEncargado=(select idUsuario from Usuario where Usuario.NomUsuario=nomEncargado);
-set xdIdReporte=(select idReporte from Reporte where Reporte.Problema=problema);
-insert into RelReporteEncargado(idEncargado, idReporte) values (xdIdEncargado,xdIdReporte);
-insert into ReporteCambios(idUsuario, idReporte, FechaCambio, EstatusI, EstatusF) values (4, xdIdReporte, now(), 'En Mantenimiento', estatus);
-update Reporte set Reporte.Estatus=estatus where Reporte.idReporte=xdIdReporte; 
-end;//
+CREATE PROCEDURE sp_RECDATOSTOKEN(TOKEN NVARCHAR(43))
+BEGIN
+DECLARE XIDTOKEN INT;
+SET XIDTOKEN = (SELECT IDTOKEN FROM RESPASS WHERE RESPASS.TOKEN = TOKEN);
+SELECT USUARIO.CORREO, RESPASS.TOKEN, RESPASS.EXP FROM RELUSUARIORESPASS INNER JOIN USUARIO ON RELUSUARIORESPASS.IDUSUARIO = USUARIO.IDUSUARIO INNER JOIN RESPASS ON RELUSUARIORESPASS.IDRESPASS = RESPASS.IDTOKEN WHERE RELUSUARIORESPASS.IDRESPASS = XIDTOKEN;
+END;//
 
-create procedure sp_asis(in nomuser varchar(40), correouser varchar(40), problema varchar(1024), estatus varchar(40))
-begin
-declare xIdPersona int; 
-declare xIdUsuario int;
-declare xIdEncargado int;
-insert into Reporte (Problema, Estatus, Solucion, FechaI, FechaF) values (problema, estatus, ' ', now(), ' ');
-end;//
+CREATE PROCEDURE sp_MSJFORO(IN MSJ NVARCHAR(300), IDAUTOR INT, FECHA DATETIME)
+BEGIN
+DECLARE XIDMENSAJE INT;
+SET XIDMENSAJE = (SELECT IFNULL(MAX(IDMENSAJE), 0)+1 FROM MSJFORO);
+INSERT INTO MSJFORO VALUES(XIDMENSAJE, IDAUTOR, MSJ, FECHA);
+END;//
 
-create procedure sp_addReporte(in prob nvarchar(200), est nvarchar(40), fI date, usuC nvarchar(200))
-begin
-declare xIdUsuario int;
-declare xIdReo int;
-set xIdUsuario = (select idUsuario from usuario where correo = usuC);
-set xIdReo = (select ifnull(max(idReporte), 0)+1 from Reporte);
-insert into Reporte(idReporte,Problema,Estatus,FechaI) values(xIdReo ,prob, est, fI);
-insert into RelReporteUsuario(idUsuario, idReporte) values(xIdUsuario, xIdReo);
-end;//
+CREATE PROCEDURE sp_GETMSJF()
+BEGIN
+SELECT USUARIO.NOMUSUARIO, MSJFORO.IDMENSAJE, MSJFORO.MENSAJE, MSJFORO.HORA FROM MSJFORO INNER JOIN USUARIO ON MSJFORO.IDAUTOR = USUARIO.IDUSUARIO ORDER BY MSJFORO.IDMENSAJE;
+END;//
+
+CREATE PROCEDURE sp_DELMSJ(IN XIDMENSAJE INT)
+BEGIN
+DELETE FROM MSJFORO WHERE IDMENSAJE = XIDMENSAJE;
+END;//
+
+CREATE PROCEDURE sp_VERCUENTA(IN CORREOU NVARCHAR(200))
+BEGIN
+DECLARE XIDUSUARIO INT;
+SET XIDUSUARIO = (SELECT IDUSUARIO FROM USUARIO WHERE CORREO = CORREOU);
+UPDATE USUARIO SET VER = TRUE WHERE IDUSUARIO = XIDUSUARIO;
+SELECT RELTIPOUSUARIO.IDRELTIPOUSUARIO, RELTIPOUSUARIO.IDUSUARIO, RELTIPOUSUARIO.IDTIPO, USUARIO.NOMBRE,USUARIO.APELLIDOP, USUARIO.APELLIDOM, USUARIO.CORREO, USUARIO.NOMUSUARIO FROM RELTIPOUSUARIO INNER JOIN USUARIO  ON RELTIPOUSUARIO.IDUSUARIO = USUARIO.IDUSUARIO INNER JOIN TIPOUSUARIO ON RELTIPOUSUARIO.IDTIPO = TIPOUSUARIO.IDTIPO WHERE RELTIPOUSUARIO.IDUSUARIO = XIDUSUARIO;
+END;//
+
+CREATE PROCEDURE sp_GERENTESOPING(IN PROBLEMA NVARCHAR(1024), ESTATUS NVARCHAR(40), NOMENCARGADO NVARCHAR(40))
+BEGIN
+DECLARE XDIDENCARGADO INT;
+DECLARE XDIDREPORTE INT;
+SET XDIDENCARGADO=(SELECT IDUSUARIO FROM USUARIO WHERE USUARIO.NOMUSUARIO = NOMENCARGADO);
+SET XDIDREPORTE=(SELECT IDREPORTE FROM REPORTE WHERE REPORTE.PROBLEMA = PROBLEMA);
+INSERT INTO RELREPORTEENCARGADO(IDENCARGADO, IDREPORTE) VALUES (XDIDENCARGADO, XDIDREPORTE);
+INSERT INTO REPORTECAMBIOS(IDUSUARIO, IDREPORTE, FECHACAMBIO, ESTATUSI, ESTATUSF) VALUES (2, XDIDREPORTE, NOW(), 'ABIERTO', ESTATUS);
+UPDATE REPORTE SET REPORTE.ESTATUS = ESTATUS WHERE IDREPORTE = XDIDREPORTE; 
+END;//   
+
+CREATE PROCEDURE sp_GERENTESOPMAN(IN PROBLEMA NVARCHAR(1024), ESTATUS NVARCHAR(40), SOLUCION NVARCHAR(1024), NOMENCARGADO NVARCHAR(40))
+BEGIN
+DECLARE XDIDENCARGADO INT;
+DECLARE XDIDREPORTE INT;
+SET XDIDENCARGADO=(SELECT IDUSUARIO FROM USUARIO WHERE USUARIO.NOMUSUARIO=NOMENCARGADO);
+SET XDIDREPORTE=(SELECT IDREPORTE FROM REPORTE WHERE REPORTE.PROBLEMA=PROBLEMA);
+INSERT INTO RELREPORTEENCARGADO(IDENCARGADO, IDREPORTE) VALUES (XDIDENCARGADO,XDIDREPORTE);
+INSERT INTO REPORTECAMBIOS(IDUSUARIO, IDREPORTE, FECHACAMBIO, ESTATUSI, ESTATUSF) VALUES (2, XDIDREPORTE, NOW(), 'ABIERTO', ESTATUS);
+UPDATE REPORTE SET REPORTE.ESTATUS=ESTATUS WHERE REPORTE.IDREPORTE = XDIDREPORTE; 
+END;//   
+
+
+CREATE PROCEDURE sp_SOPORTE(IN IDR INT, IDING INT, ESTATI NVARCHAR(20), ESTAT NVARCHAR(20), SOL NVARCHAR(1024), FFINAL DATETIME, FCAMBIO DATETIME)
+BEGIN
+DECLARE XIDREPCAM INT;
+SET XIDREPCAM = (SELECT IFNULL(MAX(IDREPORTECAMBIOS), 0)+1 FROM REPORTECAMBIOS);
+UPDATE REPORTE SET ESTATUS = ESTAT, SOLUCION = SOL, FECHAF = FFINAL WHERE IDREPORTE = IDR;
+INSERT INTO REPORTECAMBIOS VALUES(XIDREPCAM, IDING, IDR, FCAMBIO, ESTATI, ESTAT);
+END;//
+
+CREATE PROCEDURE sp_MANTENIMIENTO(IN IDR INT, IDING INT, ESTATI NVARCHAR(40), ESTAT NVARCHAR(40), SOL NVARCHAR(1024), FCAMBIO DATETIME)
+BEGIN
+DECLARE XIDREPCAM INT;
+SET XIDREPCAM = (SELECT IFNULL(MAX(IDREPORTECAMBIOS), 0)+1 FROM REPORTECAMBIOS);
+UPDATE REPORTE SET ESTATUS = ESTAT, SOLUCION = SOL WHERE IDREPORTE = IDR;
+INSERT INTO REPORTECAMBIOS VALUES(XIDREPCAM, IDING, IDR, FCAMBIO, ESTATI, ESTAT);
+END;//
+
+CREATE PROCEDURE sp_GERENTEMANING(IN PROBLEMA NVARCHAR(1024), ESTATUS NVARCHAR(40), NOMENCARGADO NVARCHAR(40))
+BEGIN
+DECLARE XDIDENCARGADO INT;
+DECLARE XDIDREPORTE INT;
+SET XDIDENCARGADO=(SELECT IDUSUARIO FROM USUARIO WHERE USUARIO.NOMUSUARIO=NOMENCARGADO);
+SET XDIDREPORTE=(SELECT IDREPORTE FROM REPORTE WHERE REPORTE.PROBLEMA=PROBLEMA);
+INSERT INTO RELREPORTEENCARGADO(IDENCARGADO, IDREPORTE) VALUES (XDIDENCARGADO, XDIDREPORTE);
+INSERT INTO REPORTECAMBIOS(IDUSUARIO, IDREPORTE, FECHACAMBIO, ESTATUSI, ESTATUSF) VALUES (4, XDIDREPORTE, NOW(), 'A MANTENIMIENTO', ESTATUS);
+UPDATE REPORTE SET REPORTE.ESTATUS=ESTATUS WHERE REPORTE.IDREPORTE=XDIDREPORTE; 
+END;//   
+
+CREATE PROCEDURE sp_GERENTEMANSOP(IN PROBLEMA NVARCHAR(1024), ESTATUS NVARCHAR(40), SOLUCION NVARCHAR(1024), NOMENCARGADO NVARCHAR(40))
+BEGIN
+DECLARE XDIDENCARGADO INT;
+DECLARE XDIDREPORTE INT;
+SET XDIDENCARGADO=(SELECT IDUSUARIO FROM USUARIO WHERE USUARIO.NOMUSUARIO=NOMENCARGADO);
+SET XDIDREPORTE=(SELECT IDREPORTE FROM REPORTE WHERE REPORTE.PROBLEMA=PROBLEMA);
+INSERT INTO RELREPORTEENCARGADO(IDENCARGADO, IDREPORTE) VALUES (XDIDENCARGADO,XDIDREPORTE);
+INSERT INTO REPORTECAMBIOS(IDUSUARIO, IDREPORTE, FECHACAMBIO, ESTATUSI, ESTATUSF) VALUES (4, XDIDREPORTE, NOW(), 'EN MANTENIMIENTO', ESTATUS);
+UPDATE REPORTE SET REPORTE.ESTATUS=ESTATUS WHERE REPORTE.IDREPORTE=XDIDREPORTE; 
+END;//
+
+CREATE PROCEDURE sp_ASIS(IN NOMUSER VARCHAR(40), CORREOUSER VARCHAR(40), PROBLEMA VARCHAR(1024), ESTATUS VARCHAR(40))
+BEGIN
+DECLARE XIDPERSONA INT; 
+DECLARE XIDUSUARIO INT;
+DECLARE XIDENCARGADO INT;
+INSERT INTO REPORTE (PROBLEMA, ESTATUS, SOLUCION, FECHAI, FECHAF) VALUES (PROBLEMA, ESTATUS, ' ', NOW(), ' ');
+END;//
+
+CREATE PROCEDURE sp_ADDREPORTE(IN PROB NVARCHAR(200), EST NVARCHAR(40), FI DATE, USUC NVARCHAR(200))
+BEGIN
+DECLARE XIDUSUARIO INT;
+DECLARE XIDREO INT;
+SET XIDUSUARIO = (SELECT IDUSUARIO FROM USUARIO WHERE CORREO = USUC);
+SET XIDREO = (SELECT IFNULL(MAX(IDREPORTE), 0)+1 FROM REPORTE);
+INSERT INTO REPORTE(IDREPORTE,PROBLEMA,ESTATUS,FECHAI) VALUES(XIDREO ,PROB, EST, FI);
+INSERT INTO RELREPORTEUSUARIO(IDUSUARIO, IDREPORTE) VALUES(XIDUSUARIO, XIDREO);
+END;//
 
 delimiter ;
 
-call sp_Registro('Usuario', 'Super','Super', '2004-05-24','superusuario@akar.com','superusuario','Super Usuario', 10);
-call sp_VerCuenta('superusuario@akar.com');
+CALL sp_REGISTRO('AKAR', 'Super','Usuario', '2004-05-24','superusuario@akar.com','main.akar.admin','Super Usuario', 10);
+CALL sp_VERCUENTA('superusuario@akar.com');
 
 
 

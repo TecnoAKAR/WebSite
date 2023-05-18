@@ -183,6 +183,16 @@ public class PSUsuarioHelper implements Serializable {
         }
     }
     
+    public boolean delMsg(HttpServletRequest request){
+        msjForo = new MsjForo();
+        msjForo.setIdMensaje(Integer.parseInt( request.getParameter("idMsj") ));
+        if(msjForo.getIdMensaje() == 0){
+            return false;
+        }
+        
+        return new PSUsuarioService().delMsg(msjForo);
+    }
+    
     
     public Date getDate( String campo )
     {   
