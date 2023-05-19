@@ -72,7 +72,7 @@ Author     : AKAR
                                 <li class="scroll-to-section"><a href="Home.jsp#top" class="active">Inicio</a></li>
                                 <li class="scroll-to-section"><a href="Home.jsp#sobrenosotros">Sobre nosotros</a></li>
                                 <li class="scroll-to-section"><a href="Home.jsp#proyecto">Proyecto</a></li>
-                                <li class="scroll-to-section"><a href="Home.jspForo.jsp">Foro</a></li>
+                                <li class="scroll-to-section"><a href="Foro.jsp">Foro</a></li>
                                 <li class="scroll-to-section"><a href="Home.jsp#contact">Contáctanos</a></li> 
                                 <li class="scroll-to-section">
                                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="true"> <%= sesion.getUsuario().getNomUser()%> </a>

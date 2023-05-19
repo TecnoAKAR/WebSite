@@ -94,6 +94,10 @@ CREATE TABLE RELUSUARIORESPASS(
 INSERT INTO TIPOUSUARIO (TIPO) VALUES ('Psicólogo'), ('UCSA'),('Tutor'),('Externo'),
 ('Asistente'),('Gerente de Soporte'),('Ingeniero de Soporte'),('Gerente de Mantenimiento'),('Ingeniero de Mantenimiento'), ('Administrador');
 
+
+ALTER TABLE MSJFORO CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE USUARIO CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 #PROCEDIMIENTOS ALMACENADOS
 
 DROP PROCEDURE IF EXISTS sp_REGISTRO;

@@ -238,7 +238,7 @@ public class PSUsuarioService {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, msj.getMensaje() );
             preparedStatement.setInt(2, msj.getUsuario().getIdUsuario() );
-            preparedStatement.setDate(3, new Date(msj.getHora().getTime()) );
+            preparedStatement.setDate(3, new Date(msj.getHora().getTime()) );            
             row = preparedStatement.executeUpdate();
             DBConnection.closeConnection(connection);
             return row == 1;

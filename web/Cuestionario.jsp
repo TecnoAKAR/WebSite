@@ -13,6 +13,24 @@
 <html lang="es">
     <head>
         
+        <%
+            if( request == null )
+            {
+                return;
+            }
+            String action = request.getParameter( "action" );
+            if( action == null )
+            {
+                action = "";
+            }
+            switch(action){
+                case "close":
+                    request.getSession().removeAttribute("usuario");
+                    response.sendRedirect("index.jsp");
+                    break;   
+            }
+        %>
+        
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
@@ -567,77 +585,65 @@
                 </div>
             </div>
         </footer>
-        <%
-            if( request == null )
-            {
-                return;
-            }
-            String action = request.getParameter( "action" );
-            if( action == null )
-            {
-                action = "";
-            }
-            switch(action){
-                case "ana":
-                    int sum = 0;
-                    for (int i = 1; i <= 50; i++) {
-                        sum = sum + Integer.parseInt(request.getParameter("p"+String.valueOf(i)));
-                        System.out.println(i);
-                        System.out.println(sum);
-                    }
-                    if(sum >= 0 && sum <= 30){
-        %>
-                        <script>
-                            
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'La posibilidad de que tenga algún síndrome del espectro autista es: baja.',
-                                text: 'En caso de tener alguna duda consulte a un especialista.',
-                                footer: '<button type="button" class="btn btn-light"> <a href="index.jsp">Volver al index.</a> </button>'
-                              });
-                        </script>
-        <%
-                    } else if (sum >= 31 && sum <= 62) {
-        %>
-                        <script>
-                            
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'La posibilidad de que tenga algún síndrome del espectro autista es: media.',
-                                text: 'En caso de tener alguna duda consulte a un especialista.',
-                                footer: '<button type="button" class="btn btn-light"> <a href="index.jsp">Volver al index.</a> </button>'
-                              });
-                        </script>
-        <%
-                    } else if (sum >= 63 && sum <= 87) {
-        %>
-                        <script>
-                            
-                            Swal.fire({
-                                icon: 'warning',
-                                title: 'La posibilidad de que tenga algún síndrome del espectro autista es: alta.',
-                                text: 'Le recomendamos visitar a un profesional.',
-                                footer: '<button type="button" class="btn btn-light"> <a href="index.jsp">Volver al index.</a> </button>'
-                              });
-                        </script>
-        <%
-                    } else if (sum >= 88 && sum <= 150) {
-        %>
-                        <script>
-                            
-                            Swal.fire({
-                                icon: 'warning',
-                                title: 'La posibilidad de que tenga algún síndrome del espectro autista es: muy alta.',
-                                text: 'Le recomendamos visitar a un profesional.',
-                                footer: '<button type="button" class="btn btn-light"> <a href="index.jsp">Volver al index.</a> </button>'
-                              });
-                        </script>
-        <%
-                    }
-                    break;
-            }
-        %>
         
+        <%
+            if(action.equals("ana")){
+                int sum = 0;
+                for (int i = 1; i <= 50; i++) {
+                    sum = sum + Integer.parseInt(request.getParameter("p"+String.valueOf(i)));
+                }
+                if(sum >= 0 && sum <= 30){
+        %>
+                    <script>
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'La posibilidad de que tenga algún síndrome del espectro autista es: baja.',
+                            text: 'En caso de tener alguna duda consulte a un especialista.',
+                            footer: '<button type="button" class="btn btn-light"> <a href="index.jsp">Volver al index.</a> </button>'
+                          });
+                    </script>
+        <%
+                } else if (sum >= 31 && sum <= 62) {
+        %>
+                    <script>
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'La posibilidad de que tenga algún síndrome del espectro autista es: media.',
+                            text: 'En caso de tener alguna duda consulte a un especialista.',
+                            footer: '<button type="button" class="btn btn-light"> <a href="index.jsp">Volver al index.</a> </button>'
+                          });
+                    </script>
+        <%
+                } else if (sum >= 63 && sum <= 87) {
+        %>
+                    <script>
+
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'La posibilidad de que tenga algún síndrome del espectro autista es: alta.',
+                            text: 'Le recomendamos visitar a un profesional.',
+                            footer: '<button type="button" class="btn btn-light"> <a href="index.jsp">Volver al index.</a> </button>'
+                          });
+                    </script>
+        <%
+                } else if (sum >= 88 && sum <= 150) {
+        %>
+                    <script>
+
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'La posibilidad de que tenga algún síndrome del espectro autista es: muy alta.',
+                            text: 'Le recomendamos visitar a un profesional.',
+                            footer: '<button type="button" class="btn btn-light"> <a href="index.jsp">Volver al index.</a> </button>'
+                          });
+                    </script>
+        <%
+                }
+
+            }
+        %>
         
         <!-- Scripts -->
         <script src="sources/vendor/jquery/jquery.min.js"></script>
@@ -652,7 +658,7 @@
 </html>
 <%
     }
-    catch(Exception e){
+    catch(Exception e){        
         response.sendRedirect("Error.jsp");
     }
 

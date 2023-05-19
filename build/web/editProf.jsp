@@ -50,6 +50,7 @@
         {
             return;
         }
+        request.setCharacterEncoding("UTF-8");
         String action = request.getParameter( "action" );
         if( action == null )
         {
@@ -142,7 +143,7 @@
   <!-- ***** Header Area End ***** -->
                   
 <div class="col-lg-12"><br><br>
-                    <form id="contact">
+                    <form accept-charset="UTF-8" id="contact">
   <br><br>
                         <br><label> Nombre de usuario </label>
                         <input name="nomU" id="nomU" value="<%= sesion.getUsuario().getNomUser() %>"> </input><br>

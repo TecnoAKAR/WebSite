@@ -156,7 +156,7 @@ public class PSUsuarioHelper implements Serializable {
     }
     
     public boolean sendMsg(HttpServletRequest request){
-        msjForo = new MsjForo();
+        msjForo = new MsjForo();        
         msjForo.setMensaje( request.getParameter("msj") );
         msjForo.getUsuario().setIdUsuario( Integer.parseInt(request.getParameter("idAutor")) );
         msjForo.setHora( new Date() );

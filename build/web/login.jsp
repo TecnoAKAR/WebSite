@@ -54,6 +54,7 @@ Author     : AKAR
                     {
                         return;
                     }
+                    request.setCharacterEncoding("UTF-8");
                     String action = request.getParameter( "action" );
                     if( action == null )
                     {
@@ -64,7 +65,7 @@ Author     : AKAR
                 %>
                         <div class="col-md-6 col-lg-4">
                             <div class="login-wrap p-0">
-                                <form action="login.jsp" class="signin-form" method="post">
+                                <form accept-charset="UTF-8" action="login.jsp" class="signin-form" method="post">
                                     <div class="form-group">
                                         <input type="text" name="nomU" id="nomU" class="form-control" placeholder="Nombre de usuario" required>
                                     </div>

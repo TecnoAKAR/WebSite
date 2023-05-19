@@ -19,6 +19,10 @@
             response.sendRedirect("notSession.jsp");
         }
         else{
+            if(sesion.getTipo().getIdTipo() == 2){
+                response.sendRedirect("notAccess.jsp");
+            }
+            request.setCharacterEncoding("UTF-8");
             String action = request.getParameter( "action" );
             if( action == null )
             {
@@ -34,6 +38,9 @@
                         </script>
 <%                        
                     }else{
+                        System.out.println(request.getParameter("msj"));
+                        System.out.println(request.getParameter("msj"));
+                        System.out.println(request.getParameter("msj"));
                         boolean enviado = new PSUsuarioHelper().sendMsg(request);
                     }
                     break;
@@ -133,6 +140,42 @@
         </br>
         </br>
         
+        <h1 align="center"> Bienvenido al foro de Apperger. </h1>
+        
+        <style>
+            ol {
+                margin-left: 40px;
+                margin-right: 40px;
+            }
+        </style>
+        
+        <p align="center">
+            Este espacio ha sido creado con el objetivo de fomentar el intercambio de ideas, experiencias y conocimientos entre tutores, usuarios externos y psicólogos que conviven con personas que tienen el síndrome de Asperger.
+            Nos alienta la diversidad de experiencias y perspectivas de nuestros miembros, ya que creemos que todos tienen algo valioso que aportar a esta comunidad. Así que no dudes en participar, hacer preguntas, compartir tus logros y desafíos, y ofrecer tu apoyo y sabiduría a otros miembros.
+            Queremos que este foro sea un lugar de respeto, empatía y comprensión mutua. Cada opinión es importante y cada voz cuenta. Juntos, podemos construir una red sólida de apoyo y contribuir al bienestar de las personas con síndrome de Asperger y sus entornos cercanos.            
+        </p>
+        
+        <h3 align="center">Reglas del foro</h3>
+        <ol>
+            <li>
+                <strong>1. Respeto y empatía:</strong> <p> Trata a todos los miembros con respeto y empatía. Respeta las opiniones y experiencias de los demás, incluso si difieren de las tuyas. Evita el lenguaje ofensivo, los ataques personales y los comentarios discriminatorios. </p>
+            </li>
+            <li>
+                <strong>2. Mantén un ambiente seguro:</strong> <p> Este foro es un espacio seguro para todos. No se tolerarán el acoso, el bullying o cualquier forma de comportamiento inapropiado. Si encuentras algún contenido inapropiado, repórtalo de inmediato a los moderadores del foro. </p>
+            </li>
+            <li>
+                <strong>3. Mantén la confidencialidad:</strong> <p> Respeta la privacidad y la confidencialidad de los demás. No compartas información personal de otros miembros sin su consentimiento.  </p>
+            </li>
+            <li>
+                <strong>4. Temas relevantes:</strong> <p> Asegúrate de que los temas que compartas y discutas estén relacionados con el síndrome de Asperger, la convivencia con personas que lo tienen y los temas afines. Evita desviarte demasiado del propósito del foro.  </p>
+            </li>
+            <li>
+                <strong>5. Comparte información útil:</strong> <p> Este foro se trata de aprender y apoyarse mutuamente. Si tienes información relevante, recursos, consejos o experiencias que puedan beneficiar a otros miembros, no dudes en compartirlos.  </p>
+            </li>
+        </ol>
+        
+        <hr>
+        
         <div id="chat-mensajes">
 
         </div>
@@ -182,35 +225,72 @@
 
             setInterval(getNewMessages, 1000);
         </script>
+        
         <hr>
-        <form method="post" id="envMsj">
+        <form accept-charset="UTF-8" method="post" id="envMsj">
             <input type="hidden" id="idAutor" name="idAutor" value="<%=sesion.getUsuario().getIdUsuario()%>">
-            <textarea class="form-control" name="msj" id="msj" rows="3"></textarea>
+            <textarea class="form-control" name="msj" id="msj" rows="3" maxlength="300"></textarea>
             <button type="submit" id="action" name="action" value="send" class="btn btn-dark"> Enviar ⩥ </button>
         </form>
-            <footer>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <p>Copyright © 2022 Tecnologías AKAR, S. de R.L. de C.V. All Rights Reserved. </p>
-                        </div>
+            
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Copyright © 2022 Tecnologías AKAR, S. de R.L. de C.V. All Rights Reserved. </p>
                     </div>
                 </div>
-            </footer>
+            </div>
+        </footer>
 
+        <!-- Scripts -->
+        <script src="sources/vendor/jquery/jquery.min.js"></script>
+        <script src="sources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="sources/assets/js/owl-carousel.js"></script>
+        <script src="sources/assets/js/animation.js"></script>
+        <script src="sources/assets/js/imagesloaded.js"></script>
+        <script src="sources/assets/js/custom.js"></script>
+        
+        <button  type="button" class="btn btn-dark" id="scroll-to-bottom" onclick="scrollToBottom()"> ↓ </button>
 
-            <!-- Scripts -->
-            <script src="sources/vendor/jquery/jquery.min.js"></script>
-            <script src="sources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-            <script src="sources/assets/js/owl-carousel.js"></script>
-            <script src="sources/assets/js/animation.js"></script>
-            <script src="sources/assets/js/imagesloaded.js"></script>
-            <script src="sources/assets/js/custom.js"></script>
+        <script>
+            window.onscroll = function() {
+                scrollFunction();
+            };
+
+            function scrollFunction() {
+                var scrollToBottomButton = document.getElementById("scroll-to-bottom");
+                if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+                    scrollToBottomButton.style.display = "none";
+                } else {
+                    scrollToBottomButton.style.display = "block";
+                }
+            }
+
+            function scrollToBottom() {
+                window.scrollTo(0, document.body.scrollHeight);
+            }
+        </script>
+        
+        <style>
+            #scroll-to-bottom {
+                display: none;
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                text-align: center;
+                line-height: 50px;
+                font-size: 20px;
+                cursor: pointer;
+            }
+        </style>
+        
     </body>
 </html>
 <%
         }
     } catch(Exception ex){
-    
+        response.sendRedirect("Error.jsp");
     }
 %>
