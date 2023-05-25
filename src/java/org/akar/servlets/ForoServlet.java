@@ -19,13 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.akar.dao.MsjForo;
 import org.akar.helper.PSUsuarioHelper;
 
-/**
- *
- * @author Axel Zarate Lozano
- */
 @WebServlet(name = "ForoServlet", urlPatterns = {"/ForoServlet"})
 public class ForoServlet extends HttpServlet {
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -40,11 +35,18 @@ public class ForoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        boolean enviado = new PSUsuarioHelper().sendMsg(request);        
         
-    }
-    @Override
-    public String getServletInfo() {
-        return "Short description";
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        if(enviado){        
+            out.print("{\"respuesta\": \" Success \"}");
+        }else{
+            out.print("{\"respuesta\": \" Fail \"}");
+        }
+        
     }
 
 }
