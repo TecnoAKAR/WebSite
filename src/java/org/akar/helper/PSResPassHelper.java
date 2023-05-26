@@ -41,11 +41,10 @@ public class PSResPassHelper {
         
         if(new PSResPassService().setToken(resPass) == true){
             if(recVer == 0){
-                new Correo().resPass(resPass.getUsuario().getCorreo(), resPass.getResPass().getToken());
+                return new Correo().resPass(resPass.getUsuario().getCorreo(), resPass.getResPass().getToken());
             } else{
-                new Correo().verCuenta(resPass.getUsuario().getCorreo(), resPass.getResPass().getToken());
+                return new Correo().verCuenta(resPass.getUsuario().getCorreo(), resPass.getResPass().getToken());
             }
-            return true;
         }else{
             return false;
         }
@@ -79,12 +78,7 @@ public class PSResPassHelper {
     
     public PSResPass getToken(HttpServletRequest request){
         PSResPass resPass = new PSResPass();
-        resPass = new PSResPassService().getToken(request.getParameter("token"));
-        if(resPass != null){
-            return resPass;
-        }else{
-            return null;
-        }
+        return new PSResPassService().getToken(request.getParameter("token"));
     }
     
 }

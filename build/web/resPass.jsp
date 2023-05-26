@@ -26,6 +26,9 @@ Author     : AKAR
         <link rel="stylesheet" href="sources/assets/css/animated.css">
         <link rel="stylesheet" href="sources/assets/css/owl.css">
         
+        <link href="sources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
     </head>
     
     <body class="img js-fullheight" style="background-image: url(sources/assets/images/quote-bg-v2.jpg);">
@@ -148,7 +151,12 @@ Author     : AKAR
         }else{
     %>
                 <script>
-                    alert("Su token es inválido.");
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Su token es inválido.',
+                        text: 'Revise que su token no haya sido alterado. Es posible que el error pueda deberse a que ingresó mal su correo electrónico o no existe la cuenta que intenta recuperar. Genere otro token y en caso de seguir experimentando este problema, contacte a soporte técnico.',
+                        footer: '<button type="button" class="btn btn-light"> <a href="index.jsp#contact"> Solicitar soporte. </a> </button>'
+                    });
                 </script>
     <%        
         }
