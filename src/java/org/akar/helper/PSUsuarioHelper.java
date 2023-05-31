@@ -176,11 +176,7 @@ public class PSUsuarioHelper implements Serializable {
     
     public List<MsjForo> getMsg(){
         List<MsjForo> list = new PSUsuarioService().getMsg();
-        if(list != null){
-            return list;
-        } else{
-            return null;
-        }
+        return list;
     }
     
     public boolean delMsg(HttpServletRequest request){
@@ -191,6 +187,11 @@ public class PSUsuarioHelper implements Serializable {
         }
         
         return new PSUsuarioService().delMsg(msjForo);
+    }
+    
+    public List<PSUsuario> getUsers(){
+        List<PSUsuario> list = new PSUsuarioService().getUsers();
+        return list;
     }
     
     

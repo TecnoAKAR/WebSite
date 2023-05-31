@@ -79,7 +79,7 @@ public class Correo {
         
 
         //String msj = "Buenas tardes, estimado usuario.\nPara poder restablecer su contraseña ingresa en el siguiente link: \n"+"http://"+ip+":8080/akar/resPass.jsp?token="+token+"\nPodrá cambiar su contraseña en un plazo máximo de 24 horas.\nCualquier situación que se le presente contactenos a "+this.correoAKAR+", estamos para servirle";
-        String msj = "Buenas tardes, estimado usuario.\nPara poder restablecer su contraseña ingresa en el siguiente link: \n"+"http://hwi.gerdoc.com/akar/resPass.jsp?token="+token+"\nPodrá cambiar su contraseña en un plazo máximo de 24 horas.\nCualquier situación que se le presente contactenos a "+this.correoAKAR+", estamos para servirle";
+        String msj = "Buen día, estimado usuario.\nPara poder restablecer su contraseña ingresa en el siguiente link: \n"+"http://hwi.gerdoc.com/akar/resPass.jsp?token="+token+"\nPodrá cambiar su contraseña en un plazo máximo de 24 horas.\nCualquier situación que se le presente contactenos a "+this.correoAKAR+", estamos para servirle";
         
         try {
             System.out.println(mail);
@@ -118,7 +118,7 @@ public class Correo {
         }
         
         //String msj = "Buenas tardes, estimado usuario.\nPara poder verificar su cuenta ingrese en el siguiente link: \n"+"http://"+ip+":8080/akar/VerCuenta?token="+token+"&correo="+mail+"\nPodrá verificar su cuenta en un plazo máximo de 24 horas.\nCualquier situación que se le presente contactenos a "+this.correoAKAR+", estamos para servirle";
-        String msj = "Buenas tardes, estimado usuario.\nPara poder verificar su cuenta ingrese en el siguiente link: \n"+"http://hwi.gerdoc.com/akar/VerCuenta?token="+token+"&correo="+mail+"\nPodrá verificar su cuenta en un plazo máximo de 24 horas.\nCualquier situación que se le presente contactenos a "+this.correoAKAR+", estamos para servirle";
+        String msj = "Buen día, estimado usuario.\nPara poder verificar su cuenta ingrese en el siguiente link: \n"+"http://hwi.gerdoc.com/akar/VerCuenta?token="+token+"&correo="+mail+"\nPodrá verificar su cuenta en un plazo máximo de 24 horas.\nCualquier situación que se le presente contactenos a "+this.correoAKAR+", estamos para servirle";
         
         try {
             System.out.println(mail);

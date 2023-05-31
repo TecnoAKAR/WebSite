@@ -26,7 +26,6 @@ Author     : AKAR
         <link rel="stylesheet" href="sources/assets/css/animated.css">
         <link rel="stylesheet" href="sources/assets/css/owl.css">
         
-        <link href="sources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         
     </head>

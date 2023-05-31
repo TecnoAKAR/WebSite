@@ -120,6 +120,7 @@
                     if(sesion.getTipo().getIdTipo() == 10){
         %>
                         <li><a class="dropdown-item" href="AdminSignUp.jsp">Registrar administradores</a></li>
+                        <li><a class="dropdown-item" href="ActUsers.jsp">Ver usuarios</a></li>
         <%                                
                      } 
         %>

@@ -325,4 +325,58 @@ public class PSUsuarioService {
         }
         return false;
     }
+    
+    
+    public List<PSUsuario> getUsers(){
+        List<PSUsuario> users= null;
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        PSUsuario user = null;
+        String query = null;
+        
+        try 
+        {
+            connection = DBConnection.getConnection( );
+            if( connection == null )
+            {
+                return null;
+            }
+            statement = connection.createStatement( );
+            if( statement == null )
+            {
+                return null;
+            }
+            query = "call sp_GETUSUARIOS();";
+            resultSet = statement.executeQuery( query );
+            if( resultSet == null )
+            {
+                return null;
+            }
+            users = new ArrayList<>();
+            while( resultSet.next() )
+            {
+                user = new PSUsuario( new TblUser(), new TblTipoUsuario());
+                user.setIdRelTipUs( resultSet.getInt(1));
+                user.getUsuario().setIdUsuario( resultSet.getInt(2));
+                user.getTipo().setIdTipo(resultSet.getInt(3));
+                user.getUsuario().setNom( resultSet.getString(4) );
+                user.getUsuario().setApellidoP( resultSet.getString(5));
+                user.getUsuario().setApellidoM( resultSet.getString(6));
+                user.getUsuario().setCorreo( resultSet.getString(7));
+                user.getUsuario().setNomUser( resultSet.getString(8));
+                user.getUsuario().setVer(resultSet.getBoolean(9));
+                users.add(user);
+            }
+            
+            resultSet.close();
+            DBConnection.closeConnection(connection);
+            return users;
+        } 
+        catch (SQLException ex) 
+        {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }

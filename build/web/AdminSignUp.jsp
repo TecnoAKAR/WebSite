@@ -83,6 +83,7 @@ Author     : AKAR
                                         if(sesion.getTipo().getIdTipo() == 10){
         %>
                                         <li><a class="dropdown-item" href="AdminSignUp.jsp">Registrar administradores</a></li>
+                                        <li><a class="dropdown-item" href="ActUsers.jsp">Ver usuarios</a></li>
         <%                                
                                         } 
         %>                                
@@ -113,15 +114,15 @@ Author     : AKAR
                 <form class="row g-3" method="post">
                     <div class="col-md-6">
                         <label for="inputEmail4" class="form-label"></label>
-                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre(s)" required>
+                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre(s)" maxlength="50" required>
                     </div>
                     <div class="col-md-6">
                       <label for="inputEmail4" class="form-label"></label>
-                      <input type="text" class="form-control" id="apellido_p" name="apellido_p" placeholder="Apellido paterno" required>
+                      <input type="text" class="form-control" id="apellido_p" name="apellido_p" placeholder="Apellido paterno" maxlength="50" required>
                     </div>
                     <div class="col-md-6">
                       <label for="inputEmail4" class="form-label"></label>
-                      <input type="text" class="form-control" id="apellido_m" name="apellido_m" placeholder="Apellido materno" required>
+                      <input type="text" class="form-control" id="apellido_m" name="apellido_m" placeholder="Apellido materno" maxlength="50" required>
                     </div>
                     <div class="col-md-6">
                       <label for="inputEmail4" class="form-label"></label>
@@ -129,22 +130,22 @@ Author     : AKAR
                     </div>
                     <div class="col-12">
                       <label for="inputEmail4" class="form-label"></label>
-                      <input type="email" class="form-control" id="correo_e" name="correo_e" placeholder="Correo electrónico" required>
+                      <input type="email" class="form-control" id="correo_e" name="correo_e" placeholder="Correo electrónico" maxlength="50" required>
                     </div>
                     <div class="col-md-6">
                       <label for="inputEmail4" class="form-label"></label>
-                      <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Nombre de usuario" required>
+                      <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Nombre de usuario" maxlength="50" required>
                     </div>
                     <div class="col-md-6    ">
                         <label for="inputState" class="form-label"></label>
-                        <select id="tipoUsuario" name="tipoUsuario" class="form-control">
-                          <option selected>Tipo de usuario</option>
+                        <select id="tipoUsuario" name="tipoUsuario" class="form-control" required>
+                          <option value="" disabled selected>Tipo de usuario</option>
                           <option value="10">Administrador</option>
                         </select>
                     </div>
                     <div class="col-md-6">
                       <label for="inputPassword4" class="form-label"></label>
-                      <input id="password-field" type="password" class="form-control" id="pass" name="pass" placeholder="Contraseña" required> 
+                      <input id="password-field" type="password" class="form-control" id="pass" name="pass" placeholder="Contraseña" minlength="8" maxlength="50" required> 
                       </br>
                       <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"> </span>
                     </div>
@@ -218,7 +219,7 @@ Author     : AKAR
                             if(tokenA == true){
         %>
                                 <script>
-                                    alert("Revise su correo para confirmar su cuenta.");
+                                    alert("La cuenta de administrador ha sido creada. Queda pendiente la verificación.");
                                 </script>
         <%                                
                             }else{

@@ -13,6 +13,15 @@ public class TblUser {
     String password;
     String nomUser;
     Date fechaNac;
+    Boolean ver;
+
+    public Boolean getVer() {
+        return ver;
+    }
+
+    public void setVer(Boolean ver) {
+        this.ver = ver;
+    }
     
     public TblUser(){
     }
@@ -79,8 +88,6 @@ public class TblUser {
 
     public void setFechaNac(Date fechaNac) {
         this.fechaNac = fechaNac;
-    }
-    
-    
+    }    
     
 }

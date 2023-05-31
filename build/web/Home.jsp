@@ -66,7 +66,13 @@
                     boolean enviado = correo.contactoAKAR(request.getParameter("name"), request.getParameter("email"), request.getParameter("subject"), request.getParameter("message"));
                     if (enviado == false) {
     %>
-                        <script>alert("Ha ocurrido un error al enviar los mensajes.");</script>
+                        <script>
+                            Swal.fire(
+                                '¡Alerta!',
+                                'Ha ocurrido un error al enviar el mensaje.',
+                                'warning'
+                            );
+                        </script>
     <%
                     }
                     break;
@@ -77,7 +83,7 @@
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Gracias por contestar',
-                                text: 'Agradecemos tu apoyo hacia la página. Tomaremos en cuenta tu opinión para mejorar',
+                                text: 'Agradecemos tu apoyo hacia la página. Tomaremos en cuenta tu opinión para mejorar'
                               });
                     </script>
     <%
@@ -142,6 +148,7 @@
                     if(sesion.getTipo().getIdTipo() == 10){
         %>
                         <li><a class="dropdown-item" href="AdminSignUp.jsp">Registrar administradores</a></li>
+                        <li><a class="dropdown-item" href="ActUsers.jsp">Ver usuarios</a></li>
         <%                                
                     } 
         %>

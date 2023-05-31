@@ -5,7 +5,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!doctype html>
-
 <html lang="es">
     <head>
         <title>Sign Up</title>
@@ -20,8 +19,26 @@
         <link rel="stylesheet" href="sources/assets/css/animated.css">
         <link rel="stylesheet" href="sources/assets/css/owl.css">
         
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
     </head>
     <body class="img js-fullheight" style="background-image: url(sources/assets/images/quote-bg-v2.jpg);">
+        
+        <%
+            boolean isMenor = Boolean.parseBoolean(request.getParameter("menor"));
+
+            if(isMenor){
+        %>        
+                <script>
+                    Swal.fire(
+                        '¡Se ha detectado que usted es un menor de edad!',
+                        'Por favor, siga las instrucciones al llenar el siguiente formulario.',
+                        'warning'
+                    );
+                </script>
+        <%
+            }
+        %>
         
         
         <div id="js-preloader" class="js-preloader">
@@ -41,15 +58,15 @@
                 <form accept-charset="UTF-8" class="row g-3" method="post">
                     <div class="col-md-6">
                         <label for="inputEmail4" class="form-label"></label>
-                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre(s)" required>
+                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre(s)" maxlength="50" required>
                     </div>
                     <div class="col-md-6">
                       <label for="inputEmail4" class="form-label"></label>
-                      <input type="text" class="form-control" id="apellido_p" name="apellido_p" placeholder="Apellido paterno" required>
+                      <input type="text" class="form-control" id="apellido_p" name="apellido_p" placeholder="Apellido paterno" maxlength="50" required>
                     </div>
                     <div class="col-md-6">
                       <label for="inputEmail4" class="form-label"></label>
-                      <input type="text" class="form-control" id="apellido_m" name="apellido_m" placeholder="Apellido materno" required>
+                      <input type="text" class="form-control" id="apellido_m" name="apellido_m" placeholder="Apellido materno" maxlength="50" required>
                     </div>
                     <div class="col-md-6">
                       <label for="inputEmail4" class="form-label"></label>
@@ -57,27 +74,27 @@
                     </div>
                     <div class="col-12">
                       <label for="inputEmail4" class="form-label"></label>
-                      <input type="email" class="form-control" id="correo_e" name="correo_e" placeholder="Correo electrónico" required>
+                      <input type="email" class="form-control" id="correo_e" name="correo_e" placeholder="Correo electrónico" maxlength="50" required>
                     </div>
                     <div class="col-12">
                       <label for="inputEmail4" class="form-label"></label>
-                      <input type="email" class="form-control" id="correo_e" name="correo_e_tutor" placeholder="Correo electrónico del tutor" required>
+                      <input type="email" class="form-control" id="correo_e" name="correo_e_tutor" placeholder="Correo electrónico del tutor" maxlength="50" required>
                     </div>
                     <div class="col-md-6">
                       <label for="inputEmail4" class="form-label"></label>
-                      <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Nombre de usuario" required>
+                      <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Nombre de usuario" maxlength="50" required>
                     </div>
-                    <div class="col-md-6    ">
+                    <div class="col-md-6">
                         <label for="inputState" class="form-label"></label>
-                        <select id="tipoUsuario" name="tipoUsuario" class="form-control">
-                          <option selected>Tipo de usuario</option>
+                        <select id="tipoUsuario" name="tipoUsuario" class="form-control" required>
+                          <option value="" disabled selected>Tipo de usuario</option>
                           <option value="2">Usuario Con Síndrome de Asperger (UCSA)</option>
                           <option value="4">Usuario externo</option>
                         </select>
                     </div>
                     <div class="col-md-6">
                       <label for="inputPassword4" class="form-label"></label>
-                      <input id="password-field" type="password" class="form-control" id="pass" name="pass" placeholder="Contraseña" required> 
+                      <input id="password-field" type="password" class="form-control" id="pass" name="pass" placeholder="Contraseña" minlength="8" maxlength="50" required> 
                       </br>
                       <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"> </span>
                     </div>
@@ -137,20 +154,32 @@
                         if(tokenA == true){
         %>
                             <script>
-                                alert("Revise su correo para confirmar su cuenta.");
+                                Swal.fire(
+                                    '¡Cuenta creada!',
+                                    'Revise su correo para verificarla.',
+                                    'sucess'
+                                );
                             </script>
         <%                                
                         }else{
         %>
                             <script>
-                                alert("¡Algo ha salido mal!, contacte a soporte de inmediato para solucionar el problema.");
+                                Swal.fire(
+                                    '¡Algo ha salido mal!',
+                                    'Contacte a soporte de inmediato para solucionar el problema.',
+                                    'error'
+                                );
                             </script>
         <%                                 
                         }
                     }else{
         %>
-                        <script>
-                            alert("El correo y usuario están en uso.");
+                        <script>                            
+                            Swal.fire(
+                                '¡El correo y/o usuario están en uso!',
+                                'Si se trata de un error, solicite soporte técnico.',
+                                'warning'
+                            );
                         </script>
         <%
                     }

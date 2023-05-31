@@ -25,6 +25,8 @@ Author     : AKAR
         <link rel="stylesheet" href="sources/assets/css/animated.css">
         <link rel="stylesheet" href="sources/assets/css/owl.css">
         
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
     </head>
     <body class="img js-fullheight" style="background-image: url(sources/assets/images/quote-bg-v2.jpg);">
         
@@ -101,8 +103,12 @@ Author     : AKAR
                             }
                             else{
                 %>
-                                <script>
-                                    alert("Los datos que usted ingresó son incorrectos.");
+                                <script>                            
+                                    Swal.fire(
+                                        '¡Alerta!',
+                                        'Los datos que ingresó son incorrectos.',
+                                        'warning'
+                                    );
                                 </script>
                 <%
                             }
@@ -129,14 +135,22 @@ Author     : AKAR
                             if (isTokenG = true) {
                 %>
                                 <script>
-                                    alert("Revise su correo electrónico");
+                                    Swal.fire(
+                                        '¡Token generado!',
+                                        'Revise su correo.',
+                                        'sucess'
+                                    );
                                 </script>
                 <%        
                             }
                             else{
                 %>
                                 <script>
-                                    alert("Su token no ha sido generado.");
+                                    Swal.fire(
+                                        '¡Alerta!',
+                                        'Su token no ha sido generado.',
+                                        'warning'
+                                    );
                                 </script>
                 <% 
                             }                            
