@@ -114,12 +114,20 @@
           toast.addEventListener('mouseleave', Swal.resumeTimer);
         }
       });
-
-      Toast.fire({
-        icon: 'success',
-        title: 'Bienvenido, <%=sesion.getUsuario().getNomUser()%>'
-      });
   </script>
+  <%
+      boolean welcome = Boolean.parseBoolean(request.getParameter("welcome"));
+      if(welcome){
+  %>
+        <script>
+            Toast.fire({
+                icon: 'success',
+                title: 'Bienvenido, <%=sesion.getUsuario().getNomUser()%>'
+            });
+        </script>
+  <%        
+      }
+  %>
 
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
@@ -144,6 +152,7 @@
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="profile.jsp">Perfil</a></li>
                   <li><a class="dropdown-item" href="editProf.jsp">Editar perfil</a></li>
+                  <li><a class="dropdown-item" href="#downloadApp">Descargar Apperger</a></</li>
         <%
                     if(sesion.getTipo().getIdTipo() == 10){
         %>
@@ -156,7 +165,7 @@
                   <li><a class="dropdown-item" href="?action=close" id="action" name="action" value="close">Cerrar sesión</a></li>
                 </ul>
               </li>
-              
+              <li class="scroll-to-section"><a href="#"></a></li> 
               
               
             </ul>        
@@ -468,6 +477,42 @@
         </div>
       </div>
     </div>
+  </div>
+  
+  <div id="downloadApp" class="our-portfolio section">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-5">
+                  <div class="section-heading wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
+                      <h6>Descargar</h6>
+                      <h4>Apperger</em></h4>
+                      <div class="line-dec"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-lg-8 offset-lg-2  wow fadeIn" data-wow-duration="1s" data-wow-delay="0.4s">
+      <h2>    
+          Descargue <i>Apperger</i> para dispositivos móviles android.
+      </h2>
+      <br/>
+      <div align="center">
+          <a href="http://hwi.gerdoc.com/akar/Apperger.apk"> <button type="button" class="btn btn-dark btn-lg" align="center">Descargar (20 Mb)</button> </a>
+      </div>
+      <p>Se recomienda tener:
+        <ul>
+            <li>
+                Memoria RAM mayor a 2GB.
+            </li>
+            <li>
+                Procesador de al menos 4 núcleos.
+            </li>
+            <li>
+                Tener disponibilidad de memoria.
+            </li>
+        </ul>
+      </p>
   </div>
 
   <div id="contact" class="contact-us section">

@@ -99,7 +99,7 @@ Author     : AKAR
                             if( usuario != null){
                                 HttpSession sesion = request.getSession();
                                 sesion.setAttribute("usuario", usuario);
-                                response.sendRedirect("Home.jsp");
+                                response.sendRedirect("Home.jsp?welcome=true");
                             }
                             else{
                 %>

@@ -95,6 +95,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="profile.jsp">Perfil</a></li>
                                         <li><a class="dropdown-item" href="editProf.jsp">Editar perfil</a></li>
+                                        <li><a class="dropdown-item" href="Home.jsp#downloadApp">Descargar Apperger</a></</li>
         <%
                                     if(sesion.getTipo().getIdTipo() == 10){
         %>
@@ -107,7 +108,7 @@
                                         <li><a class="dropdown-item" href="?action=close" id="action" name="action" value="close">Cerrar sesión</a></li>
                                     </ul>
                                 </li>
-
+                                <li class="scroll-to-section"><a href="#"></a></li> 
 
 
                             </ul>        

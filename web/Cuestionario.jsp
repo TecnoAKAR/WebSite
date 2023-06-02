@@ -122,7 +122,8 @@
                                         <li class="scroll-to-section"><a href="index.jsp#proyecto">Proyecto</a></li>
                                         <li class="scroll-to-section"><a href="index.jsp#contact">Contáctanos</a></li> 
                                         <li class="scroll-to-section"><a href="signup.jsp">Registrarse</a></li>
-                                        <li class="scroll-to-section"><div class="border-first-button"><a href="login.jsp">Iniciar sesión</a></div></li> 
+                                        <li class="scroll-to-section"><a href="login.jsp">Iniciar sesión</a></li> 
+                                        <li class="scroll-to-section"><div class="border-first-button"><a href="index.jsp#downloadApp">Descargar Apperger</a></div></li>
                                     </ul>        
                                     <a class='menu-trigger'>
                                         <span>Menu</span>
@@ -160,6 +161,7 @@
                               <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="profile.jsp">Perfil</a></li>
                                 <li><a class="dropdown-item" href="editProf.jsp">Editar perfil</a></li>
+                                <li><a class="dropdown-item" href="Home.jsp#downloadApp">Descargar Apperger</a></</li>
         <%
                                 if(sesion.getTipo().getIdTipo() == 10){
         %>
@@ -172,7 +174,7 @@
                                 <li><a class="dropdown-item" href="?action=close" id="action" name="action" value="close">Cerrar sesión</a></li>
                               </ul>
                             </li>
-
+                            <li class="scroll-to-section"><a href="#"></a></li>
 
 
                           </ul>        
