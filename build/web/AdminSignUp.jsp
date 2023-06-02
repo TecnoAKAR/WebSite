@@ -80,16 +80,16 @@ Author     : AKAR
                                         <li><a class="dropdown-item" href="profile.jsp">Perfil</a></li>
                                         <li><a class="dropdown-item" href="editProf.jsp">Editar perfil</a></li>
                                         <li><a class="dropdown-item" href="Home.jsp#downloadApp">Descargar Apperger</a></</li>
-        <%
-                                        if(sesion.getTipo().getIdTipo() == 10){
-        %>
+                                            <%
+                                                if (sesion.getTipo().getIdTipo() == 10) {
+                                            %>
                                         <li><a class="dropdown-item" href="AdminSignUp.jsp">Registrar administradores</a></li>
                                         <li><a class="dropdown-item" href="ActUsers.jsp">Ver usuarios</a></li>
-        <%                                
-                                        } 
-        %>                                
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="?action=close" id="action" name="action" value="close">Cerrar sesión</a></li>
+                                            <%
+                                                }
+                                            %>          <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="?action=close" id="action" name="action" value="close">Cerrar sesión</a></li>    
+                                        <li><a class="dropdown-item" href="#" id="#" name="#" value="#"></a></li>
                                     </ul>
                                 </li>
                                 <li class="scroll-to-section"><a href="#"></a></li>
