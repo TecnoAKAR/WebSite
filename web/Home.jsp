@@ -496,7 +496,7 @@
       </h2>
       <br/>
       <div align="center">
-          <a href="http://hwi.gerdoc.com/akar/Apperger.apk"> <button type="button" class="btn btn-dark btn-lg" align="center">Descargar (20 Mb)</button> </a>
+          <a href="http://hwi.gerdoc.com/akar/Apperger.apk"> <button type="button" class="btn btn-dark btn-lg" align="center">Descargar (20 MB)</button> </a>
       </div>
       <p>Se recomienda tener:
         <ul>
